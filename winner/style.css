@@ -1,0 +1,188 @@
+@font-face {
+	font-family: 'Courier';
+	src: url('../_data/fonts/CourierStd.otf');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Courier';
+	src: url('../_data/fonts/CourierStd-Bold.otf');
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'Helvetica Now';
+	src: url('../_data/fonts/HelveticaNowText-Medium.otf');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Helvetica Now';
+	src: url('../_data/fonts/HelveticaNowText-Bold.otf');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Helvetica Now';
+	src: url('../_data/fonts/HelveticaNowText-Black.otf');
+	font-weight: 700;
+}
+
+body,
+html {
+	padding: 0;
+	margin: 0;
+	overflow-y: hidden;
+	font-family: 'Courier';
+}
+
+#main {
+	width: 1920px;
+	height: 1080px;
+	position: relative;
+	background-image: url('../_data/assets/base-bg-ro32.png');
+}
+
+#header {
+	width: 1920px;
+	height: 100px;
+	opacity: 100%;
+	letter-spacing: 1px;
+	font-size: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #ffffff;
+}
+
+#full-overlay {
+	width: 1920px;
+	height: 1080px;
+	background-size: cover;
+}
+
+#container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+}
+
+#victory {
+	width: 100%;
+	margin-top: 40px;
+	text-align: center;
+	color: #ffffff;
+	font-size: 92px;
+}
+
+#score-row {
+	width: 100%;
+	height: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#score-red-container {
+	height: 30px;
+	width: 60px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ff5663;
+	mix-blend-mode: overlay;
+	margin: 0 24px;
+	color: #ffffff;
+}
+
+#score-red {
+	font-size: 64px;
+	height: 54px;
+	text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+#score-blue-container {
+	height: 30px;
+	width: 60px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #6294ff;
+	mix-blend-mode: overlay;
+	margin: 0 24px;
+	color: #ffffff;
+}
+
+#score-blue {
+	font-size: 64px;
+	height: 54px;
+	text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+#versus {
+	width: 100px;
+	color: #ffffff;
+	font-size: 32px;
+	height: 32px;
+	text-align: center;
+}
+
+#flag-red {
+	width: 70px;
+	height: 47px;
+}
+
+#flag-blue {
+	width: 70px;
+	height: 47px;
+}
+
+#team-row {
+	width: 100%;
+	text-align: center;
+	color: #ffffff;
+	margin-top: 40px;
+	font-size: 64px;
+	color: #ff5663;
+}
+
+#title {
+	position: absolute;
+	font-family: 'Helvetica Now';
+	color: #ff5663;
+	bottom: 32px;
+	left: 36px;
+	text-align: left;
+	text-transform: uppercase;
+	font-weight: 400;
+	letter-spacing: 1px;
+	font-size: 22px;
+}
+
+#note {
+	margin-right: 6px;
+}
+
+/*Scrollbar*/
+::-webkit-scrollbar {
+	width: 0px;
+	visibility: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	margin-top: 25px;
+	margin-bottom: 25px;
+	visibility: 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: grey;
+	border-radius: 10px;
+}

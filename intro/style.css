@@ -1,0 +1,184 @@
+@font-face {
+	font-family: 'Courier';
+	src: url('../_data/fonts/CourierStd.otf');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Courier';
+	src: url('../_data/fonts/CourierStd-Bold.otf');
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'Helvetica Now';
+	src: url('../_data/fonts/HelveticaNowText-Medium.otf');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Helvetica Now';
+	src: url('../_data/fonts/HelveticaNowText-Bold.otf');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Helvetica Now';
+	src: url('../_data/fonts/HelveticaNowText-Black.otf');
+	font-weight: 700;
+}
+
+body,
+html {
+	padding: 0;
+	margin: 0;
+	overflow-y: hidden;
+	font-family: 'Courier';
+}
+
+#main {
+	width: 1920px;
+	height: 1080px;
+	position: relative;
+	background-image: url('../_data/assets/base-bg-ro32.png');
+}
+
+#coming-up {
+	position: absolute;
+	top: 360px;
+	height: 80px;
+	width: 100%;
+	text-align: left;
+	display: flex;
+	font-weight: bold;
+	align-items: center;
+	justify-content: center;
+	color: #ff5663;
+}
+
+#coming-up-text {
+	font-size: 48px;
+}
+
+#coming-up h3 {
+	font-size: 30px;
+	line-height: 72px;
+	margin-top: 16px;
+	padding-left: 18px;
+	opacity: 0.2;
+}
+
+#header {
+	width: 1920px;
+	height: 100px;
+	opacity: 100%;
+	letter-spacing: 1px;
+	font-size: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #ffffff;
+}
+
+#full-overlay {
+	width: 1920px;
+	height: 1080px;
+	background-size: cover;
+}
+
+#team-container {
+	position: absolute;
+	top: 450px;
+	height: 300px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.team {
+	display: flex;
+	color: #111111;
+	font-weight: bold;
+}
+
+.team.vs {
+	width: 70px;
+	height: 44px;
+	opacity: 0.5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+}
+
+.flag-col {
+	width: 70px;
+	height: 47px;
+}
+
+.flag-col.red {
+	margin-right: 24px;
+}
+
+.flag-col.blue {
+	margin-left: 24px;
+}
+
+.player-col.red {
+	margin-right: 18px;
+}
+
+.player-col.blue {
+	margin-left: 18px;
+}
+
+.team-name {
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 48px;
+	margin-bottom: 16px;
+}
+
+.player {
+	font-size: 30px;
+}
+
+.blue {
+	text-align: right;
+}
+
+#title {
+	font-family: 'Helvetica Now';
+	position: absolute;
+	color: #ff5663;
+	bottom: 32px;
+	left: 36px;
+	text-align: left;
+	text-transform: uppercase;
+	font-weight: 400;
+	letter-spacing: 1px;
+	font-size: 22px;
+}
+
+#note {
+	margin-right: 6px;
+}
+
+/*Scrollbar*/
+::-webkit-scrollbar {
+	width: 0px;
+	visibility: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	margin-top: 25px;
+	margin-bottom: 25px;
+	visibility: 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: grey;
+	border-radius: 10px;
+}
