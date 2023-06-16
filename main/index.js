@@ -210,7 +210,7 @@ socket.onmessage = event => {
 			document.getElementById(`red${i}`).style.backgroundColor = '#111111';
 		}
 		for (let i = starsRed + 1; i <= firstTo; i++) {
-			document.getElementById(`red${i}`).style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
+			document.getElementById(`red${i}`).style.backgroundColor = 'unset';
 		}
 	}
 	if (starsBlue !== data.tourney.manager.stars.right) {
@@ -219,7 +219,7 @@ socket.onmessage = event => {
 			document.getElementById(`blue${i}`).style.backgroundColor = '#111111';
 		}
 		for (let i = starsBlue + 1; i <= firstTo; i++) {
-			document.getElementById(`blue${i}`).style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
+			document.getElementById(`blue${i}`).style.backgroundColor = 'unset';
 		}
 	}
 
