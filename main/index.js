@@ -43,7 +43,7 @@ socket.onopen = () => { console.log('Successfully Connected'); };
 let animation = {
 	red_score: new CountUp('score-red', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
 	blue_score: new CountUp('score-blue', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
-	score_diff: new CountUp('score-diff', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: '', decimal: '.', suffix: '' }),
+	score_diff: new CountUp('score-diff', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
 }
 
 socket.onclose = event => {
@@ -66,7 +66,8 @@ let starsRed, scoreRed, nameRed, flagRed;
 let starsBlue, scoreBlue, nameBlue, flagBlue;
 
 let map, mapid;
-window.setInterval(() => {
+window.setInterval(async () => {
+	await delay(200);
 	let cookieName = 'lastPick';
 	const match = document.cookie.match(`(?:^|.*)${cookieName}=(.+?)(?:$|[|;].*)`);
 
@@ -84,9 +85,8 @@ window.setInterval(() => {
 				if (map_obj?.identifier?.toUpperCase().includes('TB')) return -3;
 				if (flagRed && flagBlue) pick_flag.src = `https://assets.ppy.sh/old-flags/${cookieValue[1] === 'red' ? flagRed : flagBlue}.png`;
 				else pick_flag.src = `https://assets.ppy.sh/old-flags/XX.png`;
-				// pick_label.style.color = cookieValue[1] === 'red' ? '#571318' : '#15274d';
 				pick_label.style.color = cookieValue[1] === 'red' ? '#ff8089' : '#94b6ff';
-				// pick_label.style.backgroundColor = cookieValue[1] === 'red' ? '#ff5663' : '#6294ff';
+				pick_label.style.opacity = 1;
 				return 0;
 			}
 			return -255;
@@ -94,15 +94,14 @@ window.setInterval(() => {
 	}
 
 	if (checkValid() !== 0) {
-		pick_label.style.display = 'none';
-		pick_flag.style.display = 'none';
+		pick_label.style.opacity = 0;
 	}
 }, 500);
 
-socket.onmessage = event => {
+socket.onmessage = async event => {
 	let data = JSON.parse(event.data);
 
-	if (mapid != data.menu.bm.id) mapid = data.menu.bm.id;
+	if (mapid != data.menu.bm.id) { await delay(200); mapid = data.menu.bm.id; }
 
 	if (scoreVisible !== data.tourney.manager.bools.scoreVisible) {
 		scoreVisible = data.tourney.manager.bools.scoreVisible;
@@ -110,9 +109,11 @@ socket.onmessage = event => {
 		if (scoreVisible) {
 			chat_container.style.opacity = 0;
 			top_footer.style.opacity = 1;
+			score_diff.style.opacity = 1;
 		} else {
 			chat_container.style.opacity = 1;
 			top_footer.style.opacity = 0;
+			score_diff.style.opacity = 0;
 		}
 	}
 	if (starsVisible !== data.tourney.manager.bools.starsVisible) {
@@ -148,8 +149,9 @@ socket.onmessage = event => {
 	}
 
 	if (mappool && md5 !== data.menu.bm.md5 || len_ !== data.menu.bm.time.full - data.menu.bm.time.firstObj) {
+		await delay(200);
 		map = mappool ? mappool.beatmaps.find(m => m.beatmap_id == data.menu.bm.id) || { id: data.menu.bm.id, mods: 'NM', identifier: '' } : { mods: 'NM' };
-		let mod_ = map.mods;
+		let mod_ = map.mods || 'NM';
 		stats = getModStats(data.menu.bm.stats.CS, data.menu.bm.stats.AR, data.menu.bm.stats.OD, data.menu.bm.stats.BPM.max, mod_);
 		let singlestat = mod_ != 'FM';
 
@@ -158,7 +160,7 @@ socket.onmessage = event => {
 		ar.innerHTML = singlestat ? Math.round(stats.ar * 10) / 10 : `${data.menu.bm.stats.AR}<i><svg id="arrow" width="10" height="10" transform="rotate(270)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 40"><defs><style>.cls-1{fill:#fff;}</style></defs><polygon class="cls-1" points="15 40 0 40 15 20 0 0 15 0 30 20 15 40"/></svg>${stats.ar}</i>`;
 		od.innerHTML = singlestat ? Math.round(stats.od * 10) / 10 : `${data.menu.bm.stats.OD}<i><svg id="arrow" width="10" height="10" transform="rotate(270)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 40"><defs><style>.cls-1{fill:#fff;}</style></defs><polygon class="cls-1" points="15 40 0 40 15 20 0 0 15 0 30 20 15 40"/></svg>${stats.od}</i>`;
 		sr.innerHTML = `${map?.sr || data.menu.bm.stats.fullSR}★`;
-		bpm.innerHTML = map?.sr || Math.round(stats.bpm * 10) / 10;
+		bpm.innerHTML = map?.bpm || Math.round(stats.bpm * 10) / 10;
 
 		len_ = data.menu.bm.time.full - data.menu.bm.time.firstObj;
 		let mins = Math.trunc((len_ / stats.speed) / 1000 / 60);
@@ -357,7 +359,7 @@ const getModStats = (cs_raw, ar_raw, od_raw, bpm_raw, mods) => {
 	let ar = mods.includes('HR') ? ar_raw * 1.4 : mods.includes('EZ') ? ar_raw * 0.5 : ar_raw;
 
 	let ar_ms = Math.max(Math.min(ar <= 5 ? 1800 - 120 * ar : 1200 - 150 * (ar - 5), 1800), 450) / speed;
-	ar = ar_ms < 1200 ? (1800 - ar_ms) / 120 : 5 + (1200 - ar_ms) / 150;
+	ar = ar < 5 ? (1800 - ar_ms) / 120 : 5 + (1200 - ar_ms) / 150;
 
 	let cs = Math.round(Math.min(mods.includes('HR') ? cs_raw * 1.3 : mods.includes('EZ') ? cs_raw * 0.5 : cs_raw, 10) * 10) / 10;
 
@@ -372,3 +374,5 @@ const getModStats = (cs_raw, ar_raw, od_raw, bpm_raw, mods) => {
 		speed
 	}
 }
+
+const delay = async time => new Promise(resolve => setTimeout(resolve, time));

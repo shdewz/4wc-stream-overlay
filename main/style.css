@@ -28,6 +28,18 @@
 	font-weight: 700;
 }
 
+@font-face {
+	font-family: 'Mont';
+	src: url('../../_data/fonts/Mont-SemiBold.otf');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Mont';
+	src: url('../../_data/fonts/Mont-Bold.otf');
+	font-weight: 700;
+}
+
 :root {
 	--footer-height: 100px;
 	--bottom-width: 1440px;
@@ -298,19 +310,20 @@ html {
 	height: 100%;
 	width: 36px;
 	display: flex;
+	opacity: 0;
 	flex-direction: column;
 	bottom: 0;
 	left: 0;
 	font-weight: 700;
 	font-size: 17px;
-	transition: 200ms;
+	transition: opacity 200ms ease;
 	color: #ffffff;
 }
 
 #picked-by-label span {
 	width: 100%;
 	height: 60px;
-	margin-left: 6px;
+	margin-left: 7px;
 	transform: rotate(180deg);
 }
 
@@ -420,6 +433,7 @@ html {
 	background-color: rgba(0, 0, 0, 0.83);
 	border-left: 4px solid #ff5663;
 	overflow: hidden;
+	font-family: 'Helvetica Now';
 }
 
 #chat {
@@ -438,7 +452,7 @@ html {
 .chatTime {
 	width: 56px;
 	min-width: 56px;
-	color: rgb(80, 80, 80);
+	color: rgb(90, 90, 90);
 	margin-right: 6px;
 	text-align: center;
 }
@@ -465,12 +479,12 @@ html {
 }
 
 .bot {
-	color: #a6db88;
+	color: #ff5663;
 	font-weight: bold;
 }
 
 .bot+.chatText {
-	color: #dbf1cf;
+	color: #ff919a;
 }
 
 .right {
