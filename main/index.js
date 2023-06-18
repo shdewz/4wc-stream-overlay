@@ -248,7 +248,7 @@ socket.onmessage = async event => {
 		let scores = [];
 		for (let i = 0; i < 8; i++) {
 			let score = data.tourney.ipcClients[i]?.gameplay?.score || 0;
-			if (data.tourney.ipcClients[i]?.gameplay?.mods?.str?.toLowerCase().includes('EZ')) score *= 1.6;
+			if (data.tourney.ipcClients[i]?.gameplay?.mods?.str?.toUpperCase().includes('EZ')) score *= 1.6;
 			scores.push({ id: i, score });
 		}
 
