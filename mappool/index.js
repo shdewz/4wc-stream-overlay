@@ -29,6 +29,7 @@ let redName = 'Red Team', blueName = 'Blue Team';
 let tempMapID = 0;
 let currentPicker = 'Red';
 let enableAutoPick = false;
+let selectedMaps = [];
 
 class Beatmap {
     constructor(mods, modID, beatmapID, layerName) {
@@ -108,12 +109,12 @@ socket.onmessage = async (event) => {
         redName = data.tourney.manager.teamName.left || 'Red';
     }
 
-    if (tempMapID !== data.menu.bm.id) {
+    if (tempMapID !== data.menu.bm.id && data.menu.bm.id != 0) {
         if (tempMapID == 0) tempMapID = data.menu.bm.id;
         else {
             tempMapID = data.menu.bm.id;
             let pickedMap = Array.from(beatmaps).find(b => b.beatmapID == tempMapID);
-            if (pickedMap && enableAutoPick) pickMap(Array.from(beatmaps).find(b => b.beatmapID == tempMapID), currentPicker == 'Red' ? redName : blueName, currentPicker);
+            if (pickedMap && enableAutoPick && !selectedMaps.includes(tempMapID)) pickMap(Array.from(beatmaps).find(b => b.beatmapID == tempMapID), currentPicker == 'Red' ? redName : blueName, currentPicker);
         }
     }
 };
@@ -177,6 +178,7 @@ const pickMap = (bm, teamName, color) => {
     bm.difficulty.style.opacity = '0.3';
     bm.modIcon.style.opacity = '0.3';
     bm.bg.style.opacity = '0';
+    selectedMaps.push(bm.beatmapID);
 
     setTimeout(() => {
         bm.pickedStatus.style.opacity = 1;
@@ -195,6 +197,7 @@ const banMap = (bm, teamName, color) => {
     bm.difficulty.style.opacity = '0.3';
     bm.modIcon.style.opacity = '0.3';
     bm.bg.style.opacity = '0';
+    selectedMaps.push(bm.beatmapID);
 
     setTimeout(() => {
         bm.pickedStatus.style.opacity = 1;
@@ -216,6 +219,7 @@ const resetMap = bm => {
     bm.pickedStatus.style.opacity = '0';
     bm.pickedStatus.style.boxShadow = 'none';
     bm.pickedStatus.style.outline = 'none';
+    selectedMaps = selectedMaps.filter(e => e !== bm.beatmapID);
 
     setTimeout(() => {
         bm.pickedStatus.style.opacity = 0;
