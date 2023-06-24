@@ -26,7 +26,7 @@
 | source           | url/path                        | width | height | x | y   |
 |------------------|---------------------------------|-------|--------|---|-----|
 | vc_overlay       |                                 | 480   | 100    | 0 | 880 |
-| mappool_overlay* | http://localhost:24050/mappool/ | 1920  | 700    | 0 | 220 |
+| mappool_overlay* | http://localhost:24050/mappool/ | 2320  | 700    | 0 | 220 |
 | main_overlay     | http://localhost:24050/main/    | 1920  | 1080   | 0 | 0   |
 
 <sup>*position changes per round depending on mappool size to center in the middle, try to line up manually</sup>
