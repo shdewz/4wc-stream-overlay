@@ -3,7 +3,8 @@ let mappool, teams;
 	$.ajaxSetup({ cache: false });
 	mappool = await $.getJSON('../_data/beatmaps.json');
 	teams = await $.getJSON('../_data/teams.json');
-	// document.getElementById('stage-name').innerHTML = mappool.stage.toUpperCase();
+	let stage = mappool.abbreviation.toLowerCase();
+	if (stage) document.getElementById('main').style.backgroundImage = `url('../_data/assets/gameplay-${stage}.png')`;
 })();
 
 let socket = new ReconnectingWebSocket('ws://' + location.host + '/ws');

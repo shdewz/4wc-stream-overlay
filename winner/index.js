@@ -5,6 +5,8 @@ let points_r, points_b;
 	$.ajaxSetup({ cache: false });
 	teams = await $.getJSON('../_data/teams.json');
 	mappool = await $.getJSON('../_data/beatmaps.json');
+	let stage = mappool.abbreviation.toLowerCase();
+	if (stage) document.getElementById('main').style.backgroundImage = `url('../_data/assets/base-bg-${stage}.png')`;
 })();
 
 let socket = new ReconnectingWebSocket('ws://' + location.host + '/ws');
