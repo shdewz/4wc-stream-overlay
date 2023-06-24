@@ -421,11 +421,11 @@ html {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	width: 684px;
-	height: 184px;
+	width: 740px;
+	height: 186px;
 	overflow-y: scroll;
 	overflow-x: hidden;
-	padding: 8px;
+	padding: 7px 10px;
 	font-size: 17px;
 	transition: ease-in-out 500ms;
 	z-index: 2;
