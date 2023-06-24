@@ -284,3 +284,50 @@ html {
     display: flex;
     justify-content: center;
 }
+
+#controls {
+    width: 200px;
+    padding: 12px;
+    position: absolute;
+    left: 1920px;
+    top: 0;
+}
+
+.pickButton {
+    width: 240px;
+    height: 40px;
+    margin-bottom: 12px;
+    font-family: 'Helvetica Now';
+    font-size: 22px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#redPickButton {
+    color: #f38181;
+    background-color: #4e1e1e;
+    opacity: 1;
+}
+
+#bluePickButton {
+    color: #74a0ee;
+    background-color: #0f2141;
+    opacity: 0.5;
+}
+
+.switchPickButton {
+    color: #202020;
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+
+.switchPickButton:hover {
+    color: #202020;
+    background-color: #bebebe;
+}
+
+#autoPickButton {
+    background-color: #fc9f9f;
+}
