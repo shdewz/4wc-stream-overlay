@@ -1,171 +1,142 @@
-@font-face {
-	font-family: 'Courier';
-	src: url('../_data/fonts/CourierStd.otf');
-	font-weight: 400;
-}
-
-@font-face {
-	font-family: 'Courier';
-	src: url('../_data/fonts/CourierStd-Bold.otf');
-	font-weight: 700;
-}
-
-@font-face {
-	font-family: 'Helvetica Now';
-	src: url('../_data/fonts/HelveticaNowText-Medium.otf');
-	font-weight: 400;
-}
-
-@font-face {
-	font-family: 'Helvetica Now';
-	src: url('../_data/fonts/HelveticaNowText-Bold.otf');
-	font-weight: 500;
-}
-
-@font-face {
-	font-family: 'Helvetica Now';
-	src: url('../_data/fonts/HelveticaNowText-Black.otf');
-	font-weight: 700;
-}
-
 body,
 html {
 	padding: 0;
 	margin: 0;
 	overflow-y: hidden;
-	font-family: 'Courier';
+	font-family: 'Din';
 }
 
-#main {
-	width: 1920px;
-	height: 1080px;
+.main {
 	position: relative;
-	background-image: url('../_data/assets/base-bg-ro32.png');
-}
-
-#header {
-	width: 1920px;
-	height: 100px;
-	opacity: 100%;
-	letter-spacing: 1px;
-	font-size: 36px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #ffffff;
-}
-
-#full-overlay {
 	width: 1920px;
 	height: 1080px;
+	background-image: url('../_shared/assets/bg_corners.png');
+	background-position: center;
+	background-repeat: no-repeat;
 	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--accent);
+	font-size: 2rem;
 }
 
-#container {
-	height: 100%;
+.logo {
+	position: absolute;
+	top: 40px;
+	right: 40px;
+	width: 200px;
+	height: 100px;
+	background-image: url('../_shared/assets/logo_light_512.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.title {
+	font-style: italic;
+}
+
+.match-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-weight: bold;
+	gap: 12px;
 }
 
-#victory {
-	width: 100%;
-	margin-top: 40px;
-	text-align: center;
-	color: #ffffff;
-	font-size: 92px;
-}
-
-#score-row {
-	width: 100%;
-	height: 80px;
+.teams {
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	color: var(--light);
 }
 
-#score-red-container {
-	height: 30px;
-	width: 60px;
-	text-align: center;
+.team {
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #ff5663;
-	mix-blend-mode: overlay;
-	margin: 0 24px;
-	color: #ffffff;
+	flex-direction: column;
+	gap: 8px;
 }
 
-#score-red {
-	font-size: 64px;
-	height: 54px;
-	text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-}
-
-#score-blue-container {
-	height: 30px;
-	width: 60px;
-	text-align: center;
+.scores {
+	padding: 0 24px;
 	display: flex;
-	align-items: center;
+	gap: 12px;
+	font-size: 3rem;
+	line-height: 3rem;
+}
+
+.score {
+	font-weight: 700;
+}
+
+.team-header {
+	font-weight: 700;
+	font-size: 3rem;
+	display: flex;
 	justify-content: center;
-	background-color: #6294ff;
-	mix-blend-mode: overlay;
-	margin: 0 24px;
-	color: #ffffff;
+	align-items: center;
+	gap: 18px;
 }
 
-#score-blue {
-	font-size: 64px;
-	height: 54px;
-	text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+.team.blue {
+	align-items: flex-end;
+	text-align: right;
 }
 
-#versus {
-	width: 100px;
-	color: #ffffff;
-	font-size: 32px;
-	height: 32px;
-	text-align: center;
-}
-
-#flag-red {
+.team-flag {
 	width: 70px;
 	height: 47px;
+	background-image: url('https://assets.ppy.sh/old-flags/XX.png');
 }
 
-#flag-blue {
-	width: 70px;
-	height: 47px;
+.team-players {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	font-size: 1.6rem;
 }
 
-#team-row {
-	width: 100%;
-	text-align: center;
-	color: #ffffff;
-	margin-top: 40px;
-	font-size: 64px;
-	color: #ff5663;
+.team-players.red {
+	padding-left: calc(70px + 18px);
 }
 
-#title {
+.team-players.blue {
+	padding-right: calc(70px + 18px);
+}
+
+.timer {
+	font-size: 3rem;
+	margin-top: 12px;
+	letter-spacing: 2px;
+	font-weight: 700;
+}
+
+.song-container {
 	position: absolute;
-	font-family: 'Helvetica Now';
-	color: #ff5663;
-	bottom: 32px;
-	left: 36px;
-	text-align: left;
-	text-transform: uppercase;
-	font-weight: 400;
-	letter-spacing: 1px;
-	font-size: 22px;
+	bottom: 40px;
+	left: 40px;
+	font-size: 1.7rem;
+	font-style: italic;
+	display: flex;
+	align-items: center;
+	gap: 12px;
 }
 
-#note {
-	margin-right: 6px;
+.song-title-container {
+	display: flex;
+	gap: 8px;
+	opacity: 1;
+	transition: opacity 300ms ease;
+}
+
+.note {
+	font-size: 2rem;
+}
+
+.song-title {
+	max-width: 800px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 /*Scrollbar*/

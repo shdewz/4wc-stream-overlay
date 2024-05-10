@@ -4,62 +4,87 @@ let comingup, teams, mappool;
 	comingup = await $.getJSON('../_data/coming_up.json');
 	teams = await $.getJSON('../_data/teams.json');
 	mappool = await $.getJSON('../_data/beatmaps.json');
-	let stage = mappool.abbreviation.toLowerCase();
-	if (stage) document.getElementById('main').style.backgroundImage = `url('../_data/assets/base-bg-${stage}.png')`;
-
-	let timer_end = comingup.time - 0 * 60 * 60 * 1000;
-	if (timer_end > Date.now()) {
-		let timer_int = setInterval(() => {
-			if (timer_end < Date.now()) {
-				clearInterval(timer_int);
-				if (timer) timer.innerHTML = '00:00';
+	streamer = (await $.getJSON('../_data/streamer.json')).username;
+	
+	if (comingup.length) {
+		const now = Date.now();
+		const matches = comingup.sort((a, b) => a.time - b.time).filter(e => e.time > now - 3 * 60 * 1000);
+		if (matches.length === 0) {
+			console.log('a')
+			return;
+		}
+		else {
+			concurrent_matches = matches.filter(m => m.time == matches[0].time);
+			if (concurrent_matches.length > 1) {
+				concurrent_matches_2 = concurrent_matches.filter(m => m.streamer === streamer ?? '');
+				if (concurrent_matches_2.length === 0) {
+					update_match(concurrent_matches[0]);
+				}
+				else if (concurrent_matches_2.length > 1) {
+					console.log('you done fucked up');
+					$('#title').text('MULTIPLE CONCURRENT MATCHES, CHECK JSON FILE');
+				}
+				else update_match(concurrent_matches_2[0]);
 			}
-			let remaining = Math.floor((timer_end - Date.now()) / 1000);
+			else update_match(concurrent_matches[0]);
+		}
+	}
+	else update_match(comingup);
+})();
+
+const update_match = match => {
+	$('#title').text('COMING UP')
+	const red_team = teams.find(team => team.team === match.red_team);
+	const blue_team = teams.find(team => team.team === match.blue_team);
+	update_team('red', red_team);
+	update_team('blue', blue_team);
+
+	if (match.time > Date.now()) {
+		let timer_int = setInterval(() => {
+			if (match.time < Date.now()) {
+				clearInterval(timer_int);
+				$('#timer').text('00:00');
+			}
+			let remaining = Math.floor((match.time - Date.now()) / 1000);
 			let hours = Math.floor(remaining / 60 / 60);
 			let date = new Date(null);
 			date.setSeconds(remaining);
 			let text = hours > 0 ? date.toISOString().slice(11, 19) : date.toISOString().slice(14, 19);
-			if (timer && remaining > 0) timer.innerHTML = text;
+			if (timer && remaining > 0) $('#timer').text(text);
 		}, 1000);
 	}
+}
 
-	let team_red = teams.find(t => t.name == comingup.red_team);
-	if (team_red) {
-		document.getElementById('red-team').innerHTML = team_red.name;
-		document.getElementById('red-flag').src = `https://assets.ppy.sh/old-flags/${team_red.flag}.png`;
-		for (let i = 0; i < 8; i++) {
-			let player = team_red.players[i]?.username || '';
-			document.getElementById(`red-player-${i + 1}`).innerHTML = player;
-		}
+const update_team = (color, team) => {
+	$(`#name_${color}`).text(team.team);
+	$(`#flag_${color}`).css('background-image', `url('https://assets.ppy.sh/old-flags/${team.flag}.png')`);
+	$(`#players_${color}`).html('');
+	const players = team.players.sort((a, b) => b.captain - a.captain);
+	console.log(players);
+	for (const player of players) {
+		$(`#players_${color}`).append($('<div></div>').addClass('team-player').text(player.username));
 	}
-
-	let team_blue = teams.find(t => t.name == comingup.blue_team);
-	if (team_blue) {
-		document.getElementById('blue-team').innerHTML = team_blue.name;
-		document.getElementById('blue-flag').src = `https://assets.ppy.sh/old-flags/${team_blue.flag}.png`;
-		for (let i = 0; i < 8; i++) {
-			let player = team_blue.players[i]?.username || '';
-			document.getElementById(`blue-player-${i + 1}`).innerHTML = player;
-		}
-	}
-})();
+}
 
 let socket = new ReconnectingWebSocket('ws://' + location.host + '/ws');
-
-let title = document.getElementById('title');
-let time = document.getElementById('time');
 
 socket.onopen = () => { console.log('Successfully Connected'); };
 socket.onclose = event => { console.log('Socket Closed Connection: ', event); socket.send('Client Closed!'); };
 socket.onerror = error => { console.log('Socket Error: ', error); };
 
-let tempTime, tempMapName;
-
-socket.onmessage = event => {
+let artist, title;
+socket.onmessage = async event => {
 	let data = JSON.parse(event.data);
 
-	if (tempMapName !== `${data.menu.bm.metadata.artist} - <b>${data.menu.bm.metadata.title}</b>`) {
-		tempMapName = `${data.menu.bm.metadata.artist} - <b>${data.menu.bm.metadata.title}</b>`;
-		title.innerHTML = `<span id="note">♪</span> ${tempMapName}`;
+	if (artist !== data.menu.bm.metadata.artist || title !== data.menu.bm.metadata.title) {
+		artist = data.menu.bm.metadata.artist;
+		title = data.menu.bm.metadata.title;
+		$('#song_title_container').css('opacity', 0);
+		await delay(300);
+		$('#song_artist').text(artist);
+		$('#song_title').text(title);
+		$('#song_title_container').css('opacity', 1);
 	}
 }
+
+const delay = async time => new Promise(resolve => setTimeout(resolve, time));

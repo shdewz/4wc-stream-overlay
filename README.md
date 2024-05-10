@@ -64,3 +64,4 @@ Not included here. Contains the following items:
 - `teams.json` - list of teams, static
 - `beatmaps.json` - mappool file, exchanged weekly
 - `coming_up.json` - time and team names for a match, exchanged every match, used for intro screen
+- `streamer.json` - your name, as `{"username": "yourname"}`
