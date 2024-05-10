@@ -44,9 +44,11 @@
 
 Intro and winner scenes can also have the vc overlay bottom left if needed
 
+### Transitions
+
 Add a stinger transition between scenes. File is in the stream package, set transition point to `1250ms`.
 
-Fallback: add a **300ms `linear horizontal` luma wipe** transition between the scenes with **`0.05`** smoothness
+<sup>Fallback: add a **300ms `linear horizontal` luma wipe** transition between the scenes with **`0.05`** smoothness</sup>
 
 ### Interacting with the mappool
 - Left click: left (red) team pick
