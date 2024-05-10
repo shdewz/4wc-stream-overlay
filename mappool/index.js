@@ -1,22 +1,13 @@
 window.addEventListener('contextmenu', (e) => e.preventDefault());
 
-// START
-let socket = new ReconnectingWebSocket('ws://127.0.0.1:24050/ws');
-let user = {};
-
-// NOW PLAYING
-let mapContainer = document.getElementById('mapContainer');
-let mapArtist = document.getElementById('mapName');
-let mapInfo = document.getElementById('mapInfo');
-let mapper = document.getElementById('mapper');
-let stars = document.getElementById('stars');
-let stats = document.getElementById('stats');
-let red_button = document.getElementById('redPickButton');
-let blue_button = document.getElementById('bluePickButton');
-let autopick_button = document.getElementById('autoPickButton');
-
 const beatmaps = new Set();
-const load_maps = async () => await $.getJSON('../_data/beatmap_data.json');
+let mappool;
+(async () => {
+    $.ajaxSetup({ cache: false });
+    mappool = await $.getJSON('../_data/beatmaps.json');
+})();
+
+let socket = new ReconnectingWebSocket('ws://' + location.host + '/ws');
 
 socket.onopen = () => { console.log('Successfully Connected'); };
 socket.onclose = event => { console.log('Socket Closed Connection: ', event); socket.send('Client Closed!'); };
@@ -27,229 +18,142 @@ let hasSetup = false;
 let lastPicked = null;
 let redName = 'Red Team', blueName = 'Blue Team';
 let tempMapID = 0;
-let currentPicker = 'Red';
+let currentPicker = 'red';
 let enableAutoPick = false;
 let selectedMaps = [];
 
 class Beatmap {
-    constructor(mods, modID, beatmapID, layerName) {
-        this.mods = mods;
-        this.modID = modID;
-        this.beatmapID = beatmapID;
-        this.layerName = layerName;
+    constructor(beatmap) {
+        this.id = beatmap.beatmap_id;
+        this.beatmap = beatmap;
     }
     generate() {
-        let mappoolContainer = document.getElementById(`${this.mods}`);
+        this.parent = $('<div></div>').addClass('map').attr('id', `map-${this.beatmap.identifier.toLowerCase()}`);
+        this.parent.append($('<div></div>').addClass('map-image').css('background-image', `url('https://assets.ppy.sh/beatmaps/${this.beatmap.beatmapset_id}/covers/cover.jpg')`));
 
-        this.clicker = document.createElement('div');
-        this.clicker.id = `${this.layerName}Clicker`;
+        const content = $('<div></div>').addClass('map-content');
+        this.picked_by_label = $('<div></div>').addClass('picked-by-label').attr('id', `picked-by-label-${this.beatmap.identifier.toLowerCase()}`);
+        content.append(this.picked_by_label);
+        content.append($('<div></div>').addClass('mod-icon').text(this.beatmap.identifier.toUpperCase()));
 
-        mappoolContainer.appendChild(this.clicker);
-        let clickerObj = document.getElementById(this.clicker.id);
+        const stats = $('<div></div>').addClass('map-stats');
+        stats.append($('<div></div>').addClass('map-stats-section map-top').append($('<div></div>').addClass('map-title').text(this.beatmap.title)));
+        const bottom = $('<div></div>').addClass('map-stats-section map-bottom');
+        bottom.append($('<div></div>').addClass('map-difficulty-container').append($('<div></div>').addClass('map-difficulty').text(this.beatmap.difficulty)));
+        bottom.append($('<div></div>').addClass('map-mapper').text(this.beatmap.mapper));
+        stats.append(bottom);
+        content.append(stats);
+        this.parent.append(content);
 
-        this.bg = document.createElement('div');
-        this.map = document.createElement('div');
-        this.overlay = document.createElement('div');
-        this.blinkoverlay = document.createElement('div');
-        this.artist = document.createElement('div');
-        this.title = document.createElement('div');
-        this.difficulty = document.createElement('div');
-        this.stats = document.createElement('div');
-        this.modIcon = document.createElement('div');
-        this.pickedStatus = document.createElement('div');
-
-        this.bg.id = this.layerName;
-        this.map.id = `${this.layerName}BG`;
-        this.overlay.id = `${this.layerName}Overlay`;
-        this.blinkoverlay.id = `${this.layerName}BlinkOverlay`;
-        this.artist.id = `${this.layerName}ARTIST`;
-        this.title.id = `${this.layerName}TITLE`;
-        this.difficulty.id = `${this.layerName}DIFF`;
-        this.stats.id = `${this.layerName}Stats`;
-        this.modIcon.id = `${this.layerName}ModIcon`;
-        this.pickedStatus.id = `${this.layerName}STATUS`;
-
-        this.artist.setAttribute('class', 'mapInfo artist');
-        this.title.setAttribute('class', 'mapInfo title');
-        this.difficulty.setAttribute('class', 'mapInfo diff');
-        this.map.setAttribute('class', 'map');
-        this.pickedStatus.setAttribute('class', 'pickingStatus');
-        this.overlay.setAttribute('class', 'overlay');
-        this.blinkoverlay.setAttribute('class', 'blinkoverlay');
-        this.bg.setAttribute('class', 'statBG');
-        this.modIcon.setAttribute('class', `modIcon icon-${this.mods.toLowerCase()}`);
-        this.modIcon.innerHTML = `${this.modID}`;
-        this.clicker.setAttribute('class', 'clicker');
-        clickerObj.appendChild(this.map);
-        document.getElementById(this.map.id).appendChild(this.overlay);
-        document.getElementById(this.map.id).appendChild(this.blinkoverlay);
-        document.getElementById(this.map.id).appendChild(this.artist);
-        document.getElementById(this.map.id).appendChild(this.title);
-        document.getElementById(this.map.id).appendChild(this.difficulty);
-        clickerObj.appendChild(this.pickedStatus);
-        clickerObj.appendChild(this.bg);
-        clickerObj.appendChild(this.modIcon);
-
-        this.clicker.style.transform = 'translateY(0)';
-    }
-    grayedOut() {
-        this.overlay.style.opacity = '1';
+        this.blink_overlay = $('<div></div>').addClass('blink-overlay');
+        this.parent.append(this.blink_overlay);
+        $(`#mod-container-${this.beatmap.mods.toLowerCase()}`).append(this.parent);
     }
 }
 
 socket.onmessage = async (event) => {
     let data = JSON.parse(event.data);
 
-    if (!hasSetup) setupBeatmaps();
+    if (mappool && !hasSetup) setupBeatmaps();
+
+    if (redName !== data.tourney.manager.teamName.left && data.tourney.manager.teamName.left) {
+        redName = data.tourney.manager.teamName.left || 'Red Team';
+    }
 
     if (blueName !== data.tourney.manager.teamName.right && data.tourney.manager.teamName.right) {
-        blueName = data.tourney.manager.teamName.right || 'Blue';
-    }
-    if (redName !== data.tourney.manager.teamName.left && data.tourney.manager.teamName.left) {
-        redName = data.tourney.manager.teamName.left || 'Red';
+        blueName = data.tourney.manager.teamName.right || 'Blue Team';
     }
 
-    if (tempMapID !== data.menu.bm.id && data.menu.bm.id != 0) {
-        if (tempMapID == 0) tempMapID = data.menu.bm.id;
+    if (mappool && tempMapID !== data.menu.bm.id && data.menu.bm.id !== 0) {
+        if (tempMapID === 0) tempMapID = data.menu.bm.id;
         else {
             tempMapID = data.menu.bm.id;
-            let pickedMap = Array.from(beatmaps).find(b => b.beatmapID == tempMapID);
-            if (pickedMap && enableAutoPick && !selectedMaps.includes(tempMapID)) pickMap(Array.from(beatmaps).find(b => b.beatmapID == tempMapID), currentPicker == 'Red' ? redName : blueName, currentPicker);
+            let pickedMap = Array.from(beatmaps).find(b => b.id === tempMapID);
+            if (pickedMap && enableAutoPick && !selectedMaps.includes(tempMapID)) pickMap(pickedMap, currentPicker === 'red' ? redName : blueName, currentPicker);
         }
     }
 };
 
 async function setupBeatmaps() {
     hasSetup = true;
+    const maps = mappool.beatmaps;
+    if (!maps || maps.length == 0) return;
 
-    const bms = [];
-    try {
-        $.ajaxSetup({ cache: false });
-        const jsonData = await $.getJSON(`../_data/beatmaps.json`);
-        jsonData.beatmaps.map((beatmap) => { bms.push(beatmap); });
-    } catch (error) { console.error('Could not read JSON file', error); }
+    document.cookie = `lastPick=;path=/`;
+    $('#mappool_container').html('');
+    for (const mod of [... new Set(maps.map(b => b.mods))]) {
+        $('#mappool_container').append($('<div></div>').addClass('mod-container').attr('id', `mod-container-${mod.toLowerCase()}`));
+    }
 
-    let row = -1;
-    let preMod = 0;
-    let colIndex = 0;
-
-    bms.map(async (beatmap, index) => {
-        if (beatmap.mods !== preMod || colIndex % 3 === 0) {
-            preMod = beatmap.mods;
-            colIndex = 0;
-            row++;
-        }
-        const bm = new Beatmap(beatmap.mods, beatmap.identifier, beatmap.beatmap_id, `map${index}`);
+    for (const beatmap of maps) {
+        const bm = new Beatmap(beatmap);
         bm.generate();
-        bm.clicker.addEventListener('mousedown', () => {
-            bm.clicker.addEventListener('click', event => {
-                if (!event.shiftKey) event.ctrlKey ? banMap(bm, redName, 'Red') : pickMap(bm, redName, 'Red');
-                else resetMap(bm);
-            });
-            bm.clicker.addEventListener('contextmenu', event => {
-                if (!event.shiftKey) event.ctrlKey ? banMap(bm, blueName, 'Blue') : pickMap(bm, blueName, 'Blue');
-                else resetMap(bm);
-            });
+        bm.parent.on('click', event => {
+            if (!event.originalEvent.shiftKey) event.originalEvent.ctrlKey ? banMap(bm, redName, 'red') : pickMap(bm, redName, 'red');
+            else resetMap(bm);
         });
-        const stored_beatmaps = await load_maps();
-        const mapData = await getDataSet(stored_beatmaps, beatmap.beatmap_id);
-        bm.map.style.backgroundImage = `url('https://assets.ppy.sh/beatmaps/${mapData.beatmapset_id}/covers/cover.jpg')`;
-        bm.artist.innerHTML = `${mapData.artist}`;
-        bm.title.innerHTML = `${mapData.title}`;
-        bm.difficulty.innerHTML = `[${mapData.version}] by ${mapData.creator}`;
+        bm.parent.on('contextmenu', event => {
+            if (!event.originalEvent.shiftKey) event.originalEvent.ctrlKey ? banMap(bm, blueName, 'blue') : pickMap(bm, blueName, 'blue');
+            else resetMap(bm);
+        });
         beatmaps.add(bm);
-    });
+    }
 }
 
 const getDataSet = (stored_beatmaps, beatmap_id) => stored_beatmaps.find(b => b.beatmap_id == beatmap_id) || null;
 
 const pickMap = (bm, teamName, color) => {
-    if (lastPicked !== null) lastPicked.blinkoverlay.style.animation = 'none';
+    if (lastPicked !== null) lastPicked.blink_overlay.css('animation', 'none');
     lastPicked = bm;
     switchPick(color);
 
-    document.cookie = `lastPick=${bm.beatmapID}-${color.toLowerCase()};path=/`;
-
-    bm.pickedStatus.style.color = '#f5f5f5';
-    bm.overlay.style.opacity = '0.85';
-    bm.blinkoverlay.style.animation = 'blinker 1s cubic-bezier(.36,.06,.01,.57) 300ms 8, slowPulse 5000ms ease-in-out 8000ms 18';
-    bm.artist.style.opacity = '0.3';
-    bm.title.style.opacity = '0.3';
-    bm.difficulty.style.opacity = '0.3';
-    bm.modIcon.style.opacity = '0.3';
-    bm.bg.style.opacity = '0';
+    if (bm.beatmap.mods.includes('TB')) {
+        document.cookie = `lastPick=;path=/`;
+        bm.parent.addClass(`picked`).removeClass('banned red blue');
+        bm.picked_by_label.text('Tiebreaker').addClass(`picked`).removeClass('banned red blue');
+    }
+    else {
+        document.cookie = `lastPick=${bm.id}-${color.toLowerCase()};path=/`;
+        bm.parent.addClass(`picked ${color}`).removeClass(`banned ${opposite(color)}`);
+        bm.picked_by_label.text(`Picked by ${teamName}`).addClass(`picked ${color}`).removeClass(`banned ${opposite(color)}`);
+    }
+    
+    bm.blink_overlay.css('animation', 'blinker 1s cubic-bezier(.36,.06,.01,.57) 300ms 8, slowPulse 5000ms ease-in-out 8000ms 18');
     selectedMaps.push(bm.beatmapID);
-
-    setTimeout(() => {
-        bm.pickedStatus.style.opacity = 1;
-        bm.pickedStatus.style.outline = bm.mods.includes('TB') ? '3px solid #ffffff' : `3px solid ${color == 'Red' ? '#ff8d8d' : '#93b5ff'}`;
-        bm.pickedStatus.innerHTML = bm.mods.includes('TB') ? 'Tiebreaker' : `<b class="pick${color}">${teamName}</b> pick`;
-    }, 300);
 }
 
 const banMap = (bm, teamName, color) => {
-    if (bm.mods.includes('TB')) return;
-    bm.pickedStatus.style.color = '#f5f5f5';
-    bm.overlay.style.opacity = '0.95';
-    bm.blinkoverlay.style.animation = 'none';
-    bm.artist.style.opacity = '0.3';
-    bm.title.style.opacity = '0.3';
-    bm.difficulty.style.opacity = '0.3';
-    bm.modIcon.style.opacity = '0.3';
-    bm.bg.style.opacity = '0';
-    selectedMaps.push(bm.beatmapID);
+    if (bm.beatmap.mods.includes('TB')) return;
 
-    setTimeout(() => {
-        bm.pickedStatus.style.opacity = 1;
-        bm.pickedStatus.style.outline = 'none';
-        bm.pickedStatus.innerHTML = `<b class="pick${color}">${teamName}</b> ban`;
-    }, 300);
+    bm.parent.addClass(`banned ${color}`).removeClass(`picked ${opposite(color)}`);
+    bm.picked_by_label.text(`Banned by ${teamName}`).addClass(`banned ${color}`).removeClass(`picked ${opposite(color)}`);
+    bm.blink_overlay.css('animation', 'none');
+    selectedMaps.push(bm.beatmapID);
 }
 
 const resetMap = bm => {
     document.cookie = `lastPick=;path=/`;
 
-    bm.overlay.style.opacity = '0.5';
-    bm.blinkoverlay.style.animation = 'none';
-    bm.artist.style.opacity = '1';
-    bm.title.style.opacity = '1';
-    bm.difficulty.style.opacity = '1';
-    bm.modIcon.style.opacity = '1';
-    bm.bg.style.opacity = '1';
-    bm.pickedStatus.style.opacity = '0';
-    bm.pickedStatus.style.boxShadow = 'none';
-    bm.pickedStatus.style.outline = 'none';
+    bm.parent.removeClass('banned picked red blue');
+    bm.picked_by_label.text('').removeClass('banned picked red blue');
+    bm.blink_overlay.css('animation', 'none');
     selectedMaps = selectedMaps.filter(e => e !== bm.beatmapID);
-
-    setTimeout(() => {
-        bm.pickedStatus.style.opacity = 0;
-        bm.pickedStatus.style.outline = 'none';
-        bm.pickedStatus.innerHTML = '';
-    }, 100);
 }
 
 const switchPick = color => {
-    if (!color) currentPicker = currentPicker == 'Red' ? 'Blue' : 'Red';
-    else currentPicker = color == 'Red' ? 'Blue' : 'Red';
-    if (currentPicker == 'Red') {
-        red_button.style.opacity = 1;
-        blue_button.style.opacity = 0.5;
-    }
-    else {
-        red_button.style.opacity = 0.5;
-        blue_button.style.opacity = 1;
-    }
+    currentPicker = color ? opposite(color) : opposite(currentPicker);
+    $('#current_pick').text(`${currentPicker.toUpperCase()} PICK`).addClass(currentPicker).removeClass(opposite(currentPicker));
 }
 
 const switchAutoPick = () => {
     if (enableAutoPick) {
         enableAutoPick = false;
-        autopick_button.innerHTML = 'ENABLE AUTOPICK';
-        autopick_button.style.backgroundColor = '#fc9f9f';
+        $('#auto_pick').text('ENABLE AUTOPICK').removeClass('enabled');
     }
     else {
         enableAutoPick = true;
-        autopick_button.innerHTML = 'DISABLE AUTOPICK';
-        autopick_button.style.backgroundColor = '#9ffcb3';
+        $('#auto_pick').text('DISABLE AUTOPICK').addClass('enabled');
     }
 }
+
+const opposite = color => color === 'red' ? 'blue' : 'red';

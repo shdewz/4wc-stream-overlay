@@ -1,0 +1,55 @@
+:root {
+	--border-width: 2px;
+	--border-color: var(--accent);
+}
+
+body,
+html {
+	padding: 0;
+	margin: 0;
+	overflow-y: hidden;
+	font-family: 'Din';
+}
+
+.main {
+	position: relative;
+	width: 1920px;
+	height: 1080px;
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	width: 100%;
+	height: 160px;
+	display: flex;
+}
+
+.header-side {
+	width: 50%;
+	border-bottom: var(--border-width) solid;
+}
+
+.gameplay-area {
+	width: 100%;
+	height: 720px;
+}
+
+.footer {
+	width: 100%;
+	height: 200px;
+	display: flex;
+}
+
+.footer-side {
+	width: 50%;
+	border-top: var(--border-width) solid;
+}
+
+.red {
+	border-color: var(--red);
+}
+
+.blue {
+	border-color: var(--blue);
+}
