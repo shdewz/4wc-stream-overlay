@@ -1,7 +1,7 @@
 :root {
     --map-width: 500px;
     --map-height: 60px;
-    --mod-width: 72px;
+    --mod-width: 78px;
     --border-default: #505050;
     --border-banned: #222222;
     --border-picked: var(--accent);
@@ -92,7 +92,7 @@ html {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    filter: brightness(30%) grayscale(40%) blur(2px);
+    filter: brightness(40%) grayscale(30%) blur(2px);
     transform: scale(1.2);
     z-index: 0;
 }
@@ -107,9 +107,45 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: var(--mod-width);
-    font-size: 1.6rem;
+    margin: 0 10px;
+    width: calc(var(--mod-width) - 2 * 12px);
+    border: 2px solid var(--border-default);
+    padding: 2px;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
     font-weight: 700;
+    background-color: var(--border-banned);
+    color: var(--light);
+}
+
+.mod-icon.nm {
+    border-color: #5677b3;
+    background-color: #3d5685;
+}
+
+.mod-icon.hd {
+    border-color: #b9935a;
+    background-color: #85663d;
+}
+
+.mod-icon.hr {
+    border-color: #b95c5c;
+    background-color: #853d3d;
+}
+
+.mod-icon.dt {
+    border-color: #9b5cb9;
+    background-color: #6b3d85;
+}
+
+.mod-icon.fm {
+    border-color: #58ac6a;
+    background-color: #3d7c4b;
+}
+
+.mod-icon.tb {
+    border-color: #52949c;
+    background-color: #396469;
 }
 
 .map-stats {
@@ -175,7 +211,7 @@ html {
     width: auto;
     padding: 3px 10px 1px 12px;
     background-color: var(--border-banned);
-    color: #8f8f8f;
+    color: #a7a7a7;
 }
 
 .picked-by-label.picked {

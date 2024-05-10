@@ -34,7 +34,7 @@ class Beatmap {
         const content = $('<div></div>').addClass('map-content');
         this.picked_by_label = $('<div></div>').addClass('picked-by-label').attr('id', `picked-by-label-${this.beatmap.identifier.toLowerCase()}`);
         content.append(this.picked_by_label);
-        content.append($('<div></div>').addClass('mod-icon').text(this.beatmap.identifier.toUpperCase()));
+        content.append($('<div></div>').addClass(`mod-icon ${this.beatmap.mods.toLowerCase()}`).text(this.beatmap.identifier.toUpperCase()));
 
         const stats = $('<div></div>').addClass('map-stats');
         stats.append($('<div></div>').addClass('map-stats-section map-top').append($('<div></div>').addClass('map-title').text(this.beatmap.title)));
