@@ -23,19 +23,22 @@
 
         <hr>
 
-        <div id="autoAdvanceButton" class="button control-item" onclick="switchAutoAdvance()">AUTO ADVANCE: OFF</div>
-        <div id="autoAdvanceTimer" class="controlLabel">
-            <span id="autoAdvanceTimerLabel">Switching to __SCENE__ in</span> <span id="autoAdvanceTimerTime"></span>
-        </div>
+        <div id="autoAdvanceSection">
+            <div id="autoAdvanceButton" class="button control-item" onclick="switchAutoAdvance()">AUTO ADVANCE: OFF
+            </div>
+            <div id="autoAdvanceTimer" class="controlLabel">
+                <span id="autoAdvanceTimerLabel"></span> <span id="autoAdvanceTimerTime"></span>
+            </div>
 
-        <br/><br/>
+            <br/><br/>
 
-        <div class="controlLabel">Scenes<br>(click to override)</div>
-        <br>
-        <div id="sceneCollection">
-            <template id="sceneButtonTemplate">
-                <div class="button sceneButton control-item">SWITCH TO __SCENE_NAME__</div>
-            </template>
+            <div class="controlLabel">Scenes<br>(click to override)</div>
+            <br>
+            <div id="sceneCollection">
+                <template id="sceneButtonTemplate">
+                    <div class="button sceneButton control-item">SWITCH TO __SCENE_NAME__</div>
+                </template>
+            </div>
         </div>
     </div>
     <script src="index.js"></script>

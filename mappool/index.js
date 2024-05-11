@@ -1,9 +1,7 @@
-const obsGetCurrentScene = window.obsstudio?.getCurrentScene ?? (() => {
-});
-const obsGetScenes = window.obsstudio?.getScenes ?? (() => {
-});
-const obsSetCurrentScene = window.obsstudio?.setCurrentScene ?? (() => {
-});
+const obsGetCurrentScene = window.obsstudio?.getCurrentScene ?? (() => {});
+const obsGetScenes = window.obsstudio?.getScenes ?? (() => {});
+const obsSetCurrentScene = window.obsstudio?.setCurrentScene ?? (() => {});
+const obsGetControlLevel = window.obsstudio?.getControlLevel ?? (() => {});
 
 window.addEventListener('contextmenu', (e) => e.preventDefault());
 
@@ -46,7 +44,27 @@ const mappool_scene_name = "mappool";
 let selectedMapsTransitionTimeout = {};
 const pick_to_transition_delay_ms = 10000;
 
+/**
+ * @typedef {number} Level - The level of permissions.
+ * 0 for NONE,
+ * 1 for READ_OBS (OBS data),
+ * 2 for READ_USER (User data),
+ * 3 for BASIC,
+ * 4 for ADVANCED
+ * 5 for ALL
+ */
+obsGetControlLevel(level => {
+    // don't display auto advance if access level to OBS isn't sufficient
+    if (level < 4) {
+        document.getElementById("autoAdvanceSection").style.display="none";
+    }
+})
+
 obsGetScenes(scenes => {
+    if (scenes === null) {
+        return;
+    }
+
     for (const scene of scenes) {
         let clone = document.getElementById("sceneButtonTemplate").content.cloneNode(true);
         let buttonNode = clone.querySelector('div');
