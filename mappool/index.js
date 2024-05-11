@@ -27,7 +27,7 @@ let currentPicker = 'red';
 let enableAutoPick = false;
 let selectedMaps = [];
 
-const sceneCollection = document.getElementById("sceneCollection");
+const sceneCollection = document.getElementById('sceneCollection');
 let autoadvance_button = document.getElementById('autoAdvanceButton');
 autoadvance_button.style.backgroundColor = '#fc9f9f';  // default to off
 
@@ -39,8 +39,8 @@ autoadvance_timer_container.style.opacity = '0';
 let enableAutoAdvance = false;
 let sceneTransitionTimeoutID;
 let lastState;
-const gameplay_scene_name = "gameplay";
-const mappool_scene_name = "mappool";
+const gameplay_scene_name = 'gameplay';
+const mappool_scene_name = 'mappool';
 let selectedMapsTransitionTimeout = {};
 const pick_to_transition_delay_ms = 10000;
 
@@ -56,7 +56,7 @@ const pick_to_transition_delay_ms = 10000;
 obsGetControlLevel(level => {
     // don't display auto advance if access level to OBS isn't sufficient
     if (level < 4) {
-        document.getElementById("autoAdvanceSection").style.display="none";
+        document.getElementById('autoAdvanceSection').style.display='none';
     }
 })
 
@@ -66,7 +66,7 @@ obsGetScenes(scenes => {
     }
 
     for (const scene of scenes) {
-        let clone = document.getElementById("sceneButtonTemplate").content.cloneNode(true);
+        let clone = document.getElementById('sceneButtonTemplate').content.cloneNode(true);
         let buttonNode = clone.querySelector('div');
         buttonNode.id = `scene__${scene}`;
         buttonNode.textContent = `GO TO: ${scene}`;
@@ -75,7 +75,7 @@ obsGetScenes(scenes => {
     }
 
     obsGetCurrentScene((scene) => {
-        document.getElementById(`scene__${scene.name}`).classList.add("activeScene");
+        document.getElementById(`scene__${scene.name}`).classList.add('activeScene');
     });
 });
 
@@ -83,9 +83,9 @@ window.addEventListener('obsSceneChanged', function(event) {
     let activeButton = document.getElementById(`scene__${event.detail.name}`);
 
     for (const scene of sceneCollection.children) {
-        scene.classList.remove("activeScene");
+        scene.classList.remove('activeScene');
     }
-    activeButton.classList.add("activeScene");
+    activeButton.classList.add('activeScene');
 
 });
 
@@ -290,11 +290,11 @@ const switchAutoAdvance = () => {
 const opposite = color => color === 'red' ? 'blue' : 'red';
 
 const TourneyState = {
-    "Initialising": 0,
-    "Idle": 1,
-    "WaitingForClients": 2,
-    "Playing": 3,
-    "Ranking": 4,
+    'Initialising': 0,
+    'Idle': 1,
+    'WaitingForClients': 2,
+    'Playing': 3,
+    'Ranking': 4,
 }
 
 /**
