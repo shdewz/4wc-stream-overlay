@@ -1,3 +1,8 @@
+const obsGetCurrentScene = window.obsstudio?.getCurrentScene ?? (() => {});
+const obsGetScenes = window.obsstudio?.getScenes ?? (() => {});
+const obsSetCurrentScene = window.obsstudio?.setCurrentScene ?? (() => {});
+const obsGetControlLevel = window.obsstudio?.getControlLevel ?? (() => {});
+
 window.addEventListener('contextmenu', (e) => e.preventDefault());
 
 const beatmaps = new Set();
@@ -21,6 +26,68 @@ let tempMapID = 0;
 let currentPicker = 'red';
 let enableAutoPick = false;
 let selectedMaps = [];
+
+const sceneCollection = document.getElementById("sceneCollection");
+let autoadvance_button = document.getElementById('autoAdvanceButton');
+autoadvance_button.style.backgroundColor = '#fc9f9f';  // default to off
+
+let autoadvance_timer_container = document.getElementById('autoAdvanceTimer');
+let autoadvance_timer_label = document.getElementById('autoAdvanceTimerLabel');
+let autoadvance_timer_time = new CountUp('autoAdvanceTimerTime', 10, 0, 1, 10, {useEasing: false, suffix: 's'});
+autoadvance_timer_container.style.opacity = '0';
+
+let enableAutoAdvance = false;
+let sceneTransitionTimeoutID;
+let lastState;
+const gameplay_scene_name = "gameplay";
+const mappool_scene_name = "mappool";
+let selectedMapsTransitionTimeout = {};
+const pick_to_transition_delay_ms = 10000;
+
+/**
+ * @typedef {number} Level - The level of permissions.
+ * 0 for NONE,
+ * 1 for READ_OBS (OBS data),
+ * 2 for READ_USER (User data),
+ * 3 for BASIC,
+ * 4 for ADVANCED
+ * 5 for ALL
+ */
+obsGetControlLevel(level => {
+    // don't display auto advance if access level to OBS isn't sufficient
+    if (level < 4) {
+        document.getElementById("autoAdvanceSection").style.display="none";
+    }
+})
+
+obsGetScenes(scenes => {
+    if (scenes === null) {
+        return;
+    }
+
+    for (const scene of scenes) {
+        let clone = document.getElementById("sceneButtonTemplate").content.cloneNode(true);
+        let buttonNode = clone.querySelector('div');
+        buttonNode.id = `scene__${scene}`;
+        buttonNode.textContent = `GO TO: ${scene}`;
+        buttonNode.onclick = function() { obsSetCurrentScene(scene); };
+        sceneCollection.appendChild(clone);
+    }
+
+    obsGetCurrentScene((scene) => {
+        document.getElementById(`scene__${scene.name}`).classList.add("activeScene");
+    });
+});
+
+window.addEventListener('obsSceneChanged', function(event) {
+    let activeButton = document.getElementById(`scene__${event.detail.name}`);
+
+    for (const scene of sceneCollection.children) {
+        scene.classList.remove("activeScene");
+    }
+    activeButton.classList.add("activeScene");
+
+});
 
 class Beatmap {
     constructor(beatmap) {
@@ -73,7 +140,33 @@ socket.onmessage = async (event) => {
             if (pickedMap && enableAutoPick && !selectedMaps.includes(tempMapID)) pickMap(pickedMap, currentPicker === 'red' ? redName : blueName, currentPicker);
         }
     }
+
+    await transitionToMappool(data);
 };
+
+/**
+ * checks conditions and attempts to transition from gameplay scene to mappool scene
+ * @param data GosuData data sent by ws
+ * @returns {Promise<void>}
+ */
+async function transitionToMappool(data) {
+    let newState = data.tourney.manager.ipcState;
+    if (enableAutoAdvance) {
+        if (lastState === TourneyState.Ranking && newState === TourneyState.Idle) {
+            sceneTransitionTimeoutID = setTimeout(() => {
+                obsGetCurrentScene((scene) => {
+                    if (scene.name !== gameplay_scene_name)  // e.g. on winner screen
+                        return
+                    obsSetCurrentScene(mappool_scene_name);
+                });
+            }, 2000);
+        }
+        if (lastState !== newState && newState !== TourneyState.Idle) {
+            clearTimeout(sceneTransitionTimeoutID);
+        }
+    }
+    lastState = newState;
+}
 
 async function setupBeatmaps() {
     hasSetup = true;
@@ -122,6 +215,27 @@ const pickMap = (bm, teamName, color) => {
     bm.mod_icon.removeClass('banned');
     bm.blink_overlay.css('animation', 'blinker 1s cubic-bezier(.36,.06,.01,.57) 300ms 8, slowPulse 5000ms ease-in-out 8000ms 18');
     selectedMaps.push(bm.beatmapID);
+
+    if (enableAutoAdvance) {
+        // idempotent on pick color (none/red/blue). Consider making it idempotent on pick state? (not picked/picked)
+        if (selectedMapsTransitionTimeout[bm.beatmapID]?.color !== color) {
+            clearTimeout(selectedMapsTransitionTimeout[bm.beatmapID]?.timeoutId)
+            selectedMapsTransitionTimeout[bm.beatmapID] = {
+                color: color,
+                timeoutId: setTimeout(() => {
+                    obsSetCurrentScene(gameplay_scene_name);
+                    autoadvance_timer_container.style.opacity = '0';
+                }, pick_to_transition_delay_ms)
+            };
+
+            autoadvance_timer_time = new CountUp('autoAdvanceTimerTime',
+                pick_to_transition_delay_ms / 1000, 0, 1, pick_to_transition_delay_ms / 1000,
+                {useEasing: false, suffix: 's'});
+            autoadvance_timer_time.start();
+            autoadvance_timer_container.style.opacity = '1';
+            autoadvance_timer_label.textContent = `Switching to ${gameplay_scene_name} in`;
+        }
+    }
 }
 
 const banMap = (bm, teamName, color) => {
@@ -160,4 +274,89 @@ const switchAutoPick = () => {
     }
 }
 
+const switchAutoAdvance = () => {
+    if (enableAutoAdvance) {
+        enableAutoAdvance = false;
+        autoadvance_button.innerHTML = 'AUTO ADVANCE: OFF';
+        autoadvance_button.style.backgroundColor = '#fc9f9f';
+    }
+    else {
+        enableAutoAdvance = true;
+        autoadvance_button.innerHTML = 'AUTO ADVANCE: ON';
+        autoadvance_button.style.backgroundColor = '#9ffcb3';
+    }
+}
+
 const opposite = color => color === 'red' ? 'blue' : 'red';
+
+const TourneyState = {
+    "Initialising": 0,
+    "Idle": 1,
+    "WaitingForClients": 2,
+    "Playing": 3,
+    "Ranking": 4,
+}
+
+/**
+ * @typedef  {{
+ *     tourney: {
+ *         manager: {
+ *             bools: {
+ *                 scoreVisible: boolean,
+ *                 starsVisible: boolean
+ *             },
+ *             bestOF: number,
+ *             stars: {
+ *                 left:number,
+ *                 right:number,
+ *             },
+ *             teamName: {
+ *                 left:string,
+ *                 right:string,
+ *             },
+ *             ipcState: number,
+ *             ipcClients: [{gameplay: { accuracy: number }}],
+ *             chat: [{messageBody: string, team: string}],
+ *         }
+ *     },
+ *     menu: {
+ *         bm:{
+ *             md5: string,
+ *             path: {
+ *                 full:string,
+ *             },
+ *             metadata:{
+ *                artist:string,
+ *                title:string,
+ *                mapper:string,
+ *                },
+ *            stats:{
+ *                    fullSR:number,
+ *                    SR:number,
+ *                    AR:number,
+ *                    CS:number,
+ *                    OD:number,
+ *                    HP:number,
+ *                    BPM:{
+ *                        min:number,
+ *                        max:number,
+ *                    },
+ *                    memoryAR:number,
+ *                    memoryCS:number,
+ *                    memoryOD:number,
+ *                    memoryHP:number,
+ *                },
+ *            time:{
+ *                firstObj:number,
+ *                current:number,
+ *                full:number,
+ *                mp3:number,
+ *            }
+ *            },
+ *      pp:{
+ *                strains:[number],
+ *            }
+ *        }
+ *    }
+ * } GosuData
+ */

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../_shared/common.css">
     <script src="../_shared/deps/jquery.min.js"></script>
     <script src="../_shared/deps/reconnecting-websocket.min.js"></script>
+    <script src="../_shared/deps/countUp.js"></script>
 </head>
 
 <body>
@@ -19,6 +20,26 @@
         <div class="current-picker control-item red" id="current_pick">RED PICK</div>
         <div class="button switch-picker control-item" id="switch_picker" onclick="switchPick()">SWITCH PICK</div>
         <div class="button auto-pick control-item" id="auto_pick" onclick="switchAutoPick()">ENABLE AUTOPICK</div>
+
+        <hr>
+
+        <div id="autoAdvanceSection">
+            <div id="autoAdvanceButton" class="button control-item" onclick="switchAutoAdvance()">AUTO ADVANCE: OFF
+            </div>
+            <div id="autoAdvanceTimer" class="control-label">
+                <span id="autoAdvanceTimerLabel"></span> <span id="autoAdvanceTimerTime"></span>
+            </div>
+
+            <br/><br/>
+
+            <div class="control-label">Scenes<br>(click to override)</div><br>
+
+            <div id="sceneCollection">
+                <template id="sceneButtonTemplate">
+                    <div class="button scene-button control-item">SWITCH TO __SCENE_NAME__</div>
+                </template>
+            </div>
+        </div>
     </div>
     <script src="index.js"></script>
 </body>
