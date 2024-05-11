@@ -218,7 +218,7 @@ html {
     width: auto;
     padding: 3px 10px 1px 12px;
     background-color: var(--border-banned);
-    color: #a7a7a7;
+    color: #fcfcfc;
 }
 
 .picked-by-label.picked {
