@@ -86,6 +86,8 @@ let starsRed, starsBlue, nameRed, nameBlue;
 let last_score_update = 0;
 let chatLen = 0;
 
+let update_stats = false;
+
 socket.onmessage = async event => {
 	const data = JSON.parse(event.data);
 	const now = Date.now();
@@ -172,8 +174,13 @@ socket.onmessage = async event => {
 
 	if (mappool && md5 !== data.menu.bm.md5) {
 		md5 = data.menu.bm.md5;
-		mapid = data.menu.bm.id;
 
+		await delay(200);
+		update_stats = true;
+	}
+	if (update_stats) {
+		update_stats = false;
+		mapid = data.menu.bm.id;
 		map = mappool ? mappool.beatmaps.find(m => m.beatmap_id == mapid || m.md5 == md5) ?? { id: data.menu.bm.id, mods: 'NM', identifier: null } : { id: null, mods: 'NM', identifier: null };
 		const mods = map.mods ?? 'NM';
 		const stats = getModStats(data.menu.bm.stats.memoryCS, data.menu.bm.stats.memoryAR, data.menu.bm.stats.memoryOD, data.menu.bm.stats.BPM.common, mods);
