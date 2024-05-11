@@ -1,0 +1,162 @@
+[
+    {
+        "time": 1715432400000,
+        "red_team": "Romania",
+        "red_seed": 16,
+        "red_flag": "RO",
+        "blue_team": "Singapore",
+        "blue_seed": 17,
+        "blue_flag": "SG",
+        "streamer": ""
+    },
+    {
+        "time": 1715432400000,
+        "red_team": "Australia",
+        "red_seed": 9,
+        "red_flag": "AU",
+        "blue_team": "Philippines",
+        "blue_seed": 24,
+        "blue_flag": "PH",
+        "streamer": ""
+    },
+    {
+        "time": 1715432400000,
+        "red_team": "Japan",
+        "red_seed": 12,
+        "red_flag": "JP",
+        "blue_team": "Taiwan",
+        "blue_seed": 21,
+        "blue_flag": "TW",
+        "streamer": "ilw8"
+    },
+    {
+        "time": 1715436000000,
+        "red_team": "United Kingdom",
+        "red_seed": 13,
+        "red_flag": "GB",
+        "blue_team": "Malaysia",
+        "blue_seed": 20,
+        "blue_flag": "MY",
+        "streamer": "ilw8"
+    },
+    {
+        "time": 1715436000000,
+        "red_team": "China",
+        "red_seed": 14,
+        "red_flag": "CN",
+        "blue_team": "Ukraine",
+        "blue_seed": 19,
+        "blue_flag": "UA",
+        "streamer": ""
+    },
+    {
+        "time": 1715436000000,
+        "red_team": "Hong Kong",
+        "red_seed": 11,
+        "red_flag": "HK",
+        "blue_team": "Finland",
+        "blue_seed": 22,
+        "blue_flag": "FI",
+        "streamer": ""
+    },
+    {
+        "time": 1715446800000,
+        "red_team": "Poland",
+        "red_seed": 4,
+        "red_flag": "PL",
+        "blue_team": "Türkiye",
+        "blue_seed": 29,
+        "blue_flag": "TR",
+        "streamer": "ilw8"
+    },
+    {
+        "time": 1715511600000,
+        "red_team": "South Korea",
+        "red_seed": 2,
+        "red_flag": "KR",
+        "blue_team": "Thailand",
+        "blue_seed": 31,
+        "blue_flag": "TH",
+        "streamer": ""
+    },
+    {
+        "time": 1715511600000,
+        "red_team": "Netherlands",
+        "red_seed": 15,
+        "red_flag": "NL",
+        "blue_team": "Belgium",
+        "blue_seed": 18,
+        "blue_flag": "BE",
+        "streamer": ""
+    },
+    {
+        "time": 1715526000000,
+        "red_team": "France",
+        "red_seed": 10,
+        "red_flag": "FR",
+        "blue_team": "Germany",
+        "blue_seed": 23,
+        "blue_flag": "DE",
+        "streamer": "ilw8"
+    },
+    {
+        "time": 1715529600000,
+        "red_team": "Brazil",
+        "red_seed": 6,
+        "red_flag": "BR",
+        "blue_team": "Indonesia",
+        "blue_seed": 27,
+        "blue_flag": "ID",
+        "streamer": "ilw8"
+    },
+    {
+        "time": 1715533200000,
+        "red_team": "Russian Federation",
+        "red_seed": 8,
+        "red_flag": "RU",
+        "blue_team": "Argentina",
+        "blue_seed": 25,
+        "blue_flag": "AR",
+        "streamer": ""
+    },
+    {
+        "time": 1715536800000,
+        "red_team": "Sweden",
+        "red_seed": 7,
+        "red_flag": "SE",
+        "blue_team": "Norway",
+        "blue_seed": 26,
+        "blue_flag": "NO",
+        "streamer": ""
+    },
+    {
+        "time": 1715536800000,
+        "red_team": "Canada",
+        "red_seed": 3,
+        "red_flag": "CA",
+        "blue_team": "Portugal",
+        "blue_seed": 30,
+        "blue_flag": "PT",
+        "streamer": "ilw8"
+    },
+    {
+        "time": 1715542200000,
+        "red_team": "Chile",
+        "red_seed": 5,
+        "red_flag": "CL",
+        "blue_team": "Spain",
+        "blue_seed": 28,
+        "blue_flag": "ES",
+        "streamer": "ilw8"
+    },
+    {
+        "time": 1715565600000,
+        "red_team": "United States",
+        "red_seed": 1,
+        "red_flag": "US",
+        "blue_team": "Panama",
+        "blue_seed": 32,
+        "blue_flag": "PA",
+        "streamer": ""
+    }
+]
