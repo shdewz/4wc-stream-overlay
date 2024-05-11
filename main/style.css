@@ -367,7 +367,15 @@ html {
 	font-weight: 700;
 	background-color: var(--accent);
 	opacity: 1;
-	transition: opacity 300ms ease, width 300ms ease;
+	transition: opacity 300ms ease, width 300ms ease, background-color 300ms ease;
+}
+
+.map-slot-container.red {
+	background-color: var(--red);
+}
+
+.map-slot-container.blue {
+	background-color: var(--blue);
 }
 
 .map-slot {
@@ -384,6 +392,15 @@ html {
 	width: 400px;
 	box-sizing: border-box;
 	border: 4px solid var(--accent);
+	transition: border-color 300ms ease;
+}
+
+.map-image-container.red {
+	border-color: var(--red);
+}
+
+.map-image-container.blue {
+	border-color: var(--blue);
 }
 
 .map-image {
@@ -409,7 +426,15 @@ html {
 	padding-left: 12px;
 	padding-right: 8px;
 	opacity: 0;
-	transition: opacity 300ms ease;
+	transition: opacity 300ms ease, background-color 300ms ease;
+}
+
+.picked-by.red {
+	background-color: var(--red);
+}
+
+.picked-by.blue {
+	background-color: var(--blue);
 }
 
 .stats-container {

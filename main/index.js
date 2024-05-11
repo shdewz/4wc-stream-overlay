@@ -47,8 +47,16 @@ window.setInterval(async () => {
 			if (mapid == parsedBeatmapID) {
 				let map_obj = mappool.beatmaps.find(m => m.beatmap_id == mapid);
 				if (map_obj?.identifier?.toUpperCase().includes('TB')) return -3;
-				if (nameRed && nameBlue) $('#picked_by').text(`Picked by ${cookieValue[1] === 'red' ? nameRed : nameBlue}`).css('opacity', 1);
-				else $('#picked_by').text('').css('opacity', 0);
+				if (nameRed && nameBlue) {
+					$('#picked_by').text(`Picked by ${cookieValue[1] === 'red' ? nameRed : nameBlue}`).css('opacity', 1).addClass(cookieValue[1]).removeClass(opposite(cookieValue[1]));
+					$('#map_slot_container').addClass(cookieValue[1]).removeClass(opposite(cookieValue[1]));
+					$('#map_image_container').addClass(cookieValue[1]).removeClass(opposite(cookieValue[1]));
+				}
+				else {
+					$('#picked_by').text('').css('opacity', 0).removeClass('red blue');
+					$('#map_slot_container').removeClass('red blue');
+					$('#map_image_container').removeClass('red blue');
+				}
 				return 0;
 			}
 			return -255;
@@ -315,3 +323,5 @@ const getModStats = (cs_raw, ar_raw, od_raw, bpm_raw, mods) => {
 }
 
 const delay = async time => new Promise(resolve => setTimeout(resolve, time));
+
+const opposite = color => color === 'red' ? 'blue' : 'red';
