@@ -1,4 +1,7 @@
 _data/*.json
 qualifiers/
+schedule/
+schedule*
 obs*
 *.zip
+*.webm
