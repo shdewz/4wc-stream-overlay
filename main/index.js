@@ -178,6 +178,7 @@ socket.onmessage = async event => {
 		await delay(200);
 		update_stats = true;
 	}
+	
 	if (update_stats) {
 		update_stats = false;
 		mapid = data.menu.bm.id;
