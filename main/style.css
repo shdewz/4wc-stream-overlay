@@ -22,6 +22,7 @@ html {
 }
 
 .header {
+	position: relative;
 	width: 100%;
 	height: calc(160px - var(--border-width));
 	border-bottom: var(--border-width) solid var(--border-color);
@@ -148,10 +149,13 @@ html {
 }
 
 .header-middle {
-	position: relative;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 100%;
 }
 
 .header-middle__item {
