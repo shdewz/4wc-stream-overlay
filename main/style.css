@@ -479,6 +479,7 @@ html {
 	font-size: 1.6rem;
 	line-height: 1.6rem;
 	font-weight: 700;
+	transform: translateY(1px);
 }
 
 .chat-container {
