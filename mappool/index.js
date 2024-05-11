@@ -34,10 +34,11 @@ class Beatmap {
         const content = $('<div></div>').addClass('map-content');
         this.picked_by_label = $('<div></div>').addClass('picked-by-label').attr('id', `picked-by-label-${this.beatmap.identifier.toLowerCase()}`);
         content.append(this.picked_by_label);
-        content.append($('<div></div>').addClass(`mod-icon ${this.beatmap.mods.toLowerCase()}`).text(this.beatmap.identifier.toUpperCase()));
+        this.mod_icon = $('<div></div>').addClass(`mod-icon ${this.beatmap.mods.toLowerCase()}`).text(this.beatmap.identifier.toUpperCase());
+        content.append(this.mod_icon);
 
         const stats = $('<div></div>').addClass('map-stats');
-        stats.append($('<div></div>').addClass('map-stats-section map-top').append($('<div></div>').addClass('map-title').text(this.beatmap.title)));
+        stats.append($('<div></div>').addClass('map-stats-section map-top').append($('<div></div>').addClass('map-title').text(`${this.beatmap.artist} - ${this.beatmap.title}`)));
         const bottom = $('<div></div>').addClass('map-stats-section map-bottom');
         bottom.append($('<div></div>').addClass('map-difficulty-container').append($('<div></div>').addClass('map-difficulty').text(this.beatmap.difficulty)));
         bottom.append($('<div></div>').addClass('map-mapper').text(this.beatmap.mapper));
@@ -118,6 +119,7 @@ const pickMap = (bm, teamName, color) => {
         bm.picked_by_label.text(`Picked by ${teamName}`).addClass(`picked ${color}`).removeClass(`banned ${opposite(color)}`);
     }
     
+    bm.mod_icon.removeClass('banned');
     bm.blink_overlay.css('animation', 'blinker 1s cubic-bezier(.36,.06,.01,.57) 300ms 8, slowPulse 5000ms ease-in-out 8000ms 18');
     selectedMaps.push(bm.beatmapID);
 }
@@ -128,6 +130,7 @@ const banMap = (bm, teamName, color) => {
     bm.parent.addClass(`banned ${color}`).removeClass(`picked ${opposite(color)}`);
     bm.picked_by_label.text(`Banned by ${teamName}`).addClass(`banned ${color}`).removeClass(`picked ${opposite(color)}`);
     bm.blink_overlay.css('animation', 'none');
+    bm.mod_icon.addClass('banned');
     selectedMaps.push(bm.beatmapID);
 }
 
@@ -137,6 +140,7 @@ const resetMap = bm => {
     bm.parent.removeClass('banned picked red blue');
     bm.picked_by_label.text('').removeClass('banned picked red blue');
     bm.blink_overlay.css('animation', 'none');
+    bm.mod_icon.removeClass('banned');
     selectedMaps = selectedMaps.filter(e => e !== bm.beatmapID);
 }
 

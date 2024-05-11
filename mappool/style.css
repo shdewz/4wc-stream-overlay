@@ -116,6 +116,7 @@ html {
     font-weight: 700;
     background-color: var(--border-banned);
     color: var(--light);
+    transition: border-color 300ms ease, background-color 300ms ease;
 }
 
 .mod-icon.nm {
@@ -146,6 +147,12 @@ html {
 .mod-icon.tb {
     border-color: #52949c;
     background-color: #396469;
+}
+
+.mod-icon.banned {
+    color: #bebebe;
+    border-color: #474747;
+    background-color: #292929;
 }
 
 .map-stats {
