@@ -85,7 +85,7 @@ html {
 .team-flag {
 	width: 70px;
 	height: 47px;
-	background-image: url('https://assets.ppy.sh/old-flags/XX.png');
+	background-image: url('../_shared/assets/flags/XX.png');
 }
 
 .team-players {

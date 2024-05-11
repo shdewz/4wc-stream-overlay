@@ -57,7 +57,7 @@ const update_match = match => {
 
 const update_team = (color, team) => {
 	$(`#name_${color}`).text(team.team);
-	$(`#flag_${color}`).css('background-image', `url('https://assets.ppy.sh/old-flags/${team.flag}.png')`);
+	$(`#flag_${color}`).css('background-image', `url('../_shared/assets/flags/${team.flag}.png')`);
 	$(`#players_${color}`).html('');
 	const players = team.players.sort((a, b) => b.captain - a.captain);
 	console.log(players);

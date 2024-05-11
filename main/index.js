@@ -114,7 +114,7 @@ socket.onmessage = async event => {
 		$('#red_name').text(nameRed);
 		let team = teams.find(t => t.team === nameRed);
 
-		$('#red_flag').css('background-image', `url('https://assets.ppy.sh/old-flags/${team?.flag ?? 'XX'}.png')`);
+		$('#red_flag').css('background-image', `url('../_shared/assets/flags/${team?.flag ?? 'XX'}.png')`);
 		$('#red_seed').text(`SEED ${team?.seed ?? 'X'}`);
 	}
 	if (teams && nameBlue !== data.tourney.manager.teamName.right) {
@@ -122,7 +122,7 @@ socket.onmessage = async event => {
 		$('#blue_name').text(nameBlue);
 		let team = teams.find(t => t.team === nameBlue);
 
-		$('#blue_flag').css('background-image', `url('https://assets.ppy.sh/old-flags/${team?.flag ?? 'XX'}.png')`);
+		$('#blue_flag').css('background-image', `url('../_shared/assets/flags/${team?.flag ?? 'XX'}.png')`);
 		$('#blue_seed').text(`SEED ${team?.seed ?? 'X'}`);
 	}
 
