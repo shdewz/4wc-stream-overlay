@@ -229,7 +229,7 @@ socket.onmessage = async event => {
 			if (now - last_score_update > 300) {
 				last_score_update = now;
 				console.log('aaa')
-				$('#score_diff').attr('data-before', '◀').attr('data-before', '').css('opacity', 1).addClass('red').removeClass('blue');
+				$('#score_diff').attr('data-before', '◀').attr('data-after', '').css('opacity', 1).addClass('red').removeClass('blue');
 				$('#lead_bar').css('width', lead_bar_width).css('right', '960px').css('left', 'unset');
 				$('#lead_bar').addClass('red');
 				$('#lead_bar').removeClass('blue');
