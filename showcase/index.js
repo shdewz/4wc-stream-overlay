@@ -1,4 +1,4 @@
-let socket = new ReconnectingWebSocket('ws://' + location.host + '/ws');
+const socket = new ReconnectingWebSocket('ws://' + location.host + '/websocket/v2');
 
 let mappool;
 (async () => {
@@ -13,72 +13,68 @@ socket.onopen = () => { console.log('Successfully Connected'); };
 socket.onclose = event => { console.log('Socket Closed Connection: ', event); socket.send('Client Closed!'); };
 socket.onerror = error => { console.log('Socket Error: ', error); };
 
-let state;
-let md5 = 0;
-let artist, title, difficulty, mapper;
-let replayer;
+const cache = {};
+let update_stats = false;
 
 socket.onmessage = async event => {
 	let data = JSON.parse(event.data);
 
-	if (state !== data.menu.state) {
-		state = data.menu.state;
-		if (state !== 2) $('#header').css('opacity', 0);
+	if (cache.state !== data.state) {
+		cache.state = data.state;
+		if (cache.state !== 2) $('#header').css('opacity', 0);
 		else $('#header').css('opacity', 1);
 	}
 
-	if (mappool && md5 !== data.menu.bm.md5) {
-		md5 = data.menu.bm.md5;
-		let map = mappool.find(m => m.beatmap_id === data.menu.bm.id || m.md5 === md5);
+	if (mappool && cache.md5 !== data.beatmap.checksum) {
+		await delay(200);
+		update_stats = true;
+	}
+
+	if (update_stats) {
+		cache.md5 = data.beatmap.checksum;
+		const map = mappool.find(m => m.beatmap_id === data.beatmap.id || m.md5 === cache.md5);
 		$('#now_playing').html(map?.identifier ?? 'XX');
 
-		bpm_ = map?.bpm || data.menu.bm.stats.BPM.max;
-		sr_ = map?.sr || data.menu.bm.stats.fullSR;
-		cs_ = data.menu.bm.stats.CS;
-		cs_base = data.menu.bm.stats.memoryCS;
-		ar_ = data.menu.bm.stats.AR;
-		ar_base = data.menu.bm.stats.memoryAR;
-		od_ = data.menu.bm.stats.OD;
-		od_base = data.menu.bm.stats.memoryOD;
+		const mod_ = map?.mods || 'NM';
+		const stats = getModStats(data.beatmap.stats.cs.original, data.beatmap.stats.ar.original, data.beatmap.stats.od.original, 0, mod_);
 
-		let mod_ = map?.mods || 'NM';
-		let stats = getModStats(cs_base, ar_base, od_base, 0, mod_);
+		$('#bpm').html(Math.round((map?.bpm || data.beatmap.stats.bpm.common) * 10) / 10);
+		$('#cs').html(Math.round((mod_ == 'FM' ? data.beatmap.stats.cs.original : map ? stats.cs : data.beatmap.stats.cs.converted) * 10) / 10);
+		$('#ar').html(Math.round((mod_ == 'FM' ? data.beatmap.stats.ar.original : map ? stats.ar : data.beatmap.stats.ar.converted) * 10) / 10);
+		$('#od').html(Math.round((mod_ == 'FM' ? data.beatmap.stats.od.original : map ? stats.od : data.beatmap.stats.od.converted) * 10) / 10);
+		$('#sr').html((map?.sr || data.beatmap.stats.stars.total).toFixed(2) + '★');
 
-		$('#bpm').html(Math.round(bpm_ * 10) / 10);
-		$('#cs').html(Math.round((mod_ == 'FM' ? cs_base : map ? stats.cs : cs_) * 10) / 10);
-		$('#ar').html(Math.round((mod_ == 'FM' ? ar_base : map ? stats.ar : ar_) * 10) / 10);
-		$('#od').html(Math.round((mod_ == 'FM' ? od_base : map ? stats.od : od_) * 10) / 10);
-		$('#sr').html(sr_.toFixed(2) + '★');
-
-		let length_modifier = map ? (mod_?.includes('DT') ? 1.5 : 1) : data.resultsScreen.mods.str.includes('DT') || data.menu.mods.str.includes('DT') ? 1.5 : 1;
-		len_ = data.menu.bm.time.full - data.menu.bm.time.firstObj;
+		let length_modifier = map ? (mod_?.includes('DT') ? 1.5 : 1) : data.resultsScreen.mods.name.includes('DT') || data.play.mods.name.includes('DT') ? 1.5 : 1;
+		len_ = data.beatmap.time.lastObject - data.beatmap.time.firstObject;
 		let mins = Math.trunc((len_ / length_modifier) / 1000 / 60);
 		let secs = Math.trunc((len_ / length_modifier) / 1000 % 60);
 		$('#length').html(`${mins}:${secs.toString().padStart(2, '0')}`);
 
 		if (map?.beatmapset_id) {
-			$('#map_background').css('background-image', `url("https://assets.ppy.sh/beatmaps/${map?.beatmapset_id}/covers/cover@2x.jpg")`);
-			$('#map_stats_background').css('background-image', `url("https://assets.ppy.sh/beatmaps/${map?.beatmapset_id}/covers/cover@2x.jpg")`);
+			$('#map_background').css('background-image', `url('https://assets.ppy.sh/beatmaps/${map?.beatmapset_id}/covers/cover@2x.jpg')`);
+			$('#map_stats_background').css('background-image', `url('https://assets.ppy.sh/beatmaps/${map?.beatmapset_id}/covers/cover@2x.jpg')`);
 		}
 		else {
-			let path = `http://${location.host}/Songs/${data.menu.bm.path.full.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/')}`
-			$('#map_stats_background').css('background-image', `url("${path}")`);
-			$('#map_background').css('background-image', `url("${path}")`);
+			const path = `http://${location.host}/Songs/${data.folders.beatmap}/${data.files.background}`.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/');
+			// const path = data.directPath.beatmapBackground.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/');
+			console.log(path);
+			$('#map_stats_background').css('background-image', `url('${path}')`);
+			$('#map_background').css('background-image', `url('${path}')`);
 		}
 
-		if (map?.custom) { $('#custom_mapper').html(data.menu.bm.metadata.mapper); $('#custom').css('opacity', 1); }
-		else { $('#custom_mapper').html(''); $('#custom').css('opacity', 0); }
+		if (map?.custom) { $('#custom_mapper').text(data.menu.bm.metadata.mapper); $('#custom').css('opacity', 1); }
+		else { $('#custom_mapper').text(''); $('#custom').css('opacity', 0); }
 	}
 
-	if (replayer !== data.resultsScreen.name || replayer !== data.gameplay.name) {
-		replayer = data.resultsScreen.name ?? data.gameplay.name;
-		$('#replayer').html(replayer ?? 'Unknown');
+	if (cache.replayer !== data.resultsScreen.name || cache.replayer !== data.play.playerName) {
+		cache.replayer = data.resultsScreen.name ?? data.play.playerName;
+		$('#replayer').html(cache.replayer ?? 'Unknown');
 	}
 
-	if (artist !== data.menu.bm.metadata.artist) { artist = data.menu.bm.metadata.artist; $('#artist').html(artist); }
-	if (title !== data.menu.bm.metadata.title) { title = data.menu.bm.metadata.title; $('#title').html(title); }
-	if (difficulty !== data.menu.bm.metadata.difficulty) { difficulty = data.menu.bm.metadata.difficulty; $('#difficulty').html(difficulty); }
-	if (mapper !== data.menu.bm.metadata.mapper) { mapper = data.menu.bm.metadata.mapper; $('#mapper').html(mapper); }
+	if (cache.artist !== data.beatmap.artist) { cache.artist = data.beatmap.artist; $('#artist').text(cache.artist); }
+	if (cache.title !== data.beatmap.title) { cache.title = data.beatmap.title; $('#title').text(cache.title); }
+	if (cache.difficulty !== data.beatmap.version) { cache.difficulty = data.beatmap.version; $('#difficulty').text(cache.difficulty); }
+	if (cache.mapper !== data.beatmap.mapper) { cache.mapper = data.beatmap.mapper; $('#mapper').text(cache.mapper); }
 }
 
 const delay = async time => new Promise(resolve => setTimeout(resolve, time));
