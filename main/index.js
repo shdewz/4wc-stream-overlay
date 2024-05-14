@@ -33,7 +33,6 @@ window.setInterval(async () => {
 	await delay(200);
 	let cookieName = 'lastPick';
 	const match = document.cookie.match(`(?:^|.*)${cookieName}=(.+?)(?:$|[|;].*)`);
-	console.log(match);
 
 	let checkValid = () => {
 		if (!mapid) return -9;
@@ -48,9 +47,9 @@ window.setInterval(async () => {
 				let map_obj = mappool.beatmaps.find(m => m.beatmap_id == mapid);
 				if (map_obj?.identifier?.toUpperCase().includes('TB')) return -3;
 				if (nameRed && nameBlue) {
-					$('#picked_by').text(`Picked by ${cookieValue[1] === 'red' ? nameRed : nameBlue}`).css('opacity', 1).addClass(cookieValue[1]).removeClass(opposite(cookieValue[1]));
-					$('#map_slot_container').addClass(cookieValue[1]).removeClass(opposite(cookieValue[1]));
-					$('#map_image_container').addClass(cookieValue[1]).removeClass(opposite(cookieValue[1]));
+					$('#picked_by').text(`Picked by ${cookieValue[1] === 'red' ? nameRed : nameBlue}`).css('opacity', 1).addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
+					$('#map_slot_container').addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
+					$('#map_image_container').addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
 				}
 				else {
 					$('#picked_by').text('').css('opacity', 0).removeClass('red blue');
@@ -87,6 +86,9 @@ let last_score_update = 0;
 let chatLen = 0;
 
 let update_stats = false;
+let first_chat_refresh = true;
+let timer;
+let timer_in_progress = false;
 
 socket.onmessage = async event => {
 	const data = JSON.parse(event.data);
@@ -95,7 +97,6 @@ socket.onmessage = async event => {
 	if (scoreVisible !== data.tourney.manager.bools.scoreVisible) {
 		scoreVisible = data.tourney.manager.bools.scoreVisible;
 
-		console.log(scoreVisible)
 		if (scoreVisible) {
 			$('#chat_container').css('opacity', 0);
 			$('#top_footer').css('opacity', 1);
@@ -178,7 +179,7 @@ socket.onmessage = async event => {
 		await delay(200);
 		update_stats = true;
 	}
-	
+
 	if (update_stats) {
 		update_stats = false;
 		mapid = data.menu.bm.id;
@@ -244,7 +245,6 @@ socket.onmessage = async event => {
 
 			if (now - last_score_update > 300) {
 				last_score_update = now;
-				console.log('aaa')
 				$('#score_diff').attr('data-before', '◀').attr('data-after', '').css('opacity', 1).addClass('red').removeClass('blue');
 				$('#lead_bar').css('width', lead_bar_width).css('right', '960px').css('left', 'unset');
 				$('#lead_bar').addClass('red');
@@ -276,28 +276,69 @@ socket.onmessage = async event => {
 
 	if (chatLen !== data.tourney.manager.chat.length) {
 
-		if (chatLen === 0 || (chatLen > 0 && chatLen > data.tourney.manager.chat.length)) { $('#chat').html(''); chatLen = 0; }
+		const current_chat_len = data.tourney.manager.chat.length;
+		if (chatLen === 0 || (chatLen > 0 && chatLen > current_chat_len)) { $('#chat').html(''); chatLen = 0; }
 
-		for (let i = chatLen; i < data.tourney.manager.chat.length; i++) {
-			const team = team_lookup[data.tourney.manager.chat[i].team] ?? 'unknown';
-			const body = data.tourney.manager.chat[i].messageBody;
-			const player = data.tourney.manager.chat[i].name;
-			if (team === 'bot' && body.startsWith('Match history')) continue;
+		for (let i = chatLen; i < current_chat_len; i++) {
+			const chat = data.tourney.manager.chat[i];
+			const body = chat.messageBody;
+			const time = chat.time;
+			if (body.toLowerCase().startsWith('!mp')) {
+				if (first_chat_refresh) continue;
+				const command = body.toLowerCase();
+				const command_value = Number(command.match(/\d+/)) ?? 0;
 
-			team_actual = teams.find(t => t.players.map(p => p.username).includes(player))?.team;
-			teamcode_actual = team_actual ? team_actual === nameRed ? 'red' : team_actual === nameBlue ? 'blue' : null : null;
+				if (command.startsWith('!mp timer')) {
+					if (isNaN(command_value)) { stop_timer(); continue; }
+					else start_timer(command_value);
+				}
+				if (command.startsWith('!mp aborttimer') && timer_in_progress) stop_timer();
+				if (command.startsWith('!mp start')) {
+					if (isNaN(command_value)) { stop_timer(); continue; }
+					else start_timer(command_value);
+				}
+			}
+			else {
+				const team = team_lookup[chat.team] ?? 'unknown';
+				const player = chat.name;
+				if (player === 'BanchoBot' && body.startsWith('Match history')) continue;
 
-			const chatParent = $('<div></div>').addClass(`chat-message ${teamcode_actual ?? team}`);
+				team_actual = teams.find(t => t.players.map(p => p.username).includes(player))?.team;
+				teamcode_actual = team_actual ? team_actual === nameRed ? 'red' : team_actual === nameBlue ? 'blue' : null : null;
 
-			chatParent.append($('<div></div>').addClass('chat-time').text(data.tourney.manager.chat[i].time));
-			chatParent.append($('<div></div>').addClass('chat-name').text(player));
-			chatParent.append($('<div></div>').addClass('chat-body').text(body));
+				const chatParent = $('<div></div>').addClass(`chat-message ${teamcode_actual ?? team}`);
 
-			$('#chat').prepend(chatParent);
+				chatParent.append($('<div></div>').addClass('chat-time').text(time));
+				chatParent.append($('<div></div>').addClass('chat-name').text(player));
+				chatParent.append($('<div></div>').addClass('chat-body').text(body));
+
+				$('#chat').prepend(chatParent);
+			}
 		}
 
 		chatLen = data.tourney.manager.chat.length;
+		first_chat_refresh = false;
 	}
+}
+
+const start_timer = length => {
+	timer_in_progress = true;
+	$('#chat').addClass('timer-shown');
+	$('#timer_container').css('transform', 'translateY(0px)');
+	$('#timer_progress').css('animation', `progress ${length}s linear`);
+	timer = setTimeout(function () {
+		if (!timer_in_progress) return;
+		console.log('TIMER FINISHED');
+		stop_timer();
+	}, length * 1000);
+}
+
+const stop_timer = () => {
+	clearTimeout(timer);
+	timer_in_progress = false;
+	$('#timer_progress').css('animation', 'none');
+	$('#timer_container').css('transform', 'translateY(32px)');
+	$('#chat').removeClass('timer-shown');
 }
 
 const team_lookup = {
@@ -329,7 +370,3 @@ const getModStats = (cs_raw, ar_raw, od_raw, bpm_raw, mods) => {
 		speed
 	}
 }
-
-const delay = async time => new Promise(resolve => setTimeout(resolve, time));
-
-const opposite = color => color === 'red' ? 'blue' : 'red';

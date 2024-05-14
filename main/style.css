@@ -1,6 +1,6 @@
 :root {
 	--border-width: 0px;
-	--border-color: red;
+	--border-color: none;
 }
 
 body,
@@ -515,6 +515,13 @@ html {
 	display: flex;
 	flex-direction: column-reverse;
 	gap: 2px;
+	line-height: 1.32rem;
+	transition: height 300ms ease, padding 300ms ease;
+}
+
+.chat.timer-shown {
+	padding: 12px 10px 16px 10px;
+	height: calc(100% - 12px - 16px);
 }
 
 .chat-message {
@@ -523,20 +530,25 @@ html {
 	font-size: 1.3rem;
 }
 
+.chat-message:nth-of-type(n+8) {
+	display: none;
+}
+
+
 .chat-name {
 	font-weight: 700;
 	color: #d6d6d6;
 }
 
-.red > .chat-name {
+.red>.chat-name {
 	color: var(--red-chat);
 }
 
-.blue > .chat-name {
+.blue>.chat-name {
 	color: var(--blue-chat);
 }
 
-.bot > .chat-name {
+.bot>.chat-name {
 	background-color: #e45678;
 	color: var(--light);
 	padding-left: 12px;
@@ -544,7 +556,7 @@ html {
 	border-radius: 20px;
 }
 
-.bot > .chat-body {
+.bot>.chat-body {
 	color: #fd8ba5;
 }
 
@@ -561,7 +573,68 @@ html {
 	min-width: 46px;
 	text-align: center;
 	font-size: 1.2rem;
-	opacity: 0.4;
+	color: var(--text-dark);
+}
+
+.chat-timer-container {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	right: 0;
+	transform: translateY(32px);
+	transition: transform 300ms ease;
+}
+
+.chat-timer__progress-container {
+	position: absolute;
+	width: 100%;
+	height: 10px;
+	right: 0;
+	bottom: 0;
+	background-color: var(--progress-bg);
+}
+
+.chat-timer__progress {
+	position: absolute;
+	width: 0%;
+	height: 100%;
+	right: 0;
+	bottom: 0;
+	background-color: var(--accent);
+	animation: none;
+}
+
+@keyframes progress {
+	0% {
+		width: 100%;
+	}
+
+	100% {
+		width: 0%;
+	}
+}
+
+.stopwatch-container {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	background-color: var(--accent);
+}
+
+.stopwatch {
+	width: 22px;
+	height: 22px;
+	background-color: var(--light);
+	mask-image: url(../_shared/assets/stopwatch-solid.svg);
+	mask-size: contain;
+	mask-repeat: no-repeat;
+	mask-position: center;
 }
 
 /*Scrollbar*/

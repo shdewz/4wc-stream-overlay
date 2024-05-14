@@ -8,6 +8,7 @@
     <script src="../_shared/deps/jquery.min.js"></script>
     <script src="../_shared/deps/countUp.js"></script>
     <script src="../_shared/deps/reconnecting-websocket.min.js"></script>
+    <script src="../_shared/utils.js"></script>
 </head>
 
 <body>
@@ -101,6 +102,14 @@
             <div class="chat-container" id="chat_container">
                 <div class="chat-title">CHAT</div>
                 <div class="chat" id="chat"></div>
+                <div class="chat-timer-container" id="timer_container">
+                    <div class="chat-timer__progress-container">
+                        <div class="chat-timer__progress" id="timer_progress"></div>
+                    </div>
+                    <div class="stopwatch-container">
+                        <div class="stopwatch"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
