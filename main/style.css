@@ -7,7 +7,7 @@ body,
 html {
 	padding: 0;
 	margin: 0;
-	overflow-y: hidden;
+	/* overflow-y: hidden; */
 	font-family: 'Din';
 }
 
@@ -18,6 +18,7 @@ html {
 	display: flex;
 	flex-direction: column;
 	background-image: url('../_shared/assets/bg_corner.png');
+	overflow: hidden;
 	z-index: 0;
 }
 
@@ -581,7 +582,7 @@ html {
 	width: 100%;
 	bottom: 0;
 	right: 0;
-	transform: translateY(32px);
+	transform: translateY(32px); /* 32px */
 	transition: transform 300ms ease;
 }
 
@@ -610,7 +611,19 @@ html {
 	}
 
 	100% {
-		width: 0%;
+		width: calc(0% + 32px);
+	}
+}
+
+@keyframes progress_blink {
+	0% {
+		background-color: var(--accent);
+	}
+	75% {
+		background-color: var(--progress-bg);
+	}
+	100% {
+		background-color: var(--accent);
 	}
 }
 
@@ -635,6 +648,7 @@ html {
 	mask-size: contain;
 	mask-repeat: no-repeat;
 	mask-position: center;
+	z-index: 10;
 }
 
 /*Scrollbar*/

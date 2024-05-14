@@ -87,7 +87,7 @@ let chatLen = 0;
 
 let update_stats = false;
 let first_chat_refresh = true;
-let timer;
+let timer, blink_timer;
 let timer_in_progress = false;
 
 socket.onmessage = async event => {
@@ -326,17 +326,25 @@ const start_timer = length => {
 	$('#chat').addClass('timer-shown');
 	$('#timer_container').css('transform', 'translateY(0px)');
 	$('#timer_progress').css('animation', `progress ${length}s linear`);
-	timer = setTimeout(function () {
+
+	blink_timer = setTimeout(async () => {
 		if (!timer_in_progress) return;
-		console.log('TIMER FINISHED');
+		$('#timer_progress').css('animation', `progress ${length}s linear, progress_blink 0.7s infinite ease`);
+		$('#stopwatch_container').css('animation', `progress_blink 0.7s infinite ease`);
+	}, length * 1000 * 0.9);
+
+	timer = setTimeout(async () => {
+		if (!timer_in_progress) return;
 		stop_timer();
 	}, length * 1000);
 }
 
 const stop_timer = () => {
 	clearTimeout(timer);
+	clearTimeout(blink_timer);
 	timer_in_progress = false;
 	$('#timer_progress').css('animation', 'none');
+	$('#stopwatch_container').css('animation', 'none');
 	$('#timer_container').css('transform', 'translateY(32px)');
 	$('#chat').removeClass('timer-shown');
 }
