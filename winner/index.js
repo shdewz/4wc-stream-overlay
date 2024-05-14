@@ -76,5 +76,3 @@ socket.onmessage = async event => {
 		}
 	}
 }
-
-const delay = async time => new Promise(resolve => setTimeout(resolve, time));

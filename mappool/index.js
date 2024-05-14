@@ -208,8 +208,8 @@ const pickMap = (bm, teamName, color) => {
     }
     else {
         document.cookie = `lastPick=${bm.id}-${color.toLowerCase()};path=/`;
-        bm.parent.addClass(`picked ${color}`).removeClass(`banned ${opposite(color)}`);
-        bm.picked_by_label.text(`Picked by ${teamName}`).addClass(`picked ${color}`).removeClass(`banned ${opposite(color)}`);
+        bm.parent.addClass(`picked ${color}`).removeClass(`banned ${opposite_team(color)}`);
+        bm.picked_by_label.text(`Picked by ${teamName}`).addClass(`picked ${color}`).removeClass(`banned ${opposite_team(color)}`);
     }
     
     bm.mod_icon.removeClass('banned');
@@ -241,8 +241,8 @@ const pickMap = (bm, teamName, color) => {
 const banMap = (bm, teamName, color) => {
     if (bm.beatmap.mods.includes('TB')) return;
 
-    bm.parent.addClass(`banned ${color}`).removeClass(`picked ${opposite(color)}`);
-    bm.picked_by_label.text(`Banned by ${teamName}`).addClass(`banned ${color}`).removeClass(`picked ${opposite(color)}`);
+    bm.parent.addClass(`banned ${color}`).removeClass(`picked ${opposite_team(color)}`);
+    bm.picked_by_label.text(`Banned by ${teamName}`).addClass(`banned ${color}`).removeClass(`picked ${opposite_team(color)}`);
     bm.blink_overlay.css('animation', 'none');
     bm.mod_icon.addClass('banned');
     selectedMaps.push(bm.beatmapID);
@@ -259,8 +259,8 @@ const resetMap = bm => {
 }
 
 const switchPick = color => {
-    currentPicker = color ? opposite(color) : opposite(currentPicker);
-    $('#current_pick').text(`${currentPicker.toUpperCase()} PICK`).addClass(currentPicker).removeClass(opposite(currentPicker));
+    currentPicker = color ? opposite_team(color) : opposite_team(currentPicker);
+    $('#current_pick').text(`${currentPicker.toUpperCase()} PICK`).addClass(currentPicker).removeClass(opposite_team(currentPicker));
 }
 
 const switchAutoPick = () => {
@@ -286,8 +286,6 @@ const switchAutoAdvance = () => {
         autoadvance_button.style.backgroundColor = '#9ffcb3';
     }
 }
-
-const opposite = color => color === 'red' ? 'blue' : 'red';
 
 const TourneyState = {
     'Initialising': 0,

@@ -19,19 +19,20 @@ let update_stats = false;
 socket.onmessage = async event => {
 	let data = JSON.parse(event.data);
 
-	if (cache.state !== data.state) {
-		cache.state = data.state;
+	if (cache.state !== data.state.number) {
+		cache.state = data.state.number;
 		if (cache.state !== 2) $('#header').css('opacity', 0);
 		else $('#header').css('opacity', 1);
 	}
 
 	if (mappool && cache.md5 !== data.beatmap.checksum) {
+		cache.md5 = data.beatmap.checksum;
 		await delay(200);
 		update_stats = true;
 	}
 
 	if (update_stats) {
-		cache.md5 = data.beatmap.checksum;
+		update_stats = false;
 		const map = mappool.find(m => m.beatmap_id === data.beatmap.id || m.md5 === cache.md5);
 		$('#now_playing').html(map?.identifier ?? 'XX');
 
@@ -62,7 +63,9 @@ socket.onmessage = async event => {
 			$('#map_background').css('background-image', `url('${path}')`);
 		}
 
-		if (map?.custom) { $('#custom_mapper').text(data.menu.bm.metadata.mapper); $('#custom').css('opacity', 1); }
+		if (map?.custom) {
+			$('#custom_mapper').text(data.beatmap.mapper); $('#custom').css('opacity', 1);
+		}
 		else { $('#custom_mapper').text(''); $('#custom').css('opacity', 0); }
 	}
 
@@ -76,8 +79,6 @@ socket.onmessage = async event => {
 	if (cache.difficulty !== data.beatmap.version) { cache.difficulty = data.beatmap.version; $('#difficulty').text(cache.difficulty); }
 	if (cache.mapper !== data.beatmap.mapper) { cache.mapper = data.beatmap.mapper; $('#mapper').text(cache.mapper); }
 }
-
-const delay = async time => new Promise(resolve => setTimeout(resolve, time));
 
 const getModStats = (cs_raw, ar_raw, od_raw, hp_raw, mods) => {
 	let speed = mods.includes('DT') ? 1.5 : mods.includes('HT') ? 0.75 : 1;
