@@ -71,6 +71,13 @@ html {
 	gap: 18px;
 }
 
+.showcase {
+	font-weight: 700;
+	font-size: 3rem;
+	color: var(--light);
+	display: none;
+}
+
 .team.blue {
 	align-items: flex-end;
 	text-align: right;

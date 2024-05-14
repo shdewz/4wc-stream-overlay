@@ -5,7 +5,7 @@ let comingup, teams, mappool;
 	teams = await $.getJSON('../_data/teams.json');
 	mappool = await $.getJSON('../_data/beatmaps.json');
 	streamer = (await $.getJSON('../_data/streamer.json')).username;
-	
+
 	if (comingup.length) {
 		const now = Date.now();
 		const matches = comingup.sort((a, b) => a.time - b.time).filter(e => e.time > now - 3 * 60 * 1000);
@@ -33,11 +33,18 @@ let comingup, teams, mappool;
 })();
 
 const update_match = match => {
-	$('#title').text('COMING UP')
-	const red_team = teams.find(team => team.team === match.red_team);
-	const blue_team = teams.find(team => team.team === match.blue_team);
-	update_team('red', red_team);
-	update_team('blue', blue_team);
+	$('#title').text('COMING UP');
+
+	if (match.showcase) {
+		$('#teams').css('display', 'none');
+		$('#showcase').text(`${mappool.stage} Mappool Showcase`).css('display', 'flex');
+	}
+	else {
+		const red_team = teams.find(team => team.team === match.red_team);
+		const blue_team = teams.find(team => team.team === match.blue_team);
+		update_team('red', red_team);
+		update_team('blue', blue_team);
+	}
 
 	if (match.time > Date.now()) {
 		let timer_int = setInterval(() => {
@@ -86,5 +93,3 @@ socket.onmessage = async event => {
 		$('#song_title_container').css('opacity', 1);
 	}
 }
-
-const delay = async time => new Promise(resolve => setTimeout(resolve, time));
