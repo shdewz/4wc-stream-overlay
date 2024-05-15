@@ -323,7 +323,6 @@ socket.onmessage = async event => {
 
 const start_timer = length => {
 	timer_in_progress = true;
-	$('#chat').addClass('timer-shown');
 	$('#timer_container').css('transform', 'translateY(0px)');
 	$('#timer_progress').css('animation', `progress ${length}s linear`);
 
@@ -346,7 +345,6 @@ const stop_timer = () => {
 	$('#timer_progress').css('animation', 'none');
 	$('#stopwatch_container').css('animation', 'none');
 	$('#timer_container').css('transform', 'translateY(32px)');
-	$('#chat').removeClass('timer-shown');
 }
 
 const team_lookup = {

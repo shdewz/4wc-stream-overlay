@@ -520,11 +520,6 @@ html {
 	transition: height 300ms ease, padding 300ms ease;
 }
 
-.chat.timer-shown {
-	padding: 12px 10px 16px 10px;
-	height: calc(100% - 12px - 16px);
-}
-
 .chat-message {
 	display: flex;
 	gap: 4px;
