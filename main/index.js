@@ -293,10 +293,6 @@ socket.onmessage = async event => {
 					else start_timer(command_value);
 				}
 				if (command.startsWith('!mp aborttimer') && timer_in_progress) stop_timer();
-				if (command.startsWith('!mp start')) {
-					if (isNaN(command_value)) { stop_timer(); continue; }
-					else start_timer(command_value);
-				}
 			}
 			else {
 				const team = team_lookup[chat.team] ?? 'unknown';
@@ -322,6 +318,7 @@ socket.onmessage = async event => {
 }
 
 const start_timer = length => {
+	stop_timer();
 	timer_in_progress = true;
 	$('#timer_container').css('transform', 'translateY(0px)');
 	$('#timer_progress').css('animation', `progress ${length}s linear`);
