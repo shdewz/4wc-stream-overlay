@@ -84,6 +84,7 @@ let scoreVisible, starsVisible, bestOf;
 let starsRed, starsBlue, nameRed, nameBlue;
 let last_score_update = 0;
 let chatLen = 0;
+let displayedStats = {};
 
 let update_stats = false;
 let first_chat_refresh = true;
@@ -175,9 +176,7 @@ socket.onmessage = async event => {
 
 	if (mappool && md5 !== data.menu.bm.md5) {
 		md5 = data.menu.bm.md5;
-
-		await delay(200);
-		update_stats = true;
+		setTimeout(() => {update_stats = true}, 250);
 	}
 
 	if (update_stats) {
