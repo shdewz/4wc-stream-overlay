@@ -317,7 +317,7 @@ socket.onmessage = async event => {
 	}
 }
 
-const start_timer = length => {
+const really_start_timer = length => {
 	timer_in_progress = true;
 	$('#timer_progress').css('animation', 'none');
 	$('#stopwatch_container').css('animation', 'none');
@@ -334,6 +334,15 @@ const start_timer = length => {
 		if (!timer_in_progress) return;
 		stop_timer();
 	}, length * 1000);
+}
+
+const start_timer = length => {
+	window.requestAnimationFrame(() => {
+		stop_timer();
+		window.requestAnimationFrame(() => {
+			really_start_timer(length);
+		})
+	})
 }
 
 const stop_timer = () => {
