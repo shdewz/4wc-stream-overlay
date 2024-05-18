@@ -84,7 +84,6 @@ let scoreVisible, starsVisible, bestOf;
 let starsRed, starsBlue, nameRed, nameBlue;
 let last_score_update = 0;
 let chatLen = 0;
-let displayedStats = {};
 
 let update_stats = false;
 let first_chat_refresh = true;
