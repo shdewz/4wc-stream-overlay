@@ -175,9 +175,7 @@ socket.onmessage = async event => {
 
 	if (mappool && md5 !== data.menu.bm.md5) {
 		md5 = data.menu.bm.md5;
-
-		await delay(200);
-		update_stats = true;
+		setTimeout(() => {update_stats = true}, 250);
 	}
 
 	if (update_stats) {
