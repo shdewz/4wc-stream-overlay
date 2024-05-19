@@ -64,6 +64,8 @@ window.setInterval(async () => {
 
 	if (checkValid() !== 0) {
 		$('#picked_by').text('').css('opacity', 0);
+		$('#map_slot_container').removeClass('red blue');
+		$('#map_image_container').removeClass('red blue');
 	}
 }, 500);
 
@@ -290,7 +292,7 @@ socket.onmessage = async event => {
 					if (isNaN(command_value)) { stop_timer(); continue; }
 					else start_timer(command_value);
 				}
-				if (command.startsWith('!mp aborttimer') && timer_in_progress) stop_timer();
+				if ((command.startsWith('!mp aborttimer') && command.startsWith('!mp start')) && timer_in_progress) stop_timer();
 			}
 			else {
 				const team = team_lookup[chat.team] ?? 'unknown';
