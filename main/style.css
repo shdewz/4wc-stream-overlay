@@ -259,7 +259,7 @@ html {
 
 .team-score {
 	position: absolute;
-	top: 24px;
+	top: 25px;
 	height: 2.8rem;
 	display: flex;
 	justify-content: center;
@@ -323,7 +323,7 @@ html {
 	height: 20px;
 	width: 0;
 	background-color: var(--accent);
-	top: 0;
+	top: 2px;
 	left: calc(1920px / 2);
 	transition: width 300ms ease;
 }
@@ -577,14 +577,14 @@ html {
 	width: 100%;
 	bottom: 0;
 	right: 0;
-	transform: translateY(32px); /* 32px */
+	transform: translateY(32px);
 	transition: transform 300ms ease;
 }
 
 .chat-timer__progress-container {
 	position: absolute;
 	width: 100%;
-	height: 10px;
+	height: 6px;
 	right: 0;
 	bottom: 0;
 	background-color: var(--progress-bg);
@@ -643,6 +643,10 @@ html {
 	mask-size: contain;
 	mask-repeat: no-repeat;
 	mask-position: center;
+	-webkit-mask-image: url('../_shared/assets/stopwatch-solid.svg');
+	-webkit-mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
 	z-index: 10;
 }
 
