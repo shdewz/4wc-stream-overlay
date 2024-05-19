@@ -175,7 +175,7 @@ socket.onmessage = async event => {
 
 	if (mappool && md5 !== data.menu.bm.md5) {
 		md5 = data.menu.bm.md5;
-		setTimeout(() => {update_stats = true}, 250);
+		setTimeout(() => { update_stats = true }, 250);
 	}
 
 	if (update_stats) {
@@ -327,7 +327,7 @@ const really_start_timer = length => {
 			if (!timer_in_progress) return;
 			$('#timer_progress').css('animation', `progress ${length}s linear, progress_blink 0.7s infinite ease`);
 			$('#stopwatch_container').css('animation', `progress_blink 0.7s infinite ease`);
-		}, length * 1000 * 0.92);
+		}, (length - 3) * 1000);
 	}
 
 	timer = setTimeout(() => {
