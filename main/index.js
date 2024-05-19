@@ -322,13 +322,15 @@ const really_start_timer = length => {
 	$('#timer_container').css('transform', 'translateY(0px)');
 	$('#timer_progress').css('animation', `progress ${length}s linear`);
 
-	blink_timer = setTimeout(async () => {
-		if (!timer_in_progress) return;
-		$('#timer_progress').css('animation', `progress ${length}s linear, progress_blink 0.7s infinite ease`);
-		$('#stopwatch_container').css('animation', `progress_blink 0.7s infinite ease`);
-	}, length * 1000 * 0.9);
+	if (length > 30) {
+		blink_timer = setTimeout(() => {
+			if (!timer_in_progress) return;
+			$('#timer_progress').css('animation', `progress ${length}s linear, progress_blink 0.7s infinite ease`);
+			$('#stopwatch_container').css('animation', `progress_blink 0.7s infinite ease`);
+		}, length * 1000 * 0.92);
+	}
 
-	timer = setTimeout(async () => {
+	timer = setTimeout(() => {
 		if (!timer_in_progress) return;
 		stop_timer();
 	}, length * 1000);
