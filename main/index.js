@@ -364,7 +364,6 @@ const team_lookup = {
 
 const getModStats = (cs_raw, ar_raw, od_raw, bpm_raw, mods) => {
 	mods = mods.replace('NC', 'DT');
-	mods = mods.replace('FM', 'HR');
 
 	let speed = mods.includes('DT') ? 1.5 : mods.includes('HT') ? 0.75 : 1;
 	let ar = mods.includes('HR') ? ar_raw * 1.4 : mods.includes('EZ') ? ar_raw * 0.5 : ar_raw;
