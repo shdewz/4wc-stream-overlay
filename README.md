@@ -1,4 +1,6 @@
-# 4wc-stream-overlay
+# 4WC Stream Overlay
+
+This overlay is intended to be used with [tosu](https://github.com/KotRikD/tosu).
 
 ## OBS Setup
 
