@@ -2,6 +2,7 @@ _data/*.json
 qualifiers/
 schedule/
 schedule*
+thumbnail*
 obs*
 *.zip
 *.webm
