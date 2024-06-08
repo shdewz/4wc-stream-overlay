@@ -32,9 +32,11 @@ let autoadvance_button = document.getElementById('autoAdvanceButton');
 autoadvance_button.style.backgroundColor = '#fc9f9f';  // default to off
 
 let autoadvance_timer_container = document.getElementById('autoAdvanceTimer');
+let autoadvance_cancel_transition = document.getElementById('cancelAdvanceButton');
 let autoadvance_timer_label = document.getElementById('autoAdvanceTimerLabel');
 let autoadvance_timer_time = new CountUp('autoAdvanceTimerTime', 10, 0, 1, 10, {useEasing: false, suffix: 's'});
 autoadvance_timer_container.style.opacity = '0';
+autoadvance_cancel_transition.style.opacity = '0';
 
 let enableAutoAdvance = false;
 let sceneTransitionTimeoutID;
@@ -219,13 +221,16 @@ const pickMap = (bm, teamName, color) => {
     if (enableAutoAdvance) {
         // idempotent on pick color (none/red/blue). Consider making it idempotent on pick state? (not picked/picked)
         if (selectedMapsTransitionTimeout[bm.beatmapID]?.color !== color) {
+            cancelAdvance();
             clearTimeout(selectedMapsTransitionTimeout[bm.beatmapID]?.timeoutId)
-            selectedMapsTransitionTimeout[bm.beatmapID] = {
-                color: color,
-                timeoutId: setTimeout(() => {
+            const newTimeoutId = setTimeout(() => {
                     obsSetCurrentScene(gameplay_scene_name);
                     autoadvance_timer_container.style.opacity = '0';
-                }, pick_to_transition_delay_ms)
+                    autoadvance_cancel_transition.style.opacity = '0';
+                }, pick_to_transition_delay_ms);
+            selectedMapsTransitionTimeout[bm.beatmapID] = {
+                color: color,
+                timeoutId: newTimeoutId
             };
 
             autoadvance_timer_time = new CountUp('autoAdvanceTimerTime',
@@ -234,6 +239,14 @@ const pickMap = (bm, teamName, color) => {
             autoadvance_timer_time.start();
             autoadvance_timer_container.style.opacity = '1';
             autoadvance_timer_label.textContent = `Switching to ${gameplay_scene_name} in`;
+            autoadvance_cancel_transition.style.opacity = '1';
+
+
+            cancelAdvance = () => {
+                clearTimeout(newTimeoutId);
+                autoadvance_timer_container.style.opacity = '0';
+                autoadvance_cancel_transition.style.opacity = '0';
+            }
         }
     }
 }
@@ -285,6 +298,10 @@ const switchAutoAdvance = () => {
         autoadvance_button.innerHTML = 'AUTO ADVANCE: ON';
         autoadvance_button.style.backgroundColor = '#9ffcb3';
     }
+}
+
+var cancelAdvance = () => {
+    // do nothing at first, wait to have a cancel action assigned to it
 }
 
 const TourneyState = {
