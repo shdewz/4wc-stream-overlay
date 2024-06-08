@@ -226,6 +226,7 @@ const pickMap = (bm, teamName, color) => {
             const newTimeoutId = setTimeout(() => {
                     obsSetCurrentScene(gameplay_scene_name);
                     autoadvance_timer_container.style.opacity = '0';
+                    autoadvance_cancel_transition.style.opacity = '0';
                 }, pick_to_transition_delay_ms);
             selectedMapsTransitionTimeout[bm.beatmapID] = {
                 color: color,
