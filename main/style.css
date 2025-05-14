@@ -185,28 +185,15 @@ html {
 }
 
 .stage-container {
-	--cont-height: 1.4rem;
-	color: var(--light);
-	font-weight: bold;
-	letter-spacing: 4px;
-	font-size: calc(1.6 * var(--cont-height));
-	height: var(--cont-height);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
+	position: relative;
 }
 
-.stage-container::after {
-	content: '';
-	border-top: calc(1 * var(--cont-height)) solid var(--accent);
-	border-right: calc(0.5 * var(--cont-height)) solid transparent;
-}
-
-.stage-container::before {
-	content: '';
-	border-bottom: calc(1 * var(--cont-height)) solid var(--accent);
-	border-left: calc(0.5 * var(--cont-height)) solid transparent;
+.stage-background {
+	position: absolute;
+	width: 100%;
+	height: 24px;
+	background-color: var(--accent);
+	transform: skew(-25deg) translateY(8px);
 }
 
 .stage-text-container {
@@ -214,19 +201,25 @@ html {
 }
 
 .stage {
-	padding: 0 16px;
+	position: relative;
+	color: var(--light);
+	padding-left: 16px;
+	padding-right: 20px;
+	font-size: 2.3rem;
 	margin-bottom: 1px;
+	letter-spacing: 3px;
+	font-weight: 700;
+	z-index: 10;
 	text-transform: uppercase;
 }
 
-.stage-container.qf {
-	letter-spacing: 2px;
+.stage.qf {
 	font-family: 'Mont';
+	font-size: 2.2rem;
+	letter-spacing: 2px;
+	transform: translateY(-3px);
 }
 
-.stage-container.qf > .stage-text-container > .stage {
-	margin-bottom: -4px;
-}
 
 .gameplay-area {
 	width: 100%;
@@ -580,6 +573,7 @@ html {
 	background-color: var(--dark);
 	border-left: 8px solid var(--accent);
 	z-index: 5;
+	overflow: hidden;
 }
 
 @keyframes chatIn {

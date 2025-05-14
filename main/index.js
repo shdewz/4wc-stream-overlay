@@ -16,7 +16,7 @@ let mappool, teams;
 	const stage = mappool.stage;
 	if (stage) {
 		$('#stage').text(stage);
-		if (stage.toUpperCase() === 'QUARTERFINALS') $('#stage_container').addClass('qf');
+		if (stage.toUpperCase() === 'QUARTERFINALS') $('#stage').addClass('qf');
 	}
 })();
 
