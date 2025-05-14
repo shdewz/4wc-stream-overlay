@@ -1,0 +1,2668 @@
+[
+    {
+        "team": "Argentina",
+        "flag": "AR",
+        "seed": 28,
+        "players": [
+            {
+                "id": 9336886,
+                "username": "zeta",
+                "captain": false
+            },
+            {
+                "id": 12902737,
+                "username": "my angel amuro",
+                "captain": false
+            },
+            {
+                "id": 11113067,
+                "username": "Tofy",
+                "captain": false
+            },
+            {
+                "id": 7329095,
+                "username": "Surite",
+                "captain": false
+            },
+            {
+                "id": 7119659,
+                "username": "Amuro",
+                "captain": true
+            },
+            {
+                "id": 4389490,
+                "username": "Penguo",
+                "captain": false
+            },
+            {
+                "id": 10459580,
+                "username": "SMASHCAE",
+                "captain": false
+            },
+            {
+                "id": 4700864,
+                "username": "Razekon",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Austria",
+        "flag": "AT",
+        "seed": 31,
+        "players": [
+            {
+                "id": 4601608,
+                "username": "Sparkxei",
+                "captain": false
+            },
+            {
+                "id": 21753287,
+                "username": "Deshoou",
+                "captain": false
+            },
+            {
+                "id": 8369887,
+                "username": "fruit cup",
+                "captain": false
+            },
+            {
+                "id": 1371974,
+                "username": "Teppi",
+                "captain": true
+            },
+            {
+                "id": 14506326,
+                "username": "Pittinger",
+                "captain": false
+            },
+            {
+                "id": 22751439,
+                "username": "Ayoukiro",
+                "captain": false
+            },
+            {
+                "id": 12807415,
+                "username": "[g chan]",
+                "captain": false
+            },
+            {
+                "id": 16522589,
+                "username": "Teppi Fangirl",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Australia",
+        "flag": "AU",
+        "seed": 12,
+        "players": [
+            {
+                "id": 11469447,
+                "username": "Arbusion",
+                "captain": false
+            },
+            {
+                "id": 10665363,
+                "username": "JGLF",
+                "captain": true
+            },
+            {
+                "id": 11380644,
+                "username": "-sephy",
+                "captain": false
+            },
+            {
+                "id": 20963631,
+                "username": "Dumb-Andy",
+                "captain": false
+            },
+            {
+                "id": 12784319,
+                "username": "Fault",
+                "captain": false
+            },
+            {
+                "id": 11858763,
+                "username": "PoYuTo",
+                "captain": false
+            },
+            {
+                "id": 16197865,
+                "username": "Supernye",
+                "captain": false
+            },
+            {
+                "id": 17720805,
+                "username": "hayley",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Bosnia and Herzegovina",
+        "flag": "BA",
+        "seed": -1,
+        "players": [
+            {
+                "id": 14658906,
+                "username": "dax420",
+                "captain": false
+            },
+            {
+                "id": 10270382,
+                "username": "Quiligru",
+                "captain": false
+            },
+            {
+                "id": 8956749,
+                "username": "__Neo",
+                "captain": true
+            },
+            {
+                "id": 18017232,
+                "username": "my idol goaw",
+                "captain": false
+            },
+            {
+                "id": 23143145,
+                "username": "V0lcano_",
+                "captain": false
+            },
+            {
+                "id": 10854590,
+                "username": "Xedon100",
+                "captain": false
+            },
+            {
+                "id": 15000287,
+                "username": "EmirBiH",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Belgium",
+        "flag": "BE",
+        "seed": -1,
+        "players": [
+            {
+                "id": 13717099,
+                "username": "uyaz",
+                "captain": false
+            },
+            {
+                "id": 11331829,
+                "username": "Grand Hexi",
+                "captain": false
+            },
+            {
+                "id": 6479616,
+                "username": "Mornis",
+                "captain": false
+            },
+            {
+                "id": 9184180,
+                "username": "iblue",
+                "captain": false
+            },
+            {
+                "id": 7078544,
+                "username": "Hanori",
+                "captain": true
+            },
+            {
+                "id": 4279650,
+                "username": "5joshi",
+                "captain": false
+            },
+            {
+                "id": 8509247,
+                "username": "Vinnie",
+                "captain": false
+            },
+            {
+                "id": 11234975,
+                "username": "MRB",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Bulgaria",
+        "flag": "BG",
+        "seed": -1,
+        "players": [
+            {
+                "id": 7428814,
+                "username": "aosora",
+                "captain": false
+            },
+            {
+                "id": 4934554,
+                "username": "hlanden",
+                "captain": true
+            },
+            {
+                "id": 9717848,
+                "username": "Ted",
+                "captain": false
+            },
+            {
+                "id": 6584220,
+                "username": "SynchroHD",
+                "captain": false
+            },
+            {
+                "id": 13661543,
+                "username": "Sunrize-",
+                "captain": false
+            },
+            {
+                "id": 9518027,
+                "username": "ivdim",
+                "captain": false
+            },
+            {
+                "id": 8170966,
+                "username": "Rengmain",
+                "captain": false
+            },
+            {
+                "id": 14431596,
+                "username": "stimex",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Brazil",
+        "flag": "BR",
+        "seed": 8,
+        "players": [
+            {
+                "id": 11317547,
+                "username": "Luccachu",
+                "captain": false
+            },
+            {
+                "id": 17192419,
+                "username": "Lineu",
+                "captain": false
+            },
+            {
+                "id": 14592820,
+                "username": "Daf0nz",
+                "captain": false
+            },
+            {
+                "id": 10997010,
+                "username": "TEQUILA BABY",
+                "captain": false
+            },
+            {
+                "id": 11984937,
+                "username": "RafaelXDP",
+                "captain": false
+            },
+            {
+                "id": 15274893,
+                "username": "Lirumin",
+                "captain": true
+            },
+            {
+                "id": 11461810,
+                "username": "kagiura",
+                "captain": false
+            },
+            {
+                "id": 12714574,
+                "username": "Aphrodi",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Belarus",
+        "flag": "BY",
+        "seed": -1,
+        "players": [
+            {
+                "id": 15803625,
+                "username": "flover1ss",
+                "captain": false
+            },
+            {
+                "id": 6253995,
+                "username": "hollaps",
+                "captain": false
+            },
+            {
+                "id": 12624101,
+                "username": "KFCKiller228",
+                "captain": false
+            },
+            {
+                "id": 16006269,
+                "username": "ITheQwertyI",
+                "captain": false
+            },
+            {
+                "id": 17448980,
+                "username": "Neonith",
+                "captain": false
+            },
+            {
+                "id": 17604898,
+                "username": "Tepe6oHbka",
+                "captain": true
+            },
+            {
+                "id": 11134074,
+                "username": "Wexxxxxy",
+                "captain": false
+            },
+            {
+                "id": 17485776,
+                "username": "L1ssak",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Canada",
+        "flag": "CA",
+        "seed": 4,
+        "players": [
+            {
+                "id": 16529875,
+                "username": "Wanderio",
+                "captain": false
+            },
+            {
+                "id": 2758279,
+                "username": "Genryuu Kaiko",
+                "captain": false
+            },
+            {
+                "id": 8666950,
+                "username": "DarkKarate",
+                "captain": false
+            },
+            {
+                "id": 2155578,
+                "username": "Azer",
+                "captain": false
+            },
+            {
+                "id": 11267857,
+                "username": "Jimarrah",
+                "captain": false
+            },
+            {
+                "id": 5177569,
+                "username": "Yip",
+                "captain": false
+            },
+            {
+                "id": 13959253,
+                "username": "Zucchiniii",
+                "captain": false
+            },
+            {
+                "id": 10676573,
+                "username": "Birchman",
+                "captain": true
+            }
+        ]
+    },
+    {
+        "team": "Switzerland",
+        "flag": "CH",
+        "seed": -1,
+        "players": [
+            {
+                "id": 15324900,
+                "username": "Mebura",
+                "captain": false
+            },
+            {
+                "id": 8040245,
+                "username": "Skellers",
+                "captain": true
+            },
+            {
+                "id": 7924600,
+                "username": "Sil",
+                "captain": false
+            },
+            {
+                "id": 2323137,
+                "username": "Akani",
+                "captain": false
+            },
+            {
+                "id": 11189917,
+                "username": "-Azure",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Chile",
+        "flag": "CL",
+        "seed": 23,
+        "players": [
+            {
+                "id": 14264961,
+                "username": "iisobeyan",
+                "captain": false
+            },
+            {
+                "id": 2367495,
+                "username": "Hellbeak",
+                "captain": false
+            },
+            {
+                "id": 13249394,
+                "username": "Rinyeki",
+                "captain": false
+            },
+            {
+                "id": 4653583,
+                "username": "NO37",
+                "captain": false
+            },
+            {
+                "id": 11786864,
+                "username": "Siiphs",
+                "captain": true
+            },
+            {
+                "id": 7827207,
+                "username": "free cookies",
+                "captain": false
+            },
+            {
+                "id": 4881251,
+                "username": "Lasseh",
+                "captain": false
+            },
+            {
+                "id": 18036760,
+                "username": "paxyh",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "China",
+        "flag": "CN",
+        "seed": 10,
+        "players": [
+            {
+                "id": 6090175,
+                "username": "lolol235",
+                "captain": true
+            },
+            {
+                "id": 5791401,
+                "username": "lolol234",
+                "captain": false
+            },
+            {
+                "id": 9975427,
+                "username": "Dwagon",
+                "captain": false
+            },
+            {
+                "id": 1355695,
+                "username": "z980838928",
+                "captain": false
+            },
+            {
+                "id": 4075655,
+                "username": "970",
+                "captain": false
+            },
+            {
+                "id": 2917990,
+                "username": "jj986544591",
+                "captain": false
+            },
+            {
+                "id": 10500832,
+                "username": "[Crz]xz1z1z",
+                "captain": false
+            },
+            {
+                "id": 685188,
+                "username": "FujiwaraNoMokou",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Colombia",
+        "flag": "CO",
+        "seed": 30,
+        "players": [
+            {
+                "id": 9904093,
+                "username": "J1x",
+                "captain": false
+            },
+            {
+                "id": 11940767,
+                "username": "Carlosflow",
+                "captain": true
+            },
+            {
+                "id": 13744487,
+                "username": "Goold",
+                "captain": false
+            },
+            {
+                "id": 10426355,
+                "username": "-WarbOsu-",
+                "captain": false
+            },
+            {
+                "id": 12502593,
+                "username": "Schwarze",
+                "captain": false
+            },
+            {
+                "id": 11727492,
+                "username": "Jekuru",
+                "captain": false
+            },
+            {
+                "id": 4160699,
+                "username": "Yoari",
+                "captain": false
+            },
+            {
+                "id": 9367683,
+                "username": "Phel",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Czechia",
+        "flag": "CZ",
+        "seed": -1,
+        "players": [
+            {
+                "id": 15247939,
+                "username": "fisskill",
+                "captain": true
+            },
+            {
+                "id": 3198446,
+                "username": "Sigmund Fraud",
+                "captain": false
+            },
+            {
+                "id": 7125675,
+                "username": "Ev1dent",
+                "captain": false
+            },
+            {
+                "id": 15063171,
+                "username": "TheMiron",
+                "captain": false
+            },
+            {
+                "id": 10912688,
+                "username": "lucker",
+                "captain": false
+            },
+            {
+                "id": 9694973,
+                "username": "Tachyon Agnes",
+                "captain": false
+            },
+            {
+                "id": 6595616,
+                "username": "Mirek",
+                "captain": false
+            },
+            {
+                "id": 9523358,
+                "username": "Fadeaway",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Germany",
+        "flag": "DE",
+        "seed": 2,
+        "players": [
+            {
+                "id": 10917620,
+                "username": "vana",
+                "captain": false
+            },
+            {
+                "id": 11034873,
+                "username": "Menoji",
+                "captain": false
+            },
+            {
+                "id": 11234706,
+                "username": "kittenfrost",
+                "captain": false
+            },
+            {
+                "id": 24270105,
+                "username": "-lion",
+                "captain": false
+            },
+            {
+                "id": 5154946,
+                "username": "Bernkastel",
+                "captain": true
+            },
+            {
+                "id": 10858131,
+                "username": "-Shrek",
+                "captain": false
+            },
+            {
+                "id": 11371245,
+                "username": "aahoff",
+                "captain": false
+            },
+            {
+                "id": 8508931,
+                "username": "stellasu",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Denmark",
+        "flag": "DK",
+        "seed": -1,
+        "players": [
+            {
+                "id": 10997601,
+                "username": "peter-kun",
+                "captain": false
+            },
+            {
+                "id": 6295380,
+                "username": "iamVill",
+                "captain": true
+            },
+            {
+                "id": 4622337,
+                "username": "Nordkild",
+                "captain": false
+            },
+            {
+                "id": 13941884,
+                "username": "taume",
+                "captain": false
+            },
+            {
+                "id": 13347734,
+                "username": "Cittasnaf",
+                "captain": false
+            },
+            {
+                "id": 18417040,
+                "username": "MyOjou",
+                "captain": false
+            },
+            {
+                "id": 12020720,
+                "username": "[raz]",
+                "captain": false
+            },
+            {
+                "id": 10831457,
+                "username": "thiez",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Spain",
+        "flag": "ES",
+        "seed": 16,
+        "players": [
+            {
+                "id": 15346564,
+                "username": "Bairechuu",
+                "captain": false
+            },
+            {
+                "id": 12296128,
+                "username": "Jose Luis Gil",
+                "captain": true
+            },
+            {
+                "id": 18217876,
+                "username": "ESCRUPULILLO",
+                "captain": false
+            },
+            {
+                "id": 10596572,
+                "username": "Omeguii",
+                "captain": false
+            },
+            {
+                "id": 9895270,
+                "username": "itouikukuro0576",
+                "captain": false
+            },
+            {
+                "id": 9869794,
+                "username": "BabyScylla",
+                "captain": false
+            },
+            {
+                "id": 11821902,
+                "username": "Palodex",
+                "captain": false
+            },
+            {
+                "id": 10584713,
+                "username": "Rumpowl",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Finland",
+        "flag": "FI",
+        "seed": 15,
+        "players": [
+            {
+                "id": 18688473,
+                "username": "Mayuri",
+                "captain": false
+            },
+            {
+                "id": 22396092,
+                "username": "mind blowing",
+                "captain": false
+            },
+            {
+                "id": 8059468,
+                "username": "savilju",
+                "captain": false
+            },
+            {
+                "id": 12080544,
+                "username": "Eevert",
+                "captain": false
+            },
+            {
+                "id": 12931502,
+                "username": "Juska",
+                "captain": false
+            },
+            {
+                "id": 11644972,
+                "username": "nemq",
+                "captain": true
+            },
+            {
+                "id": 2035254,
+                "username": "Kalanluu",
+                "captain": false
+            },
+            {
+                "id": 15242810,
+                "username": "house",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "France",
+        "flag": "FR",
+        "seed": 9,
+        "players": [
+            {
+                "id": 14165027,
+                "username": "lonq noir",
+                "captain": false
+            },
+            {
+                "id": 3213239,
+                "username": "FLAVEN",
+                "captain": false
+            },
+            {
+                "id": 10656864,
+                "username": "Nessy",
+                "captain": false
+            },
+            {
+                "id": 10325072,
+                "username": "fiaee",
+                "captain": false
+            },
+            {
+                "id": 4604369,
+                "username": "KC Aqua",
+                "captain": false
+            },
+            {
+                "id": 7810180,
+                "username": "calangi",
+                "captain": false
+            },
+            {
+                "id": 3257847,
+                "username": "MyzeJD",
+                "captain": true
+            },
+            {
+                "id": 11129041,
+                "username": "XiaoMyMommy",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "United Kingdom",
+        "flag": "GB",
+        "seed": 19,
+        "players": [
+            {
+                "id": 11345690,
+                "username": "velcro shoes",
+                "captain": false
+            },
+            {
+                "id": 15887523,
+                "username": "SinqHD",
+                "captain": false
+            },
+            {
+                "id": 15760163,
+                "username": "Falnt",
+                "captain": false
+            },
+            {
+                "id": 6652874,
+                "username": "Hazuki-",
+                "captain": false
+            },
+            {
+                "id": 14452800,
+                "username": "Mystrality",
+                "captain": false
+            },
+            {
+                "id": 7374212,
+                "username": "Fwuffy",
+                "captain": false
+            },
+            {
+                "id": 11706972,
+                "username": "Jamaican Jamal",
+                "captain": true
+            },
+            {
+                "id": 13686468,
+                "username": "Dr Skill Issue",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Greece",
+        "flag": "GR",
+        "seed": -1,
+        "players": [
+            {
+                "id": 12145220,
+                "username": "Nekkid",
+                "captain": true
+            },
+            {
+                "id": 15427656,
+                "username": "MyAimPeeps",
+                "captain": false
+            },
+            {
+                "id": 4512984,
+                "username": "Tsokoz",
+                "captain": false
+            },
+            {
+                "id": 9498428,
+                "username": "trushpack",
+                "captain": false
+            },
+            {
+                "id": 11893703,
+                "username": "bisbo",
+                "captain": false
+            },
+            {
+                "id": 15302347,
+                "username": "W1nn1e",
+                "captain": false
+            },
+            {
+                "id": 3423454,
+                "username": "Leftie",
+                "captain": false
+            },
+            {
+                "id": 5589933,
+                "username": "awesomemacD",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Hong Kong",
+        "flag": "HK",
+        "seed": -1,
+        "players": [
+            {
+                "id": 5413624,
+                "username": "Hibiki",
+                "captain": true
+            },
+            {
+                "id": 8645133,
+                "username": "pedeko",
+                "captain": false
+            },
+            {
+                "id": 17663666,
+                "username": "flyond",
+                "captain": false
+            },
+            {
+                "id": 16375942,
+                "username": "saberrrrrr",
+                "captain": false
+            },
+            {
+                "id": 16069829,
+                "username": "Honma Misuzu",
+                "captain": false
+            },
+            {
+                "id": 6386735,
+                "username": "RevengeWolf",
+                "captain": false
+            },
+            {
+                "id": 14817468,
+                "username": "stllok",
+                "captain": false
+            },
+            {
+                "id": 3339073,
+                "username": "- kouyuu -",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Hungary",
+        "flag": "HU",
+        "seed": -1,
+        "players": [
+            {
+                "id": 15213139,
+                "username": "gecseboti",
+                "captain": true
+            },
+            {
+                "id": 14059423,
+                "username": "baliiii",
+                "captain": false
+            },
+            {
+                "id": 5442931,
+                "username": "glass2wave7",
+                "captain": false
+            },
+            {
+                "id": 29044372,
+                "username": "Smoyy",
+                "captain": false
+            },
+            {
+                "id": 22715312,
+                "username": "TibO123",
+                "captain": false
+            },
+            {
+                "id": 8596945,
+                "username": "matyk0",
+                "captain": false
+            },
+            {
+                "id": 13214099,
+                "username": "Magor",
+                "captain": false
+            },
+            {
+                "id": 17962280,
+                "username": "linkay",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Indonesia",
+        "flag": "ID",
+        "seed": 17,
+        "players": [
+            {
+                "id": 11091594,
+                "username": "ThatNOOBguy",
+                "captain": false
+            },
+            {
+                "id": 1987591,
+                "username": "Rosemi Lovelock",
+                "captain": false
+            },
+            {
+                "id": 4314559,
+                "username": "Somay 287",
+                "captain": false
+            },
+            {
+                "id": 11320627,
+                "username": "MejiroMcQueen",
+                "captain": false
+            },
+            {
+                "id": 1501956,
+                "username": "Fuma",
+                "captain": true
+            },
+            {
+                "id": 11070577,
+                "username": "FAW",
+                "captain": false
+            },
+            {
+                "id": 8688737,
+                "username": "salt and honey",
+                "captain": false
+            },
+            {
+                "id": 10137131,
+                "username": "BlankTap",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Ireland",
+        "flag": "IE",
+        "seed": -1,
+        "players": [
+            {
+                "id": 6450765,
+                "username": "nava",
+                "captain": false
+            },
+            {
+                "id": 10278329,
+                "username": "cowboy emoji",
+                "captain": false
+            },
+            {
+                "id": 6671641,
+                "username": "Ophiz",
+                "captain": false
+            },
+            {
+                "id": 16223553,
+                "username": "Yoomsi",
+                "captain": false
+            },
+            {
+                "id": 5312461,
+                "username": "Ichigo Kurusaki",
+                "captain": false
+            },
+            {
+                "id": 25211165,
+                "username": "crying emoji",
+                "captain": false
+            },
+            {
+                "id": 8473665,
+                "username": "don_chan",
+                "captain": false
+            },
+            {
+                "id": 14089530,
+                "username": "rbk",
+                "captain": true
+            }
+        ]
+    },
+    {
+        "team": "Israel",
+        "flag": "IL",
+        "seed": -1,
+        "players": [
+            {
+                "id": 16051221,
+                "username": "Dripster1",
+                "captain": false
+            },
+            {
+                "id": 16048250,
+                "username": "CIash of Clans",
+                "captain": true
+            },
+            {
+                "id": 16083856,
+                "username": "F3n1X",
+                "captain": false
+            },
+            {
+                "id": 7274010,
+                "username": "Chiharu",
+                "captain": false
+            },
+            {
+                "id": 21620514,
+                "username": "Woaw",
+                "captain": false
+            },
+            {
+                "id": 22666605,
+                "username": "G8pple",
+                "captain": false
+            },
+            {
+                "id": 12713821,
+                "username": "snowfort",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "India",
+        "flag": "IN",
+        "seed": -1,
+        "players": [
+            {
+                "id": 10250612,
+                "username": "_Cyan",
+                "captain": false
+            },
+            {
+                "id": 25011352,
+                "username": "Smudgy24",
+                "captain": false
+            },
+            {
+                "id": 1788022,
+                "username": "Potla",
+                "captain": false
+            },
+            {
+                "id": 12322135,
+                "username": "BruhMoment",
+                "captain": false
+            },
+            {
+                "id": 20861921,
+                "username": "zmecha",
+                "captain": false
+            },
+            {
+                "id": 8141103,
+                "username": "dard",
+                "captain": false
+            },
+            {
+                "id": 13517095,
+                "username": "OsuMaster1290",
+                "captain": false
+            },
+            {
+                "id": 11412507,
+                "username": "ArtoriaMyAngel",
+                "captain": true
+            }
+        ]
+    },
+    {
+        "team": "Iceland",
+        "flag": "IS",
+        "seed": -1,
+        "players": [
+            {
+                "id": 6583413,
+                "username": "Krabbi",
+                "captain": true
+            },
+            {
+                "id": 7189845,
+                "username": "Arni",
+                "captain": false
+            },
+            {
+                "id": 14645209,
+                "username": "Wounden",
+                "captain": false
+            },
+            {
+                "id": 14169321,
+                "username": "Teini",
+                "captain": false
+            },
+            {
+                "id": 16924415,
+                "username": "Big PP Jo",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Italy",
+        "flag": "IT",
+        "seed": -1,
+        "players": [
+            {
+                "id": 18818123,
+                "username": "BELLOFIGO",
+                "captain": false
+            },
+            {
+                "id": 3833346,
+                "username": "Wido",
+                "captain": false
+            },
+            {
+                "id": 17022896,
+                "username": "-NyX",
+                "captain": false
+            },
+            {
+                "id": 14832855,
+                "username": "mhh",
+                "captain": false
+            },
+            {
+                "id": 13925698,
+                "username": "ILBOSSDELPOPPIN",
+                "captain": true
+            },
+            {
+                "id": 13103667,
+                "username": "Chiicco",
+                "captain": false
+            },
+            {
+                "id": 10831582,
+                "username": "Viper79",
+                "captain": false
+            },
+            {
+                "id": 11476143,
+                "username": "bgm16",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Japan",
+        "flag": "JP",
+        "seed": 26,
+        "players": [
+            {
+                "id": 11843685,
+                "username": "hifu",
+                "captain": false
+            },
+            {
+                "id": 4733185,
+                "username": "KonKonKinakoN",
+                "captain": true
+            },
+            {
+                "id": 22986777,
+                "username": "shouponpon",
+                "captain": false
+            },
+            {
+                "id": 3162741,
+                "username": "Aotoleen",
+                "captain": false
+            },
+            {
+                "id": 11118720,
+                "username": "36R",
+                "captain": false
+            },
+            {
+                "id": 13826890,
+                "username": "grkn7",
+                "captain": false
+            },
+            {
+                "id": 21911882,
+                "username": "Tsubaban",
+                "captain": false
+            },
+            {
+                "id": 18212788,
+                "username": "RAiMEi_BOTTliUM",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Kyrgyzstan",
+        "flag": "KG",
+        "seed": -1,
+        "players": [
+            {
+                "id": 12270069,
+                "username": "early access",
+                "captain": true
+            },
+            {
+                "id": 11137291,
+                "username": "Madaraha",
+                "captain": false
+            },
+            {
+                "id": 14795251,
+                "username": "ded24lol",
+                "captain": false
+            },
+            {
+                "id": 10526936,
+                "username": "FenixoLaFen",
+                "captain": false
+            },
+            {
+                "id": 12616127,
+                "username": "- Ek1n",
+                "captain": false
+            },
+            {
+                "id": 25849153,
+                "username": "cpx",
+                "captain": false
+            },
+            {
+                "id": 23167746,
+                "username": "heartpart",
+                "captain": false
+            },
+            {
+                "id": 12243792,
+                "username": "RInatGM",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "South Korea",
+        "flag": "KR",
+        "seed": 5,
+        "players": [
+            {
+                "id": 3730848,
+                "username": "mx10000",
+                "captain": false
+            },
+            {
+                "id": 14447878,
+                "username": "Lujeol",
+                "captain": false
+            },
+            {
+                "id": 4585186,
+                "username": "Nopekjk",
+                "captain": false
+            },
+            {
+                "id": 114017,
+                "username": "KRZY",
+                "captain": true
+            },
+            {
+                "id": 11415230,
+                "username": "Gambler",
+                "captain": false
+            },
+            {
+                "id": 757783,
+                "username": "Garalulu",
+                "captain": false
+            },
+            {
+                "id": 9737185,
+                "username": "ch0co",
+                "captain": false
+            },
+            {
+                "id": 4980135,
+                "username": "Behwall",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Kazakhstan",
+        "flag": "KZ",
+        "seed": 32,
+        "players": [
+            {
+                "id": 14438574,
+                "username": "fragrance0fpage",
+                "captain": true
+            },
+            {
+                "id": 31406901,
+                "username": "3uma",
+                "captain": false
+            },
+            {
+                "id": 8914317,
+                "username": "shiyumi",
+                "captain": false
+            },
+            {
+                "id": 13297978,
+                "username": "Plapa",
+                "captain": false
+            },
+            {
+                "id": 19483487,
+                "username": "just keep going",
+                "captain": false
+            },
+            {
+                "id": 10315628,
+                "username": "Nezunyan",
+                "captain": false
+            },
+            {
+                "id": 9921139,
+                "username": "Ternafis",
+                "captain": false
+            },
+            {
+                "id": 18673485,
+                "username": "ItzZeroIce",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Lithuania",
+        "flag": "LT",
+        "seed": -1,
+        "players": [
+            {
+                "id": 10290012,
+                "username": "basketball",
+                "captain": true
+            },
+            {
+                "id": 4582149,
+                "username": "CamperLt",
+                "captain": false
+            },
+            {
+                "id": 15455384,
+                "username": "DAZQ",
+                "captain": false
+            },
+            {
+                "id": 10891105,
+                "username": "racing",
+                "captain": false
+            },
+            {
+                "id": 2623785,
+                "username": "Werkit",
+                "captain": false
+            },
+            {
+                "id": 3683323,
+                "username": "Kosmonautas",
+                "captain": false
+            },
+            {
+                "id": 21877230,
+                "username": "Darnix",
+                "captain": false
+            },
+            {
+                "id": 12556610,
+                "username": "volleyball",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Latvia",
+        "flag": "LV",
+        "seed": -1,
+        "players": [
+            {
+                "id": 12070555,
+                "username": "day drinking",
+                "captain": false
+            },
+            {
+                "id": 10902307,
+                "username": "UselessJohn",
+                "captain": false
+            },
+            {
+                "id": 21653406,
+                "username": "ryuuaa",
+                "captain": true
+            },
+            {
+                "id": 6473092,
+                "username": "kbwaaablya",
+                "captain": false
+            },
+            {
+                "id": 11342324,
+                "username": "StellarOW",
+                "captain": false
+            },
+            {
+                "id": 16087303,
+                "username": "Karins",
+                "captain": false
+            },
+            {
+                "id": 17524565,
+                "username": "LatvianAhmed",
+                "captain": false
+            },
+            {
+                "id": 10816682,
+                "username": "olivers31",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Macau",
+        "flag": "MO",
+        "seed": -1,
+        "players": [
+            {
+                "id": 16656942,
+                "username": "Macow",
+                "captain": false
+            },
+            {
+                "id": 11563694,
+                "username": "Makao",
+                "captain": true
+            },
+            {
+                "id": 16974919,
+                "username": "SBHO",
+                "captain": false
+            },
+            {
+                "id": 12112953,
+                "username": "Polyr3x",
+                "captain": false
+            },
+            {
+                "id": 12648780,
+                "username": "knight87",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Mexico",
+        "flag": "MX",
+        "seed": -1,
+        "players": [
+            {
+                "id": 6266914,
+                "username": "Abran",
+                "captain": false
+            },
+            {
+                "id": 16775763,
+                "username": "northsign",
+                "captain": true
+            },
+            {
+                "id": 12620773,
+                "username": "Dercani",
+                "captain": false
+            },
+            {
+                "id": 19084209,
+                "username": "Iysao",
+                "captain": false
+            },
+            {
+                "id": 13611061,
+                "username": "[Andy]",
+                "captain": false
+            },
+            {
+                "id": 8349047,
+                "username": "Flameshock",
+                "captain": false
+            },
+            {
+                "id": 22563312,
+                "username": "mUFfin5",
+                "captain": false
+            },
+            {
+                "id": 8594847,
+                "username": "Setollie",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Malaysia",
+        "flag": "MY",
+        "seed": 27,
+        "players": [
+            {
+                "id": 15271985,
+                "username": "AHotDawg",
+                "captain": false
+            },
+            {
+                "id": 13865320,
+                "username": "Snowy5441",
+                "captain": false
+            },
+            {
+                "id": 10343292,
+                "username": "Zeph2003",
+                "captain": false
+            },
+            {
+                "id": 5585377,
+                "username": "Chibi Maruko",
+                "captain": false
+            },
+            {
+                "id": 11918602,
+                "username": "Breast",
+                "captain": true
+            },
+            {
+                "id": 14623152,
+                "username": "stumphole145",
+                "captain": false
+            },
+            {
+                "id": 5414124,
+                "username": "Auxuelus",
+                "captain": false
+            },
+            {
+                "id": 13626098,
+                "username": "Kizuna",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Netherlands",
+        "flag": "NL",
+        "seed": 20,
+        "players": [
+            {
+                "id": 12265149,
+                "username": "xceller",
+                "captain": false
+            },
+            {
+                "id": 6920104,
+                "username": "Dolter",
+                "captain": false
+            },
+            {
+                "id": 14390731,
+                "username": "niqht",
+                "captain": true
+            },
+            {
+                "id": 6744123,
+                "username": "chillington 15",
+                "captain": false
+            },
+            {
+                "id": 641155,
+                "username": "Katie Djeestar",
+                "captain": false
+            },
+            {
+                "id": 4382220,
+                "username": "wessel_osu2",
+                "captain": false
+            },
+            {
+                "id": 20241831,
+                "username": "draconia",
+                "captain": false
+            },
+            {
+                "id": 6989615,
+                "username": "UC2",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Norway",
+        "flag": "NO",
+        "seed": 25,
+        "players": [
+            {
+                "id": 9401816,
+                "username": "Ole",
+                "captain": false
+            },
+            {
+                "id": 18150572,
+                "username": "Mr Wang",
+                "captain": false
+            },
+            {
+                "id": 14398471,
+                "username": "Frodo",
+                "captain": false
+            },
+            {
+                "id": 14963905,
+                "username": "Read Horimiya",
+                "captain": false
+            },
+            {
+                "id": 6399568,
+                "username": "YokesPai",
+                "captain": true
+            },
+            {
+                "id": 8414284,
+                "username": "Markus",
+                "captain": false
+            },
+            {
+                "id": 12959983,
+                "username": "antonyw",
+                "captain": false
+            },
+            {
+                "id": 26776016,
+                "username": "lol-ok",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "New Zealand",
+        "flag": "NZ",
+        "seed": -1,
+        "players": [
+            {
+                "id": 13588932,
+                "username": "pii",
+                "captain": false
+            },
+            {
+                "id": 11172360,
+                "username": "she gon pay me",
+                "captain": true
+            },
+            {
+                "id": 23179637,
+                "username": "Ozzy265",
+                "captain": false
+            },
+            {
+                "id": 7731995,
+                "username": "its going up",
+                "captain": false
+            },
+            {
+                "id": 11518376,
+                "username": "HaSappy",
+                "captain": false
+            },
+            {
+                "id": 9803745,
+                "username": "rumii",
+                "captain": false
+            },
+            {
+                "id": 9660655,
+                "username": "im sooo gay",
+                "captain": false
+            },
+            {
+                "id": 18004953,
+                "username": "Goofster",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Panama",
+        "flag": "PA",
+        "seed": -1,
+        "players": [
+            {
+                "id": 18962732,
+                "username": "Sirny",
+                "captain": false
+            },
+            {
+                "id": 11562243,
+                "username": "Leonard H",
+                "captain": false
+            },
+            {
+                "id": 17545095,
+                "username": "Neocraft",
+                "captain": false
+            },
+            {
+                "id": 13305560,
+                "username": "FRX",
+                "captain": false
+            },
+            {
+                "id": 5136821,
+                "username": "AR9",
+                "captain": true
+            },
+            {
+                "id": 6790430,
+                "username": "Bakiii",
+                "captain": false
+            },
+            {
+                "id": 16535905,
+                "username": "Daniel11PTY",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Peru",
+        "flag": "PE",
+        "seed": -1,
+        "players": [
+            {
+                "id": 8715276,
+                "username": "MiguisXD",
+                "captain": false
+            },
+            {
+                "id": 19135423,
+                "username": "- Koshiin -",
+                "captain": false
+            },
+            {
+                "id": 15334533,
+                "username": "Daldor",
+                "captain": false
+            },
+            {
+                "id": 16385820,
+                "username": "Sebas_Hiac3",
+                "captain": false
+            },
+            {
+                "id": 11646616,
+                "username": "-Gardevoir-",
+                "captain": true
+            },
+            {
+                "id": 11774020,
+                "username": "zecutor",
+                "captain": false
+            },
+            {
+                "id": 23134307,
+                "username": "Diego6716",
+                "captain": false
+            },
+            {
+                "id": 11477921,
+                "username": "SapeSape",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Philippines",
+        "flag": "PH",
+        "seed": 18,
+        "players": [
+            {
+                "id": 16940378,
+                "username": "Jitterish",
+                "captain": false
+            },
+            {
+                "id": 15771173,
+                "username": "puffonxe",
+                "captain": false
+            },
+            {
+                "id": 12110337,
+                "username": "Binninja",
+                "captain": false
+            },
+            {
+                "id": 20840121,
+                "username": "francisqueso",
+                "captain": false
+            },
+            {
+                "id": 12254421,
+                "username": "ZaNy_",
+                "captain": false
+            },
+            {
+                "id": 14388839,
+                "username": "GabberSS",
+                "captain": false
+            },
+            {
+                "id": 19108592,
+                "username": "perhap",
+                "captain": false
+            },
+            {
+                "id": 7904667,
+                "username": "xidorn",
+                "captain": true
+            }
+        ]
+    },
+    {
+        "team": "Poland",
+        "flag": "PL",
+        "seed": 3,
+        "players": [
+            {
+                "id": 9322480,
+                "username": "kiir0chii",
+                "captain": false
+            },
+            {
+                "id": 9086565,
+                "username": "Kosiarek",
+                "captain": false
+            },
+            {
+                "id": 14282987,
+                "username": "szedis",
+                "captain": false
+            },
+            {
+                "id": 7009485,
+                "username": "BadAimBoi",
+                "captain": false
+            },
+            {
+                "id": 14100781,
+                "username": "hav",
+                "captain": false
+            },
+            {
+                "id": 3493804,
+                "username": "Eirra",
+                "captain": true
+            },
+            {
+                "id": 11308471,
+                "username": "Asriel",
+                "captain": false
+            },
+            {
+                "id": 5472693,
+                "username": "eniu",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Portugal",
+        "flag": "PT",
+        "seed": -1,
+        "players": [
+            {
+                "id": 2742030,
+                "username": "Kuronora",
+                "captain": true
+            },
+            {
+                "id": 799218,
+                "username": "Big Yikes",
+                "captain": false
+            },
+            {
+                "id": 15767298,
+                "username": "Pinossaur",
+                "captain": false
+            },
+            {
+                "id": 13158972,
+                "username": "Pinto",
+                "captain": false
+            },
+            {
+                "id": 15180662,
+                "username": "Sekkou",
+                "captain": false
+            },
+            {
+                "id": 15352105,
+                "username": "CraftH",
+                "captain": false
+            },
+            {
+                "id": 10040931,
+                "username": "J P",
+                "captain": false
+            },
+            {
+                "id": 7652852,
+                "username": "Kenzol",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Romania",
+        "flag": "RO",
+        "seed": 14,
+        "players": [
+            {
+                "id": 15095811,
+                "username": "origin_",
+                "captain": true
+            },
+            {
+                "id": 10111132,
+                "username": "capybaras",
+                "captain": false
+            },
+            {
+                "id": 19430137,
+                "username": "AlexBelea",
+                "captain": false
+            },
+            {
+                "id": 6145000,
+                "username": "Kehest",
+                "captain": false
+            },
+            {
+                "id": 10569381,
+                "username": "Pregnancy",
+                "captain": false
+            },
+            {
+                "id": 12274213,
+                "username": "IIANTONIOII",
+                "captain": false
+            },
+            {
+                "id": 2086138,
+                "username": "_AfterWind",
+                "captain": false
+            },
+            {
+                "id": 8511882,
+                "username": "_Silvian",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Russian Federation",
+        "flag": "RU",
+        "seed": 11,
+        "players": [
+            {
+                "id": 13206785,
+                "username": "11iq pleer",
+                "captain": true
+            },
+            {
+                "id": 8445602,
+                "username": "Suzuha",
+                "captain": false
+            },
+            {
+                "id": 7351448,
+                "username": "fedotoff",
+                "captain": false
+            },
+            {
+                "id": 17031854,
+                "username": "BJIADOC",
+                "captain": false
+            },
+            {
+                "id": 13709281,
+                "username": "Paracat",
+                "captain": false
+            },
+            {
+                "id": 8165685,
+                "username": "shadevr",
+                "captain": false
+            },
+            {
+                "id": 13951894,
+                "username": "steisha",
+                "captain": false
+            },
+            {
+                "id": 13063996,
+                "username": "BOPKYTA",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Saudi Arabia",
+        "flag": "SA",
+        "seed": 29,
+        "players": [
+            {
+                "id": 12450422,
+                "username": "Riquiria",
+                "captain": false
+            },
+            {
+                "id": 11959709,
+                "username": "CallMeRed",
+                "captain": true
+            },
+            {
+                "id": 10170668,
+                "username": "EyesNeverOpen",
+                "captain": false
+            },
+            {
+                "id": 14165168,
+                "username": "Shadowtrail123",
+                "captain": false
+            },
+            {
+                "id": 11636332,
+                "username": "ZoomerCat",
+                "captain": false
+            },
+            {
+                "id": 2920127,
+                "username": "Not Mage",
+                "captain": false
+            },
+            {
+                "id": 14099175,
+                "username": "Abdulmalik",
+                "captain": false
+            },
+            {
+                "id": 22461441,
+                "username": "3BDOOO",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Sweden",
+        "flag": "SE",
+        "seed": 7,
+        "players": [
+            {
+                "id": 9405745,
+                "username": "scylla",
+                "captain": false
+            },
+            {
+                "id": 10349559,
+                "username": "melwem",
+                "captain": false
+            },
+            {
+                "id": 4859699,
+                "username": "[ Blue ]",
+                "captain": false
+            },
+            {
+                "id": 10262000,
+                "username": "Heo",
+                "captain": false
+            },
+            {
+                "id": 4316633,
+                "username": "Saika0k1",
+                "captain": true
+            },
+            {
+                "id": 11749569,
+                "username": "Grippeh",
+                "captain": false
+            },
+            {
+                "id": 2854598,
+                "username": "[ Couch ]",
+                "captain": false
+            },
+            {
+                "id": 15701343,
+                "username": "Lightningfox",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Singapore",
+        "flag": "SG",
+        "seed": 13,
+        "players": [
+            {
+                "id": 19256705,
+                "username": "Cymango",
+                "captain": false
+            },
+            {
+                "id": 10958852,
+                "username": "qstronaut",
+                "captain": false
+            },
+            {
+                "id": 5144534,
+                "username": "Dawnwing",
+                "captain": false
+            },
+            {
+                "id": 2312106,
+                "username": "GSBlank",
+                "captain": false
+            },
+            {
+                "id": 15195364,
+                "username": "hollowknees",
+                "captain": true
+            },
+            {
+                "id": 8004317,
+                "username": "wick",
+                "captain": false
+            },
+            {
+                "id": 8244635,
+                "username": "Hecatia",
+                "captain": false
+            },
+            {
+                "id": 1868745,
+                "username": "moosepi",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Slovakia",
+        "flag": "SK",
+        "seed": -1,
+        "players": [
+            {
+                "id": 11553201,
+                "username": "RafeuX",
+                "captain": false
+            },
+            {
+                "id": 1285945,
+                "username": "PeteX",
+                "captain": true
+            },
+            {
+                "id": 23303515,
+                "username": "Dugyy",
+                "captain": false
+            },
+            {
+                "id": 9053638,
+                "username": "Aesc the Savior",
+                "captain": false
+            },
+            {
+                "id": 11238426,
+                "username": "Godlyy-",
+                "captain": false
+            },
+            {
+                "id": 10876026,
+                "username": "Seam",
+                "captain": false
+            },
+            {
+                "id": 15265527,
+                "username": "permabutter",
+                "captain": false
+            },
+            {
+                "id": 8636448,
+                "username": "Permsky",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Thailand",
+        "flag": "TH",
+        "seed": 22,
+        "players": [
+            {
+                "id": 17792223,
+                "username": "miinr",
+                "captain": false
+            },
+            {
+                "id": 6571991,
+                "username": "Arz3",
+                "captain": false
+            },
+            {
+                "id": 9317938,
+                "username": "soft bunny",
+                "captain": false
+            },
+            {
+                "id": 14806365,
+                "username": "chests",
+                "captain": true
+            },
+            {
+                "id": 11016805,
+                "username": "- PPKM -",
+                "captain": false
+            },
+            {
+                "id": 20865714,
+                "username": "Navalus",
+                "captain": false
+            },
+            {
+                "id": 19052463,
+                "username": "Jehn",
+                "captain": false
+            },
+            {
+                "id": 14833619,
+                "username": "TzArtifactz",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Türkiye",
+        "flag": "TR",
+        "seed": 21,
+        "players": [
+            {
+                "id": 16750823,
+                "username": "spray-",
+                "captain": false
+            },
+            {
+                "id": 9321674,
+                "username": "Orkay",
+                "captain": true
+            },
+            {
+                "id": 6612642,
+                "username": "mikatsu",
+                "captain": false
+            },
+            {
+                "id": 14684430,
+                "username": "Ievi-",
+                "captain": false
+            },
+            {
+                "id": 21893727,
+                "username": "maidkedi",
+                "captain": false
+            },
+            {
+                "id": 6093148,
+                "username": "Shinkiro",
+                "captain": false
+            },
+            {
+                "id": 11551991,
+                "username": "Liery",
+                "captain": false
+            },
+            {
+                "id": 4982690,
+                "username": "dragonsaga",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Taiwan",
+        "flag": "TW",
+        "seed": 6,
+        "players": [
+            {
+                "id": 4519494,
+                "username": "Spinesnight",
+                "captain": false
+            },
+            {
+                "id": 9767342,
+                "username": "Flyer",
+                "captain": false
+            },
+            {
+                "id": 7172340,
+                "username": "NekoKamui",
+                "captain": false
+            },
+            {
+                "id": 16288992,
+                "username": "Ruyaya",
+                "captain": false
+            },
+            {
+                "id": 12717375,
+                "username": "NashiKari",
+                "captain": false
+            },
+            {
+                "id": 8964050,
+                "username": "GAO HAO",
+                "captain": false
+            },
+            {
+                "id": 4641477,
+                "username": "aaront",
+                "captain": false
+            },
+            {
+                "id": 15184992,
+                "username": "Summer_Ouo",
+                "captain": true
+            }
+        ]
+    },
+    {
+        "team": "Ukraine",
+        "flag": "UA",
+        "seed": 24,
+        "players": [
+            {
+                "id": 11274086,
+                "username": "Endless Tilt",
+                "captain": false
+            },
+            {
+                "id": 7629976,
+                "username": "asta is cute",
+                "captain": false
+            },
+            {
+                "id": 7587763,
+                "username": "SHADOW FREAK",
+                "captain": true
+            },
+            {
+                "id": 15885344,
+                "username": "nooneloves",
+                "captain": false
+            },
+            {
+                "id": 7979597,
+                "username": "Ryan Rofling",
+                "captain": false
+            },
+            {
+                "id": 15507546,
+                "username": "KpoJl_MoHctp",
+                "captain": false
+            },
+            {
+                "id": 18781432,
+                "username": "EPEMA",
+                "captain": false
+            },
+            {
+                "id": 11731667,
+                "username": "KEKW_",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "United States",
+        "flag": "US",
+        "seed": 1,
+        "players": [
+            {
+                "id": 2848604,
+                "username": "toybot",
+                "captain": false
+            },
+            {
+                "id": 9265990,
+                "username": "hotdog6000",
+                "captain": false
+            },
+            {
+                "id": 17917574,
+                "username": "eddy",
+                "captain": false
+            },
+            {
+                "id": 9138046,
+                "username": "Tokii",
+                "captain": false
+            },
+            {
+                "id": 13310147,
+                "username": "Uzumaki",
+                "captain": false
+            },
+            {
+                "id": 12967296,
+                "username": "Indiana",
+                "captain": false
+            },
+            {
+                "id": 15173952,
+                "username": "BATBALL",
+                "captain": true
+            },
+            {
+                "id": 4673649,
+                "username": "LUNAISTABBY",
+                "captain": false
+            }
+        ]
+    },
+    {
+        "team": "Vietnam",
+        "flag": "VN",
+        "seed": -1,
+        "players": [
+            {
+                "id": 15565196,
+                "username": "xewth",
+                "captain": false
+            },
+            {
+                "id": 6673790,
+                "username": "Tuon",
+                "captain": false
+            },
+            {
+                "id": 20864743,
+                "username": "ilovepp16782",
+                "captain": false
+            },
+            {
+                "id": 13238121,
+                "username": "smthelse",
+                "captain": false
+            },
+            {
+                "id": 6225096,
+                "username": "Seamie",
+                "captain": true
+            },
+            {
+                "id": 8006029,
+                "username": "realshin",
+                "captain": false
+            },
+            {
+                "id": 3318668,
+                "username": "Fayth",
+                "captain": false
+            },
+            {
+                "id": 11538640,
+                "username": "electrostrike",
+                "captain": false
+            }
+        ]
+    }
+]
