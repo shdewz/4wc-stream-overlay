@@ -2,9 +2,9 @@
 
 This overlay is intended to be used with [tosu](https://github.com/KotRikD/tosu) `>=4.6.0`.
 
-## Intended OBS Setup
+## Intended OBS scene setup
 
-### main scene  
+### `main`
 
 | source        | url/path                                              | width | height | x         | y         |
 |---------------|-------------------------------------------------------|-------|--------|-----------|-----------|
@@ -27,7 +27,7 @@ This overlay is intended to be used with [tosu](https://github.com/KotRikD/tosu)
 | 6      | 960  | 520  |
 | 7      | 1440 | 520  |
 
-### mappool
+### `mappool`
 
 | source           | url/path                                             | width | height | x | y   |
 |------------------|------------------------------------------------------|-------|--------|---|-----|
@@ -35,7 +35,7 @@ This overlay is intended to be used with [tosu](https://github.com/KotRikD/tosu)
 | mappool_overlay* | [http://127.0.0.1:24050/4wc-stream-overlay/mappool/] | 2220  | 700    | 0 | 0   |
 | main_overlay     | [http://127.0.0.1:24050/4wc-stream-overlay/main/]    | 1920  | 1080   | 0 | 0   |
 
-### intro*
+### `intro`*
 
 | source           | url/path                                           | width | height | x | y   |
 |------------------|----------------------------------------------------|-------|--------|---|-----|
@@ -43,7 +43,7 @@ This overlay is intended to be used with [tosu](https://github.com/KotRikD/tosu)
 
 <sup>*data pulled from `_data/coming_up.json`, requires exchanging between matches</sup>
 
-### winner
+### `winner`
 
 | source           | url/path                                            | width | height | x | y   |
 |------------------|-----------------------------------------------------|-------|--------|---|-----|
