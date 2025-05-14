@@ -1,118 +1,101 @@
 const TEAMSIZE = 4;
+const DEBUG = false;
+
+const cache = {};
+const timer = {
+	in_progress: false,
+	object: null,
+	object_blink: null
+};
 
 let mappool, teams;
 (async () => {
 	$.ajaxSetup({ cache: false });
 	mappool = await $.getJSON('../_data/beatmaps.json');
 	teams = await $.getJSON('../_data/teams.json');
-	let stage = mappool.stage;
-	if (stage) $('#stage_name').text(stage);
-	carousel();
+	const stage = mappool.stage;
+	if (stage) {
+		$('#stage').text(stage);
+		if (stage.toUpperCase() === 'QUARTERFINALS') $('#stage_container').addClass('qf');
+	}
 })();
 
-const carousel = () => {
-	const total_items = 4;
-	let item_id = 1;
-	$(`#middle_item_${item_id}`).css('opacity', 1);
-	$(`#middle_item_${item_id}`).css('display', 'flex');
+// TODO: make this work
 
-	setInterval(async () => {
-		$(`#middle_item_${item_id}`).css('opacity', 0);
-		await delay(300);
-		$(`#middle_item_${item_id}`).css('display', 'none');
-		item_id++;
-		if (item_id > total_items) item_id = 1;
-		$(`#middle_item_${item_id}`).css('display', 'flex');
-		await delay(100);
-		$(`#middle_item_${item_id}`).css('opacity', 1);
-	}, 7000);
-}
+// let map, mapid;
+// window.setInterval(async () => {
+// 	await delay(200);
+// 	let cookieName = 'lastPick';
+// 	const match = document.cookie.match(`(?:^|.*)${cookieName}=(.+?)(?:$|[|;].*)`);
 
-let map, mapid;
-window.setInterval(async () => {
-	await delay(200);
-	let cookieName = 'lastPick';
-	const match = document.cookie.match(`(?:^|.*)${cookieName}=(.+?)(?:$|[|;].*)`);
+// 	let checkValid = () => {
+// 		if (!mapid) return -9;
+// 		if (match) {
+// 			let cookieValue = match[1].split('-');
+// 			if (cookieValue.length !== 2) return -1;  // expected format: <beatmap_id>-<picking_team>
+// 			const parsedBeatmapID = parseInt(cookieValue[0]);
+// 			if (isNaN(parsedBeatmapID)) return -2;
 
-	let checkValid = () => {
-		if (!mapid) return -9;
-		if (match) {
-			let cookieValue = match[1].split('-');
-			if (cookieValue.length !== 2) return -1;  // expected format: <beatmap_id>-<picking_team>
-			const parsedBeatmapID = parseInt(cookieValue[0]);
-			if (isNaN(parsedBeatmapID)) return -2;
+// 			// if (true) {  // bypass beatmap id checking during development
+// 			if (mapid == parsedBeatmapID) {
+// 				let map_obj = mappool.beatmaps.find(m => m.beatmap_id == mapid);
+// 				if (map_obj?.identifier?.toUpperCase().includes('TB')) return -3;
+// 				if (nameRed && nameBlue) {
+// 					$('#picked_by').text(`Picked by ${cookieValue[1] === 'red' ? nameRed : nameBlue}`).css('opacity', 1).addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
+// 					$('#map_slot_container').addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
+// 					$('#map_image_container').addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
+// 				}
+// 				else {
+// 					$('#picked_by').text('').css('opacity', 0).removeClass('red blue');
+// 					$('#map_slot_container').removeClass('red blue');
+// 					$('#map_image_container').removeClass('red blue');
+// 				}
+// 				return 0;
+// 			}
+// 			return -255;
+// 		}
+// 	}
 
-			// if (true) {  // bypass beatmap id checking during development
-			if (mapid == parsedBeatmapID) {
-				let map_obj = mappool.beatmaps.find(m => m.beatmap_id == mapid);
-				if (map_obj?.identifier?.toUpperCase().includes('TB')) return -3;
-				if (nameRed && nameBlue) {
-					$('#picked_by').text(`Picked by ${cookieValue[1] === 'red' ? nameRed : nameBlue}`).css('opacity', 1).addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
-					$('#map_slot_container').addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
-					$('#map_image_container').addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
-				}
-				else {
-					$('#picked_by').text('').css('opacity', 0).removeClass('red blue');
-					$('#map_slot_container').removeClass('red blue');
-					$('#map_image_container').removeClass('red blue');
-				}
-				return 0;
-			}
-			return -255;
-		}
-	}
+// 	if (checkValid() !== 0) {
+// 		$('#picked_by').text('').css('opacity', 0);
+// 		$('#map_slot_container').removeClass('red blue');
+// 		$('#map_image_container').removeClass('red blue');
+// 	}
+// }, 500);
 
-	if (checkValid() !== 0) {
-		$('#picked_by').text('').css('opacity', 0);
-		$('#map_slot_container').removeClass('red blue');
-		$('#map_image_container').removeClass('red blue');
-	}
-}, 500);
-
-let socket = new ReconnectingWebSocket('ws://' + location.host + '/ws');
-
-let animation = {
+const animation = {
 	red_score: new CountUp('score_red', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
 	blue_score: new CountUp('score_blue', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
 	score_diff: new CountUp('score_diff', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
 }
 
+const socket = new ReconnectingWebSocket(DEBUG ? 'ws://127.0.0.1:24051/' : `ws://${location.host}/websocket/v2`);
 socket.onopen = () => { console.log('Successfully Connected'); };
 socket.onclose = event => { console.log('Socket Closed Connection: ', event); socket.send('Client Closed!'); };
 socket.onerror = error => { console.log('Socket Error: ', error); };
-
-let md5, image;
-let scoreVisible, starsVisible, bestOf;
-let starsRed, starsBlue, nameRed, nameBlue;
-let last_score_update = 0;
-let chatLen = 0;
-
-let update_stats = false;
-let first_chat_refresh = true;
-let timer, blink_timer;
-let timer_in_progress = false;
 
 socket.onmessage = async event => {
 	const data = JSON.parse(event.data);
 	const now = Date.now();
 
-	if (scoreVisible !== data.tourney.manager.bools.scoreVisible) {
-		scoreVisible = data.tourney.manager.bools.scoreVisible;
+	if (cache.scoreVisible !== data.tourney.scoreVisible) {
+		cache.scoreVisible = data.tourney.scoreVisible;
 
-		if (scoreVisible) {
-			$('#chat_container').css('opacity', 0);
-			$('#top_footer').css('opacity', 1);
-			$('#title').css('width', '1000px');
+		if (cache.scoreVisible) {
+			$('#chat_container').css('animation', 'chatIn 300ms ease forwards reverse');
+			$('#score_area').css('opacity', 1);
+			// $('#map_title_container').addClass('expanded');
 		} else {
-			$('#chat_container').css('opacity', 1);
-			$('#top_footer').css('opacity', 0);
-			$('#title').css('width', '654px');
+			$('#chat_container').css('animation', 'chatIn 300ms ease forwards');
+			$('#score_area').css('opacity', 0);
+			// $('#map_title_container').removeClass('expanded');
 		}
 	}
 
-	if (starsVisible !== data.tourney.manager.bools.starsVisible) {
-		starsVisible = data.tourney.manager.bools.starsVisible;
-		if (starsVisible) {
+
+	if (cache.starsVisible !== data.tourney.starsVisible) {
+		cache.starsVisible = data.tourney.starsVisible;
+		if (cache.starsVisible) {
 			$('#blue_points').css('opacity', 1);
 			$('#red_points').css('opacity', 1);
 
@@ -122,33 +105,35 @@ socket.onmessage = async event => {
 		}
 	}
 
-	if (teams && nameRed !== data.tourney.manager.teamName.left) {
-		nameRed = data.tourney.manager.teamName.left || 'Red Team';
-		$('#red_name').text(nameRed);
-		let team = teams.find(t => t.team === nameRed);
+
+	if (teams && data.tourney.team.left && cache.nameRed !== data.tourney.team.left) {
+		cache.nameRed = data.tourney.team.left || 'Red Team';
+		$('#red_name').text(cache.nameRed);
+		const team = teams.find(t => t.team === cache.nameRed);
 
 		$('#red_flag').css('background-image', `url('../_shared/assets/flags/${team?.flag ?? 'XX'}.png')`);
 		$('#red_seed').text(`SEED ${team?.seed ?? 'X'}`);
 	}
-	if (teams && nameBlue !== data.tourney.manager.teamName.right) {
-		nameBlue = data.tourney.manager.teamName.right || 'Blue Team';
-		$('#blue_name').text(nameBlue);
-		let team = teams.find(t => t.team === nameBlue);
+
+	if (teams && data.tourney.team.right && cache.nameBlue !== data.tourney.team.right) {
+		cache.nameBlue = data.tourney.team.right || 'Blue Team';
+		$('#blue_name').text(cache.nameBlue);
+		const team = teams.find(t => t.team === cache.nameBlue);
 
 		$('#blue_flag').css('background-image', `url('../_shared/assets/flags/${team?.flag ?? 'XX'}.png')`);
 		$('#blue_seed').text(`SEED ${team?.seed ?? 'X'}`);
 	}
 
-	if (bestOf !== data.tourney.manager.bestOF) {
-		const newmax = Math.ceil(data.tourney.manager.bestOF / 2);
-		if (bestOf === undefined) {
+	if (cache.bestOf !== data.tourney.bestOF) {
+		const newmax = Math.ceil(data.tourney.bestOF / 2);
+		if (cache.bestOf === undefined) {
 			for (let i = 1; i <= newmax; i++) {
 				$('#red_points').append($('<div></div>').attr('id', `red${i}`).addClass('team-point red'));
 				$('#blue_points').append($('<div></div>').attr('id', `blue${i}`).addClass('team-point blue'));
 			}
 		}
-		else if (bestOf < data.tourney.manager.bestOF) {
-			for (let i = firstTo + 1; i <= newmax; i++) {
+		else if (cache.bestOf < data.tourney.bestOF) {
+			for (let i = cache.firstTo + 1; i <= newmax; i++) {
 				$('#red_points').append($('<div></div>').attr('id', `red${i}`).addClass('team-point red'));
 				$('#blue_points').append($('<div></div>').attr('id', `blue${i}`).addClass('team-point blue'));
 			}
@@ -159,132 +144,125 @@ socket.onmessage = async event => {
 				$(`#blue${i}`).remove();
 			}
 		}
-		bestOf = data.tourney.manager.bestOF;
-		firstTo = newmax;
+		cache.bestOf = data.tourney.bestOF;
+		cache.firstTo = newmax;
 	}
 
-	if (starsRed !== data.tourney.manager.stars.left) {
-		starsRed = data.tourney.manager.stars.left;
-		for (let i = 1; i <= starsRed; i++) { $(`#red${i}`).addClass('filled'); }
-		for (let i = starsRed + 1; i <= firstTo; i++) { $(`#red${i}`).removeClass('filled'); }
+	if (cache.starsRed !== data.tourney.points.left) {
+		cache.starsRed = data.tourney.points.left;
+		for (let i = 1; i <= cache.starsRed; i++) { $(`#red${i}`).addClass('filled'); }
+		for (let i = cache.starsRed + 1; i <= cache.firstTo; i++) { $(`#red${i}`).removeClass('filled'); }
 	}
 
-	if (starsBlue !== data.tourney.manager.stars.right) {
-		starsBlue = data.tourney.manager.stars.right;
-		for (let i = 1; i <= starsBlue; i++) { $(`#blue${i}`).addClass('filled'); }
-		for (let i = starsBlue + 1; i <= firstTo; i++) { $(`#blue${i}`).removeClass('filled'); }
+	if (cache.starsBlue !== data.tourney.points.right) {
+		cache.starsBlue = data.tourney.points.right;
+		for (let i = 1; i <= cache.starsBlue; i++) { $(`#blue${i}`).addClass('filled'); }
+		for (let i = cache.starsBlue + 1; i <= cache.firstTo; i++) { $(`#blue${i}`).removeClass('filled'); }
 	}
 
-	if (mappool && md5 !== data.menu.bm.md5) {
-		md5 = data.menu.bm.md5;
-		setTimeout(() => { update_stats = true }, 250);
+	if (mappool && cache.md5 !== data.beatmap.checksum) {
+		cache.md5 = data.beatmap.checksum;
+		setTimeout(() => { cache.update_stats = true }, 250);
 	}
 
-	if (update_stats) {
-		update_stats = false;
-		mapid = data.menu.bm.id;
-		map = mappool ? mappool.beatmaps.find(m => m.beatmap_id == mapid || m.md5 == md5) ?? { id: data.menu.bm.id, mods: 'NM', identifier: null } : { id: null, mods: 'NM', identifier: null };
-		const mods = map.mods ?? 'NM';
-		const stats = getModStats(data.menu.bm.stats.memoryCS, data.menu.bm.stats.memoryAR, data.menu.bm.stats.memoryOD, data.menu.bm.stats.BPM.common, mods);
-		const len_ = data.menu.bm.time.full - data.menu.bm.time.firstObj;
+	if (cache.update_stats) {
+		cache.update_stats = false;
+		cache.mapid = data.beatmap.id;
+		cache.map = mappool ? mappool.beatmaps.find(m => m.beatmap_id === cache.mapid || m.md5 === cache.md5) ?? { id: cache.mapid, mods: 'NM', identifier: null } : { id: null, mods: 'NM', identifier: null };
+		const mods = cache.map?.mods ?? 'NM';
+		const stats = getModStats(data.beatmap.stats.cs.original, data.beatmap.stats.ar.original, data.beatmap.stats.od.original, data.beatmap.stats.bpm.common, mods);
+		const len_ = data.beatmap.time.lastObject - data.beatmap.time.firstObject;
 
 		$('#cs').text(stats.cs);
 		$('#ar').text(stats.ar);
 		$('#od').text(stats.od);
-		$('#bpm').text(map?.bpm ?? stats.bpm);
+		$('#bpm').text(cache.map?.bpm ?? stats.bpm);
 		$('#length').text(`${Math.trunc((len_ / stats.speed) / 1000 / 60)}:${Math.trunc((len_ / stats.speed) / 1000 % 60).toString().padStart(2, '0')}`);
-		$('#sr').text(`${map?.sr ?? data.menu.bm.stats.fullSR}★`);
+		$('#sr').text(`${Number(cache.map?.sr ?? data.beatmap.stats.stars.total).toFixed(2)}`);
 
-		$('#title').text(`${data.menu.bm.metadata.artist} - ${data.menu.bm.metadata.title} [${data.menu.bm.metadata.difficulty}]`);
+		$('#title').text(`${data.beatmap.artist} - ${data.beatmap.title}`);
+		$('#subtitle').text(`[${data.beatmap.version}] by ${cache.map?.mapper || data.beatmap.mapper}`);
 
-		// map.identifier = 'HD2';
-		if (map?.identifier) {
-			$('#map_slot_container').css('display', 'flex').css('opacity', 1);
-			await delay(10);
-			$('#map_slot_container').css('width', '50px');
-			$('#map_slot').text(map.identifier).css('opacity', 1);
+		cache.map.identifier = 'HD2';
+		if (cache.map?.identifier) {
+			$('#beatmap_slot_container').css('animation', 'mapSlotIn 300ms 50ms ease forwards');
+			$('#beatmap_slot').text(cache.map.identifier);
+			cache.map_slot_active = true;
 		}
 		else {
-			$('#map_slot').css('opacity', 0);
-			await delay(200);
-			$('#map_slot_container').css('width', '0px');
-			await delay(300);
-			$('#map_slot_container').css('display', 'none').css('opacity', 0);
-			$('#map_slot').text('');
+			if (cache.map_slot_active) {
+				$('#beatmap_slot_container').css('animation', 'mapSlotIn 300ms ease forwards reverse');
+				await delay(300);
+			}
+			$('#beatmap_slot').text('');
+			cache.map_slot_active = false;
 		}
+
+		const path = `http://${location.host}/Songs/${data.folders.beatmap}/${data.files.background}`.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/').replace(/'/g, `\\'`);
+		$('#beatmap_image').css('background-image', `url('${path}')`);
 	}
 
-	if (image !== data.menu.bm.path.full) {
-		image = data.menu.bm.path.full;
-		data.menu.bm.path.full = data.menu.bm.path.full.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/').replace(/'/g, `\\'`);
-		$('#map_image').css('background-image', `url('http://${location.host}/Songs/${data.menu.bm.path.full}')`);
-	}
-
-	if (scoreVisible) {
-		let scores = [];
+	if (cache.scoreVisible) {
+		const scores = [];
+		const ez_multiplier = cache.map?.ez_multiplier || 1;
 		for (let i = 0; i < TEAMSIZE * 2; i++) {
-			let score = data.tourney.ipcClients[i]?.gameplay?.score || 0;
-			if (data.tourney.ipcClients[i]?.gameplay?.mods?.str?.toUpperCase().includes('EZ')) score *= 1.75;
+			let score = data.tourney.clients[i]?.play?.score || 0;
+			if (data.tourney.clients[i]?.play?.mods?.name?.toUpperCase().includes('EZ')) score *= ez_multiplier;
 			scores.push({ id: i, score });
 		}
 
-		// scoreRed = 665624;
-		// scoreBlue = 796743;
-		scoreRed = scores.filter(s => s.id < TEAMSIZE).map(s => s.score).reduce((a, b) => a + b);
-		scoreBlue = scores.filter(s => s.id >= TEAMSIZE).map(s => s.score).reduce((a, b) => a + b);
-		let scorediff = Math.abs(scoreRed - scoreBlue);
+		cache.scoreRed = scores.filter(s => s.id < TEAMSIZE).map(s => s.score).reduce((a, b) => a + b);
+		cache.scoreBlue = scores.filter(s => s.id >= TEAMSIZE).map(s => s.score).reduce((a, b) => a + b);
+		// cache.scoreRed = 1665624;
+		// cache.scoreBlue = 796743;
+		const scorediff = Math.abs(cache.scoreRed - cache.scoreBlue);
 
-		animation.red_score.update(scoreRed);
-		animation.blue_score.update(scoreBlue);
+		animation.red_score.update(cache.scoreRed);
+		animation.blue_score.update(cache.scoreBlue);
 		animation.score_diff.update(scorediff);
+
 		const lead_bar_width = `${Math.max(10, 360 * (Math.min(0.5, Math.pow(scorediff / 1000000, 0.7)) * 2))}px`;
 
-		if (scoreRed > scoreBlue) {
+		if (cache.scoreRed > cache.scoreBlue) {
 			$('#score_red').addClass('winning');
 			$('#score_blue').removeClass('winning');
 
-			if (now - last_score_update > 300) {
-				last_score_update = now;
-				$('#score_diff').attr('data-before', '◀').attr('data-after', '').css('opacity', 1).addClass('red').removeClass('blue');
-				$('#lead_bar').css('width', lead_bar_width).css('right', '960px').css('left', 'unset');
-				$('#lead_bar').addClass('red');
-				$('#lead_bar').removeClass('blue');
-			}
+			$('#score_diff_red').addClass('visible');
+			$('#score_diff_blue').removeClass('visible');
+
+			$('#lead_bar').css('width', lead_bar_width);
+			$('#lead_bar').addClass('red').removeClass('blue');
 		}
-		else if (scoreBlue > scoreRed) {
+		else if (cache.scoreBlue > cache.scoreRed) {
 			$('#score_red').removeClass('winning');
 			$('#score_blue').addClass('winning');
 
-			if (now - last_score_update > 300) {
-				last_score_update = now;
-				$('#score_diff').attr('data-before', '').attr('data-after', '▶').css('opacity', 1).addClass('blue').removeClass('red');
-				$('#lead_bar').css('width', lead_bar_width).css('right', 'unset').css('left', '960px');
-				$('#lead_bar').removeClass('red');
-				$('#lead_bar').addClass('blue');
-			}
+			$('#score_red').removeClass('winning');
+			$('#score_blue').addClass('winning');
+
+			$('#lead_bar').css('width', lead_bar_width);
+			$('#lead_bar').removeClass('red').addClass('blue');
 		}
 		else {
-			$('#score_diff').attr('data-before', '').attr('data-after', '').css('opacity', 0).removeClass('red').removeClass('blue');
+			$('#score_diff_container').removeClass('red blue');
 			$('#score_red').removeClass('winning');
 			$('#score_blue').removeClass('winning');
 
 			$('#lead_bar').css('width', '0px');
-			$('#lead_bar').removeClass('red');
-			$('#lead_bar').removeClass('blue');
+			$('#lead_bar').removeClass('red blue');
 		}
 	}
 
-	if (chatLen !== data.tourney.manager.chat.length) {
+	if (cache.chatLen !== data.tourney.chat.length && teams) {
+		const current_chat_len = data.tourney.chat.length;
+		if (cache.chatLen === 0 || (cache.chatLen > 0 && cache.chatLen > current_chat_len)) { $('#chat').html(''); cache.chatLen = 0; }
 
-		const current_chat_len = data.tourney.manager.chat.length;
-		if (chatLen === 0 || (chatLen > 0 && chatLen > current_chat_len)) { $('#chat').html(''); chatLen = 0; }
-
-		for (let i = chatLen; i < current_chat_len; i++) {
-			const chat = data.tourney.manager.chat[i];
-			const body = chat.messageBody;
-			const time = chat.time;
+		for (let i = cache.chatLen || 0; i < current_chat_len; i++) {
+			const chat = data.tourney.chat[i];
+			const body = chat.message;
+			const timestamp = chat.timestamp;
 			if (body.toLowerCase().startsWith('!mp')) {
-				if (first_chat_refresh) continue;
+				if (!cache.chat_loaded) continue;
 				const command = body.toLowerCase();
 				const command_value = Number(command.match(/\d+/)) ?? 0;
 
@@ -292,47 +270,44 @@ socket.onmessage = async event => {
 					if (isNaN(command_value)) { stop_timer(); continue; }
 					else start_timer(command_value);
 				}
-				if ((command.startsWith('!mp aborttimer') && command.startsWith('!mp start')) && timer_in_progress) stop_timer();
+				else if ((command.startsWith('!mp aborttimer') && command.startsWith('!mp start')) && timer_in_progress) stop_timer();
+				else continue;
 			}
-			else {
-				const team = team_lookup[chat.team] ?? 'unknown';
-				const player = chat.name;
-				if (player === 'BanchoBot' && body.startsWith('Match history')) continue;
 
-				team_actual = teams.find(t => t.players.map(p => p.username).includes(player))?.team;
-				teamcode_actual = team_actual ? team_actual === nameRed ? 'red' : team_actual === nameBlue ? 'blue' : null : null;
+			const player = chat.name;
+			if (player === 'BanchoBot' && body.startsWith('Match history')) continue;
 
-				const chatParent = $('<div></div>').addClass(`chat-message ${teamcode_actual ?? team}`);
+			const team = team_lookup[chat.team] ?? 'unknown';
+			const team_actual = teams.find(t => t.players.map(p => p.username).includes(player))?.team;
+			const teamcode_actual = team_actual ? team_actual === cache.nameRed ? 'red' : team_actual === cache.nameBlue ? 'blue' : null : null;
 
-				chatParent.append($('<div></div>').addClass('chat-time').text(time));
-				chatParent.append($('<div></div>').addClass('chat-name').text(player));
-				chatParent.append($('<div></div>').addClass('chat-body').text(body));
+			const chatParent = $('<div></div>').addClass(`chat-message ${teamcode_actual || team}`);
 
-				$('#chat').prepend(chatParent);
-			}
+			chatParent.append($('<div></div>').addClass('chat-time').text(timestamp));
+			chatParent.append($('<div></div>').addClass(`chat-name ${team}`).text(player));
+			chatParent.append($('<div></div>').addClass('chat-body').text(body));
+			$('#chat').prepend(chatParent);
 		}
 
-		chatLen = data.tourney.manager.chat.length;
-		first_chat_refresh = false;
+		cache.chatLen = data.tourney.chat.length;
+		cache.chat_loaded = true;
 	}
 }
 
 const really_start_timer = length => {
 	timer_in_progress = true;
 	$('#timer_progress').css('animation', 'none');
-	$('#stopwatch_container').css('animation', 'none');
-	$('#timer_container').css('transform', 'translateY(0px)');
+	$('#timer_container').addClass('visible');
 	$('#timer_progress').css('animation', `progress ${length}s linear`);
 
-	if (length > 30) {
-		blink_timer = setTimeout(() => {
+	if (length > 3) {
+		timer.object_blink = setTimeout(() => {
 			if (!timer_in_progress) return;
-			$('#timer_progress').css('animation', `progress ${length}s linear, progress_blink 0.7s infinite ease`);
-			$('#stopwatch_container').css('animation', `progress_blink 0.7s infinite ease`);
+			$('#timer_progress').css('animation', `progress ${length}s linear, progress_blink 0.5s infinite ease 0.5s`);
 		}, (length - 3) * 1000);
 	}
 
-	timer = setTimeout(() => {
+	timer.object = setTimeout(() => {
 		if (!timer_in_progress) return;
 		stop_timer();
 	}, length * 1000);
@@ -348,12 +323,11 @@ const start_timer = length => {
 }
 
 const stop_timer = () => {
-	clearTimeout(timer);
-	clearTimeout(blink_timer);
+	clearTimeout(timer.object);
+	clearTimeout(timer.object_blink);
 	timer_in_progress = false;
 	$('#timer_progress').css('animation', 'none');
-	$('#stopwatch_container').css('animation', 'none');
-	$('#timer_container').css('transform', 'translateY(32px)');
+	$('#timer_container').removeClass('visible');
 }
 
 const team_lookup = {
@@ -365,16 +339,16 @@ const team_lookup = {
 const getModStats = (cs_raw, ar_raw, od_raw, bpm_raw, mods) => {
 	mods = mods.replace('NC', 'DT');
 
-	let speed = mods.includes('DT') ? 1.5 : mods.includes('HT') ? 0.75 : 1;
-	let ar = mods.includes('HR') ? ar_raw * 1.4 : mods.includes('EZ') ? ar_raw * 0.5 : ar_raw;
+	const speed = mods.includes('DT') ? 1.5 : mods.includes('HT') ? 0.75 : 1;
 
-	let ar_ms = Math.max(Math.min(ar <= 5 ? 1800 - 120 * ar : 1200 - 150 * (ar - 5), 1800), 450) / speed;
+	let ar = mods.includes('HR') ? ar_raw * 1.4 : mods.includes('EZ') ? ar_raw * 0.5 : ar_raw;
+	const ar_ms = Math.max(Math.min(ar <= 5 ? 1800 - 120 * ar : 1200 - 150 * (ar - 5), 1800), 450) / speed;
 	ar = ar < 5 ? (1800 - ar_ms) / 120 : 5 + (1200 - ar_ms) / 150;
 
-	let cs = Math.round(Math.min(mods.includes('HR') ? cs_raw * 1.3 : mods.includes('EZ') ? cs_raw * 0.5 : cs_raw, 10) * 10) / 10;
+	const cs = Math.round(Math.min(mods.includes('HR') ? cs_raw * 1.3 : mods.includes('EZ') ? cs_raw * 0.5 : cs_raw, 10) * 10) / 10;
 
 	let od = mods.includes('HR') ? od_raw * 1.4 : mods.includes('EZ') ? od_raw * 0.5 : od_raw;
-	od = Math.round(Math.min((79.5 - Math.min(79.5, Math.max(19.5, 79.5 - Math.ceil(6 * od))) / speed) / 6, 11) * 10) / 10;
+	if (speed !== 1) od = Math.round(Math.min((79.5 - Math.min(79.5, Math.max(19.5, 79.5 - Math.ceil(6 * od))) / speed) / 6, 11) * 10) / 10;
 
 	return {
 		cs: Math.round(cs * 10) / 10,
