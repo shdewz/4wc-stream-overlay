@@ -30,44 +30,37 @@
 }
 
 @font-face {
-    font-family: 'Helvetica Now';
-    src: url('../_shared/fonts/HelveticaNowText-Medium.otf');
-    font-weight: 400;
+    font-family: 'Noto Sans';
+    src: url('../_shared/fonts/NotoSans-SemiBold.ttf');
+    font-weight: 600;
 }
 
 @font-face {
-    font-family: 'Helvetica Now';
-    src: url('../_shared/fonts/HelveticaNowText-Bold.otf');
-    font-weight: 500;
+    font-family: 'Noto Sans';
+    src: url('../_shared/fonts/NotoSans-ExtraBold.ttf');
+    font-weight: 800;
 }
 
 @font-face {
-    font-family: 'Helvetica Now';
-    src: url('../_shared/fonts/HelveticaNowText-Black.otf');
-    font-weight: 700;
-}
-
-@font-face {
-    font-family: 'Script';
-    src: url('../_shared/fonts/Authentic\ Photograph.ttf');
-    font-weight: 500;
+    font-family: 'Noto Sans';
+    src: url('../_shared/fonts/NotoSans-Black.ttf');
+    font-weight: 900;
 }
 
 :root {
-    --accent: #ff605d;
-    --accent-text: #ff7471;
-    --dark: #111111;
-    --light: #fcfcfc;
-    --text-dark: #6f6f6f;
-    --progress-bg: #222222;
+    --accent: #e96479;
+    --dark: #4d455d;
+    --light: #f4dfc9;
+    --light-text: #faf3ec;
     --accent-mod-nm: #759de7;
     --accent-mod-hd: #eec875;
     --accent-mod-hr: #e97777;
     --accent-mod-dt: #ad73db;
     --accent-mod-fm: #85e285;
     --accent-mod-tb: #61cfc1;
-    --red: #ff605d;
-    --blue: #5da9ff;
+    --red: #e96479;
+    --blue: #60a6f7;
     --red-chat: #f89c9b;
     --blue-chat: #96c4f8;
+    --unknown-chat: #bbb2ce;
 }
