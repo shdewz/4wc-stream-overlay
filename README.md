@@ -72,3 +72,7 @@ Includes the following data and configuration files:
 - `beatmaps.json`: mappool file, exchanged weekly
 - `coming_up.json`: (not provided) time and team names for a match, exchanged every match, used for intro screen; supports array-based version as well
 - `streamer.json`: (not provided) your name, as `{"username": "yourname"}`
+
+## Spotify / Now playing
+
+The intro scene uses an overlay to display the currently playing song. This is ideally shown with [spotilocal](https://github.com/jmswrnr/spotilocal)'s websocket output. For users without Spotify, the query parameter `?useOsu=true` can be added to the overlay to instead display the song currently playing in the osu! client.
