@@ -163,6 +163,7 @@ html {
 	background-repeat: no-repeat;
 	width: 100px;
 	aspect-ratio: 1;
+	border-radius: 20px;
 }
 
 .textbox {
