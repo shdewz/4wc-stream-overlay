@@ -9,13 +9,14 @@ html {
 	--width: 1920px;
 	--height: 1080px;
 	--footer-height: 160px;
+	/* background-color: black; */
 }
 
 .main {
 	position: relative;
 	width: var(--width);
 	height: var(--height);
-	color: var(--light);
+	color: var(--light-text);
 	font-family: 'Din', Arial, Helvetica, sans-serif;
 	display: flex;
 	flex-direction: column;
@@ -140,15 +141,28 @@ html {
 	color: var(--accent-text);
 }
 
+.map-stats-attributes__item-value > i {
+	font-size: 1.2rem;
+	transform: translateY(-2px);
+}
+
+.logo-container {
+	position: absolute;
+	display: flex;
+	height: 100%;
+	width: 100px;
+	justify-content: flex-end;
+	align-items: center;
+	right: 32px;
+}
+
 .logo {
-	background-image: url('../_shared/assets/logo_light_512.png');
+	background-image: url('../_shared/assets/logo.png');
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
-	position: absolute;
-	height: 100%;
-	width: 150px;
-	right: 32px;
+	width: 100px;
+	aspect-ratio: 1;
 }
 
 .textbox {
@@ -187,8 +201,9 @@ html {
 }
 
 .custom {
-	top: 12px;
-	left: 12px;
+	top: 24px;
+	left: 24px;
 	display: flex;
+	font-size: 1.4rem;
 	gap: 8px;
 }

@@ -13,11 +13,13 @@ socket.onopen = () => { console.log('Successfully Connected'); };
 socket.onclose = event => { console.log('Socket Closed Connection: ', event); socket.send('Client Closed!'); };
 socket.onerror = error => { console.log('Socket Error: ', error); };
 
-const cache = {};
-let update_stats = false;
+const cache = {
+	update_stats: false,
+	stats_updated: false
+};
 
 socket.onmessage = async event => {
-	let data = JSON.parse(event.data);
+	const data = JSON.parse(event.data);
 
 	if (cache.state !== data.state.number) {
 		cache.state = data.state.number;
@@ -25,14 +27,17 @@ socket.onmessage = async event => {
 		else $('#header').css('opacity', 1);
 	}
 
-	if (mappool && cache.md5 !== data.beatmap.checksum) {
+	if (mappool && cache.md5 !== data.beatmap.checksum && !cache.stats_updated) {
 		cache.md5 = data.beatmap.checksum;
-		await delay(200);
-		update_stats = true;
+		cache.stats_updated = true;
+		setTimeout(() => { cache.update_stats = true; }, 500);
+		console.log('a')
 	}
 
-	if (update_stats) {
-		update_stats = false;
+	if (cache.update_stats) {
+		cache.stats_updated = false;
+		cache.update_stats = false;
+
 		const map = mappool.find(m => m.beatmap_id === data.beatmap.id || m.md5 === cache.md5);
 		$('#now_playing').html(map?.identifier ?? 'XX');
 
@@ -43,7 +48,7 @@ socket.onmessage = async event => {
 		$('#cs').html(Math.round((mod_ == 'FM' ? data.beatmap.stats.cs.original : map ? stats.cs : data.beatmap.stats.cs.converted) * 10) / 10);
 		$('#ar').html(Math.round((mod_ == 'FM' ? data.beatmap.stats.ar.original : map ? stats.ar : data.beatmap.stats.ar.converted) * 10) / 10);
 		$('#od').html(Math.round((mod_ == 'FM' ? data.beatmap.stats.od.original : map ? stats.od : data.beatmap.stats.od.converted) * 10) / 10);
-		$('#sr').html((map?.sr || data.beatmap.stats.stars.total).toFixed(2) + '★');
+		$('#sr').html((map?.sr || data.beatmap.stats.stars.total).toFixed(2));
 
 		let length_modifier = map ? (mod_?.includes('DT') ? 1.5 : 1) : data.resultsScreen.mods.name.includes('DT') || data.play.mods.name.includes('DT') ? 1.5 : 1;
 		len_ = data.beatmap.time.lastObject - data.beatmap.time.firstObject;
@@ -57,27 +62,24 @@ socket.onmessage = async event => {
 		}
 		else {
 			const path = `http://${location.host}/Songs/${data.folders.beatmap}/${data.files.background}`.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/');
-			// const path = data.directPath.beatmapBackground.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/');
-			console.log(path);
 			$('#map_stats_background').css('background-image', `url('${path}')`);
 			$('#map_background').css('background-image', `url('${path}')`);
 		}
 
-		if (map?.custom) {
-			$('#custom_mapper').text(data.beatmap.mapper); $('#custom').css('opacity', 1);
-		}
+		if (map?.custom) { $('#custom_mapper').text(map?.mapper ?? data.beatmap.mapper); $('#custom').css('opacity', 1); }
 		else { $('#custom_mapper').text(''); $('#custom').css('opacity', 0); }
+
+		$('#mapper').text(map?.mapper ?? data.beatmap.mapper);
 	}
 
-	if (cache.replayer !== data.resultsScreen.name || cache.replayer !== data.play.playerName) {
-		cache.replayer = data.resultsScreen.name ?? data.play.playerName;
-		$('#replayer').html(cache.replayer ?? 'Unknown');
+	if (cache.replayer !== data.play.playerName) {
+		cache.replayer = data.play.playerName;
+		$('#replayer').text(cache.replayer ?? 'Unknown');
 	}
 
 	if (cache.artist !== data.beatmap.artist) { cache.artist = data.beatmap.artist; $('#artist').text(cache.artist); }
 	if (cache.title !== data.beatmap.title) { cache.title = data.beatmap.title; $('#title').text(cache.title); }
 	if (cache.difficulty !== data.beatmap.version) { cache.difficulty = data.beatmap.version; $('#difficulty').text(cache.difficulty); }
-	if (cache.mapper !== data.beatmap.mapper) { cache.mapper = data.beatmap.mapper; $('#mapper').text(cache.mapper); }
 }
 
 const getModStats = (cs_raw, ar_raw, od_raw, hp_raw, mods) => {
@@ -90,7 +92,7 @@ const getModStats = (cs_raw, ar_raw, od_raw, hp_raw, mods) => {
 	let hp = Math.min(mods.includes('HR') ? hp_raw * 1.4 : mods.includes('EZ') ? hp_raw * 0.5 : hp_raw, 10);
 
 	let od = mods.includes('HR') ? Math.min(od_raw * 1.4, 10) : mods.includes('EZ') ? od_raw * 0.5 : od_raw;
-	od = Math.min((79.5 - (Math.min(79.5, Math.max(19.5, 79.5 - Math.ceil(6 * od))) / speed)) / 6, speed > 1.5 ? 12 : 11);
+	if (speed !== 1) od = Math.min((79.5 - (Math.min(79.5, Math.max(19.5, 79.5 - Math.ceil(6 * od))) / speed)) / 6, speed > 1.5 ? 12 : 11);
 
 	return { cs, ar, od, hp, ar_ms }
 }
