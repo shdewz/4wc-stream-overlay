@@ -1,6 +1,6 @@
 :root {
     --map-width: 500px;
-    --map-height: 60px;
+    --map-height: 56px;
     --mod-width: 78px;
     --border-default: #505050;
     --border-banned: #222222;
@@ -59,7 +59,7 @@ html {
     width: var(--map-width);
     height: var(--map-height);
     background-color: var(--dark);
-    border: 2px solid;
+    border: 4px solid;
     border-color: var(--border-default);
     display: flex;
     align-items: center;
@@ -72,11 +72,11 @@ html {
 }
 
 .map.picked.red {
-    border-color: var(--red);
+    border-color: var(--accent);
 }
 
 .map.picked.blue {
-    border-color: var(--blue);
+    border-color: var(--accent);
 }
 
 .map.banned {
@@ -229,12 +229,12 @@ html {
 }
 
 .picked-by-label.picked.red {
-    background-color: var(--red);
+    background-color: var(--accent);
     color: var(--light);
 }
 
 .picked-by-label.picked.blue {
-    background-color: var(--blue);
+    background-color: var(--accent);
     color: var(--light);
 }
 
@@ -306,11 +306,11 @@ html {
 }
 
 .current-picker.red {
-    color: var(--red);
+    color: var(--accent);
 }
 
 .current-picker.blue {
-    color: var(--blue);
+    color: var(--accent);
 }
 
 .button {
