@@ -10,7 +10,7 @@ html {
 	position: relative;
 	width: 1920px;
 	height: 1080px;
-	background-image: url('../_shared/assets/bg_corners.png');
+	background-image: url('../_shared/assets/base_bg.png');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -21,20 +21,49 @@ html {
 	font-size: 2rem;
 }
 
-.logo {
+.logo-container {
 	position: absolute;
-	top: 40px;
-	right: 40px;
-	width: 200px;
-	height: 100px;
-	background-image: url('../_shared/assets/logo_light_512.png');
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	top: 60px;
+	left: 120px;
+	font-weight: 800;
+	font-size: 2rem;
+	color: var(--dark);
+}
+
+.logo {
+	width: 64px;
+	height: 64px;
+	background-image: url('../_shared/assets/logo.png');
+	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: contain;
+	border-radius: 12px;
+}
+
+.title-container {
+	position: relative;
+}
+
+.title-background {
+	position: absolute;
+	width: 100%;
+	height: 30px;
+	background-color: var(--accent);
+	transform: skew(-25deg) translateY(11px);
 }
 
 .title {
-	font-style: italic;
+	position: relative;
+	color: var(--light);
+	font-size: 3rem;
+	font-weight: 700;
+	letter-spacing: 3px;
+	padding: 0 24px;
+	text-transform: uppercase;
+	z-index: 10;
 }
 
 .match-container {
@@ -42,12 +71,12 @@ html {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 12px;
+	gap: 24px;
 }
 
 .teams {
 	display: flex;
-	color: var(--light);
+	color: var(--dark);
 }
 
 .team {
@@ -74,7 +103,7 @@ html {
 .showcase {
 	font-weight: 700;
 	font-size: 3rem;
-	color: var(--light);
+	color: var(--dark);
 	display: none;
 }
 
@@ -87,6 +116,7 @@ html {
 	width: 70px;
 	height: 47px;
 	background-image: url('../_shared/assets/flags/XX.png');
+	filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.1));
 }
 
 .team-players {
@@ -105,56 +135,11 @@ html {
 }
 
 .timer {
+	width: 300px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
 	font-size: 3rem;
-	margin-top: 12px;
-	letter-spacing: 2px;
-	font-weight: 700;
-}
-
-.song-container {
-	position: absolute;
-	bottom: 40px;
-	left: 40px;
-	font-size: 1.7rem;
-	font-style: italic;
-	display: flex;
-	align-items: center;
-	gap: 12px;
-}
-
-.song-title-container {
-	display: flex;
-	gap: 8px;
-	opacity: 1;
-	transition: opacity 300ms ease;
-}
-
-.note {
-	font-size: 2rem;
-}
-
-.song-title {
-	max-width: 800px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
-
-/*Scrollbar*/
-::-webkit-scrollbar {
-	width: 0px;
-	visibility: 0;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-	margin-top: 25px;
-	margin-bottom: 25px;
-	visibility: 0;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-	background: grey;
-	border-radius: 10px;
+	font-weight: 800;
+	font-family: 'Noto Sans';
 }

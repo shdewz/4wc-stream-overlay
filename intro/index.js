@@ -60,7 +60,7 @@ const update_match = match => {
 			if (timer && remaining > 0) $('#timer').text(text);
 		}, 1000);
 	}
-}
+};
 
 const update_team = (color, team) => {
 	$(`#name_${color}`).text(team.team);
@@ -71,25 +71,4 @@ const update_team = (color, team) => {
 	for (const player of players) {
 		$(`#players_${color}`).append($('<div></div>').addClass('team-player').text(player.username));
 	}
-}
-
-let socket = new ReconnectingWebSocket('ws://' + location.host + '/ws');
-
-socket.onopen = () => { console.log('Successfully Connected'); };
-socket.onclose = event => { console.log('Socket Closed Connection: ', event); socket.send('Client Closed!'); };
-socket.onerror = error => { console.log('Socket Error: ', error); };
-
-let artist, title;
-socket.onmessage = async event => {
-	let data = JSON.parse(event.data);
-
-	if (artist !== data.menu.bm.metadata.artist || title !== data.menu.bm.metadata.title) {
-		artist = data.menu.bm.metadata.artist;
-		title = data.menu.bm.metadata.title;
-		$('#song_title_container').css('opacity', 0);
-		await delay(300);
-		$('#song_artist').text(artist);
-		$('#song_title').text(title);
-		$('#song_title_container').css('opacity', 1);
-	}
-}
+};
