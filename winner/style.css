@@ -132,3 +132,33 @@ html {
 .team-players.blue {
 	padding-right: calc(70px + 18px);
 }
+
+.song-container {
+	color: var(--dark);
+	position: absolute;
+	width: 100%;
+	bottom: 40px;
+	font-size: 1.7rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+}
+
+.song-title-container {
+	display: flex;
+	gap: 8px;
+	opacity: 1;
+	transition: opacity 300ms ease;
+}
+
+.note {
+	font-size: 1.5rem;
+}
+
+.song-title {
+	max-width: 800px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

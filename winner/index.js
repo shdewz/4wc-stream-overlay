@@ -27,7 +27,17 @@ socket.onerror = error => { console.log('Socket Error: ', error); };
 let artist, title;
 let points_r, points_b;
 socket.onmessage = async event => {
-	const data = JSON.parse(event.data);
+	let data = JSON.parse(event.data);
+
+	if (artist !== data.menu.bm.metadata.artist || title !== data.menu.bm.metadata.title) {
+		artist = data.menu.bm.metadata.artist;
+		title = data.menu.bm.metadata.title;
+		$('#song_title_container').css('opacity', 0);
+		await delay(300);
+		$('#song_artist').text(artist);
+		$('#song_title').text(title);
+		$('#song_title_container').css('opacity', 1);
+	}
 
 	if (teams && (points_r !== data.tourney.manager.stars.left || points_b !== data.tourney.manager.stars.right)) {
 		points_r = data.tourney.manager.stars.left;
