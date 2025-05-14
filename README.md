@@ -37,9 +37,10 @@ This overlay is intended to be used with [tosu](https://github.com/KotRikD/tosu)
 
 ### `intro`*
 
-| source           | url/path                                         | width | height | x | y   |
-|------------------|--------------------------------------------------|-------|--------|---|-----|
-| intro_overlay    | http://127.0.0.1:24050/4wc-stream-overlay/intro/ | 1920  | 1080   | 0 | 0   |
+| source           | url/path                                           | width | height | x | y   |
+|------------------|----------------------------------------------------|-------|--------|---|-----|
+| spotify_overlay  | http://127.0.0.1:24050/4wc-stream-overlay/spotify/ | 1920  | 1080   | 0 | 0   |
+| intro_overlay    | http://127.0.0.1:24050/4wc-stream-overlay/intro/   | 1920  | 1080   | 0 | 0   |
 
 <sup>*data pulled from `_data/coming_up.json`, requires exchanging between matches</sup>
 
