@@ -1,8 +1,9 @@
-_data/*.json
-qualifiers/
-schedule/
+_data/coming_up.json
+_data/streamer.json
+extras/
 schedule*
 thumbnail*
-obs*
 *.zip
 *.webm
+_misc/
+obs*.json
