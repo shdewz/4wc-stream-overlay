@@ -21,7 +21,7 @@ html {
 
 .header {
 	width: 100%;
-	height: 160px;
+	height: 162px;
 	display: flex;
 }
 
@@ -32,7 +32,7 @@ html {
 
 .gameplay-area {
 	width: 100%;
-	height: 720px;
+	height: 716px;
 }
 
 .footer {
@@ -47,9 +47,9 @@ html {
 }
 
 .red {
-	border-color: var(--red);
+	border-color: var(--accent);
 }
 
 .blue {
-	border-color: var(--blue);
+	border-color: var(--accent);
 }
