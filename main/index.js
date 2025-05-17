@@ -183,7 +183,7 @@ socket.onmessage = async event => {
 		$('#title').text(`${data.beatmap.artist} - ${data.beatmap.title}`);
 		$('#subtitle').text(`[${data.beatmap.version}] by ${cache.map?.mapper || data.beatmap.mapper}`);
 
-		cache.map.identifier = 'HD2';
+		// cache.map.identifier = 'HD2';
 		if (cache.map?.identifier) {
 			$('#beatmap_slot_container').css('animation', 'mapSlotIn 300ms 50ms ease forwards');
 			$('#beatmap_slot').text(cache.map.identifier);
