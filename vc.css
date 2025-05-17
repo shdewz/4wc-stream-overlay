@@ -2,7 +2,9 @@
 [data-userid="0"] { display: none; }
 
 body {
-    --color: #e96479;
+    --color: #111111;
+    --colorSpeaking: #e96479;
+    --textColorSpeaking: #f4dfc9;
     --align: flex-start;
 
     --width: 120px;
@@ -58,7 +60,7 @@ ul {
 
 
 [class^="Voice_voiceContainer"] [class^="Voice_voiceStates"] [class^="Voice_voiceState"] [class^="Voice_user"] {
-    background-color: #111111;
+    background-color: var(--color);
     position: absolute;
     bottom: 0px;
     padding: 0px;
@@ -67,11 +69,11 @@ ul {
 }
 
 [class^="Voice_voiceContainer"] [class^="Voice_voiceStates"] [class^="Voice_voiceState"] [class*="Voice_avatarSpeaking"] + [class^="Voice_user"] {
-    background-color: var(--color) !important;
+    background-color: var(--colorSpeaking) !important;
 }
 
 [class^="Voice_voiceContainer"] [class^="Voice_voiceStates"] [class^="Voice_voiceState"] [class*="Voice_avatarSpeaking"] + [class^="Voice_user"] [class^="Voice_name"] {
-    color: #222222 !important;
+    color: var(--textColorSpeaking) !important;
 }
 
 [class^="Voice_voiceContainer"] [class^="Voice_voiceStates"] [class^="Voice_voiceState"] [class^="Voice_user"] [class^="Voice_name"] {
