@@ -343,17 +343,17 @@ html {
 	height: 20px;
 	width: 0;
 	background-color: var(--accent);
-	left: calc(1920px / 2);
+	left: calc(1800px / 2);
 	transition: width 300ms ease;
 }
 
 .lead-bar.red {
 	left: unset;
-	right: calc(1920px / 2);
+	right: calc(1800px / 2);
 }
 
 .lead-bar.blue {
-	left: calc(1920px / 2);
+	left: calc(1800px / 2);
 	right: unset;
 }
 
@@ -598,8 +598,8 @@ html {
 }
 
 .chat {
-	padding: 12px 10px;
-	height: calc(100% - 2 * 12px);
+	padding: 10px;
+	height: calc(100% - 2 * 10px);
 	overflow: hidden;
 	display: flex;
 	flex-direction: column-reverse;
@@ -652,6 +652,7 @@ html {
 	display: flex;
 	justify-content: center;
 	width: 40px;
+	min-width: 40px;
 	font-size: 1rem;
 	text-align: center;
 	color: var(--text-dark);
