@@ -237,16 +237,18 @@ socket.onmessage = async event => {
 			$('#score_red').removeClass('winning');
 			$('#score_blue').addClass('winning');
 
-			$('#score_red').removeClass('winning');
-			$('#score_blue').addClass('winning');
+			$('#score_diff_red').removeClass('visible');
+			$('#score_diff_blue').addClass('visible');
 
 			$('#lead_bar').css('width', lead_bar_width);
 			$('#lead_bar').removeClass('red').addClass('blue');
 		}
 		else {
-			$('#score_diff_container').removeClass('red blue');
 			$('#score_red').removeClass('winning');
 			$('#score_blue').removeClass('winning');
+
+			$('#score_diff_red').removeClass('visible');
+			$('#score_diff_blue').removeClass('visible');
 
 			$('#lead_bar').css('width', '0px');
 			$('#lead_bar').removeClass('red blue');
