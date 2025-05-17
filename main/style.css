@@ -578,7 +578,7 @@ html {
 
 @keyframes chatIn {
 	from {
-		transform: translateX(calc(100% + 60px));
+		transform: translateX(calc(100% + 60px + 32px));
 	}
 
 	to {
