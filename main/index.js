@@ -20,48 +20,74 @@ let mappool, teams;
 	}
 })();
 
-// TODO: make this work
+const hidePickByLabel = async () => {
+	const pickedByContainer = $('#picked_by_container');
+	pickedByContainer.css('animation', 'none');
+	void (pickedByContainer[0].offsetWidth); // Trigger reflow
+	pickedByContainer.css('animation', 'pickerIn 300ms ease forwards reverse');
+	await delay(300);
+	$('#picked_by').text('');
+};
 
-// let map, mapid;
-// window.setInterval(async () => {
-// 	await delay(200);
-// 	let cookieName = 'lastPick';
-// 	const match = document.cookie.match(`(?:^|.*)${cookieName}=(.+?)(?:$|[|;].*)`);
+window.setInterval(async () => {
+	const currentPick = localStorage.getItem('current_pick');
 
-// 	let checkValid = () => {
-// 		if (!mapid) return -9;
-// 		if (match) {
-// 			let cookieValue = match[1].split('-');
-// 			if (cookieValue.length !== 2) return -1;  // expected format: <beatmap_id>-<picking_team>
-// 			const parsedBeatmapID = parseInt(cookieValue[0]);
-// 			if (isNaN(parsedBeatmapID)) return -2;
+	const checkValid = async () => {
+		if (!cache.mapid) return -9;
 
-// 			// if (true) {  // bypass beatmap id checking during development
-// 			if (mapid == parsedBeatmapID) {
-// 				let map_obj = mappool.beatmaps.find(m => m.beatmap_id == mapid);
-// 				if (map_obj?.identifier?.toUpperCase().includes('TB')) return -3;
-// 				if (nameRed && nameBlue) {
-// 					$('#picked_by').text(`Picked by ${cookieValue[1] === 'red' ? nameRed : nameBlue}`).css('opacity', 1).addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
-// 					$('#map_slot_container').addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
-// 					$('#map_image_container').addClass(cookieValue[1]).removeClass(opposite_team(cookieValue[1]));
-// 				}
-// 				else {
-// 					$('#picked_by').text('').css('opacity', 0).removeClass('red blue');
-// 					$('#map_slot_container').removeClass('red blue');
-// 					$('#map_image_container').removeClass('red blue');
-// 				}
-// 				return 0;
-// 			}
-// 			return -255;
-// 		}
-// 	}
+		const pickValue = currentPick.split('/');
+		if (pickValue.length !== 2) return -1;
 
-// 	if (checkValid() !== 0) {
-// 		$('#picked_by').text('').css('opacity', 0);
-// 		$('#map_slot_container').removeClass('red blue');
-// 		$('#map_image_container').removeClass('red blue');
-// 	}
-// }, 500);
+		const parsedBeatmapID = parseInt(pickValue[0]);
+		if (isNaN(parsedBeatmapID)) return -2;
+
+		if (currentPick === cache.currentPick && cache.mapid == parsedBeatmapID) return -5;
+		if (cache.mapid !== parsedBeatmapID) return -6;
+
+		const parsedTeam = pickValue[1];
+		if (parsedTeam !== 'red' && parsedTeam !== 'blue') return -3;
+
+		cache.currentPick = currentPick;
+
+		// if (true) {  // bypass beatmap id checking during development
+		if (cache.mapid === parsedBeatmapID) {
+			const mapObj = mappool.beatmaps.find(m => m.beatmap_id === cache.mapid);
+			if (mapObj?.identifier?.toUpperCase().includes('TB')) return -4;
+			if (cache.nameRed && cache.nameBlue) {
+				if (cache.pickLabelEnabled) {
+					await hidePickByLabel();
+				}
+
+				requestAnimationFrame(_ => {
+					$('#picked_by').text(`PICKED BY ${(parsedTeam === 'red' ? cache.nameRed : cache.nameBlue).toUpperCase()}`);
+					$('#picked_by_container').css('animation', 'none');
+					void $('#picked_by_container')[0].offsetWidth; // Trigger reflow
+					$('#picked_by_container').css('animation', 'pickerIn 300ms 100ms ease forwards');
+				});
+
+				cache.pickLabelEnabled = true;
+			}
+			else {
+				await hidePickByLabel();
+				cache.pickLabelEnabled = false;
+			}
+			return 0;
+		}
+		return -255;
+	};
+
+	const validityState = await checkValid();
+
+	if (validityState === -5)
+		return;
+
+	if (validityState !== 0) {
+		if (cache.pickLabelEnabled) {
+			await hidePickByLabel();
+			cache.pickLabelEnabled = false;
+		}
+	}
+}, 500);
 
 const animation = {
 	red_score: new CountUp('score_red', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),

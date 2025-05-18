@@ -175,7 +175,7 @@ async function setupBeatmaps() {
     const maps = mappool.beatmaps;
     if (!maps || maps.length == 0) return;
 
-    document.cookie = `lastPick=;path=/`;
+    localStorage.setItem('current_pick', '');
     $('#mappool_container').html('');
     for (const mod of [... new Set(maps.map(b => b.mods))]) {
         $('#mappool_container').append($('<div></div>').addClass('mod-container').attr('id', `mod-container-${mod.toLowerCase()}`));
@@ -204,12 +204,12 @@ const pickMap = (bm, teamName, color) => {
     switchPick(color);
 
     if (bm.beatmap.mods.includes('TB')) {
-        document.cookie = `lastPick=;path=/`;
+        localStorage.setItem('current_pick', '');
         bm.parent.addClass(`picked`).removeClass('banned red blue');
         bm.picked_by_label.text('Tiebreaker').addClass(`picked`).removeClass('banned red blue');
     }
     else {
-        document.cookie = `lastPick=${bm.id}-${color.toLowerCase()};path=/`;
+        localStorage.setItem('current_pick', `${bm.id}/${color.toLowerCase()}`);
         bm.parent.addClass(`picked ${color}`).removeClass(`banned ${opposite_team(color)}`);
         bm.picked_by_label.text(`Picked by ${teamName}`).addClass(`picked ${color}`).removeClass(`banned ${opposite_team(color)}`);
     }
@@ -262,7 +262,7 @@ const banMap = (bm, teamName, color) => {
 }
 
 const resetMap = bm => {
-    document.cookie = `lastPick=;path=/`;
+    localStorage.setItem('current_pick', '');
 
     bm.parent.removeClass('banned picked red blue');
     bm.picked_by_label.text('').removeClass('banned picked red blue');

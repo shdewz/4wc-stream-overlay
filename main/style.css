@@ -429,6 +429,38 @@ html {
 	}
 }
 
+.picked-by-container {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--accent);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+	transform: translateY(25px);
+	/* animation: pickerIn 300ms 1000ms ease forwards; */
+}
+
+.picked-by-text {
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: var(--light);
+	padding: 0 8px;
+	text-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes pickerIn {
+	from {
+		transform: translateY(25px);
+	}
+
+	to {
+		transform: translateY(0px);
+	}
+}
+
 .beatmap-image {
 	width: 100%;
 	height: 100%;
