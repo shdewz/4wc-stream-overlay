@@ -449,6 +449,7 @@ html {
 	color: var(--light);
 	padding: 0 8px;
 	text-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+	transform: translateX(1px) translateY(1px);
 }
 
 @keyframes pickerIn {
