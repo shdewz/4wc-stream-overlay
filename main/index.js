@@ -194,25 +194,25 @@ socket.onmessage = async event => {
 	if (cache.update_stats) {
 		cache.update_stats = false;
 		cache.mapid = data.beatmap.id;
-		cache.map = mappool ? mappool.beatmaps.find(m => m.beatmap_id === cache.mapid || m.md5 === cache.md5) ?? { id: cache.mapid, mods: 'NM', identifier: null } : { id: null, mods: 'NM', identifier: null };
-		const mods = cache.map?.mods ?? 'NM';
+		const map = mappool ? mappool.beatmaps.find(m => m.beatmap_id === cache.mapid || m.md5 === cache.md5) ?? { id: cache.mapid, mods: 'NM', identifier: null } : { id: null, mods: 'NM', identifier: null };
+		cache.map = map;
+		const mods = map?.mods ?? 'NM';
 		const stats = getModStats(data.beatmap.stats.cs.original, data.beatmap.stats.ar.original, data.beatmap.stats.od.original, data.beatmap.stats.bpm.common, mods);
 		const len_ = data.beatmap.time.lastObject - data.beatmap.time.firstObject;
 
 		$('#cs').text(stats.cs);
 		$('#ar').text(stats.ar);
 		$('#od').text(stats.od);
-		$('#bpm').text(cache.map?.bpm ?? stats.bpm);
+		$('#bpm').text(map?.bpm ?? stats.bpm);
 		$('#length').text(`${Math.trunc((len_ / stats.speed) / 1000 / 60)}:${Math.trunc((len_ / stats.speed) / 1000 % 60).toString().padStart(2, '0')}`);
-		$('#sr').text(`${Number(cache.map?.sr ?? data.beatmap.stats.stars.total).toFixed(2)}`);
+		$('#sr').text(`${Number(map?.sr ?? data.beatmap.stats.stars.total).toFixed(2)}`);
 
 		$('#title').text(`${data.beatmap.artist} - ${data.beatmap.title}`);
-		$('#subtitle').text(`[${data.beatmap.version}] by ${cache.map?.mapper || data.beatmap.mapper}`);
+		$('#subtitle').text(`[${data.beatmap.version}] by ${map?.mapper || data.beatmap.mapper}`);
 
-		// cache.map.identifier = 'HD2';
-		if (cache.map?.identifier) {
+		if (map?.identifier) {
 			$('#beatmap_slot_container').css('animation', 'mapSlotIn 300ms 50ms ease forwards');
-			$('#beatmap_slot').text(cache.map.identifier);
+			$('#beatmap_slot').text(map.identifier);
 			cache.map_slot_active = true;
 		}
 		else {
