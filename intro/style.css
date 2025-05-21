@@ -80,9 +80,11 @@ html {
 }
 
 .team {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: 50px auto;
+	align-items: center;
+	gap: 12px 24px;
 }
 
 .vs {
@@ -91,13 +93,15 @@ html {
 	font-style: italic;
 }
 
-.team-header {
+.team-name {
 	font-weight: 700;
 	font-size: 3rem;
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	gap: 18px;
+}
+
+.team-name.blue {
+	justify-content: flex-end;
 }
 
 .showcase {
@@ -113,6 +117,8 @@ html {
 }
 
 .team-flag {
+	justify-self: center;
+	align-self: center;
 	width: 70px;
 	height: 47px;
 	background-image: url('../_shared/assets/flags/XX.png');
@@ -127,11 +133,7 @@ html {
 }
 
 .team-players.red {
-	padding-left: calc(70px + 18px);
-}
-
-.team-players.blue {
-	padding-right: calc(70px + 18px);
+	grid-column-start: 2;
 }
 
 .timer {
