@@ -3,7 +3,7 @@ import {useReplicant} from '@4wc-stream-overlay/browser_shared/vue-replicants';
 import CountUp from 'countup.js'
 import $ from "jquery"
 import {delay, formatLength} from "@4wc-stream-overlay/browser_shared/utils";
-import {computed} from "vue";
+import {computed, ref, watch} from "vue";
 import '../../assets/common.css';
 import { getModdedStats } from "@4wc-stream-overlay/browser_shared/utils";
 
@@ -135,61 +135,9 @@ const animation = {
 //     }
 //   }
 //
-//   if (teams && data.tourney.team.left && cache.nameRed !== data.tourney.team.left) {
-//     cache.nameRed = data.tourney.team.left || 'Red Team';
-//     $('#red_name').text(cache.nameRed);
-//     const team = teams.find(t => t.team === cache.nameRed);
-//
-//     $('#red_flag').css('background-image', `url('../_shared/assets/flags/${team?.flag ?? 'XX'}.png')`);
-//     $('#red_seed').text(`SEED ${team?.seed ?? 'X'}`);
-//   }
-//
-//   if (teams && data.tourney.team.right && cache.nameBlue !== data.tourney.team.right) {
-//     cache.nameBlue = data.tourney.team.right || 'Blue Team';
-//     $('#blue_name').text(cache.nameBlue);
-//     const team = teams.find(t => t.team === cache.nameBlue);
-//
-//     $('#blue_flag').css('background-image', `url('../_shared/assets/flags/${team?.flag ?? 'XX'}.png')`);
-//     $('#blue_seed').text(`SEED ${team?.seed ?? 'X'}`);
-//   }
-//
 //   if (mappool && cache.md5 !== data.beatmap.checksum) {
 //     cache.md5 = data.beatmap.checksum;
 //     setTimeout(() => { cache.update_stats = true }, 250);
-//   }
-//
-//   if (cache.update_stats) {
-//     cache.update_stats = false;
-//     cache.mapid = data.beatmap.id;
-//     const map = mappool ? mappool.beatmaps.find(m => m.beatmap_id === cache.mapid || m.md5 === cache.md5) ?? { id: cache.mapid, mods: 'NM', identifier: null } : { id: null, mods: 'NM', identifier: null };
-//     cache.map = map;
-//     const mods = map?.mods ?? 'NM';
-//     const stats = getModStats(data.beatmap.stats.cs.original, data.beatmap.stats.ar.original, data.beatmap.stats.od.original, data.beatmap.stats.bpm.common, mods);
-//     const len_ = data.beatmap.time.lastObject - data.beatmap.time.firstObject;
-//
-//     $('#cs').text(stats.cs);
-//     $('#ar').text(stats.ar);
-//     $('#od').text(stats.od);
-//     $('#bpm').text(map?.bpm ?? stats.bpm);
-//     $('#length').text(`${Math.trunc((len_ / stats.speed) / 1000 / 60)}:${Math.trunc((len_ / stats.speed) / 1000 % 60).toString().padStart(2, '0')}`);
-//     $('#sr').text(`${Number(map?.sr ?? data.beatmap.stats.stars.total).toFixed(2)}`);
-//
-//     $('#title').text(`${data.beatmap.artist} - ${data.beatmap.title}`);
-//     $('#subtitle').text(`[${data.beatmap.version}] by ${map?.mapper || data.beatmap.mapper}`);
-//
-//     if (map?.identifier) {
-//       $('#beatmap_slot_container').css('animation', 'mapSlotIn 300ms 50ms ease forwards');
-//       $('#beatmap_slot').text(map.identifier);
-//       cache.map_slot_active = true;
-//     }
-//     else {
-//       if (cache.map_slot_active) {
-//         $('#beatmap_slot_container').css('animation', 'mapSlotIn 300ms ease forwards reverse');
-//         await delay(300);
-//       }
-//       $('#beatmap_slot').text('');
-//       cache.map_slot_active = false;
-//     }
 //   }
 //
 //   if (cache.scoreVisible) {
@@ -328,28 +276,7 @@ const animation = {
 //   right: 'blue'
 // }
 //
-// const getModStats = (cs_raw, ar_raw, od_raw, bpm_raw, mods) => {
-//   mods = mods.replace('NC', 'DT');
-//
-//   const speed = mods.includes('DT') ? 1.5 : mods.includes('HT') ? 0.75 : 1;
-//
-//   let ar = mods.includes('HR') ? ar_raw * 1.4 : mods.includes('EZ') ? ar_raw * 0.5 : ar_raw;
-//   const ar_ms = Math.max(Math.min(ar <= 5 ? 1800 - 120 * ar : 1200 - 150 * (ar - 5), 1800), 450) / speed;
-//   ar = ar < 5 ? (1800 - ar_ms) / 120 : 5 + (1200 - ar_ms) / 150;
-//
-//   const cs = mods.includes('HR') ? cs_raw * 1.3 : mods.includes('EZ') ? cs_raw * 0.5 : cs_raw;
-//
-//   let od = Math.min(mods.includes('HR') ? od_raw * 1.4 : mods.includes('EZ') ? od_raw * 0.5 : od_raw, 10);
-//   if (speed !== 1) od = (79.5 - Math.min(79.5, Math.max(19.5, 79.5 - Math.ceil(6 * od))) / speed) / 6;
-//
-//   return {
-//     cs: Math.round(cs * 10) / 10,
-//     ar: Math.round(ar * 10) / 10,
-//     od: Math.round(od * 10) / 10,
-//     bpm: Math.round(bpm_raw * speed * 10) / 10,
-//     speed
-//   }
-// }
+
 
 const team_flags = computed(() => {
   const redFlagName = teamsReplicant.data?.find(t => t.team === tourneyDataReplicant.data?.teamName?.left)?.flag;
@@ -370,41 +297,6 @@ const firstTo = computed(() => {
   return Math.ceil((tourneyDataReplicant.data?.bestOf ?? 0) / 2);
 });
 
-
-//   if (cache.update_stats) {
-//     cache.update_stats = false;
-//     cache.mapid = data.beatmap.id;
-//     const map = mappool ? mappool.beatmaps.find(m => m.beatmap_id === cache.mapid || m.md5 === cache.md5) ?? { id: cache.mapid, mods: 'NM', identifier: null } : { id: null, mods: 'NM', identifier: null };
-//     cache.map = map;
-//     const mods = map?.mods ?? 'NM';
-//     const stats = getModStats(data.beatmap.stats.cs.original, data.beatmap.stats.ar.original, data.beatmap.stats.od.original, data.beatmap.stats.bpm.common, mods);
-//     const len_ = data.beatmap.time.lastObject - data.beatmap.time.firstObject;
-//
-//     $('#cs').text(stats.cs);
-//     $('#ar').text(stats.ar);
-//     $('#od').text(stats.od);
-//     $('#bpm').text(map?.bpm ?? stats.bpm);
-//     $('#length').text(`${Math.trunc((len_ / stats.speed) / 1000 / 60)}:${Math.trunc((len_ / stats.speed) / 1000 % 60).toString().padStart(2, '0')}`);
-//     $('#sr').text(`${Number(map?.sr ?? data.beatmap.stats.stars.total).toFixed(2)}`);
-//
-//     $('#title').text(`${data.beatmap.artist} - ${data.beatmap.title}`);
-//     $('#subtitle').text(`[${data.beatmap.version}] by ${map?.mapper || data.beatmap.mapper}`);
-//
-//     if (map?.identifier) {
-//       $('#beatmap_slot_container').css('animation', 'mapSlotIn 300ms 50ms ease forwards');
-//       $('#beatmap_slot').text(map.identifier);
-//       cache.map_slot_active = true;
-//     }
-//     else {
-//       if (cache.map_slot_active) {
-//         $('#beatmap_slot_container').css('animation', 'mapSlotIn 300ms ease forwards reverse');
-//         await delay(300);
-//       }
-//       $('#beatmap_slot').text('');
-//       cache.map_slot_active = false;
-//     }
-//   }
-
 const mappoolMap = computed(() => { return mappoolReplicant.data?.beatmaps.find(m => m.beatmap_id === songDataReplicant.data?.id) });
 
 const mapStatsAfterMods = computed(() => {
@@ -415,6 +307,29 @@ const mapStatsAfterMods = computed(() => {
       mappoolMap?.value?.mods ?? songDataReplicant.data?.mods ?? ""
   )
 })
+
+const mapSlotActive = ref(false);
+const mapSlotAnimatingOut = ref(false);
+
+watch(() => mappoolMap.value?.identifier, async (newIdentifier, _) => {
+  if (newIdentifier) {
+    // Map is present - animate in
+    console.log(`got a new identifier: ${newIdentifier}`);
+    mapSlotActive.value = true
+    mapSlotAnimatingOut.value = false
+  } else {
+    // Map is not present
+    if (mapSlotActive.value) {
+      // Was previously active, animate out
+
+      // fixme: this seems to be broken atm?
+      mapSlotActive.value = false;
+      mapSlotAnimatingOut.value = true;
+      await delay(3500)
+      mapSlotAnimatingOut.value = false;
+    }
+  }
+}, {immediate: true})
 </script>
 
 <template>
@@ -493,8 +408,10 @@ const mapStatsAfterMods = computed(() => {
         <div class="bottom-footer">
           <div class="beatmap-container">
             <div class="beatmap-background-container">
-              <div class="beatmap-slot-container visible" id="beatmap_slot_container">
-                <div class="beatmap-slot" id="beatmap_slot"></div>
+              <div id="beatmap_slot_container"
+                   class="beatmap-slot-container visible"
+                   :class="{ 'map-slot-in': mapSlotActive, 'map-slot-out': mapSlotAnimatingOut }">
+                <div class="beatmap-slot" id="beatmap_slot">{{ mappoolMap?.identifier }}</div>
               </div>
               <!-- TODO: use local path for cover image instead of remote asset -->
               <div class="beatmap-image" id="beatmap_image" :style="{ backgroundImage: `url(${songDataReplicant.data?.coverUrl})`}"></div>
@@ -1359,6 +1276,14 @@ const mapStatsAfterMods = computed(() => {
   to {
     transform: translateY(0px);
   }
+}
+
+.map-slot-in {
+  animation: mapSlotIn 300ms 50ms ease forwards;
+}
+
+.map-slot-out {
+  animation: mapSlotIn 300ms ease forwards reverse;
 }
 
 @keyframes mapSlotIn {
