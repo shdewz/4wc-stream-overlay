@@ -1,11 +1,12 @@
 import type {
   CountdownReplicant,
-  // CurrentGosumemoryConnectionStatus,
+  CurrentGosumemoryConnectionStatus,
   // CurrentOsuSongOverrides,
-  // CurrentOsuSongReplicant,
+  CurrentOsuSongReplicant,
   // CurrentRefereeHelperConnectionStatus,
-  // CurrentRefereeHelperData, MatchesReplicant,
-  // OsuTourneyData,
+  // CurrentRefereeHelperData,
+  // MatchesReplicant,
+  OsuTourneyData,
   // OpponentSeedingsReplicant,
   // ShoutcastersReplicant,
   // SpotifyReplicant,
@@ -19,11 +20,11 @@ export const namespace = '4wc-stream-overlay';
 
 export interface ReplicantTypes {
   countdown: CountdownReplicant;
-  // gosumemoryStatus: CurrentGosumemoryConnectionStatus;
+  gosumemoryStatus: CurrentGosumemoryConnectionStatus;
   // matches: MatchesReplicant;
-  // osuSong: CurrentOsuSongReplicant;
+  osuSong: CurrentOsuSongReplicant;
   // osuSongOverrides: CurrentOsuSongOverrides;
-  // osuTourney: OsuTourneyData;
+  osuTourney: OsuTourneyData;
   // refereeHelper: CurrentRefereeHelperData;
   // refereeHelperStatus: CurrentRefereeHelperConnectionStatus;
   // seeding: OpponentSeedingsReplicant;

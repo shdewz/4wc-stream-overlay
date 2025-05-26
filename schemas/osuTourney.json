@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "osu!tourney data",
+  "type": "object",
+  "default": {
+    "state": "unknown",
+    "scoresVisible": true,
+    "clients": [],
+    "time": {
+      "firstObj": 0,
+      "current": 0,
+      "full": 1,
+      "mp3": 1
+    }
+  },
+  "properties": {
+    "state": {
+      "type": "string",
+      "enum": ["unknown", "spectating", "results"]
+    },
+    "scoresVisible": {
+      "type": "boolean"
+    },
+    "clients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "integer"
+          },
+          "unstableRate": {
+            "type": "number"
+          },
+          "hits300": {
+            "type": "integer"
+          },
+          "hits100": {
+            "type": "integer"
+          },
+          "hits50": {
+            "type": "integer"
+          },
+          "hits0": {
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["score", "unstableRate", "hits300", "hits100", "hits50", "hits0"]
+      }
+    },
+    "time": {
+      "required": ["firstObj", "current", "full", "mp3"],
+      "type": "object",
+        "properties": {
+          "firstObj": {
+            "type": "number"
+          },
+          "current": {
+            "type": "number"
+          },
+          "full": {
+            "type": "number"
+          },
+          "mp3": {
+            "type": "number"
+          }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "required": ["state", "scoresVisible", "clients", "time"]
+}
