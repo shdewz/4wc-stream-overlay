@@ -15,12 +15,13 @@ export = (nodecg: NodeCG.ServerAPI<Configschema>): void => {
    * things to be loaded *after* the NodeCG context is set.
    */
   set(nodecg);
-  require('./matches');
+  // require('./matches');
   require('./gosumemory');
-  require('./refereeHelper');
-  require('./sheetsKv');
-  require('./songsFolder');
-  require('./spotify');
-  require('./osuApi');
-  require('./companion');
+  // require('./refereeHelper');
+  // require('./sheetsKv');
+  // require('./songsFolder');
+  // require('./spotify');
+  // require('./osuApi');
+  // require('./companion');
+  require('./jsonData')
 };

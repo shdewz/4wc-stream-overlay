@@ -94,6 +94,12 @@
         "title": "json data",
         "file": "jsonData.html",
         "width": 4
+      },
+      {
+        "name": "gosumemory",
+        "title": "gosumemory",
+        "file": "gosumemory.html",
+        "width": 4
       }
     ],
     "graphics": [

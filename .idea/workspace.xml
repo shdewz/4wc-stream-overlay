@@ -4,29 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="stuff in v3 template... considering rolling back to v2">
-      <change afterPath="$PROJECT_DIR$/schemas/osuSongOverrides.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/tournamentMappool.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/tournamentTeams.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dashboard/jsonData.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dashboard/jsonData/main.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/extension/gosumemory.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/extension/jsonData.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/gameplay.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/gameplay/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/gameplay/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/gameplay/main.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/gameplay/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/schemas/osuSongOverrides.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/schemas/tournamentMappool.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/schemas/tournamentTeams.d.ts" afterDir="false" />
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add mappool replicant and parts of main screen">
+      <change afterPath="$PROJECT_DIR$/src/dashboard/gosumemory.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dashboard/gosumemory/main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_shared/deps/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/_shared/deps/jquery.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/browser_shared/replicants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/browser_shared/replicants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/extension/util/replicants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/util/replicants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard/jsonData/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard/jsonData/main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extension/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extension/jsonData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/jsonData.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +63,7 @@
     "git-widget-placeholder": "feature/nodecg-tv2",
     "javascript.nodejs.core.library.configured.version": "22.16.0",
     "javascript.nodejs.core.library.typings.version": "22.15.21",
-    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/src/extension",
+    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/src/dashboard",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -89,7 +75,7 @@
     "npm.schema-types.executor": "Run",
     "npm.start.executor": "Run",
     "npm.watch.executor": "Run",
-    "settings.editor.selected.configurable": "settings.nodejs",
+    "settings.editor.selected.configurable": "editor.preferences.appearance",
     "ts.external.directory.path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -101,11 +87,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/dashboard" />
       <recent name="$PROJECT_DIR$/src/extension" />
       <recent name="$PROJECT_DIR$/schemas" />
       <recent name="$PROJECT_DIR$/src/graphics/gameplay" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/extension" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
@@ -180,7 +166,7 @@
       <updated>1748210803368</updated>
       <workItem from="1748210804570" duration="3076000" />
       <workItem from="1748213930379" duration="4753000" />
-      <workItem from="1748218748658" duration="6958000" />
+      <workItem from="1748218748658" duration="8792000" />
     </task>
     <task id="LOCAL-00001" summary="update config">
       <option name="closed" value="true" />
@@ -206,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748218714294</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add mappool replicant and parts of main screen">
+      <option name="closed" value="true" />
+      <created>1748225808424</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1748225808425</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +231,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update config" />
     <MESSAGE value="stuff in v3 template... considering rolling back to v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="stuff in v3 template... considering rolling back to v2" />
+    <MESSAGE value="add mappool replicant and parts of main screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="add mappool replicant and parts of main screen" />
   </component>
 </project>
