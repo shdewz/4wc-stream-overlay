@@ -21,6 +21,31 @@
     "scoresVisible": {
       "type": "boolean"
     },
+    "starsVisible": {
+      "type": "boolean"
+    },
+    "teamName": {
+      "type": "object",
+      "default": {
+        "left": "Red Team",
+        "right": "Blue Team"
+      },
+      "required": [
+        "left",
+        "right"
+      ],
+      "properties": {
+        "left": {
+          "type": "string",
+          "default": ""
+        },
+        "right": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "additionalProperties": false
+    },
     "clients": {
       "type": "array",
       "items": {

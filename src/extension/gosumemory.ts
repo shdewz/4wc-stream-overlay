@@ -104,6 +104,8 @@ function applyData(val: CurrentGosumemoryData) {
     const newOsuTourneyReplicant = {
       state: ipcStateMapping[val.tourney.manager.ipcState] ?? 'unknown',
       scoresVisible: val.tourney.manager.bools.scoreVisible,
+      starsVisible: val.tourney.manager.bools.starsVisible,
+      teamName: val.tourney.manager.teamName,
       clients: val.tourney.ipcClients?.map((client) => ({
         score: client.gameplay.score,
         unstableRate: client.gameplay.hits.unstableRate,
