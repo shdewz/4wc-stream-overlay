@@ -314,7 +314,6 @@ const mapSlotAnimatingOut = ref(false);
 watch(() => mappoolMap.value?.identifier, async (newIdentifier, _) => {
   if (newIdentifier) {
     // Map is present - animate in
-    console.log(`got a new identifier: ${newIdentifier}`);
     mapSlotActive.value = true
     mapSlotAnimatingOut.value = false
   } else {
@@ -325,7 +324,7 @@ watch(() => mappoolMap.value?.identifier, async (newIdentifier, _) => {
       // fixme: this seems to be broken atm?
       mapSlotActive.value = false;
       mapSlotAnimatingOut.value = true;
-      await delay(3500)
+      await delay(350)
       mapSlotAnimatingOut.value = false;
     }
   }
