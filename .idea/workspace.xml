@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add static json data and gosu dashboards">
-      <change afterPath="$PROJECT_DIR$/src/assets/common.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/D-DIN-Bold.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/D-DIN-Italic.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/D-DIN.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Mont-Bold.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Mont-SemiBold.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/NotoSans-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/NotoSans-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/NotoSans-SemiBold.ttf" afterDir="false" />
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="fix missing/broken CSS in main screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphics/gameplay/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/gameplay/main.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphics/gameplay/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/gameplay/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/gameplay.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/gameplay/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/gameplay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/gameplay/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main/main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/gameplay/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +93,7 @@
       <recent name="$PROJECT_DIR$/src/graphics/gameplay" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.watch">
+  <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -170,7 +165,7 @@
       <updated>1748210803368</updated>
       <workItem from="1748210804570" duration="3076000" />
       <workItem from="1748213930379" duration="4753000" />
-      <workItem from="1748218748658" duration="17189000" />
+      <workItem from="1748218748658" duration="17376000" />
     </task>
     <task id="LOCAL-00001" summary="update config">
       <option name="closed" value="true" />
@@ -220,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748228984556</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix missing/broken CSS in main screen">
+      <option name="closed" value="true" />
+      <created>1748271937663</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1748271937663</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +256,7 @@
     <MESSAGE value="stuff in v3 template... considering rolling back to v2" />
     <MESSAGE value="add mappool replicant and parts of main screen" />
     <MESSAGE value="add static json data and gosu dashboards" />
-    <option name="LAST_COMMIT_MESSAGE" value="add static json data and gosu dashboards" />
+    <MESSAGE value="fix missing/broken CSS in main screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix missing/broken CSS in main screen" />
   </component>
 </project>
