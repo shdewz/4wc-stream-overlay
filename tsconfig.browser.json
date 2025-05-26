@@ -33,15 +33,15 @@
     "moduleResolution": "node",                          /* Specify how TypeScript looks up a file from a given module specifier. */
     "baseUrl": ".",                                      /* Specify the base directory to resolve non-relative module names. */
     "paths": {
-      "@nodecg-vue-ts-template/*": [
+      "@4wc-stream-overlay/*": [
         "src/*",
         "src/graphics/*",
         "src/dashboard/*"
       ],
-      "@nodecg-vue-ts-template/types": [
+      "@4wc-stream-overlay/types": [
         "src/types"
       ],
-      "@nodecg-vue-ts-template/types/*": [
+      "@4wc-stream-overlay/types/*": [
         "src/types/*"
       ]
     },                                                   /* Specify a set of entries that re-map imports to additional lookup locations. */
@@ -116,11 +116,12 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": [
+    "src/browser_shared/**/*.ts",
     "src/dashboard/**/*.ts",
     "src/dashboard/**/*.vue",
     "src/graphics/**/*.ts",
     "src/graphics/**/*.vue",
     "src/types/**/*.d.ts",
-    "node_modules/nodecg-types/types/browser.d.ts"
+    "node_modules/@nodecg/types/augment-window.d.ts"
   ],
 }

@@ -5,9 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="stuff in v3 template... considering rolling back to v2">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/extension/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schemas/countdown.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/browser_shared/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/browser_shared/dev-mode.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/browser_shared/replicants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/browser_shared/styles/fonts.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/browser_shared/vue-replicants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/schemas/countdown.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.extension.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard/example.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard/example/image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard/example/main.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extension/example.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extension/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extension/util/nodecg.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/util/nodecg.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extension/util/replicants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/util/replicants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/example.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/example.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/example/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/example/main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/ExampleType.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/schemas/configschema.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/configschema.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/schemas/exampleReplicant.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/exampleReplicant.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/schemas/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.browser.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.browser.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.extension.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.extension.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.mjs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,33 +72,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/nodecg-tv2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/daohe/WebstormProjects/4wc-stream-overlay&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/daohe/.local/share/fnm/node-versions/v22.16.0/installation/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.schema-types.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.watch.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/daohe/WebstormProjects/4wc-stream-overlay/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/nodecg-tv2",
+    "javascript.nodejs.core.library.configured.version": "22.16.0",
+    "javascript.nodejs.core.library.typings.version": "22.15.21",
+    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/daohe/.local/share/fnm/node-versions/v22.16.0/installation/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.schema-types.executor": "Run",
+    "npm.start.executor": "Run",
+    "npm.watch.executor": "Run",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/extension" />
-      <recent name="$PROJECT_DIR$/src/graphics" />
+      <recent name="$PROJECT_DIR$/extension" />
       <recent name="$PROJECT_DIR$/src/types" />
+      <recent name="$PROJECT_DIR$/src/extension" />
       <recent name="$PROJECT_DIR$/schemas" />
     </key>
   </component>
@@ -146,7 +176,7 @@
       <updated>1748210803368</updated>
       <workItem from="1748210804570" duration="3076000" />
       <workItem from="1748213930379" duration="4753000" />
-      <workItem from="1748218748658" duration="62000" />
+      <workItem from="1748218748658" duration="2356000" />
     </task>
     <task id="LOCAL-00001" summary="update config">
       <option name="closed" value="true" />

@@ -38,8 +38,9 @@ module.exports = {
   rules: {
     // Everything is compiled for the browser so dev dependencies are fine.
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-    // max-len set to ignore "import" lines (as they usually get long and messy).
-    'max-len': ['error', { code: 100, ignorePattern: '^import\\s.+\\sfrom\\s.+;' }],
+    // max-len OFF
+	'max-len': 'off',
+    'linebreak-style': 'off',
     // I mainly have this off as it ruins auto import sorting in VSCode.
     'object-curly-newline': 'off',
     // Allows "main.vue" files to be named as such.
