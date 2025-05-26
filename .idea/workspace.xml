@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add song metadata and stats display&#10;&#10;this modifies the osuSong schema to include raw stats (cs/ar/od/length/bpm) and computed stats that account for mods">
-      <change afterPath="$PROJECT_DIR$/src/dashboard/picksAndBans.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dashboard/picksAndBans/main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/tournamentMappool.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/tournamentMappool.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/browser_shared/replicants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/browser_shared/replicants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphics/main/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main/main.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/tournamentMappool.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/tournamentMappool.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard/picksAndBans/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard/picksAndBans/main.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

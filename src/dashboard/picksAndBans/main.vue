@@ -123,16 +123,26 @@ const getButtonColor = (beatmap_id: number) => {
         color="warning"
         label="Reset picks and bans"
         class="full-width q-mb-sm"
-        :disable="pendingConfirm"
+        v-if="!pendingConfirm"
         @click="checkConfirm()"
     />
-    <QBtn
-        color="negative"
-        label="Confirm reset picks and bans"
-        class="full-width q-mb-sm"
-        v-if="pendingConfirm"
-        @click="confirmResetPickBans()"
-    />
+    <div class="row">
+      <QBtn
+          color="negative"
+          label="Confirm reset picks and bans"
+          class="col-6"
+          v-if="pendingConfirm"
+          @click="confirmResetPickBans()"
+      />
+      <QBtn
+          color="primary"
+          label="Cancel"
+          class="col-6"
+          v-if="pendingConfirm"
+          @click="() => pendingConfirm = false"
+      />
+    </div>
+
 
   </div>
 </template>
