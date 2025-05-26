@@ -36,13 +36,16 @@
     "watch:extension": "tsc -b tsconfig.extension.json -w"
   },
   "dependencies": {
-    "countup.js": "^2.8.0",
+    "countup.js": "1.9.3",
     "exit-hook": "^2.2.1",
     "googleapis": "^133.0.0",
+    "install": "^0.13.0",
+    "jquery": "^3.6.0",
     "modern-async": "^2.0.4",
     "module-alias": "^2.2.2",
     "node-cache": "^5.1.2",
     "nodecg": "^2.5.3",
+    "npm": "^11.4.1",
     "osu-web.js": "^2.6.0",
     "patch-package": "^8.0.0",
     "socket.io-client": "^4.7.4",
@@ -52,6 +55,8 @@
     "@nodecg/types": "^2.1.12",
     "@quasar/extras": "^1.15.11",
     "@quasar/vite-plugin": "^1.3.0",
+    "@types/countup.js": "^1.9.0",
+    "@types/jquery": "^3.5.32",
     "@types/node": "^18.14.6",
     "@types/ws": "^8.5.10",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
@@ -83,6 +88,14 @@
   },
   "nodecg": {
     "compatibleRange": "^2.2.1",
+    "dashboardPanels": [
+      {
+        "name": "json data",
+        "title": "json data",
+        "file": "jsonData.html",
+        "width": 4
+      }
+    ],
     "graphics": [
       {
         "file": "example.html",

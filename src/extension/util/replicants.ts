@@ -11,11 +11,13 @@ function getReplicant<N extends keyof ReplicantTypes, T extends ReplicantTypes[N
     return nodecg().Replicant<T>(name, namespace, { ...replicantOptions[name], defaultValue: undefined as unknown as T });
 }
 export const countdownReplicant = getReplicant('countdown');
-// export const gosumemoryStatusReplicant = getReplicant('gosumemoryStatus');
+export const gosumemoryStatusReplicant = getReplicant('gosumemoryStatus');
 // export const matchesReplicant = getReplicant('matches');
-// export const osuSongReplicant = getReplicant('osuSong');
-// export const osuSongOverridesReplicant = getReplicant('osuSongOverrides');
-// export const osuTourneyReplicant = getReplicant('osuTourney');
+export const osuSongReplicant = getReplicant('osuSong');
+export const osuSongOverridesReplicant = getReplicant('osuSongOverrides');
+export const osuTourneyReplicant = getReplicant('osuTourney');
+export const tournamentTeams = getReplicant('tournamentTeams');
+export const tournamentMappool = getReplicant('tournamentMappool');
 // export const refereeHelperReplicant = getReplicant('refereeHelper');
 // export const refereeHelperStatusReplicant = getReplicant('refereeHelperStatus');
 // export const sheetsKvReplicant = getReplicant('sheetsKv');

@@ -1,12 +1,12 @@
 import type {
   CountdownReplicant,
   CurrentGosumemoryConnectionStatus,
-  // CurrentOsuSongOverrides,
+  CurrentOsuSongOverrides,
   CurrentOsuSongReplicant,
   // CurrentRefereeHelperConnectionStatus,
   // CurrentRefereeHelperData,
   // MatchesReplicant,
-  OsuTourneyData,
+  OsuTourneyData, TournamentMappoolData,
   // OpponentSeedingsReplicant,
   // ShoutcastersReplicant,
   // SpotifyReplicant,
@@ -15,6 +15,7 @@ import type {
   // UserExtendedReplicant,
   // ShowCamerasReplicant,
 } from '../types/schemas';
+import {TournamentTeamsData} from "../types/schemas";
 
 export const namespace = '4wc-stream-overlay';
 
@@ -23,7 +24,7 @@ export interface ReplicantTypes {
   gosumemoryStatus: CurrentGosumemoryConnectionStatus;
   // matches: MatchesReplicant;
   osuSong: CurrentOsuSongReplicant;
-  // osuSongOverrides: CurrentOsuSongOverrides;
+  osuSongOverrides: CurrentOsuSongOverrides;
   osuTourney: OsuTourneyData;
   // refereeHelper: CurrentRefereeHelperData;
   // refereeHelperStatus: CurrentRefereeHelperConnectionStatus;
@@ -36,6 +37,8 @@ export interface ReplicantTypes {
   // spotifyReplicant: SpotifyReplicant;
   // spotifyTokensReplicant: SpotifyTokensReplicant;
   // userMetadata: UserExtendedReplicant;
+  tournamentTeams: TournamentTeamsData;
+  tournamentMappool: TournamentMappoolData;
 }
 
 export const replicantOptions = {
@@ -56,4 +59,6 @@ export const replicantOptions = {
   spotifyTokensReplicant: { persistent: true },
   userMetadata: { persistent: true },
   showCasterCams: { persistent: false },
+  tournamentTeams: { persistent: false },
+  tournamentMappool: { persistent: false }
 } as const;

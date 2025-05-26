@@ -4,4 +4,7 @@ export * from './exampleReplicant';
 export * from './gosumemory';
 export * from './gosumemoryStatus';
 export * from './osuSong';
+export * from './osuSongOverrides';
 export * from './osuTourney';
+export * from './tournamentMappool';
+export * from './tournamentTeams';
