@@ -9,8 +9,8 @@
 export interface OsuTourneyData {
 	state: 'unknown' | 'spectating' | 'results';
 	scoresVisible: boolean;
-	starsVisible?: boolean;
-	teamName?: {
+	starsVisible: boolean;
+	teamName: {
 		left: string;
 		right: string;
 	};

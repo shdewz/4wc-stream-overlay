@@ -5,6 +5,11 @@
   "default": {
     "state": "unknown",
     "scoresVisible": true,
+    "starsVisible": false,
+    "teamName": {
+      "left": "Red Team",
+      "right": "Blue Team"
+    },
     "clients": [],
     "time": {
       "firstObj": 0,
@@ -95,5 +100,5 @@
     }
   },
   "additionalProperties": false,
-  "required": ["state", "scoresVisible", "clients", "time"]
+  "required": ["state", "scoresVisible", "clients", "time", "starsVisible", "teamName"]
 }
