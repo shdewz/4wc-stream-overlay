@@ -12,10 +12,19 @@
     "creator": "Knif3rism",
     "SR": "3.90",
     "length": "01:37",
+    "lengthRaw": 97,
     "AR": "6.00",
+    "ARRaw": 6.00,
     "OD": "6.00",
+    "ODRaw": 6.00,
     "CS": "6.00",
+    "CSRaw": 6.00,
     "BPM": "440BPM",
+    "BPMRaw": {
+      "min": 360,
+      "max": 440
+    },
+    "mods": "",
     "stage": "SEMAINE 1",
     "index": 1,
     "category": "SV",
@@ -125,52 +134,83 @@
     "length": {
       "$id": "#/properties/length",
       "type": "string",
-      "title": "The length schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        ""
-      ]
+      "title": "Length after applying mods",
+      "default": ""
+
+    },
+    "lengthRaw": {
+      "$id": "#/properties/lengthRaw",
+      "type": "number",
+      "title": "Length before applying mods",
+      "default": 0
     },
     "AR": {
       "$id": "#/properties/AR",
       "type": "string",
       "title": "The AR schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        ""
-      ]
+      "default": ""
+    },
+    "ARRaw": {
+      "$id": "#/properties/ARRaw",
+      "type": "number",
+      "title": "AR before applying mods",
+      "default": 0
     },
     "OD": {
       "$id": "#/properties/OD",
       "type": "string",
-      "title": "The OD schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        ""
-      ]
+      "title": "OD after applying mods",
+      "default": ""
+    },
+    "ODRaw": {
+      "$id": "#/properties/ODRaw",
+      "type": "number",
+      "title": "OD before applying mods",
+      "default": 0
     },
     "CS": {
       "$id": "#/properties/CS",
       "type": "string",
-      "title": "The CS schema",
-      "description": "An explanation about the purpose of this instance.",
+      "title": "CS after applying mods",
       "default": "",
       "examples": [
         ""
       ]
     },
+    "CSRaw": {
+      "$id": "#/properties/CSRaw",
+      "type": "number",
+      "title": "CS before applying mods",
+      "default": 0
+    },
     "BPM": {
       "$id": "#/properties/BPM",
       "type": "string",
-      "title": "The BPM schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        ""
-      ]
+      "title": "BPM after applying mods",
+      "default": ""
+    },
+    "BPMRaw": {
+      "$id": "#/properties/BPMRaw",
+      "type": "object",
+      "title": "BPM before applying mods",
+      "additionalProperties": false,
+      "required": ["min", "max"],
+      "properties": {
+        "min": {
+          "type": "number",
+          "default": 0
+        },
+        "max": {
+          "type": "number",
+          "default": 0
+        }
+      }
+    },
+    "mods": {
+      "$id": "#/properties/mods",
+      "type": "string",
+      "title": "2-letters acronyms of active mods",
+      "default": ""
     },
     "stage": {
       "$id": "#/properties/stage",

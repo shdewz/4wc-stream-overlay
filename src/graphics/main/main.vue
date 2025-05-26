@@ -1,30 +1,28 @@
 <script setup lang="ts">
-// import { CountUp } from 'countup.js';
-// import type { CountUpOptions } from 'countup.js';
 import {useReplicant} from '@4wc-stream-overlay/browser_shared/vue-replicants';
 import CountUp from 'countup.js'
 import $ from "jquery"
-import {delay} from "@4wc-stream-overlay/browser_shared/utils";
+import {delay, formatLength} from "@4wc-stream-overlay/browser_shared/utils";
 import {computed} from "vue";
-
 import '../../assets/common.css';
-// import './style.css';
+import { getModdedStats } from "@4wc-stream-overlay/browser_shared/utils";
 
 
-const TEAMSIZE = 4;
-const DEBUG = false;
-
-const cache = {};
-const timer = {
-  in_progress: false,
-  object: null,
-  object_blink: null
-};
+// const TEAMSIZE = 4;
+// const DEBUG = false;
+//
+// const cache = {};
+// const timer = {
+//   in_progress: false,
+//   object: null,
+//   object_blink: null
+// };
 
 const mappoolReplicant = useReplicant('tournamentMappool');
 const teamsReplicant = useReplicant('tournamentTeams');
 
 const tourneyDataReplicant = useReplicant('osuTourney');
+const songDataReplicant = useReplicant('osuSong');
 
 
 // let mappool, teams;
@@ -192,9 +190,6 @@ const animation = {
 //       $('#beatmap_slot').text('');
 //       cache.map_slot_active = false;
 //     }
-//
-//     const path = `http://${location.host}/Songs/${data.folders.beatmap}/${data.files.background}`.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/').replace(/'/g, `\\'`);
-//     $('#beatmap_image').css('background-image', `url('${path}')`);
 //   }
 //
 //   if (cache.scoreVisible) {
@@ -362,17 +357,63 @@ const team_flags = computed(() => {
 
   return [new URL(`../../assets/flags/${redFlagName ?? 'XX'}.png`, import.meta.url).href,
     new URL(`../../assets/flags/${blueFlagName ?? 'XX'}.png`, import.meta.url).href];
-})
+});
 
-const team_seeds = computed((index: number) => {
+const team_seeds = computed(() => {
   const { left: redTeamName, right: blueTeamName } = tourneyDataReplicant.data?.teamName ?? {};
 
   return [teamsReplicant.data?.find(t => t.team === redTeamName)?.seed ?? '?',
     teamsReplicant.data?.find(t => t.team === blueTeamName)?.seed ?? '?'];
-})
+});
 
 const firstTo = computed(() => {
   return Math.ceil((tourneyDataReplicant.data?.bestOf ?? 0) / 2);
+});
+
+
+//   if (cache.update_stats) {
+//     cache.update_stats = false;
+//     cache.mapid = data.beatmap.id;
+//     const map = mappool ? mappool.beatmaps.find(m => m.beatmap_id === cache.mapid || m.md5 === cache.md5) ?? { id: cache.mapid, mods: 'NM', identifier: null } : { id: null, mods: 'NM', identifier: null };
+//     cache.map = map;
+//     const mods = map?.mods ?? 'NM';
+//     const stats = getModStats(data.beatmap.stats.cs.original, data.beatmap.stats.ar.original, data.beatmap.stats.od.original, data.beatmap.stats.bpm.common, mods);
+//     const len_ = data.beatmap.time.lastObject - data.beatmap.time.firstObject;
+//
+//     $('#cs').text(stats.cs);
+//     $('#ar').text(stats.ar);
+//     $('#od').text(stats.od);
+//     $('#bpm').text(map?.bpm ?? stats.bpm);
+//     $('#length').text(`${Math.trunc((len_ / stats.speed) / 1000 / 60)}:${Math.trunc((len_ / stats.speed) / 1000 % 60).toString().padStart(2, '0')}`);
+//     $('#sr').text(`${Number(map?.sr ?? data.beatmap.stats.stars.total).toFixed(2)}`);
+//
+//     $('#title').text(`${data.beatmap.artist} - ${data.beatmap.title}`);
+//     $('#subtitle').text(`[${data.beatmap.version}] by ${map?.mapper || data.beatmap.mapper}`);
+//
+//     if (map?.identifier) {
+//       $('#beatmap_slot_container').css('animation', 'mapSlotIn 300ms 50ms ease forwards');
+//       $('#beatmap_slot').text(map.identifier);
+//       cache.map_slot_active = true;
+//     }
+//     else {
+//       if (cache.map_slot_active) {
+//         $('#beatmap_slot_container').css('animation', 'mapSlotIn 300ms ease forwards reverse');
+//         await delay(300);
+//       }
+//       $('#beatmap_slot').text('');
+//       cache.map_slot_active = false;
+//     }
+//   }
+
+const mappoolMap = computed(() => { return mappoolReplicant.data?.beatmaps.find(m => m.beatmap_id === songDataReplicant.data?.id) });
+
+const mapStatsAfterMods = computed(() => {
+  return getModdedStats(songDataReplicant.data?.CSRaw ?? 0,
+      songDataReplicant.data?.ARRaw ?? 0,
+      songDataReplicant.data?.ODRaw ?? 0,
+      songDataReplicant.data?.lengthRaw ?? 0,
+      mappoolMap?.value?.mods ?? songDataReplicant.data?.mods ?? ""
+  )
 })
 </script>
 
@@ -455,7 +496,8 @@ const firstTo = computed(() => {
               <div class="beatmap-slot-container visible" id="beatmap_slot_container">
                 <div class="beatmap-slot" id="beatmap_slot"></div>
               </div>
-              <div class="beatmap-image" id="beatmap_image"></div>
+              <!-- TODO: use local path for cover image instead of remote asset -->
+              <div class="beatmap-image" id="beatmap_image" :style="{ backgroundImage: `url(${songDataReplicant.data?.coverUrl})`}"></div>
               <div class="picked-by-container" id="picked_by_container">
                 <div class="picked-by-text" id="picked_by">PICKED BY</div>
               </div>
@@ -463,34 +505,34 @@ const firstTo = computed(() => {
           </div>
           <div class="beatmap-stats-container">
             <div class="beatmap-title-container">
-              <div class="beatmap-title" id="title"></div>
-              <div class="beatmap-subtitle" id="subtitle"></div>
+              <div class="beatmap-title" id="title">{{ songDataReplicant.data?.artist ?? 'unknown' }} - {{ songDataReplicant.data?.title ?? 'unknown' }}</div>
+              <div class='beatmap-subtitle' id='subtitle'>[{{ songDataReplicant.data?.difficulty ?? 'unknown' }}] by {{ mappoolMap?.mapper || songDataReplicant.data?.creator || 'unknown' }}</div>
             </div>
             <div class="beatmap-attributes-container">
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">CS</div>
-                <div class="beatmap-attribute__value" id="cs"></div>
+                <div class="beatmap-attribute__value" id="cs">{{ (Math.round(mapStatsAfterMods.cs * 10) / 10).toFixed(1) }}</div>
               </div>
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">AR</div>
-                <div class="beatmap-attribute__value" id="ar"></div>
+                <div class="beatmap-attribute__value" id="ar">{{ (Math.round(mapStatsAfterMods.ar * 10) / 10).toFixed(1) }}</div>
               </div>
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">OD</div>
-                <div class="beatmap-attribute__value" id="od"></div>
+                <div class="beatmap-attribute__value" id="od">{{ (Math.round(mapStatsAfterMods.od * 10) / 10).toFixed(1) }}</div>
               </div>
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">BPM</div>
-                <div class="beatmap-attribute__value" id="bpm"></div>
+                <div class="beatmap-attribute__value" id="bpm">{{ mappoolMap?.bpm ?? 0 }}</div>
+                <!-- NOTE: BPM is fetched from static json instead of being calculated via mods-->
               </div>
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">LEN</div>
-                <div class="beatmap-attribute__value" id="length"></div>
+                <div class="beatmap-attribute__value" id="length">{{ formatLength(mapStatsAfterMods.length) }}</div>
               </div>
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">SR</div>
-                <div class="beatmap-attribute__value"><span id="sr"></span><i
-                    class="fa-solid fa-star"></i></div>
+                <div class="beatmap-attribute__value"><span id="sr">{{ mappoolMap?.sr ?? 0 }}</span><i class="fa-solid fa-star"></i></div>
               </div>
             </div>
           </div>

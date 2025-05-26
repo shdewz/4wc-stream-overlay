@@ -34,26 +34,16 @@ export type TheCreatorSchema = string;
  * An explanation about the purpose of this instance.
  */
 export type TheSRSchema = string;
-/**
- * An explanation about the purpose of this instance.
- */
-export type TheLengthSchema = string;
-/**
- * An explanation about the purpose of this instance.
- */
+export type LengthAfterApplyingMods = string;
+export type LengthBeforeApplyingMods = number;
 export type TheARSchema = string;
-/**
- * An explanation about the purpose of this instance.
- */
-export type TheODSchema = string;
-/**
- * An explanation about the purpose of this instance.
- */
-export type TheCSSchema = string;
-/**
- * An explanation about the purpose of this instance.
- */
-export type TheBPMSchema = string;
+export type ARBeforeApplyingMods = number;
+export type ODAfterApplyingMods = string;
+export type ODBeforeApplyingMods = number;
+export type CSAfterApplyingMods = string;
+export type CSBeforeApplyingMods = number;
+export type BPMAfterApplyingMods = string;
+export type LettersAcronymsOfActiveMods = string;
 /**
  * An explanation about the purpose of this instance.
  */
@@ -90,15 +80,25 @@ export interface CurrentOsuSongReplicant {
 	difficulty?: TheDifficultySchema;
 	creator?: TheCreatorSchema;
 	SR?: TheSRSchema;
-	length?: TheLengthSchema;
+	length?: LengthAfterApplyingMods;
+	lengthRaw?: LengthBeforeApplyingMods;
 	AR?: TheARSchema;
-	OD?: TheODSchema;
-	CS?: TheCSSchema;
-	BPM?: TheBPMSchema;
+	ARRaw?: ARBeforeApplyingMods;
+	OD?: ODAfterApplyingMods;
+	ODRaw?: ODBeforeApplyingMods;
+	CS?: CSAfterApplyingMods;
+	CSRaw?: CSBeforeApplyingMods;
+	BPM?: BPMAfterApplyingMods;
+	BPMRaw?: BPMBeforeApplyingMods;
+	mods?: LettersAcronymsOfActiveMods;
 	stage?: TheStageSchema;
 	index?: TheIndexSchema;
 	category?: TheCategorySchema;
 	coverUrl?: TheCoverUrlSchema;
 	localBackgroundPath?: TheLocalBackgroundPathSchema;
 	songsFolderPath?: TheSongsFolderPathSchema;
+}
+export interface BPMBeforeApplyingMods {
+	min: number;
+	max: number;
 }

@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="fix osuTourney schema missing required properties">
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="fill stars based on tourney score">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/osuTourney.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/osuTourney.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/osuSong.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/osuSong.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/browser_shared/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/browser_shared/utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/extension/gosumemory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/gosumemory.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphics/main/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main/main.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/osuTourney.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/osuTourney.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/schemas/osuSong.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/osuSong.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,34 +55,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/4wc-nodecg&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.16.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.15.21&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/daohe/WebstormProjects/4wc-stream-overlay/src/assets&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/daohe/.local/share/fnm/node-versions/v22.16.0/installation/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.schema-types.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.watch.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.appearance&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/daohe/WebstormProjects/4wc-stream-overlay/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/4wc-nodecg",
+    "javascript.nodejs.core.library.configured.version": "22.16.0",
+    "javascript.nodejs.core.library.typings.version": "22.15.21",
+    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/src/assets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/daohe/.local/share/fnm/node-versions/v22.16.0/installation/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.schema-types.executor": "Run",
+    "npm.start.executor": "Run",
+    "npm.watch.executor": "Run",
+    "settings.editor.selected.configurable": "editor.preferences.appearance",
+    "ts.external.directory.path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
+    ],
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/assets" />
@@ -91,7 +95,7 @@
       <recent name="$PROJECT_DIR$/src/graphics/gameplay" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.watch">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -239,7 +243,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748274149371</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fill stars based on tourney score">
+      <option name="closed" value="true" />
+      <created>1748275466794</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1748275466794</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +287,7 @@
     <MESSAGE value="fix missing/broken CSS in main screen" />
     <MESSAGE value="revert unminify jquery.min.js" />
     <MESSAGE value="fix osuTourney schema missing required properties" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix osuTourney schema missing required properties" />
+    <MESSAGE value="fill stars based on tourney score" />
+    <option name="LAST_COMMIT_MESSAGE" value="fill stars based on tourney score" />
   </component>
 </project>

@@ -8,6 +8,7 @@ import {
   gosumemoryStatusReplicant,
   osuTourneyReplicant,
 } from './util/replicants';
+import { formatLength, getModdedStats } from "@4wc-stream-overlay/browser_shared/utils";
 
 let ws: undefined | WebSocket;
 let currentDataRaw: string;
@@ -39,14 +40,6 @@ function formatDifficultyProperty(prop: number) {
   return (Math.round(prop * 100) / 100).toFixed(1);
 }
 
-function formatLength(len: number) {
-  let secs = Math.ceil(len / 1000);
-  const mins = Math.floor(secs / 60);
-  secs -= mins * 60;
-
-  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-}
-
 function osuSongEquals(a: CurrentOsuSongReplicant, b: CurrentOsuSongReplicant) {
   if (a === b) return true;
 
@@ -75,7 +68,17 @@ function applyData(val: CurrentGosumemoryData) {
   if (val) {
     const overrides = findOverrides(val.menu.bm.id, val.menu.bm.md5);
     const setId = (overrides.setId !== undefined && overrides.setId > 0) ? overrides.setId : val.menu.bm.set;
-    const newObj = {
+
+    // Read AR/OD/CS from memory instead of from .osu if gosumemory .osu parsing and pp calc is disabled
+    const moddedStats = getModdedStats(
+        val.menu.pp[99] === 0 ? val.menu.bm.stats.memoryCS : val.menu.bm.stats.CS,
+        val.menu.pp[99] === 0 ? val.menu.bm.stats.memoryAR : val.menu.bm.stats.AR,
+        val.menu.pp[99] === 0 ? val.menu.bm.stats.memoryOD : val.menu.bm.stats.OD,
+        val.menu.bm.time.full,
+        val.menu.mods.str
+    );
+
+    const newSongDataObj = {
       id: val.menu.bm.id,
       setId,
       artist: overrides.artist || val.menu.bm.metadata.artist,
@@ -84,12 +87,17 @@ function applyData(val: CurrentGosumemoryData) {
       creator: overrides.creator || val.menu.bm.metadata.mapper,
       SR: overrides.SR || formatSR(val.menu.bm.stats.fullSR),
       // eslint-disable-next-line no-bitwise
-      length: overrides.length || formatLength(val.menu.bm.time.mp3 / (val.menu.mods.num & 64 ? 1.5 : 1)),
-      // Read AR/OD/CS from memory instead of from .osu if gosumemory .osu parsing and pp calc is disabled
-      OD: overrides.OD || formatDifficultyProperty(val.menu.pp[99] === 0 ? val.menu.bm.stats.memoryOD : val.menu.bm.stats.OD),
-      AR: overrides.AR || formatDifficultyProperty(val.menu.pp[99] === 0 ? val.menu.bm.stats.memoryAR : val.menu.bm.stats.AR),
-      CS: overrides.CS || formatDifficultyProperty(val.menu.pp[99] === 0 ? val.menu.bm.stats.memoryCS : val.menu.bm.stats.CS),
+      length: overrides.length || formatLength(moddedStats.length),
+      lengthRaw: moddedStats.lengthRaw,
+      OD: overrides.OD || formatDifficultyProperty(moddedStats.od),
+      ODRaw: moddedStats.odRaw,
+      AR: overrides.AR || formatDifficultyProperty(moddedStats.ar),
+      ARRaw: moddedStats.arRaw,
+      CS: overrides.CS || formatDifficultyProperty(moddedStats.cs),
+      CSRaw: moddedStats.csRaw,
       BPM: overrides.BPM || formatBPM(val.menu.bm.stats.BPM),
+      BPMRaw: val.menu.bm.stats.BPM,
+      mods: val.menu.mods.str,
       stage: overrides.stage,
       index: overrides.index,
       category: overrides.category,
@@ -97,8 +105,8 @@ function applyData(val: CurrentGosumemoryData) {
       localBackgroundPath: overrides.localBackgroundPath || val.menu.bm.path.full || '',
       songsFolderPath: val.settings.folders.songs,
     };
-    if (!osuSongReplicant.value || !osuSongEquals(osuSongReplicant.value, newObj)) {
-      osuSongReplicant.value = newObj;
+    if (!osuSongReplicant.value || !osuSongEquals(osuSongReplicant.value, newSongDataObj)) {
+      osuSongReplicant.value = newSongDataObj;
     }
 
     const newOsuTourneyReplicant = {
