@@ -5,85 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add static json data and gosu dashboards">
-      <change afterPath="$PROJECT_DIR$/src/assets/base_bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/AR.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/AT.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/AU.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/BA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/BE.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/BG.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/BR.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/BY.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/CA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/CH.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/CL.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/CN.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/CO.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/CZ.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/DE.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/DK.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/ES.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/FI.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/FR.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/GB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/GR.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/HK.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/HU.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/ID.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/IE.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/IN.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/IS.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/IT.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/JP.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/KG.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/KR.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/KZ.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/LT.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/LV.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/MO.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/MX.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/MY.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/NL.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/NO.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/NZ.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/PA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/PE.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/PH.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/PL.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/PT.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/RO.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/RU.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/SA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/SE.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/SG.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/SK.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/TH.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/TR.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/TW.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/UA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/US.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/VN.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/flags/XX.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/logo_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/browser_shared/utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/common.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/fonts/D-DIN-Bold.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/fonts/D-DIN-Italic.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/fonts/D-DIN.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Mont-Bold.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Mont-SemiBold.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/fonts/NotoSans-Black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/fonts/NotoSans-ExtraBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/fonts/NotoSans-SemiBold.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data/teams.json" beforeDir="false" afterPath="$PROJECT_DIR$/_data/teams.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/osuTourney.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/osuTourney.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/browser_shared/replicants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/browser_shared/replicants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/extension/gosumemory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/gosumemory.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphics/gameplay/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/gameplay/main.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/configschema.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/configschema.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/countdown.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/countdown.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/exampleReplicant.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/exampleReplicant.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/gosumemory.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/gosumemory.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/gosumemoryStatus.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/gosumemoryStatus.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/osuSong.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/osuSong.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/osuSongOverrides.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/osuSongOverrides.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/osuTourney.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/osuTourney.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/tournamentMappool.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/tournamentMappool.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/schemas/tournamentTeams.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/tournamentTeams.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/gameplay/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/gameplay/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +170,7 @@
       <updated>1748210803368</updated>
       <workItem from="1748210804570" duration="3076000" />
       <workItem from="1748213930379" duration="4753000" />
-      <workItem from="1748218748658" duration="14353000" />
+      <workItem from="1748218748658" duration="17189000" />
     </task>
     <task id="LOCAL-00001" summary="update config">
       <option name="closed" value="true" />

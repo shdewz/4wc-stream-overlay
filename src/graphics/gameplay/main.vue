@@ -7,6 +7,9 @@ import $ from "jquery"
 import {delay} from "@4wc-stream-overlay/browser_shared/utils";
 import {computed} from "vue";
 
+import '../../assets/common.css';
+// import './style.css';
+
 
 const TEAMSIZE = 4;
 const DEBUG = false;
@@ -417,8 +420,6 @@ const team_seeds = computed((index: number) => {
   return [teamsReplicant.data?.find(t => t.team === redTeamName)?.seed ?? '?',
     teamsReplicant.data?.find(t => t.team === blueTeamName)?.seed ?? '?'];
 })
-
-
 </script>
 
 <template>
@@ -550,13 +551,12 @@ const team_seeds = computed((index: number) => {
 </template>
 
 <style scoped>
-:root {
+:global(:root) {
   --border-width: 0px;
   --border-color: none;
 }
 
-body,
-html {
+:global(body), :global(html) {
   padding: 0;
   margin: 0;
   /* overflow-y: hidden; */
@@ -971,16 +971,6 @@ html {
   padding-left: 4px;
 }
 
-@keyframes mapSlotIn {
-  from {
-    transform: translateX(-44px);
-  }
-
-  to {
-    transform: translateX(0px);
-  }
-}
-
 .picked-by-container {
   position: absolute;
   bottom: 0;
@@ -1002,16 +992,6 @@ html {
   padding: 0 8px;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
   transform: translateX(1px) translateY(1px);
-}
-
-@keyframes pickerIn {
-  from {
-    transform: translateY(25px);
-  }
-
-  to {
-    transform: translateY(0px);
-  }
 }
 
 .beatmap-image {
@@ -1161,16 +1141,6 @@ html {
   overflow: hidden;
 }
 
-@keyframes chatIn {
-  from {
-    transform: translateX(calc(100% + 60px + 32px));
-  }
-
-  to {
-    transform: translateX(60px);
-  }
-}
-
 .chat-title {
   position: absolute;
   top: 0;
@@ -1281,6 +1251,64 @@ html {
   animation: none;
 }
 
+.hourglass-container {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--accent);
+}
+
+.hourglass-container i {
+  animation: spin, spinback;
+  animation-delay: 1s, 1s;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+/*Scrollbar*/
+:global(::-webkit-scrollbar) {
+  width: 0px;
+  visibility: 0;
+}
+
+/* Track */
+:global(::-webkit-scrollbar-track) {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  visibility: 0;
+}
+
+/* Handle */
+:global(::-webkit-scrollbar-thumb) {
+  background: grey;
+  border-radius: 10px;
+}
+</style>
+
+<style>
+@keyframes spin {
+  100% {
+    transform: rotate(180deg)
+  }
+}
+
+@keyframes spinback {
+  0% {
+    transform: rotate(181deg)
+  }
+
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
 @keyframes progress {
   0% {
     transform: translateY(0);
@@ -1305,59 +1333,33 @@ html {
   }
 }
 
-.hourglass-container {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 32px;
-  height: 32px;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: var(--accent);
-}
+@keyframes chatIn {
+  from {
+    transform: translateX(calc(100% + 60px + 32px));
+  }
 
-.hourglass-container i {
-  animation: spin, spinback;
-  animation-delay: 1s, 1s;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes spin {
-  100% {
-    transform: rotate(180deg)
+  to {
+    transform: translateX(60px);
   }
 }
 
-@keyframes spinback {
-  0% {
-    transform: rotate(181deg)
+@keyframes pickerIn {
+  from {
+    transform: translateY(25px);
   }
 
-  100% {
-    transform: rotate(360deg)
+  to {
+    transform: translateY(0px);
   }
 }
 
-/*Scrollbar*/
-::-webkit-scrollbar {
-  width: 0px;
-  visibility: 0;
-}
+@keyframes mapSlotIn {
+  from {
+    transform: translateX(-44px);
+  }
 
-/* Track */
-::-webkit-scrollbar-track {
-  margin-top: 25px;
-  margin-bottom: 25px;
-  visibility: 0;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: grey;
-  border-radius: 10px;
+  to {
+    transform: translateX(0px);
+  }
 }
 </style>

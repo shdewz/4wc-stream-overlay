@@ -118,7 +118,7 @@ html {
 .team-flag {
 	width: 70px;
 	height: 47px;
-	background-image: url('../_shared/assets/flags/XX.png');
+	background-image: url('@4wc-stream-overlay/assets/flags/XX.png');
 }
 
 .team-name {
@@ -177,7 +177,7 @@ html {
 .logo {
 	width: 80px;
 	height: 80px;
-	background-image: url('../_shared/assets/logo.png');
+	background-image: url('@4wc-stream-overlay/assets/logo.png');
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
