@@ -137,20 +137,6 @@ const animation = {
 //     }
 //   }
 //
-//
-//   if (cache.starsVisible !== data.tourney.starsVisible) {
-//     cache.starsVisible = data.tourney.starsVisible;
-//     if (cache.starsVisible) {
-//       $('#blue_points').css('opacity', 1);
-//       $('#red_points').css('opacity', 1);
-//
-//     } else {
-//       $('#blue_points').css('opacity', 0);
-//       $('#red_points').css('opacity', 0);
-//     }
-//   }
-//
-//
 //   if (teams && data.tourney.team.left && cache.nameRed !== data.tourney.team.left) {
 //     cache.nameRed = data.tourney.team.left || 'Red Team';
 //     $('#red_name').text(cache.nameRed);
@@ -169,29 +155,7 @@ const animation = {
 //     $('#blue_seed').text(`SEED ${team?.seed ?? 'X'}`);
 //   }
 //
-//   if (cache.bestOf !== data.tourney.bestOF) {
-//     const newmax = Math.ceil(data.tourney.bestOF / 2);
-//     if (cache.bestOf === undefined) {
-//       for (let i = 1; i <= newmax; i++) {
-//         $('#red_points').append($('<div></div>').attr('id', `red${i}`).addClass('team-point red'));
-//         $('#blue_points').append($('<div></div>').attr('id', `blue${i}`).addClass('team-point blue'));
-//       }
-//     }
-//     else if (cache.bestOf < data.tourney.bestOF) {
-//       for (let i = cache.firstTo + 1; i <= newmax; i++) {
-//         $('#red_points').append($('<div></div>').attr('id', `red${i}`).addClass('team-point red'));
-//         $('#blue_points').append($('<div></div>').attr('id', `blue${i}`).addClass('team-point blue'));
-//       }
-//     }
-//     else {
-//       for (let i = firstTo; i > newmax; i--) {
-//         $(`#red${i}`).remove();
-//         $(`#blue${i}`).remove();
-//       }
-//     }
-//     cache.bestOf = data.tourney.bestOF;
-//     cache.firstTo = newmax;
-//   }
+
 //
 //   if (cache.starsRed !== data.tourney.points.left) {
 //     cache.starsRed = data.tourney.points.left;
@@ -420,6 +384,10 @@ const team_seeds = computed((index: number) => {
   return [teamsReplicant.data?.find(t => t.team === redTeamName)?.seed ?? '?',
     teamsReplicant.data?.find(t => t.team === blueTeamName)?.seed ?? '?'];
 })
+
+const firstTo = computed(() => {
+  return Math.ceil((tourneyDataReplicant.data?.bestOf ?? 0) / 2);
+})
 </script>
 
 <template>
@@ -438,7 +406,9 @@ const team_seeds = computed((index: number) => {
             <div class="team-flag" id="red_flag" :style="{ backgroundImage: `url(${team_flags[0]})` }"></div>
             <div class="team-name-text" id="red_name">{{ tourneyDataReplicant.data?.teamName?.left ?? 'loading...' }}</div>
           </div>
-          <div class="team-points red" id="red_points"></div>
+          <div class="team-points red" id="red_points" :style="{ opacity: tourneyDataReplicant.data?.starsVisible === true ? 1 : 0 }">
+            <div class="team-point red" v-for="i in firstTo" :key="`starRed${i}`" :id="`red${i}`"></div>
+          </div>
         </div>
       </div>
       <div class="header-middle">
@@ -454,7 +424,9 @@ const team_seeds = computed((index: number) => {
             <div class="team-name-text" id="blue_name">{{ tourneyDataReplicant.data?.teamName?.right ?? 'loading...' }}</div>
             <div class="team-flag" id="blue_flag" :style="{ backgroundImage: `url(${team_flags[1]})` }"></div>
           </div>
-          <div class="team-points blue" id="blue_points"></div>
+          <div class="team-points blue" id="blue_points" :style="{ opacity: tourneyDataReplicant.data?.starsVisible === true ? 1 : 0 }">
+            <div class="team-point blue" v-for="i in firstTo" :key="`starBlue${i}`" :id="`blue${i}`"></div>
+          </div>
         </div>
         <div class="team-border blue">
           <div class="team-seed" id="blue_seed">SEED {{ team_seeds[1] }}</div>

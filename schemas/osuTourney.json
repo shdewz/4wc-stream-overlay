@@ -6,6 +6,7 @@
     "state": "unknown",
     "scoresVisible": true,
     "starsVisible": false,
+    "bestOf": 9,
     "teamName": {
       "left": "Red Team",
       "right": "Blue Team"
@@ -28,6 +29,9 @@
     },
     "starsVisible": {
       "type": "boolean"
+    },
+    "bestOf": {
+      "type": "integer"
     },
     "teamName": {
       "type": "object",
@@ -100,5 +104,5 @@
     }
   },
   "additionalProperties": false,
-  "required": ["state", "scoresVisible", "clients", "time", "starsVisible", "teamName"]
+  "required": ["state", "scoresVisible", "clients", "time", "starsVisible", "teamName", "bestOf"]
 }

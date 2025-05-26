@@ -106,6 +106,7 @@ function applyData(val: CurrentGosumemoryData) {
       scoresVisible: val.tourney.manager.bools.scoreVisible,
       starsVisible: val.tourney.manager.bools.starsVisible,
       teamName: val.tourney.manager.teamName,
+      bestOf: val.tourney.manager.bestOF,
       clients: val.tourney.ipcClients?.map((client) => ({
         score: client.gameplay.score,
         unstableRate: client.gameplay.hits.unstableRate,
