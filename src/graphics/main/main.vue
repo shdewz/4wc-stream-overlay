@@ -155,20 +155,6 @@ const animation = {
 //     $('#blue_seed').text(`SEED ${team?.seed ?? 'X'}`);
 //   }
 //
-
-//
-//   if (cache.starsRed !== data.tourney.points.left) {
-//     cache.starsRed = data.tourney.points.left;
-//     for (let i = 1; i <= cache.starsRed; i++) { $(`#red${i}`).addClass('filled'); }
-//     for (let i = cache.starsRed + 1; i <= cache.firstTo; i++) { $(`#red${i}`).removeClass('filled'); }
-//   }
-//
-//   if (cache.starsBlue !== data.tourney.points.right) {
-//     cache.starsBlue = data.tourney.points.right;
-//     for (let i = 1; i <= cache.starsBlue; i++) { $(`#blue${i}`).addClass('filled'); }
-//     for (let i = cache.starsBlue + 1; i <= cache.firstTo; i++) { $(`#blue${i}`).removeClass('filled'); }
-//   }
-//
 //   if (mappool && cache.md5 !== data.beatmap.checksum) {
 //     cache.md5 = data.beatmap.checksum;
 //     setTimeout(() => { cache.update_stats = true }, 250);
@@ -407,7 +393,11 @@ const firstTo = computed(() => {
             <div class="team-name-text" id="red_name">{{ tourneyDataReplicant.data?.teamName?.left ?? 'loading...' }}</div>
           </div>
           <div class="team-points red" id="red_points" :style="{ opacity: tourneyDataReplicant.data?.starsVisible === true ? 1 : 0 }">
-            <div class="team-point red" v-for="i in firstTo" :key="`starRed${i}`" :id="`red${i}`"></div>
+            <div class="team-point red"
+                 v-for="i in firstTo"
+                 :class="{'filled': (tourneyDataReplicant.data?.stars.left ?? 0) >= i}"
+                 :key="`starRed${i}`"
+                 :id="`red${i}`" />
           </div>
         </div>
       </div>
@@ -425,7 +415,11 @@ const firstTo = computed(() => {
             <div class="team-flag" id="blue_flag" :style="{ backgroundImage: `url(${team_flags[1]})` }"></div>
           </div>
           <div class="team-points blue" id="blue_points" :style="{ opacity: tourneyDataReplicant.data?.starsVisible === true ? 1 : 0 }">
-            <div class="team-point blue" v-for="i in firstTo" :key="`starBlue${i}`" :id="`blue${i}`"></div>
+            <div class="team-point blue"
+                 v-for="i in firstTo"
+                 :class="{'filled': (tourneyDataReplicant.data?.stars.right ?? 0) >= i}"
+                 :key="`starBlue${i}`"
+                 :id="`blue${i}`" />
           </div>
         </div>
         <div class="team-border blue">

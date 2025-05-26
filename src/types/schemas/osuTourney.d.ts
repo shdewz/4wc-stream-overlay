@@ -15,6 +15,10 @@ export interface OsuTourneyData {
 		left: string;
 		right: string;
 	};
+	stars: {
+		left: number;
+		right: number;
+	};
 	clients: {
 		score: number;
 		unstableRate: number;

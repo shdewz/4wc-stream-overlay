@@ -11,6 +11,10 @@
       "left": "Red Team",
       "right": "Blue Team"
     },
+    "stars": {
+      "left": 0,
+      "right": 0
+    },
     "clients": [],
     "time": {
       "firstObj": 0,
@@ -52,6 +56,15 @@
           "type": "string",
           "default": ""
         }
+      },
+      "additionalProperties": false
+    },
+    "stars": {
+      "type": "object",
+      "required": ["left", "right"],
+      "properties": {
+        "left": { "type": "integer" },
+        "right": { "type": "integer" }
       },
       "additionalProperties": false
     },
@@ -104,5 +117,5 @@
     }
   },
   "additionalProperties": false,
-  "required": ["state", "scoresVisible", "clients", "time", "starsVisible", "teamName", "bestOf"]
+  "required": ["state", "scoresVisible", "clients", "time", "starsVisible", "teamName", "bestOf", "stars"]
 }
