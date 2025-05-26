@@ -8,3 +8,4 @@ export * from './osuSongOverrides';
 export * from './osuTourney';
 export * from './tournamentMappool';
 export * from './tournamentTeams';
+export * from './tournamentPickBans';

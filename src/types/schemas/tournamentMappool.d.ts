@@ -6,21 +6,24 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type PropertiesBeatmaps = PoolBeatmap[];
+
 export interface TournamentMappoolData {
 	stage: string;
-	beatmaps: {
-		beatmap_id: number;
-		identifier: string;
-		mods: string;
-		sr: number;
-		bpm: number;
-		title: string;
-		artist: string;
-		mapper: string;
-		difficulty: string;
-		beatmapset_id: number;
-		custom: boolean;
-		original: boolean;
-		ez_multiplier: number;
-	}[];
+	beatmaps: PropertiesBeatmaps;
+}
+export interface PoolBeatmap {
+	beatmap_id: number;
+	identifier: string;
+	mods: string;
+	sr: number;
+	bpm: number;
+	title: string;
+	artist: string;
+	mapper: string;
+	difficulty: string;
+	beatmapset_id: number;
+	custom: boolean;
+	original: boolean;
+	ez_multiplier: number;
 }

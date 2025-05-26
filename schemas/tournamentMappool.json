@@ -29,8 +29,11 @@
       "type": "string"
     },
     "beatmaps": {
+      "$id": "#/properties/beatmaps",
       "type": "array",
       "items": {
+        "$id": "#/properties/beatmaps/items",
+        "title": "Pool Beatmap",
         "type": "object",
         "required": [
           "beatmap_id",

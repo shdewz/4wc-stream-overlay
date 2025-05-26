@@ -11,7 +11,7 @@ import { getModdedStats } from "@4wc-stream-overlay/browser_shared/utils";
 // const TEAMSIZE = 4;
 // const DEBUG = false;
 //
-// const cache = {};
+const cache = {};
 // const timer = {
 //   in_progress: false,
 //   object: null,
@@ -45,66 +45,6 @@ const hidePickByLabel = async () => {
   await delay(300);
   $('#picked_by').text('');
 };
-
-// window.setInterval(async () => {
-//   const currentPick = localStorage.getItem('current_pick');
-//
-//   const checkValid = async () => {
-//     if (!cache.mapid) return -9;
-//
-//     const pickValue = currentPick.split('/');
-//     if (pickValue.length !== 2) return -1;
-//
-//     const parsedBeatmapID = parseInt(pickValue[0]);
-//     if (isNaN(parsedBeatmapID)) return -2;
-//
-//     if (currentPick === cache.currentPick && cache.mapid == parsedBeatmapID) return -5;
-//     if (cache.mapid !== parsedBeatmapID) return -6;
-//
-//     const parsedTeam = pickValue[1];
-//     if (parsedTeam !== 'red' && parsedTeam !== 'blue') return -3;
-//
-//     cache.currentPick = currentPick;
-//
-//     // if (true) {  // bypass beatmap id checking during development
-//     if (cache.mapid === parsedBeatmapID) {
-//       const mapObj = mappool.beatmaps.find(m => m.beatmap_id === cache.mapid);
-//       if (mapObj?.identifier?.toUpperCase().includes('TB')) return -4;
-//       if (cache.nameRed && cache.nameBlue) {
-//         if (cache.pickLabelEnabled) {
-//           await hidePickByLabel();
-//         }
-//
-//         requestAnimationFrame(_ => {
-//           $('#picked_by').text(`PICKED BY ${(parsedTeam === 'red' ? cache.nameRed : cache.nameBlue).toUpperCase()}`);
-//           $('#picked_by_container').css('animation', 'none');
-//           void $('#picked_by_container')[0].offsetWidth; // Trigger reflow
-//           $('#picked_by_container').css('animation', 'pickerIn 300ms 100ms ease forwards');
-//         });
-//
-//         cache.pickLabelEnabled = true;
-//       }
-//       else {
-//         await hidePickByLabel();
-//         cache.pickLabelEnabled = false;
-//       }
-//       return 0;
-//     }
-//     return -255;
-//   };
-//
-//   const validityState = await checkValid();
-//
-//   if (validityState === -5)
-//     return;
-//
-//   if (validityState !== 0) {
-//     if (cache.pickLabelEnabled) {
-//       await hidePickByLabel();
-//       cache.pickLabelEnabled = false;
-//     }
-//   }
-// }, 500);
 
 const animation = {
   red_score: new CountUp('score_red', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
@@ -328,7 +268,67 @@ watch(() => mappoolMap.value?.identifier, async (newIdentifier, _) => {
       mapSlotAnimatingOut.value = false;
     }
   }
-}, {immediate: true})
+}, {immediate: true});
+
+window.setInterval(async () => {
+  // const currentPick = localStorage.getItem('current_pick');
+  //
+  // const checkValid = async () => {
+  //   if (!(songDataReplicant.data?.id)) return -9;
+  //
+  //   const pickValue = currentPick.split('/');
+  //   if (pickValue.length !== 2) return -1;
+  //
+  //   const parsedBeatmapID = parseInt(pickValue[0]);
+  //   if (isNaN(parsedBeatmapID)) return -2;
+  //
+  //   if (currentPick === cache.currentPick && cache.mapid == parsedBeatmapID) return -5;
+  //   if (cache.mapid !== parsedBeatmapID) return -6;
+  //
+  //   const parsedTeam = pickValue[1];
+  //   if (parsedTeam !== 'red' && parsedTeam !== 'blue') return -3;
+  //
+  //   cache.currentPick = currentPick;
+  //
+  //   // if (true) {  // bypass beatmap id checking during development
+  //   if (cache.mapid === parsedBeatmapID) {
+  //     const mapObj = mappool.beatmaps.find(m => m.beatmap_id === cache.mapid);
+  //     if (mapObj?.identifier?.toUpperCase().includes('TB')) return -4;
+  //     if (cache.nameRed && cache.nameBlue) {
+  //       if (cache.pickLabelEnabled) {
+  //         await hidePickByLabel();
+  //       }
+  //
+  //       requestAnimationFrame(_ => {
+  //         $('#picked_by').text(`PICKED BY ${(parsedTeam === 'red' ? cache.nameRed : cache.nameBlue).toUpperCase()}`);
+  //         $('#picked_by_container').css('animation', 'none');
+  //         void $('#picked_by_container')[0].offsetWidth; // Trigger reflow
+  //         $('#picked_by_container').css('animation', 'pickerIn 300ms 100ms ease forwards');
+  //       });
+  //
+  //       cache.pickLabelEnabled = true;
+  //     }
+  //     else {
+  //       await hidePickByLabel();
+  //       cache.pickLabelEnabled = false;
+  //     }
+  //     return 0;
+  //   }
+  //   return -255;
+  // };
+  //
+  // const validityState = await checkValid();
+  //
+  // if (validityState === -5)
+  //   return;
+  //
+  // if (validityState !== 0) {
+  //   if (cache.pickLabelEnabled) {
+  //     await hidePickByLabel();
+  //     cache.pickLabelEnabled = false;
+  //   }
+  // }
+}, 500);
 </script>
 
 <template>

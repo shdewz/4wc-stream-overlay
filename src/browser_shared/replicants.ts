@@ -15,8 +15,9 @@ import type {
   // SheetsKeyValueStoreReplicant,
   // UserExtendedReplicant,
   // ShowCamerasReplicant,
+  TournamentTeamsData,
+  TournamentPicksAndBans,
 } from '../types/schemas';
-import {TournamentTeamsData} from "../types/schemas";
 
 export const namespace = '4wc-stream-overlay';
 
@@ -40,6 +41,7 @@ export interface ReplicantTypes {
   // userMetadata: UserExtendedReplicant;
   tournamentTeams: TournamentTeamsData;
   tournamentMappool: TournamentMappoolData;
+  tournamentPickBans: TournamentPicksAndBans;
 }
 
 export const replicantOptions = {
@@ -61,5 +63,6 @@ export const replicantOptions = {
   userMetadata: { persistent: true },
   showCasterCams: { persistent: false },
   tournamentTeams: { persistent: false },
-  tournamentMappool: { persistent: false }
+  tournamentMappool: { persistent: false },
+  tournamentPickBans: { persistent: true }, // helpful when needing to refresh page/restart nodecg
 } as const;
