@@ -15,7 +15,8 @@ import App from './main/main.vue';
 // Import dev mode styling (will only activate if OSUFR_DEV_MODE is true)
 import '@4wc-stream-overlay/browser_shared/dev-mode';
 
-import '@4wc-stream-overlay/browser_shared/styles/scrollbar-inhibit.css';
+import '@4wc-stream-overlay/assets/scrollbar-inhibit.css';
+import '@4wc-stream-overlay/assets/common.css';
 
 /* add icons to the library */
 library.add(faCaretRight);

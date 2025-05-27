@@ -6,12 +6,7 @@
 //
 // window.addEventListener('contextmenu', (e) => e.preventDefault());
 //
-// const beatmaps = new Set();
-// let mappool;
-// (async () => {
-//   $.ajaxSetup({ cache: false });
-//   mappool = await $.getJSON('../_data/beatmaps.json');
-// })();
+
 //
 // let socket = new ReconnectingWebSocket('ws://' + location.host + '/ws');
 //
@@ -177,10 +172,10 @@
 //   if (!maps || maps.length == 0) return;
 //
 //   localStorage.setItem('current_pick', '');
-//   $('#mappool_container').html('');
-//   for (const mod of [... new Set(maps.map(b => b.mods))]) {
-//     $('#mappool_container').append($('<div></div>').addClass('mod-container').attr('id', `mod-container-${mod.toLowerCase()}`));
-//   }
+//
+//
+//
+//
 //
 //   for (const beatmap of maps) {
 //     const bm = new Beatmap(beatmap);
@@ -313,40 +308,62 @@
 //   'Ranking': 4,
 // }
 
+// const beatmaps = new Set();
+// let mappool;
+// (async () => {
+//   $.ajaxSetup({ cache: false });
+//   mappool = await $.getJSON('../_data/beatmaps.json');
+// })();
+
+import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
+import BeatmapCard from './beatmap-card.vue';
+
+const tournamentMappoolReplicant = useReplicant('tournamentMappool');
+
 </script>
 
 <template>
   <div class="main">
     <div class="header"></div>
-    <div class="mappool-container" id="mappool_container"></div>
-    <div class="footer"></div>
-  </div>
-  <div class="controls">
-    <div class="current-picker control-item red" id="current_pick">RED PICK</div>
-    <div class="button switch-picker control-item" id="switch_picker" onclick="switchPick()">SWITCH PICK</div>
-    <div class="button auto-pick control-item" id="auto_pick" onclick="switchAutoPick()">ENABLE AUTOPICK</div>
-
-    <hr>
-
-    <div id="autoAdvanceSection">
-      <div id="autoAdvanceButton" class="button control-item" onclick="switchAutoAdvance()">AUTO ADVANCE: OFF
-      </div>
-      <div id="autoAdvanceTimer" class="control-label">
-        <span id="autoAdvanceTimerLabel"></span> <span id="autoAdvanceTimerTime"></span>
-      </div>
-      <div id="cancelAdvanceButton" class="button control-item" onclick="cancelAdvance()">Cancel transition</div>
-
-      <br/><br/>
-
-      <div class="control-label">Scenes<br>(click to override)</div><br>
-
-      <div id="sceneCollection">
-        <template id="sceneButtonTemplate">
-          <div class="button scene-button control-item">SWITCH TO __SCENE_NAME__</div>
-        </template>
+    <div class="mappool-container" id="mappool_container">
+      <div class="mod-container"
+           v-for="modPoolName in [... new Set(tournamentMappoolReplicant.data?.beatmaps.map(b => b.mods))]"
+           :key="modPoolName"
+           :id="`mod-container-${modPoolName.toLowerCase()}`">
+        <BeatmapCard
+            v-for="poolMap in tournamentMappoolReplicant.data?.beatmaps?.filter(m => m.mods === modPoolName)"
+            :key="poolMap.beatmap_id"
+            :poolBeatmap="poolMap"/>
       </div>
     </div>
+    <div class="footer"></div>
   </div>
+<!--  <div class="controls">-->
+<!--    <div class="current-picker control-item red" id="current_pick">RED PICK</div>-->
+<!--    <div class="button switch-picker control-item" id="switch_picker" onclick="switchPick()">SWITCH PICK</div>-->
+<!--    <div class="button auto-pick control-item" id="auto_pick" onclick="switchAutoPick()">ENABLE AUTOPICK</div>-->
+
+<!--    <hr>-->
+
+<!--    <div id="autoAdvanceSection">-->
+<!--      <div id="autoAdvanceButton" class="button control-item" onclick="switchAutoAdvance()">AUTO ADVANCE: OFF-->
+<!--      </div>-->
+<!--      <div id="autoAdvanceTimer" class="control-label">-->
+<!--        <span id="autoAdvanceTimerLabel"></span> <span id="autoAdvanceTimerTime"></span>-->
+<!--      </div>-->
+<!--      <div id="cancelAdvanceButton" class="button control-item" onclick="cancelAdvance()">Cancel transition</div>-->
+
+<!--      <br/><br/>-->
+
+<!--      <div class="control-label">Scenes<br>(click to override)</div><br>-->
+
+<!--      <div id="sceneCollection">-->
+<!--        <template id="sceneButtonTemplate">-->
+<!--          <div class="button scene-button control-item">SWITCH TO __SCENE_NAME__</div>-->
+<!--        </template>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 </template>
 
 <style scoped>
@@ -403,199 +420,6 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-}
-
-.map {
-  position: relative;
-  width: var(--map-width);
-  height: var(--map-height);
-  background-color: var(--dark);
-  border: 4px solid;
-  border-color: var(--border-default);
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  transition: 300ms ease;
-}
-
-.map.picked {
-  border-color: var(--light);
-}
-
-.map.picked.red {
-  border-color: var(--accent);
-}
-
-.map.picked.blue {
-  border-color: var(--accent);
-}
-
-.map.banned {
-  border-color: var(--border-banned);
-  color: #8f8f8f;
-}
-
-.map-image {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: var(--dark);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  filter: brightness(40%) grayscale(30%) blur(2px);
-  transform: scale(1.2);
-  z-index: 0;
-}
-
-.map-content {
-  z-index: 1;
-  display: flex;
-  align-items: center;
-}
-
-.mod-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 10px;
-  width: calc(var(--mod-width) - 2 * 12px);
-  border: 2px solid var(--border-default);
-  padding: 2px;
-  font-size: 1.4rem;
-  letter-spacing: 1px;
-  font-weight: 700;
-  background-color: var(--border-banned);
-  color: var(--light);
-  transition: border-color 300ms ease, background-color 300ms ease;
-}
-
-.mod-icon.nm {
-  border-color: #5677b3;
-  background-color: #3d5685;
-}
-
-.mod-icon.hd {
-  border-color: #b9935a;
-  background-color: #85663d;
-}
-
-.mod-icon.hr {
-  border-color: #b95c5c;
-  background-color: #853d3d;
-}
-
-.mod-icon.dt {
-  border-color: #9b5cb9;
-  background-color: #6b3d85;
-}
-
-.mod-icon.fm {
-  border-color: #58ac6a;
-  background-color: #3d7c4b;
-}
-
-.mod-icon.tb {
-  border-color: #52949c;
-  background-color: #396469;
-}
-
-.mod-icon.banned {
-  color: #bebebe;
-  border-color: #474747;
-  background-color: #292929;
-}
-
-.map-stats {
-  display: flex;
-  flex-direction: column;
-}
-
-.map-stats-section {
-  display: flex;
-  gap: 4px;
-}
-
-.map-top {
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
-.map-title {
-  width: calc(var(--map-width) - var(--mod-width) - 8px);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.map-difficulty {
-  max-width: 170px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.map-difficulty-container {
-  display: flex;
-  overflow: hidden;
-}
-
-.map-difficulty-container::before {
-  content: '['
-}
-
-.map-difficulty-container::after {
-  content: ']'
-}
-
-.map-mapper::before {
-  content: 'by ';
-}
-
-.picked-by-label {
-  overflow: hidden;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background-color: var(--border-default);
-  width: 0;
-  padding: 0px 0px;
-  text-transform: uppercase;
-  font-weight: 700;
-  transition: 300ms ease;
-}
-
-.picked-by-label.banned {
-  width: auto;
-  padding: 3px 10px 1px 12px;
-  background-color: var(--border-banned);
-  color: #fcfcfc;
-}
-
-.picked-by-label.picked {
-  width: auto;
-  padding: 3px 10px 1px 12px;
-  background-color: var(--light);
-  color: var(--border-banned);
-}
-
-.picked-by-label.picked.red {
-  background-color: var(--accent);
-  color: var(--light);
-}
-
-.picked-by-label.picked.blue {
-  background-color: var(--accent);
-  color: var(--light);
-}
-
-.blink-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: var(--light);
-  opacity: 0;
-  animation: none;
 }
 
 @keyframes blinker {
@@ -676,6 +500,5 @@
 .auto-pick.enabled {
   background-color: #b3ffa4;
 }
-
 
 </style>
