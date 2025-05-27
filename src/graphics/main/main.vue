@@ -89,6 +89,7 @@ const animation = {
 //     cache.chat_loaded = true;
 //   }
 // }
+
 let timerInProgress = false;
 
 const stopTimer = () => {
@@ -266,7 +267,7 @@ watch(chatMessages, (newMessages, oldMessages) => {
 
   for (let i = oldMessages.length; i < newMessages.length; i += 1) {
     const msg = newMessages[i].messageBody.toLowerCase();
-    if (msg.startsWith('!mp timer')) {
+    if (oldMessages.length > 0 && msg.startsWith('!mp timer')) {
       const commandNumericalParam = Number(msg.match(/\d+/)) ?? 0;
 
       if (commandNumericalParam > 0) {
@@ -282,31 +283,6 @@ watch(chatMessages, (newMessages, oldMessages) => {
   }
 });
 
-//   if (cache.chatLen !== data.tourney.chat.length && teams) {
-//     for (let i = cache.chatLen || 0; i < current_chat_len; i++) {
-//       const chat = data.tourney.chat[i];
-//       const body = chat.message;
-//       const timestamp = chat.timestamp;
-//       if (body.toLowerCase().startsWith('!mp')) {
-//         if (!cache.chat_loaded) continue;
-//         const command = body.toLowerCase();
-//         const command_value = Number(command.match(/\d+/)) ?? 0;
-//
-//         if (command.startsWith('!mp timer')) {
-//           if (isNaN(command_value)) { stop_timer(); continue; }
-//           else start_timer(command_value);
-//         }
-//         else if ((command.startsWith('!mp aborttimer') && command.startsWith('!mp start')) && timer_in_progress) stop_timer();
-//         else continue;
-//       }
-//
-//       const player = chat.name;
-//
-//       const team = team_lookup[chat.team] ?? 'unknown';
-//       const team_actual = teams.find(t => t.players.map(p => p.username).includes(player))?.team;
-//       const teamcode_actual = team_actual ? team_actual === cache.nameRed ? 'red' : team_actual === cache.nameBlue ? 'blue' : null : null;
-//     }
-//   }
 </script>
 
 <template>
