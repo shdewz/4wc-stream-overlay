@@ -11,7 +11,7 @@ import '../../assets/common.css';
 // const TEAMSIZE = 4;
 // const DEBUG = false;
 //
-const cache = {};
+// const cache = {};
 // const timer = {
 //   in_progress: false,
 //   object: null,
@@ -226,9 +226,7 @@ const team_seeds = computed(() => {
     teamsReplicant.data?.find(t => t.team === blueTeamName)?.seed ?? '?'];
 });
 
-const firstTo = computed(() => {
-  return Math.ceil((tourneyDataReplicant.data?.bestOf ?? 0) / 2);
-});
+const firstTo = computed(() => Math.ceil((tourneyDataReplicant.data?.bestOf ?? 0) / 2));
 
 const mappoolMap = computed(() => { return mappoolReplicant.data?.beatmaps.find(m => m.beatmap_id === songDataReplicant.data?.id) });
 
@@ -241,6 +239,8 @@ const mapStatsAfterMods = computed(() => {
   )
 })
 
+
+// ==== Map Slot display handling ====
 const mapSlotActive = ref(false);
 const mapSlotAnimatingOut = ref(false);
 
@@ -255,6 +255,7 @@ watch(() => mappoolMap.value?.identifier, async (newIdentifier, _) => {
       // Was previously active, animate out
 
       // fixme: this seems to be broken atm?
+      // TODO: use Vue Transitions here as well, see Pick By label impl.
       mapSlotActive.value = false;
       mapSlotAnimatingOut.value = true;
       await delay(350)
@@ -278,6 +279,10 @@ watch(() => mappoolMap.value?.identifier, async (newIdentifier, _) => {
 //   return latestPick;
 // });
 
+
+
+// ==== "Picked By" label handling ====
+
 const currentPick = computed(() => {
   if (!tournamentPickBansReplicant.data)
     return null;
@@ -288,8 +293,6 @@ const currentPick = computed(() => {
 
   return Object.values(tournamentPickBansReplicant.data).find(m => m.type === 'pick' && m.beatmap_id === songDataReplicant.data?.id);
 });
-
-
 
 const pickedByText = ref('');
 const pickByLabelEnabled = ref(false);
@@ -387,7 +390,7 @@ watch(currentPick, async (newVal, oldVal) => {
     <div class="footer">
       <div class="footer-edge left"></div>
       <div class="footer-middle">
-        <div class="score-area" id="score_area">
+        <div class="score-area" id="score_area" :style="{ opacity: tourneyDataReplicant.data?.scoresVisible === true ? 1 : 0  }">
           <div class="lead-bar" id="lead_bar"></div>
           <div class="team-scores-container">
             <div class="team-scores">
@@ -456,20 +459,22 @@ watch(currentPick, async (newVal, oldVal) => {
             </div>
           </div>
         </div>
-        <div class="chat-container" id="chat_container">
-          <div class="chat-inner-container">
-            <div class="chat-title">CHAT</div>
-            <div class="chat" id="chat"></div>
-          </div>
-          <div class="chat-timer-container" id="timer_container">
-            <div class="chat-timer__progress-container">
-              <div class="chat-timer__progress" id="timer_progress"></div>
+        <Transition name="chat">
+          <div class="chat-container" id="chat_container" v-if="!tourneyDataReplicant.data?.scoresVisible">
+            <div class="chat-inner-container">
+              <div class="chat-title">CHAT</div>
+              <div class="chat" id="chat"></div>
             </div>
-            <div class="hourglass-container" id="hourglass_container">
-              <i class="fa-solid fa-hourglass-start" id="hourglass"></i>
+            <div class="chat-timer-container" id="timer_container">
+              <div class="chat-timer__progress-container">
+                <div class="chat-timer__progress" id="timer_progress"></div>
+              </div>
+              <div class="hourglass-container" id="hourglass_container">
+                <i class="fa-solid fa-hourglass-start" id="hourglass"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </Transition>
 
       </div>
       <div class="footer-edge right"></div>
@@ -1054,7 +1059,8 @@ watch(currentPick, async (newVal, oldVal) => {
   height: 100%;
   width: 708px;
   color: var(--light);
-  transform: translateX(100%);
+  /* transform: translateX(100%); */
+  transform: translateX(60px);
 }
 
 .chat-inner-container {
@@ -1267,6 +1273,14 @@ watch(currentPick, async (newVal, oldVal) => {
   to {
     transform: translateX(60px);
   }
+}
+
+.chat-enter-active {
+  animation: chatIn 300ms ease forwards;
+}
+
+.chat-leave-active {
+  animation: chatIn 300ms ease forwards reverse;
 }
 
 @keyframes pickerIn {
