@@ -33,76 +33,49 @@ const modPools = computed(() => poolReplicant.data?.beatmaps.reduce((groups: Rec
   return groups;
 }, {}));
 
-const poolMapActionRed = (clickEvent: Event, beatmap_id: number) => {
-  if (!(clickEvent instanceof MouseEvent)) return;
-
-  const mouseEvent = clickEvent as MouseEvent;
-  console.log(`red did an action for map ${beatmap_id}, shift: ${mouseEvent.shiftKey}, right: ${mouseEvent.button}`);
-
-  const beatmapIdStr = beatmap_id.toString();
-
-  if (mouseEvent.shiftKey) {
-    // pickBansReplicant.data = pickBansReplicant.data?.filter(pb => pb.id !== beatmap_id) || [];
-    const { [beatmapIdStr]: ignored, ...newObj } = pickBansReplicant.data ?? {};
-    pickBansReplicant.data = newObj;
-    pickBansReplicant.save();
-    return;
-  }
-
-  // replace color if already picked/banned
-  const existing = pickBansReplicant.data?.[beatmapIdStr];
-  if (existing) {
-    if (existing?.color === 'red') return;
-
-    existing.color = 'red';
-    pickBansReplicant.save();
-    return;
-  }
-
-  // pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'red'});
-  if (pickBansReplicant.data) {
-    const newObj = pickBansReplicant.data;
-    newObj[beatmapIdStr] = { beatmap_id, type: 'pick', color: 'red', time: Date.now() };
-    pickBansReplicant.data = newObj;
-    pickBansReplicant.save();
-  }
+// Helper functions for replicant data manipulation
+const removePickBan = (beatmapId: string) => {
+  const { [beatmapId]: ignored, ...newObj } = pickBansReplicant.data ?? {};
+  pickBansReplicant.data = newObj;
+  pickBansReplicant.save();
 };
 
-const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
+const updatePickBan = (beatmapId: string, color: 'red' | 'blue') => {
+  const existing = pickBansReplicant.data?.[beatmapId];
+  if (existing) {
+    existing.color = color;
+  } else if (pickBansReplicant.data) {
+    pickBansReplicant.data[beatmapId] = {
+      beatmap_id: parseInt(beatmapId, 10),
+      type: 'pick',
+      color,
+      time: Date.now(),
+    };
+  }
+  pickBansReplicant.save();
+};
+
+// Consolidated map action function
+const poolMapAction = (clickEvent: Event, beatmap_id: number, color: 'red' | 'blue') => {
   if (!(clickEvent instanceof MouseEvent)) return;
 
   const mouseEvent = clickEvent as MouseEvent;
-  console.log(`blue did an action for map ${beatmap_id}, shift: ${mouseEvent.shiftKey}`);
+  console.log(`${color} did an action for map ${beatmap_id}, shift: ${mouseEvent.shiftKey}`);
 
   const beatmapIdStr = beatmap_id.toString();
 
   if (mouseEvent.shiftKey) {
-    const { [beatmapIdStr]: ignored, ...newObj } = pickBansReplicant.data ?? {};
-    pickBansReplicant.data = newObj;
-    pickBansReplicant.save();
+    removePickBan(beatmapIdStr);
     return;
   }
 
-  // do nothing if already picked/banned
   const existing = pickBansReplicant.data?.[beatmapIdStr];
-  if (existing) {
-    if (existing?.color === 'blue') return;
+  if (existing?.color === color) return;
 
-    existing.color = 'blue';
-    pickBansReplicant.save();
-    return;
-  }
-
-  if (pickBansReplicant.data) {
-    const newObj = pickBansReplicant.data;
-    newObj[beatmapIdStr] = { beatmap_id, type: 'pick', color: 'blue', time: Date.now() };
-    pickBansReplicant.data = newObj;
-    pickBansReplicant.save();
-  }
+  updatePickBan(beatmapIdStr, color);
 };
 
 const getButtonColor = (beatmap_id: number) => {
-  // const pickedMap = pickBansReplicant.data?.find(pb => pb.id == beatmap_id);
   const pickedMap = pickBansReplicant.data?.[beatmap_id.toString()];
 
   if (!pickedMap) {
@@ -112,11 +85,12 @@ const getButtonColor = (beatmap_id: number) => {
   return pickedMap.color === 'red' ? 'negative' : 'primary';
 };
 
+// Helper computed property
+const isMapSelected = (beatmapId: number) => pickBansReplicant.data && beatmapId.toString() in pickBansReplicant.data;
+
 onMounted(() => {
   console.log(`mounted, pick and bans: ${JSON.stringify(pickBansReplicant.data)}`);
 });
-
-// :outline="pickBansReplicant.data?.some(pb => pb.id === beatmap.beatmap_id)"
 </script>
 
 <template>
@@ -124,14 +98,15 @@ onMounted(() => {
     <div v-for="[key, beatmaps] in Object.entries(modPools ?? {})" :key="key">
       <div class="row justify-center">
         <div class="col-4" v-for="beatmap in beatmaps" :key="beatmap.beatmap_id">
-          <QBtn class="full-width q-mb-sm"
-                size="lg"
-                style="--q-btn-outline-width: 10px;"
-                :color="getButtonColor(beatmap.beatmap_id)"
-                :class="{'grayed-out': pickBansReplicant.data && beatmap.beatmap_id.toString() in pickBansReplicant.data }"
-                :label="beatmap.identifier"
-                @click="(event) => poolMapActionRed(event, beatmap.beatmap_id)"
-                @contextmenu.prevent="(event: Event) => poolMapActionBlue(event, beatmap.beatmap_id)"
+          <QBtn
+              class="full-width q-mb-sm"
+              size="lg"
+              style="--q-btn-outline-width: 10px;"
+              :color="getButtonColor(beatmap.beatmap_id)"
+              :class="{'grayed-out': isMapSelected(beatmap.beatmap_id)}"
+              :label="beatmap.identifier"
+              @click="(event) => poolMapAction(event, beatmap.beatmap_id, 'red')"
+              @contextmenu.prevent="(event: Event) => poolMapAction(event, beatmap.beatmap_id, 'blue')"
           />
         </div>
       </div>
