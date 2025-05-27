@@ -350,7 +350,7 @@
 </template>
 
 <style scoped>
-:root {
+:global(:root) {
   --map-width: 500px;
   --map-height: 56px;
   --mod-width: 78px;
@@ -359,8 +359,7 @@
   --border-picked: var(--accent);
 }
 
-body,
-html {
+:global(body), :global(html) {
   padding: 0;
   margin: 0;
   /* overflow-y: hidden; */
@@ -678,19 +677,5 @@ html {
   background-color: #b3ffa4;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  margin-top: 25px;
-  margin-bottom: 25px;
-  visibility: hidden;
-}
-
-::-webkit-scrollbar-thumb {
-  background: grey;
-  border-radius: 10px;
-}
 
 </style>

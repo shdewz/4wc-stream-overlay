@@ -1184,25 +1184,6 @@ watch(chatMessages, (newMessages, oldMessages) => {
   animation-duration: 1s;
   animation-iteration-count: infinite;
 }
-
-/*Scrollbar*/
-:global(::-webkit-scrollbar) {
-  width: 0;
-  visibility: hidden;
-}
-
-/* Track */
-:global(::-webkit-scrollbar-track) {
-  margin-top: 25px;
-  margin-bottom: 25px;
-  visibility: hidden;
-}
-
-/* Handle */
-:global(::-webkit-scrollbar-thumb) {
-  background: grey;
-  border-radius: 10px;
-}
 </style>
 
 <style>
