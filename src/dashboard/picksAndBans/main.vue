@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
-import { computed, ref } from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
 import { PoolBeatmap } from "@4wc-stream-overlay/types/schemas";
 
@@ -43,27 +43,35 @@ const poolMapActionRed = (clickEvent: Event, beatmap_id: number) => {
   const mouseEvent = clickEvent as MouseEvent;
   console.log(`red did an action for map ${beatmap_id}, shift: ${mouseEvent.shiftKey}, right: ${mouseEvent.button}`);
 
+  const beatmap_id_str = beatmap_id.toString();
+
   if (mouseEvent.shiftKey) {
     // pickBansReplicant.data = pickBansReplicant.data?.filter(pb => pb.id !== beatmap_id) || [];
-    const { [beatmap_id]: _, ...newObj } = pickBansReplicant.data ?? {};
+    const { [beatmap_id_str]: _, ...newObj } = pickBansReplicant.data ?? {};
     pickBansReplicant.data = newObj;
+    pickBansReplicant.save();
     return;
   }
 
   // replace color if already picked/banned
-  const existing = pickBansReplicant.data?.[beatmap_id];
+  const existing = pickBansReplicant.data?.[beatmap_id_str];
   if (existing)
   {
     if (existing?.color == 'red')
       return;
 
     existing.color = 'red';
+    pickBansReplicant.save();
     return;
   }
 
   // pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'red'});
-  if (pickBansReplicant.data)
-    pickBansReplicant.data[beatmap_id] = {'beatmap_id': beatmap_id, 'type': 'pick', 'color': 'red', 'time': Date.now()};
+  if (pickBansReplicant.data) {
+    const newObj = pickBansReplicant.data;
+    newObj[beatmap_id_str] = {'beatmap_id': beatmap_id, 'type': 'pick', 'color': 'red', 'time': Date.now()};
+    pickBansReplicant.data = newObj;
+    pickBansReplicant.save();
+  }
 }
 
 const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
@@ -73,34 +81,39 @@ const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
   const mouseEvent = clickEvent as MouseEvent;
   console.log(`blue did an action for map ${beatmap_id}, shift: ${mouseEvent.shiftKey}`);
 
+  const beatmap_id_str = beatmap_id.toString();
+
   if (mouseEvent.shiftKey) {
-    // pickBansReplicant.data = pickBansReplicant.data?.filter(pb => pb.id !== beatmap_id) || [];
-    const { [beatmap_id]: _, ...newObj } = pickBansReplicant.data ?? {};
+    const { [beatmap_id_str]: _, ...newObj } = pickBansReplicant.data ?? {};
     pickBansReplicant.data = newObj;
+    pickBansReplicant.save();
     return;
   }
 
   // do nothing if already picked/banned
-  // const existing = pickBansReplicant.data?.find(pb => pb.id === beatmap_id);
-  const existing = pickBansReplicant.data?.[beatmap_id];
+  const existing = pickBansReplicant.data?.[beatmap_id_str];
   if (existing)
   {
     if (existing?.color == 'blue')
       return;
 
     existing.color = 'blue';
+    pickBansReplicant.save();
     return;
   }
 
-  // pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'blue'});
-  if (pickBansReplicant.data)
-    pickBansReplicant.data[beatmap_id] = {'beatmap_id': beatmap_id, 'type': 'pick', 'color': 'blue', 'time': Date.now()};
+  if (pickBansReplicant.data) {
+    const newObj = pickBansReplicant.data;
+    newObj[beatmap_id_str] = {'beatmap_id': beatmap_id, 'type': 'pick', 'color': 'blue', 'time': Date.now()};
+    pickBansReplicant.data = newObj;
+    pickBansReplicant.save();
+  }
 }
 
 
 const getButtonColor = (beatmap_id: number) => {
   // const pickedMap = pickBansReplicant.data?.find(pb => pb.id == beatmap_id);
-  const pickedMap = pickBansReplicant.data?.[beatmap_id];
+  const pickedMap = pickBansReplicant.data?.[beatmap_id.toString()];
 
   if (!pickedMap) {
     return "grey-7"
@@ -108,6 +121,10 @@ const getButtonColor = (beatmap_id: number) => {
 
   return pickedMap.color == 'red' ? "negative" : "primary"
 }
+
+onMounted(() => {
+  console.log(`mounted, pick and bans: ${JSON.stringify(pickBansReplicant.data)}`);
+})
 
 // :outline="pickBansReplicant.data?.some(pb => pb.id === beatmap.beatmap_id)"
 </script>
@@ -121,7 +138,7 @@ const getButtonColor = (beatmap_id: number) => {
                 size="lg"
                 style="--q-btn-outline-width: 10px;"
                 :color="getButtonColor(beatmap.beatmap_id)"
-                :class="{'grayed-out': pickBansReplicant.data && beatmap.beatmap_id in pickBansReplicant.data }"
+                :class="{'grayed-out': pickBansReplicant.data && beatmap.beatmap_id.toString() in pickBansReplicant.data }"
                 :label="beatmap.identifier"
                 @click="(event) => poolMapActionRed(event, beatmap.beatmap_id)"
                 @contextmenu.prevent="(event: Event) => poolMapActionBlue(event, beatmap.beatmap_id)"
