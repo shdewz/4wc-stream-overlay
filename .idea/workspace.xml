@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="update tournamentPickBans schema">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/schemas/tournamentPickBans.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/tournamentPickBans.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dashboard/picksAndBans/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard/picksAndBans/main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphics/main/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main/main.vue" afterDir="false" />

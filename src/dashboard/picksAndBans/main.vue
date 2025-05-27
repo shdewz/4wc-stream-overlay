@@ -63,7 +63,7 @@ const poolMapActionRed = (clickEvent: Event, beatmap_id: number) => {
 
   // pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'red'});
   if (pickBansReplicant.data)
-    pickBansReplicant.data[beatmap_id] = {'type': 'pick', 'color': 'red', 'time': Date.now()};
+    pickBansReplicant.data[beatmap_id] = {'beatmap_id': beatmap_id, 'type': 'pick', 'color': 'red', 'time': Date.now()};
 }
 
 const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
@@ -94,7 +94,7 @@ const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
 
   // pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'blue'});
   if (pickBansReplicant.data)
-    pickBansReplicant.data[beatmap_id] = {'type': 'pick', 'color': 'blue', 'time': Date.now()};
+    pickBansReplicant.data[beatmap_id] = {'beatmap_id': beatmap_id, 'type': 'pick', 'color': 'blue', 'time': Date.now()};
 }
 
 

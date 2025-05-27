@@ -4,6 +4,7 @@
   "type": "object",
   "patternProperties": {
     "^[0-9]+$": {
+      "$id": "#/properties/pickban",
       "type": "object",
       "properties": {
         "color": {
@@ -16,9 +17,12 @@
         },
         "time": {
           "type": "integer"
+        },
+        "beatmap_id": {
+          "type": "integer"
         }
       },
-      "required": ["name", "age"],
+      "required": ["color", "type", "time", "beatmap_id"],
       "additionalProperties": false
     }
   },

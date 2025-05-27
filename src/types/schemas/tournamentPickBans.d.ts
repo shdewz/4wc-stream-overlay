@@ -7,13 +7,15 @@
  */
 
 export interface TournamentPicksAndBans {
-	/**
-	 * This interface was referenced by `TournamentPicksAndBans`'s JSON-Schema definition
-	 * via the `patternProperty` "^[0-9]+$".
-	 */
-	[k: string]: {
-		color?: 'red' | 'blue';
-		type?: 'pick' | 'ban';
-		time?: number;
-	};
+	[k: string]: PropertiesPickban;
+}
+/**
+ * This interface was referenced by `TournamentPicksAndBans`'s JSON-Schema definition
+ * via the `patternProperty` "^[0-9]+$".
+ */
+export interface PropertiesPickban {
+	color: 'red' | 'blue';
+	type: 'pick' | 'ban';
+	time: number;
+	beatmap_id: number;
 }
