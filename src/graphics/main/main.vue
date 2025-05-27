@@ -2,10 +2,10 @@
 import {useReplicant} from '@4wc-stream-overlay/browser_shared/vue-replicants';
 import CountUp from 'countup.js'
 import $ from "jquery"
-import {delay, formatLength} from "@4wc-stream-overlay/browser_shared/utils";
+import { isEqual } from 'lodash';
+import {delay, formatLength, getModdedStats} from "@4wc-stream-overlay/browser_shared/utils";
 import {computed, ref, watch} from "vue";
 import '../../assets/common.css';
-import { getModdedStats } from "@4wc-stream-overlay/browser_shared/utils";
 
 
 // const TEAMSIZE = 4;
@@ -23,6 +23,7 @@ const teamsReplicant = useReplicant('tournamentTeams');
 
 const tourneyDataReplicant = useReplicant('osuTourney');
 const songDataReplicant = useReplicant('osuSong');
+const tournamentPickBansReplicant = useReplicant('tournamentPickBans');
 
 
 // let mappool, teams;
@@ -37,14 +38,6 @@ const songDataReplicant = useReplicant('osuSong');
 //   }
 // })();
 //
-const hidePickByLabel = async () => {
-  const pickedByContainer = $('#picked_by_container');
-  pickedByContainer.css('animation', 'none');
-  void (pickedByContainer[0].offsetWidth); // Trigger reflow
-  pickedByContainer.css('animation', 'pickerIn 300ms ease forwards reverse');
-  await delay(300);
-  $('#picked_by').text('');
-};
 
 const animation = {
   red_score: new CountUp('score_red', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
@@ -270,65 +263,73 @@ watch(() => mappoolMap.value?.identifier, async (newIdentifier, _) => {
   }
 }, {immediate: true});
 
-window.setInterval(async () => {
-  // const currentPick = localStorage.getItem('current_pick');
-  //
-  // const checkValid = async () => {
-  //   if (!(songDataReplicant.data?.id)) return -9;
-  //
-  //   const pickValue = currentPick.split('/');
-  //   if (pickValue.length !== 2) return -1;
-  //
-  //   const parsedBeatmapID = parseInt(pickValue[0]);
-  //   if (isNaN(parsedBeatmapID)) return -2;
-  //
-  //   if (currentPick === cache.currentPick && cache.mapid == parsedBeatmapID) return -5;
-  //   if (cache.mapid !== parsedBeatmapID) return -6;
-  //
-  //   const parsedTeam = pickValue[1];
-  //   if (parsedTeam !== 'red' && parsedTeam !== 'blue') return -3;
-  //
-  //   cache.currentPick = currentPick;
-  //
-  //   // if (true) {  // bypass beatmap id checking during development
-  //   if (cache.mapid === parsedBeatmapID) {
-  //     const mapObj = mappool.beatmaps.find(m => m.beatmap_id === cache.mapid);
-  //     if (mapObj?.identifier?.toUpperCase().includes('TB')) return -4;
-  //     if (cache.nameRed && cache.nameBlue) {
-  //       if (cache.pickLabelEnabled) {
-  //         await hidePickByLabel();
-  //       }
-  //
-  //       requestAnimationFrame(_ => {
-  //         $('#picked_by').text(`PICKED BY ${(parsedTeam === 'red' ? cache.nameRed : cache.nameBlue).toUpperCase()}`);
-  //         $('#picked_by_container').css('animation', 'none');
-  //         void $('#picked_by_container')[0].offsetWidth; // Trigger reflow
-  //         $('#picked_by_container').css('animation', 'pickerIn 300ms 100ms ease forwards');
-  //       });
-  //
-  //       cache.pickLabelEnabled = true;
-  //     }
-  //     else {
-  //       await hidePickByLabel();
-  //       cache.pickLabelEnabled = false;
-  //     }
-  //     return 0;
-  //   }
-  //   return -255;
-  // };
-  //
-  // const validityState = await checkValid();
-  //
-  // if (validityState === -5)
-  //   return;
-  //
-  // if (validityState !== 0) {
-  //   if (cache.pickLabelEnabled) {
-  //     await hidePickByLabel();
-  //     cache.pickLabelEnabled = false;
-  //   }
-  // }
-}, 500);
+// const latestPick = computed(() => {
+//   if (!tournamentPickBansReplicant.data)
+//     return null;
+//
+//   const pickBansValues = Object.values(tournamentPickBansReplicant.data);
+//   if (pickBansValues.length === 0)
+//     return null;
+//
+//   const latestPick = pickBansValues.reduce((max, current) => current.time > max.time ? current : max);
+//   // const poolMap = mappoolReplicant.data?.beatmaps.find(m => m.beatmap_id === latestPick.beatmap_id);
+//   // console.log(`hello, computed latest pick: ${JSON.stringify(poolMap)}`);
+//   // return poolMap;
+//   return latestPick;
+// });
+
+const currentPick = computed(() => {
+  if (!tournamentPickBansReplicant.data)
+    return null;
+
+  const pickBansValues = Object.values(tournamentPickBansReplicant.data);
+  if (pickBansValues.length === 0)
+    return null;
+
+  return Object.values(tournamentPickBansReplicant.data).find(m => m.type === 'pick' && m.beatmap_id === songDataReplicant.data?.id);
+});
+
+
+
+const pickedByText = ref('');
+const pickByLabelEnabled = ref(false);
+
+const hidePickByLabel = async () => {
+  pickByLabelEnabled.value = false;
+
+  // wait for animation to finish then reset text
+  await delay(300);
+
+  pickedByText.value = '';
+}
+
+const showPickByLabel = async (text: string) => {
+  pickedByText.value = text;
+  pickByLabelEnabled.value = true;
+};
+
+watch(currentPick, async (newVal, oldVal) => {
+  if (isEqual(oldVal, newVal))
+    return;
+
+  if (!newVal)
+  {
+    console.log('hiding pickByLabel');
+    await hidePickByLabel();
+    return;
+  }
+
+  // show new currentPick
+  if (pickedByText.value != '')
+    await hidePickByLabel();
+
+  await delay(100);
+
+  const text = `PICKED BY ${(newVal.color === 'red'
+      ? tourneyDataReplicant.data?.teamName?.left ?? 'red team'
+      : tourneyDataReplicant.data?.teamName?.right ?? 'blue team').toUpperCase()}`;
+  await showPickByLabel(text);
+});
 </script>
 
 <template>
@@ -414,9 +415,11 @@ window.setInterval(async () => {
               </div>
               <!-- TODO: use local path for cover image instead of remote asset -->
               <div class="beatmap-image" id="beatmap_image" :style="{ backgroundImage: `url(${songDataReplicant.data?.coverUrl})`}"></div>
-              <div class="picked-by-container" id="picked_by_container">
-                <div class="picked-by-text" id="picked_by">PICKED BY</div>
-              </div>
+              <transition>
+                <div v-if="pickByLabelEnabled" class="picked-by-container" id="picked_by_container">
+                  <div class="picked-by-text" id="picked_by">{{ pickedByText }}</div>
+                </div>
+              </transition>
             </div>
           </div>
           <div class="beatmap-stats-container">
@@ -905,8 +908,7 @@ window.setInterval(async () => {
   align-items: center;
   background-color: var(--accent);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  transform: translateY(25px);
-  /* animation: pickerIn 300ms 1000ms ease forwards; */
+  transform: translateY(0px);
 }
 
 .picked-by-text {
@@ -1275,6 +1277,16 @@ window.setInterval(async () => {
   to {
     transform: translateY(0px);
   }
+}
+
+/*noinspection CssUnusedSymbol*/
+.v-enter-active {
+  animation: pickerIn 300ms ease;
+}
+
+/*noinspection CssUnusedSymbol*/
+.v-leave-active {
+  animation: pickerIn 300ms ease reverse;
 }
 
 .map-slot-in {

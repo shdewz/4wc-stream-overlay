@@ -41,6 +41,7 @@
     "googleapis": "^133.0.0",
     "install": "^0.13.0",
     "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
     "modern-async": "^2.0.4",
     "module-alias": "^2.2.2",
     "node-cache": "^5.1.2",
