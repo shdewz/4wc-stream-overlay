@@ -1,22 +1,45 @@
 <script setup lang="ts">
 import { PoolBeatmap } from '@4wc-stream-overlay/types/schemas';
+import { useReplicant } from "@4wc-stream-overlay/browser_shared/vue-replicants";
+import {computed} from "vue";
 
 interface Props {
   poolBeatmap: PoolBeatmap,
 }
-
 const props = defineProps<Props>();
 
-// Access props with full type safety
-console.log(JSON.stringify(props.poolBeatmap)); // TypeScript knows this is a string
+const tournamentPickBansReplicant = useReplicant('tournamentPickBans');
+const osuTourneyReplicant = useReplicant('osuTourney');
+
+const thisMapPickBan = computed(() => {
+  return tournamentPickBansReplicant.data?.[props.poolBeatmap.beatmap_id.toString()];
+})
+
+const pickByLabelText = computed(() => {
+  if (!thisMapPickBan.value)
+    return "";
+
+  const teamColor = thisMapPickBan.value.color;
+  const teamName = teamColor === 'red' ? osuTourneyReplicant.data?.teamName.left : osuTourneyReplicant.data?.teamName.right;
+
+  return  thisMapPickBan.value.type === 'ban' ? `Banned by ${teamName}` : `Picked by ${teamName}`
+})
+
 </script>
 
 <template>
-<div class="map" :id="`map-${poolBeatmap.identifier.toLowerCase()}`">
+  <div class="map" :id="`map-${poolBeatmap.identifier.toLowerCase()}`"
+       :class="{ banned: thisMapPickBan?.type === 'ban',
+                 picked: thisMapPickBan?.type === 'pick',
+                 red: thisMapPickBan?.color === 'red',
+                 blue: thisMapPickBan?.color === 'blue' }">
   <div class="map-image" :style="{ backgroundImage: `url('https://assets.ppy.sh/beatmaps/${poolBeatmap.beatmapset_id}/covers/cover.jpg')` }" />
 
   <div class="map-content">
-    <div class="picked-by-label" :id="`picked-by-label-${poolBeatmap.identifier}`" />
+    <div class="picked-by-label" :id="`picked-by-label-${poolBeatmap.identifier}`"
+         :class="{ picked: thisMapPickBan,
+                   red: thisMapPickBan?.color === 'red',
+                   blue: thisMapPickBan?.color === 'blue' }">{{ pickByLabelText }}</div>
     <div class="mod-icon" :class="{ [poolBeatmap.mods.toLowerCase()]: true }">{{ poolBeatmap.identifier }}</div>
     <div class="map-stats">
       <div class="map-stats-section map-top">
