@@ -500,7 +500,7 @@ export type TheChatSchema = TheItemsSchema[] | null;
 /**
  * An explanation about the purpose of this instance.
  */
-export type TheTeamSchema1 = string;
+export type TheTeamSchema1 = 'left' | 'right' | 'bot' | '';
 /**
  * An explanation about the purpose of this instance.
  */

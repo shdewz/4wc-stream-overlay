@@ -2232,11 +2232,11 @@
                   "type": "null"
                 },
                 {
-                  "title": "Slots", 
+                  "title": "Slots",
                   "type": "array",
                   "items":{
-                    "$id": "#root/gameplay/leaderboard/slots/items", 
-                    "title": "Items", 
+                    "$id": "#root/gameplay/leaderboard/slots/items",
+                    "title": "Items",
                     "type": "object",
                     "required": [
                       "name",
@@ -2254,8 +2254,8 @@
                     ],
                     "properties": {
                       "name": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/name", 
-                        "title": "Name", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/name",
+                        "title": "Name",
                         "type": "string",
                         "default": "",
                         "examples": [
@@ -2264,8 +2264,8 @@
                         "pattern": "^.*$"
                       },
                       "score": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/score", 
-                        "title": "Score", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/score",
+                        "title": "Score",
                         "type": "integer",
                         "examples": [
                           832449
@@ -2273,8 +2273,8 @@
                         "default": 0
                       },
                       "combo": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/combo", 
-                        "title": "Combo", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/combo",
+                        "title": "Combo",
                         "type": "integer",
                         "examples": [
                           0
@@ -2282,8 +2282,8 @@
                         "default": 0
                       },
                       "maxCombo": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/maxCombo", 
-                        "title": "Maxcombo", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/maxCombo",
+                        "title": "Maxcombo",
                         "type": "integer",
                         "examples": [
                           651
@@ -2291,8 +2291,8 @@
                         "default": 0
                       },
                       "mods": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/mods", 
-                        "title": "Mods", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/mods",
+                        "title": "Mods",
                         "type": "string",
                         "default": "",
                         "examples": [
@@ -2301,8 +2301,8 @@
                         "pattern": "^.*$"
                       },
                       "h300": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/h300", 
-                        "title": "H300", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/h300",
+                        "title": "H300",
                         "type": "integer",
                         "examples": [
                           648
@@ -2310,8 +2310,8 @@
                         "default": 0
                       },
                       "h100": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/h100", 
-                        "title": "H100", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/h100",
+                        "title": "H100",
                         "type": "integer",
                         "examples": [
                           3
@@ -2319,8 +2319,8 @@
                         "default": 0
                       },
                       "h50": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/h50", 
-                        "title": "H50", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/h50",
+                        "title": "H50",
                         "type": "integer",
                         "examples": [
                           0
@@ -2328,8 +2328,8 @@
                         "default": 0
                       },
                       "h0": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/h0", 
-                        "title": "H0", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/h0",
+                        "title": "H0",
                         "type": "integer",
                         "examples": [
                           0
@@ -2337,8 +2337,8 @@
                         "default": 0
                       },
                       "team": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/team", 
-                        "title": "Team", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/team",
+                        "title": "Team",
                         "type": "integer",
                         "examples": [
                           0
@@ -2346,8 +2346,8 @@
                         "default": 0
                       },
                       "position": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/position", 
-                        "title": "Position", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/position",
+                        "title": "Position",
                         "type": "integer",
                         "examples": [
                           1
@@ -2355,8 +2355,8 @@
                         "default": 0
                       },
                       "isPassing": {
-                        "$id": "#root/gameplay/leaderboard/slots/items/isPassing", 
-                        "title": "Ispassing", 
+                        "$id": "#root/gameplay/leaderboard/slots/items/isPassing",
+                        "title": "Ispassing",
                         "type": "integer",
                         "examples": [
                           1
@@ -3126,6 +3126,7 @@
                     "title": "The team schema",
                     "description": "An explanation about the purpose of this instance.",
                     "default": "",
+                    "enum": ["left", "right", "bot", ""],
                     "examples": [
                       "bot"
                     ]

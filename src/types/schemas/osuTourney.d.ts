@@ -21,7 +21,7 @@ export interface OsuTourneyData {
 	};
 	chat:
 		| {
-				team: 'left' | 'right' | 'bot';
+				team: 'left' | 'right' | 'bot' | '';
 				time: string;
 				name: string;
 				messageBody: string;
