@@ -308,17 +308,16 @@
 //   'Ranking': 4,
 // }
 
-// const beatmaps = new Set();
-// let mappool;
-// (async () => {
-//   $.ajaxSetup({ cache: false });
-//   mappool = await $.getJSON('../_data/beatmaps.json');
-// })();
-
 import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
 import BeatmapCard from './beatmap-card.vue';
+import { computed } from "vue";
 
 const tournamentMappoolReplicant = useReplicant('tournamentMappool');
+
+const modPoolNames = computed(() => {
+  const mods = tournamentMappoolReplicant.data?.beatmaps.map(b => b.mods) || [];
+  return [...new Set(mods)];
+});
 
 </script>
 
@@ -326,14 +325,10 @@ const tournamentMappoolReplicant = useReplicant('tournamentMappool');
   <div class="main">
     <div class="header"></div>
     <div class="mappool-container" id="mappool_container">
-      <div class="mod-container"
-           v-for="modPoolName in [... new Set(tournamentMappoolReplicant.data?.beatmaps.map(b => b.mods))]"
-           :key="modPoolName"
-           :id="`mod-container-${modPoolName.toLowerCase()}`">
-        <BeatmapCard
-            v-for="poolMap in tournamentMappoolReplicant.data?.beatmaps?.filter(m => m.mods === modPoolName)"
-            :key="poolMap.beatmap_id"
-            :poolBeatmap="poolMap"/>
+      <div v-for="modPoolName in modPoolNames"
+           class="mod-container" :key="modPoolName" :id="`mod-container-${modPoolName.toLowerCase()}`">
+        <BeatmapCard v-for="poolMap in tournamentMappoolReplicant.data?.beatmaps?.filter(m => m.mods === modPoolName)"
+                     :key="poolMap.beatmap_id" :poolBeatmap="poolMap"/>
       </div>
     </div>
     <div class="footer"></div>
