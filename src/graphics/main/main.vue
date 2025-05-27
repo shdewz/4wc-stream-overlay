@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import {useReplicant} from '@4wc-stream-overlay/browser_shared/vue-replicants';
-import CountUp from 'countup.js'
+import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
+import CountUp from 'countup.js';
 import { isEqual } from 'lodash';
-import {delay, formatLength, getModdedStats} from "@4wc-stream-overlay/browser_shared/utils";
-import {computed, ref, watch} from "vue";
+import { delay, formatLength, getModdedStats } from '@4wc-stream-overlay/browser_shared/utils';
+import { computed, ref, watch } from 'vue';
 import '../../assets/common.css';
-
 
 const TEAMSIZE = 4;
 // const DEBUG = false;
@@ -24,12 +23,11 @@ const tourneyDataReplicant = useReplicant('osuTourney');
 const songDataReplicant = useReplicant('osuSong');
 const tournamentPickBansReplicant = useReplicant('tournamentPickBans');
 
-
 const animation = {
-  red_score: new CountUp('score_red', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
-  blue_score: new CountUp('score_blue', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
-  score_diff: new CountUp('score_diff', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
-}
+  red_score: new CountUp('score_red', 0, 0, 0, 0.3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
+  blue_score: new CountUp('score_blue', 0, 0, 0, 0.3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
+  score_diff: new CountUp('score_diff', 0, 0, 0, 0.3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
+};
 
 // const socket = new ReconnectingWebSocket(DEBUG ? 'ws://127.0.0.1:24051/' : `ws://${location.host}/websocket/v2`);
 // socket.onopen = () => { console.log('Successfully Connected'); };
@@ -134,73 +132,64 @@ const animation = {
 // }
 //
 
-
-const team_flags = computed(() => {
-  const redFlagName = teamsReplicant.data?.find(t => t.team === tourneyDataReplicant.data?.teamName?.left)?.flag;
-  const blueFlagName = teamsReplicant.data?.find(t => t.team === tourneyDataReplicant.data?.teamName?.right)?.flag;
+const teamFlags = computed(() => {
+  const redFlagName = teamsReplicant.data?.find((t) => t.team === tourneyDataReplicant.data?.teamName?.left)?.flag;
+  const blueFlagName = teamsReplicant.data?.find((t) => t.team === tourneyDataReplicant.data?.teamName?.right)?.flag;
 
   return [new URL(`../../assets/flags/${redFlagName ?? 'XX'}.png`, import.meta.url).href,
     new URL(`../../assets/flags/${blueFlagName ?? 'XX'}.png`, import.meta.url).href];
 });
 
-const team_seeds = computed(() => {
+const teamSeeds = computed(() => {
   const { left: redTeamName, right: blueTeamName } = tourneyDataReplicant.data?.teamName ?? {};
 
-  return [teamsReplicant.data?.find(t => t.team === redTeamName)?.seed ?? '?',
-    teamsReplicant.data?.find(t => t.team === blueTeamName)?.seed ?? '?'];
+  return [teamsReplicant.data?.find((t) => t.team === redTeamName)?.seed ?? '?',
+    teamsReplicant.data?.find((t) => t.team === blueTeamName)?.seed ?? '?'];
 });
 
 const firstTo = computed(() => Math.ceil((tourneyDataReplicant.data?.bestOf ?? 0) / 2));
 
-const mappoolMap = computed(() => { return mappoolReplicant.data?.beatmaps.find(m => m.beatmap_id === songDataReplicant.data?.id) });
+const mappoolMap = computed(() => mappoolReplicant.data?.beatmaps.find((m) => m.beatmap_id === songDataReplicant.data?.id));
 
-const mapStatsAfterMods = computed(() => {
-  return getModdedStats(songDataReplicant.data?.CSRaw ?? 0,
-      songDataReplicant.data?.ARRaw ?? 0,
-      songDataReplicant.data?.ODRaw ?? 0,
-      songDataReplicant.data?.lengthRaw ?? 0,
-      mappoolMap?.value?.mods ?? songDataReplicant.data?.mods ?? ""
-  )
-})
-
+const mapStatsAfterMods = computed(() => getModdedStats(
+  songDataReplicant.data?.CSRaw ?? 0,
+  songDataReplicant.data?.ARRaw ?? 0,
+  songDataReplicant.data?.ODRaw ?? 0,
+  songDataReplicant.data?.lengthRaw ?? 0,
+  mappoolMap?.value?.mods ?? songDataReplicant.data?.mods ?? '',
+));
 
 // ==== Map Slot display handling ====
 const mapSlotActive = ref(false);
 const mapSlotAnimatingOut = ref(false);
 
-watch(() => mappoolMap.value?.identifier, async (newIdentifier, _) => {
+watch(() => mappoolMap.value?.identifier, async (newIdentifier) => {
   if (newIdentifier) {
     // Map is present - animate in
-    mapSlotActive.value = true
-    mapSlotAnimatingOut.value = false
-  } else {
+    mapSlotActive.value = true;
+    mapSlotAnimatingOut.value = false;
+  } else if (mapSlotActive.value) {
     // Map is not present
-    if (mapSlotActive.value) {
-      // Was previously active, animate out
+    // Was previously active, animate out
 
-      // fixme: this seems to be broken atm?
-      // TODO: use Vue Transitions here as well, see Pick By label impl.
-      mapSlotActive.value = false;
-      mapSlotAnimatingOut.value = true;
-      await delay(350)
-      mapSlotAnimatingOut.value = false;
-    }
+    // fixme: this seems to be broken atm?
+    // TODO: use Vue Transitions here as well, see Pick By label impl.
+    mapSlotActive.value = false;
+    mapSlotAnimatingOut.value = true;
+    await delay(350);
+    mapSlotAnimatingOut.value = false;
   }
-}, {immediate: true});
-
-
+}, { immediate: true });
 
 // ==== "Picked By" label handling ====
 
 const currentPick = computed(() => {
-  if (!tournamentPickBansReplicant.data)
-    return null;
+  if (!tournamentPickBansReplicant.data) return null;
 
   const pickBansValues = Object.values(tournamentPickBansReplicant.data);
-  if (pickBansValues.length === 0)
-    return null;
+  if (pickBansValues.length === 0) return null;
 
-  return Object.values(tournamentPickBansReplicant.data).find(m => m.type === 'pick' && m.beatmap_id === songDataReplicant.data?.id);
+  return Object.values(tournamentPickBansReplicant.data).find((m) => m.type === 'pick' && m.beatmap_id === songDataReplicant.data?.id);
 });
 
 const pickedByText = ref('');
@@ -213,7 +202,7 @@ const hidePickByLabel = async () => {
   await delay(300);
 
   pickedByText.value = '';
-}
+};
 
 const showPickByLabel = async (text: string) => {
   pickedByText.value = text;
@@ -221,62 +210,97 @@ const showPickByLabel = async (text: string) => {
 };
 
 watch(currentPick, async (newVal, oldVal) => {
-  if (isEqual(oldVal, newVal))
-    return;
+  if (isEqual(oldVal, newVal)) return;
 
-  if (!newVal)
-  {
-    console.log('hiding pickByLabel');
+  if (!newVal) {
     await hidePickByLabel();
     return;
   }
 
   // show new currentPick
-  if (pickedByText.value != '')
-    await hidePickByLabel();
+  if (pickedByText.value !== '') await hidePickByLabel();
 
   await delay(100);
 
   const text = `PICKED BY ${(newVal.color === 'red'
-      ? tourneyDataReplicant.data?.teamName?.left ?? 'red team'
-      : tourneyDataReplicant.data?.teamName?.right ?? 'blue team').toUpperCase()}`;
+    ? tourneyDataReplicant.data?.teamName?.left ?? 'red team'
+    : tourneyDataReplicant.data?.teamName?.right ?? 'blue team').toUpperCase()}`;
   await showPickByLabel(text);
 });
 
-
 // ==== Scores handling ====
 const updateScoresDisplay = () => {
-  const multiplier =  mappoolMap.value?.ez_multiplier ?? 1;
+  const multiplier = mappoolMap.value?.ez_multiplier ?? 1;
 
   const scores = [];
-  for (let i = 0; i < TEAMSIZE * 2; i++) {
+  for (let i = 0; i < TEAMSIZE * 2; i += 1) {
     const client = tourneyDataReplicant.data?.clients[i];
+
     if (!client) {
       scores.push({ id: i, score: 0 });
-      continue;
+    } else {
+      let score = client.score ?? 0;
+      if (client.mods?.toUpperCase().includes('EZ')) {
+        score *= multiplier;
+      }
+      scores.push({ id: i, score });
     }
-
-    let score = client.score ?? 0;
-    if (client.mods?.toUpperCase().includes('EZ'))
-      score *= multiplier;
-    scores.push({ id: i, score });
   }
 
-  const scoreRed = scores.filter(s => s.id < TEAMSIZE).map(s => s.score).reduce((a, b) => a + b);
-  const scoreBlue = scores.filter(s => s.id >= TEAMSIZE).map(s => s.score).reduce((a, b) => a + b);
+  const scoreRed = scores.filter((s) => s.id < TEAMSIZE).map((s) => s.score).reduce((a, b) => a + b);
+  const scoreBlue = scores.filter((s) => s.id >= TEAMSIZE).map((s) => s.score).reduce((a, b) => a + b);
   const scoreDiff = Math.abs(scoreRed - scoreBlue);
 
   animation.red_score.update(scoreRed);
   animation.blue_score.update(scoreBlue);
   animation.score_diff.update(scoreDiff);
 
-  return {scoreRed, scoreBlue, scoreDiff};
-}
+  return { scoreRed, scoreBlue, scoreDiff };
+};
 
-const adjustedTeamScores = computed(() => {
-  console.log('computing adjustedTeamScores');
-  return updateScoresDisplay();
-})
+const adjustedTeamScores = computed(() => updateScoresDisplay());
+
+// ==== chat handling ====
+
+//   if (cache.chatLen !== data.tourney.chat.length && teams) {
+//     const current_chat_len = data.tourney.chat.length;
+//     if (cache.chatLen === 0 || (cache.chatLen > 0 && cache.chatLen > current_chat_len)) { $('#chat').html(''); cache.chatLen = 0; }
+//
+//     for (let i = cache.chatLen || 0; i < current_chat_len; i++) {
+//       const chat = data.tourney.chat[i];
+//       const body = chat.message;
+//       const timestamp = chat.timestamp;
+//       if (body.toLowerCase().startsWith('!mp')) {
+//         if (!cache.chat_loaded) continue;
+//         const command = body.toLowerCase();
+//         const command_value = Number(command.match(/\d+/)) ?? 0;
+//
+//         if (command.startsWith('!mp timer')) {
+//           if (isNaN(command_value)) { stop_timer(); continue; }
+//           else start_timer(command_value);
+//         }
+//         else if ((command.startsWith('!mp aborttimer') && command.startsWith('!mp start')) && timer_in_progress) stop_timer();
+//         else continue;
+//       }
+//
+//       const player = chat.name;
+//       if (player === 'BanchoBot' && body.startsWith('Match history')) continue;
+//
+//       const team = team_lookup[chat.team] ?? 'unknown';
+//       const team_actual = teams.find(t => t.players.map(p => p.username).includes(player))?.team;
+//       const teamcode_actual = team_actual ? team_actual === cache.nameRed ? 'red' : team_actual === cache.nameBlue ? 'blue' : null : null;
+//
+//       const chatParent = $('<div></div>').addClass(`chat-message ${teamcode_actual || team}`);
+//
+//       chatParent.append($('<div></div>').addClass('chat-time').text(timestamp));
+//       chatParent.append($('<div></div>').addClass(`chat-name ${team}`).text(player));
+//       chatParent.append($('<div></div>').addClass('chat-body').text(body));
+//       $('#chat').prepend(chatParent);
+//     }
+//
+//     cache.chatLen = data.tourney.chat.length;
+//     cache.chat_loaded = true;
+//   }
 </script>
 
 <template>
@@ -288,11 +312,11 @@ const adjustedTeamScores = computed(() => {
       </div>
       <div class="header-team red">
         <div class="team-border red">
-          <div class="team-seed" id="red_seed">SEED {{ team_seeds[0] }}</div>
+          <div class="team-seed" id="red_seed">SEED {{ teamSeeds[0] }}</div>
         </div>
         <div class="team-text red">
           <div class="team-name">
-            <div class="team-flag" id="red_flag" :style="{ backgroundImage: `url(${team_flags[0]})` }"></div>
+            <div class="team-flag" id="red_flag" :style="{ backgroundImage: `url(${teamFlags[0]})` }"></div>
             <div class="team-name-text" id="red_name">{{ tourneyDataReplicant.data?.teamName?.left ?? 'loading...' }}</div>
           </div>
           <div class="team-points red" id="red_points" :style="{ opacity: tourneyDataReplicant.data?.starsVisible === true ? 1 : 0 }">
@@ -315,7 +339,7 @@ const adjustedTeamScores = computed(() => {
         <div class="team-text blue">
           <div class="team-name">
             <div class="team-name-text" id="blue_name">{{ tourneyDataReplicant.data?.teamName?.right ?? 'loading...' }}</div>
-            <div class="team-flag" id="blue_flag" :style="{ backgroundImage: `url(${team_flags[1]})` }"></div>
+            <div class="team-flag" id="blue_flag" :style="{ backgroundImage: `url(${teamFlags[1]})` }"></div>
           </div>
           <div class="team-points blue" id="blue_points" :style="{ opacity: tourneyDataReplicant.data?.starsVisible === true ? 1 : 0 }">
             <div class="team-point blue"
@@ -326,7 +350,7 @@ const adjustedTeamScores = computed(() => {
           </div>
         </div>
         <div class="team-border blue">
-          <div class="team-seed" id="blue_seed">SEED {{ team_seeds[1] }}</div>
+          <div class="team-seed" id="blue_seed">SEED {{ teamSeeds[1] }}</div>
         </div>
       </div>
     </div>
@@ -661,7 +685,6 @@ const adjustedTeamScores = computed(() => {
   transform: translateY(-3px);
 }
 
-
 .gameplay-area {
   width: 100%;
   height: 720px;
@@ -890,31 +913,6 @@ const adjustedTeamScores = computed(() => {
   background-repeat: no-repeat;
   filter: saturate(70%) brightness(90%);
 }
-
-
-/* .picked-by {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	font-size: 1.2rem;
-	text-transform: uppercase;
-	letter-spacing: 0px;
-	font-weight: 700;
-	background-color: var(--accent);
-	padding-top: 4px;
-	padding-left: 12px;
-	padding-right: 8px;
-	opacity: 0;
-	transition: opacity 300ms ease, background-color 300ms ease;
-}
-
-.picked-by.red {
-	background-color: var(--red);
-}
-
-.picked-by.blue {
-	background-color: var(--blue);
-} */
 
 .beatmap-stats-container {
   display: flex;
