@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
 import CountUp from 'countup.js';
+import $ from 'jquery';
 import { isEqual } from 'lodash';
 import { delay, formatLength, getModdedStats } from '@4wc-stream-overlay/browser_shared/utils';
 import { computed, ref, watch } from 'vue';
@@ -10,11 +11,11 @@ const TEAMSIZE = 4;
 // const DEBUG = false;
 //
 // const cache = {};
-// const timer = {
-//   in_progress: false,
-//   object: null,
-//   object_blink: null
-// };
+const timer: { in_progress: boolean, object: ReturnType<typeof setTimeout> | undefined, object_blink: ReturnType<typeof setTimeout> | undefined } = {
+  in_progress: false,
+  object: undefined,
+  object_blink: undefined,
+};
 
 const mappoolReplicant = useReplicant('tournamentMappool');
 const teamsReplicant = useReplicant('tournamentTeams');
@@ -88,49 +89,43 @@ const animation = {
 //     cache.chat_loaded = true;
 //   }
 // }
-//
-// const really_start_timer = length => {
-//   timer_in_progress = true;
-//   $('#timer_progress').css('animation', 'none');
-//   $('#timer_container').addClass('visible');
-//   $('#timer_progress').css('animation', `progress ${length}s linear`);
-//
-//   if (length > 3) {
-//     timer.object_blink = setTimeout(() => {
-//       if (!timer_in_progress) return;
-//       $('#timer_progress').css('animation', `progress ${length}s linear, progress_blink 0.5s infinite ease 0.5s`);
-//     }, (length - 3) * 1000);
-//   }
-//
-//   timer.object = setTimeout(() => {
-//     if (!timer_in_progress) return;
-//     stop_timer();
-//   }, length * 1000);
-// }
-//
-// const start_timer = length => {
-//   window.requestAnimationFrame(() => {
-//     stop_timer();
-//     window.requestAnimationFrame(() => {
-//       really_start_timer(length);
-//     })
-//   })
-// }
-//
-// const stop_timer = () => {
-//   clearTimeout(timer.object);
-//   clearTimeout(timer.object_blink);
-//   timer_in_progress = false;
-//   $('#timer_progress').css('animation', 'none');
-//   $('#timer_container').removeClass('visible');
-// }
-//
-// const team_lookup = {
-//   bot: 'bot',
-//   left: 'red',
-//   right: 'blue'
-// }
-//
+let timerInProgress = false;
+
+const stopTimer = () => {
+  clearTimeout(timer.object);
+  clearTimeout(timer.object_blink);
+  timerInProgress = false;
+  $('#timer_progress').css('animation', 'none');
+  $('#timer_container').removeClass('visible');
+};
+
+const reallyStartTimer = (length: number) => {
+  timerInProgress = true;
+  $('#timer_progress').css('animation', 'none');
+  $('#timer_container').addClass('visible');
+  $('#timer_progress').css('animation', `progress ${length}s linear`);
+
+  if (length > 3) {
+    timer.object_blink = setTimeout(() => {
+      if (!timerInProgress) return;
+      $('#timer_progress').css('animation', `progress ${length}s linear, progress_blink 0.5s infinite ease 0.5s`);
+    }, (length - 3) * 1000);
+  }
+
+  timer.object = setTimeout(() => {
+    if (!timerInProgress) return;
+    stopTimer();
+  }, length * 1000);
+};
+
+const startTimer = (length: number) => {
+  window.requestAnimationFrame(() => {
+    stopTimer();
+    window.requestAnimationFrame(() => {
+      reallyStartTimer(length);
+    });
+  });
+};
 
 const teamFlags = computed(() => {
   const redFlagName = teamsReplicant.data?.find((t) => t.team === tourneyDataReplicant.data?.teamName?.left)?.flag;
@@ -261,6 +256,31 @@ const updateScoresDisplay = () => {
 const adjustedTeamScores = computed(() => updateScoresDisplay());
 
 // ==== chat handling ====
+
+const chatMessages = computed(() => tourneyDataReplicant.data?.chat ?? []);
+
+watch(chatMessages, (newMessages, oldMessages) => {
+  if (newMessages.length <= oldMessages.length) {
+    return;
+  }
+
+  for (let i = oldMessages.length; i < newMessages.length; i += 1) {
+    const msg = newMessages[i].messageBody.toLowerCase();
+    if (msg.startsWith('!mp timer')) {
+      const commandNumericalParam = Number(msg.match(/\d+/)) ?? 0;
+
+      if (commandNumericalParam > 0) {
+        startTimer(commandNumericalParam);
+      } else {
+        stopTimer();
+      }
+    }
+
+    if (msg.startsWith('!mp aborttimer') || msg.startsWith('!mp start')) {
+      stopTimer();
+    }
+  }
+});
 
 //   if (cache.chatLen !== data.tourney.chat.length && teams) {
 //     for (let i = cache.chatLen || 0; i < current_chat_len; i++) {
