@@ -21,6 +21,7 @@ const confirmResetPickBans = () => {
   // Your actual delete logic here
   console.log(`clearing all picks and bans: ${JSON.stringify(pickBansReplicant.data)}`);
   pickBansReplicant.data = {};
+  pickBansReplicant.save();
   pendingConfirm.value = false;
 };
 
