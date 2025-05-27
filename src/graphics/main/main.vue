@@ -1206,15 +1206,15 @@ watch(currentPick, async (newVal, oldVal) => {
 
 /*Scrollbar*/
 :global(::-webkit-scrollbar) {
-  width: 0px;
-  visibility: 0;
+  width: 0;
+  visibility: hidden;
 }
 
 /* Track */
 :global(::-webkit-scrollbar-track) {
   margin-top: 25px;
   margin-bottom: 25px;
-  visibility: 0;
+  visibility: hidden;
 }
 
 /* Handle */
