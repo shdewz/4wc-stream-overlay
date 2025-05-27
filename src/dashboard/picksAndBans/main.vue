@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
-import {computed, onMounted, ref} from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
-import { PoolBeatmap } from "@4wc-stream-overlay/types/schemas";
+import { PoolBeatmap } from '@4wc-stream-overlay/types/schemas';
 
 useHead({ title: 'countdown' });
 
@@ -11,54 +11,48 @@ const pickBansReplicant = useReplicant('tournamentPickBans');
 
 const isLoaded = computed(() => poolReplicant.data !== undefined);
 
-
 const pendingConfirm = ref(false);
 
 const checkConfirm = () => {
   pendingConfirm.value = true;
-}
+};
 
 const confirmResetPickBans = () => {
   // Your actual delete logic here
   console.log(`clearing all picks and bans: ${JSON.stringify(pickBansReplicant.data)}`);
   pickBansReplicant.data = {};
   pendingConfirm.value = false;
-}
+};
 
-const modPools = computed(() => {
-    return poolReplicant.data?.beatmaps.reduce((groups: Record<string, PoolBeatmap[]>, item: PoolBeatmap) => {
-      const key = item.mods;
-      if (!groups[key]) {
-        groups[key] = [];
-      }
-      groups[key].push(item);
-      return groups;
-    }, {});
-});
+const modPools = computed(() => poolReplicant.data?.beatmaps.reduce((groups: Record<string, PoolBeatmap[]>, item: PoolBeatmap) => {
+  const key = item.mods;
+  if (!groups[key]) {
+    groups[key] = [];
+  }
+  groups[key].push(item);
+  return groups;
+}, {}));
 
 const poolMapActionRed = (clickEvent: Event, beatmap_id: number) => {
-  if (!(clickEvent instanceof MouseEvent))
-    return;
+  if (!(clickEvent instanceof MouseEvent)) return;
 
   const mouseEvent = clickEvent as MouseEvent;
   console.log(`red did an action for map ${beatmap_id}, shift: ${mouseEvent.shiftKey}, right: ${mouseEvent.button}`);
 
-  const beatmap_id_str = beatmap_id.toString();
+  const beatmapIdStr = beatmap_id.toString();
 
   if (mouseEvent.shiftKey) {
     // pickBansReplicant.data = pickBansReplicant.data?.filter(pb => pb.id !== beatmap_id) || [];
-    const { [beatmap_id_str]: _, ...newObj } = pickBansReplicant.data ?? {};
+    const { [beatmapIdStr]: ignored, ...newObj } = pickBansReplicant.data ?? {};
     pickBansReplicant.data = newObj;
     pickBansReplicant.save();
     return;
   }
 
   // replace color if already picked/banned
-  const existing = pickBansReplicant.data?.[beatmap_id_str];
-  if (existing)
-  {
-    if (existing?.color == 'red')
-      return;
+  const existing = pickBansReplicant.data?.[beatmapIdStr];
+  if (existing) {
+    if (existing?.color === 'red') return;
 
     existing.color = 'red';
     pickBansReplicant.save();
@@ -68,34 +62,31 @@ const poolMapActionRed = (clickEvent: Event, beatmap_id: number) => {
   // pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'red'});
   if (pickBansReplicant.data) {
     const newObj = pickBansReplicant.data;
-    newObj[beatmap_id_str] = {'beatmap_id': beatmap_id, 'type': 'pick', 'color': 'red', 'time': Date.now()};
+    newObj[beatmapIdStr] = { beatmap_id, type: 'pick', color: 'red', time: Date.now() };
     pickBansReplicant.data = newObj;
     pickBansReplicant.save();
   }
-}
+};
 
 const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
-  if (!(clickEvent instanceof MouseEvent))
-    return;
+  if (!(clickEvent instanceof MouseEvent)) return;
 
   const mouseEvent = clickEvent as MouseEvent;
   console.log(`blue did an action for map ${beatmap_id}, shift: ${mouseEvent.shiftKey}`);
 
-  const beatmap_id_str = beatmap_id.toString();
+  const beatmapIdStr = beatmap_id.toString();
 
   if (mouseEvent.shiftKey) {
-    const { [beatmap_id_str]: _, ...newObj } = pickBansReplicant.data ?? {};
+    const { [beatmapIdStr]: ignored, ...newObj } = pickBansReplicant.data ?? {};
     pickBansReplicant.data = newObj;
     pickBansReplicant.save();
     return;
   }
 
   // do nothing if already picked/banned
-  const existing = pickBansReplicant.data?.[beatmap_id_str];
-  if (existing)
-  {
-    if (existing?.color == 'blue')
-      return;
+  const existing = pickBansReplicant.data?.[beatmapIdStr];
+  if (existing) {
+    if (existing?.color === 'blue') return;
 
     existing.color = 'blue';
     pickBansReplicant.save();
@@ -104,27 +95,26 @@ const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
 
   if (pickBansReplicant.data) {
     const newObj = pickBansReplicant.data;
-    newObj[beatmap_id_str] = {'beatmap_id': beatmap_id, 'type': 'pick', 'color': 'blue', 'time': Date.now()};
+    newObj[beatmapIdStr] = { beatmap_id, type: 'pick', color: 'blue', time: Date.now() };
     pickBansReplicant.data = newObj;
     pickBansReplicant.save();
   }
-}
-
+};
 
 const getButtonColor = (beatmap_id: number) => {
   // const pickedMap = pickBansReplicant.data?.find(pb => pb.id == beatmap_id);
   const pickedMap = pickBansReplicant.data?.[beatmap_id.toString()];
 
   if (!pickedMap) {
-    return "grey-7"
+    return 'grey-7';
   }
 
-  return pickedMap.color == 'red' ? "negative" : "primary"
-}
+  return pickedMap.color === 'red' ? 'negative' : 'primary';
+};
 
 onMounted(() => {
   console.log(`mounted, pick and bans: ${JSON.stringify(pickBansReplicant.data)}`);
-})
+});
 
 // :outline="pickBansReplicant.data?.some(pb => pb.id === beatmap.beatmap_id)"
 </script>
@@ -171,7 +161,6 @@ onMounted(() => {
           @click="() => pendingConfirm = false"
       />
     </div>
-
 
   </div>
 </template>
