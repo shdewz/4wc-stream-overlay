@@ -8,7 +8,7 @@ import {computed, ref, watch} from "vue";
 import '../../assets/common.css';
 
 
-// const TEAMSIZE = 4;
+const TEAMSIZE = 4;
 // const DEBUG = false;
 //
 // const cache = {};
@@ -57,74 +57,12 @@ const animation = {
 //   if (cache.scoreVisible !== data.tourney.scoreVisible) {
 //     cache.scoreVisible = data.tourney.scoreVisible;
 //
-//     if (cache.scoreVisible) {
-//       $('#chat_container').css('animation', 'chatIn 300ms ease forwards reverse');
-//       $('#score_area').css('opacity', 1);
-//       // $('#map_title_container').addClass('expanded');
-//     } else {
-//       $('#chat_container').css('animation', 'chatIn 300ms ease forwards');
-//       $('#score_area').css('opacity', 0);
-//       // $('#map_title_container').removeClass('expanded');
-//     }
-//   }
-//
 //   if (mappool && cache.md5 !== data.beatmap.checksum) {
 //     cache.md5 = data.beatmap.checksum;
 //     setTimeout(() => { cache.update_stats = true }, 250);
 //   }
 //
-//   if (cache.scoreVisible) {
-//     const scores = [];
-//     const ez_multiplier = cache.map?.ez_multiplier || 1;
-//     for (let i = 0; i < TEAMSIZE * 2; i++) {
-//       let score = data.tourney.clients[i]?.play?.score || 0;
-//       if (data.tourney.clients[i]?.play?.mods?.name?.toUpperCase().includes('EZ')) score *= ez_multiplier;
-//       scores.push({ id: i, score });
-//     }
-//
-//     cache.scoreRed = scores.filter(s => s.id < TEAMSIZE).map(s => s.score).reduce((a, b) => a + b);
-//     cache.scoreBlue = scores.filter(s => s.id >= TEAMSIZE).map(s => s.score).reduce((a, b) => a + b);
-//     // cache.scoreRed = 1665624;
-//     // cache.scoreBlue = 796743;
-//     const scorediff = Math.abs(cache.scoreRed - cache.scoreBlue);
-//
-//     animation.red_score.update(cache.scoreRed);
-//     animation.blue_score.update(cache.scoreBlue);
-//     animation.score_diff.update(scorediff);
-//
-//     const lead_bar_width = `${Math.max(10, 360 * (Math.min(0.5, Math.pow(scorediff / 1000000, 0.7)) * 2))}px`;
-//
-//     if (cache.scoreRed > cache.scoreBlue) {
-//       $('#score_red').addClass('winning');
-//       $('#score_blue').removeClass('winning');
-//
-//       $('#score_diff_red').addClass('visible');
-//       $('#score_diff_blue').removeClass('visible');
-//
-//       $('#lead_bar').css('width', lead_bar_width);
-//       $('#lead_bar').addClass('red').removeClass('blue');
-//     }
-//     else if (cache.scoreBlue > cache.scoreRed) {
-//       $('#score_red').removeClass('winning');
-//       $('#score_blue').addClass('winning');
-//
-//       $('#score_diff_red').removeClass('visible');
-//       $('#score_diff_blue').addClass('visible');
-//
-//       $('#lead_bar').css('width', lead_bar_width);
-//       $('#lead_bar').removeClass('red').addClass('blue');
-//     }
-//     else {
-//       $('#score_red').removeClass('winning');
-//       $('#score_blue').removeClass('winning');
-//
-//       $('#score_diff_red').removeClass('visible');
-//       $('#score_diff_blue').removeClass('visible');
-//
-//       $('#lead_bar').css('width', '0px');
-//       $('#lead_bar').removeClass('red blue');
-//     }
-//   }
+
 //
 //   if (cache.chatLen !== data.tourney.chat.length && teams) {
 //     const current_chat_len = data.tourney.chat.length;
@@ -333,6 +271,41 @@ watch(currentPick, async (newVal, oldVal) => {
       : tourneyDataReplicant.data?.teamName?.right ?? 'blue team').toUpperCase()}`;
   await showPickByLabel(text);
 });
+
+
+// ==== Scores handling ====
+const updateScoresDisplay = () => {
+  const multiplier =  mappoolMap.value?.ez_multiplier ?? 1;
+
+  const scores = [];
+  for (let i = 0; i < TEAMSIZE * 2; i++) {
+    const client = tourneyDataReplicant.data?.clients[i];
+    if (!client) {
+      scores.push({ id: i, score: 0 });
+      continue;
+    }
+
+    let score = client.score ?? 0;
+    if (client.mods?.toUpperCase().includes('EZ'))
+      score *= multiplier;
+    scores.push({ id: i, score });
+  }
+
+  const scoreRed = scores.filter(s => s.id < TEAMSIZE).map(s => s.score).reduce((a, b) => a + b);
+  const scoreBlue = scores.filter(s => s.id >= TEAMSIZE).map(s => s.score).reduce((a, b) => a + b);
+  const scoreDiff = Math.abs(scoreRed - scoreBlue);
+
+  animation.red_score.update(scoreRed);
+  animation.blue_score.update(scoreBlue);
+  animation.score_diff.update(scoreDiff);
+
+  return {scoreRed, scoreBlue, scoreDiff};
+}
+
+const adjustedTeamScores = computed(() => {
+  console.log('computing adjustedTeamScores');
+  return updateScoresDisplay();
+})
 </script>
 
 <template>
@@ -391,19 +364,30 @@ watch(currentPick, async (newVal, oldVal) => {
       <div class="footer-edge left"></div>
       <div class="footer-middle">
         <div class="score-area" id="score_area" :style="{ opacity: tourneyDataReplicant.data?.scoresVisible === true ? 1 : 0  }">
-          <div class="lead-bar" id="lead_bar"></div>
+          <div class="lead-bar"
+               :class="{
+                  red: adjustedTeamScores.scoreRed > adjustedTeamScores.scoreBlue,
+                  blue: adjustedTeamScores.scoreBlue > adjustedTeamScores.scoreRed
+               }"
+               id="lead_bar"
+               :style="{
+            width: adjustedTeamScores.scoreDiff === 0
+                 ? 0
+                 : `${ Math.max( 10, 360 * (Math.min( 0.5, Math.pow(adjustedTeamScores.scoreDiff / 1000000, 0.7) ) * 2)) }px`
+          }"/>
           <div class="team-scores-container">
             <div class="team-scores">
-              <div class="team-score red" id="score_red">0</div>
-              <div class="team-score blue" id="score_blue">0</div>
+              <div class="team-score red" :class="{ winning: adjustedTeamScores.scoreRed > adjustedTeamScores.scoreBlue }" id="score_red">0</div>
+              <div class="team-score blue" :class="{ winning: adjustedTeamScores.scoreBlue > adjustedTeamScores.scoreRed }" id="score_blue">0</div>
             </div>
             <div class="score-diff-container">
-              <div class="score-diff-side red" id="score_diff_red">
-                <i class="fa-solid fa-caret-left"></i>
+              <div class="score-diff-side red" :class="{ visible: adjustedTeamScores.scoreRed > adjustedTeamScores.scoreBlue }" id="score_diff_red">
+                <font-awesome-icon :icon="['fas', 'fa-caret-left']"/>
+
               </div>
               <div class="score-diff" id="score_diff" data-before="" data-after="">0</div>
-              <div class="score-diff-side blue" id="score_diff_blue">
-                <i class="fa-solid fa-caret-right"></i>
+              <div class="score-diff-side blue" :class="{ visible: adjustedTeamScores.scoreBlue > adjustedTeamScores.scoreRed }" id="score_diff_blue">
+                <font-awesome-icon :icon="['fas', 'fa-caret-right']"/>
               </div>
             </div>
           </div>
@@ -454,7 +438,9 @@ watch(currentPick, async (newVal, oldVal) => {
               </div>
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">SR</div>
-                <div class="beatmap-attribute__value"><span id="sr">{{ mappoolMap?.sr ?? 0 }}</span><i class="fa-solid fa-star"></i></div>
+                <div class="beatmap-attribute__value"><span id="sr">{{ mappoolMap?.sr ?? 0 }}</span>
+                  <font-awesome-icon :icon="['fas', 'fa-star']" />
+                </div>
               </div>
             </div>
           </div>

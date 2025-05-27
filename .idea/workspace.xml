@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="update tournamentPickBans schema">
+      <change afterPath="$PROJECT_DIR$/_shared/deps/fa-kit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/osuTourney.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/osuTourney.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extension/gosumemory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/gosumemory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphics/main/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main/main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/schemas/osuTourney.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/osuTourney.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +49,9 @@
     &quot;accountId&quot;: &quot;85ce4ce1-02c1-40bb-a204-99bf8fd6c93f&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 7
@@ -69,7 +79,7 @@
     "npm.schema-types.executor": "Run",
     "npm.start.executor": "Run",
     "npm.watch.executor": "Run",
-    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
+    "settings.editor.selected.configurable": "settings.typescriptcompiler",
     "ts.external.directory.path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -91,7 +101,7 @@
       <recent name="$PROJECT_DIR$/src/graphics/gameplay" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.schema-types">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -140,8 +150,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.schema-types" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />

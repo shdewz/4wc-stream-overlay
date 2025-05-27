@@ -73,6 +73,9 @@
       "items": {
         "type": "object",
         "properties": {
+          "mods": {
+            "type": "string"
+          },
           "score": {
             "type": "integer"
           },
@@ -93,7 +96,7 @@
           }
         },
         "additionalProperties": false,
-        "required": ["score", "unstableRate", "hits300", "hits100", "hits50", "hits0"]
+        "required": ["score", "unstableRate", "hits300", "hits100", "hits50", "hits0", "mods"]
       }
     },
     "time": {

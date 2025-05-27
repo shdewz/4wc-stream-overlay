@@ -20,6 +20,7 @@ export interface OsuTourneyData {
 		right: number;
 	};
 	clients: {
+		mods: string;
 		score: number;
 		unstableRate: number;
 		hits300: number;
