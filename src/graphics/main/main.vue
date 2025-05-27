@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {useReplicant} from '@4wc-stream-overlay/browser_shared/vue-replicants';
 import CountUp from 'countup.js'
-import $ from "jquery"
 import { isEqual } from 'lodash';
 import {delay, formatLength, getModdedStats} from "@4wc-stream-overlay/browser_shared/utils";
 import {computed, ref, watch} from "vue";
@@ -25,19 +24,6 @@ const tourneyDataReplicant = useReplicant('osuTourney');
 const songDataReplicant = useReplicant('osuSong');
 const tournamentPickBansReplicant = useReplicant('tournamentPickBans');
 
-
-// let mappool, teams;
-// (async () => {
-//   $.ajaxSetup({ cache: false });
-//   mappool = await $.getJSON('../_data/beatmaps.json');
-//   teams = await $.getJSON('../_data/teams.json');
-//   const stage = mappool.stage;
-//   if (stage) {
-//     $('#stage').text(stage);
-//     if (stage.toUpperCase() === 'QUARTERFINALS') $('#stage').addClass('qf');
-//   }
-// })();
-//
 
 const animation = {
   red_score: new CountUp('score_red', 0, 0, 0, .3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
@@ -201,21 +187,6 @@ watch(() => mappoolMap.value?.identifier, async (newIdentifier, _) => {
     }
   }
 }, {immediate: true});
-
-// const latestPick = computed(() => {
-//   if (!tournamentPickBansReplicant.data)
-//     return null;
-//
-//   const pickBansValues = Object.values(tournamentPickBansReplicant.data);
-//   if (pickBansValues.length === 0)
-//     return null;
-//
-//   const latestPick = pickBansValues.reduce((max, current) => current.time > max.time ? current : max);
-//   // const poolMap = mappoolReplicant.data?.beatmaps.find(m => m.beatmap_id === latestPick.beatmap_id);
-//   // console.log(`hello, computed latest pick: ${JSON.stringify(poolMap)}`);
-//   // return poolMap;
-//   return latestPick;
-// });
 
 
 
