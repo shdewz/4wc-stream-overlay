@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
-import {QExpansionItem, QInput, useQuasar} from 'quasar';
-import {PoolBeatmap, TournamentMappoolData} from "@4wc-stream-overlay/types/schemas";
+import { PoolBeatmap } from "@4wc-stream-overlay/types/schemas";
 
 useHead({ title: 'countdown' });
 
@@ -64,7 +63,7 @@ const poolMapActionRed = (clickEvent: Event, beatmap_id: number) => {
 
   // pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'red'});
   if (pickBansReplicant.data)
-    pickBansReplicant.data[beatmap_id] = {'type': 'pick', 'color': 'red'};
+    pickBansReplicant.data[beatmap_id] = {'type': 'pick', 'color': 'red', 'time': Date.now()};
 }
 
 const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
@@ -95,7 +94,7 @@ const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
 
   // pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'blue'});
   if (pickBansReplicant.data)
-    pickBansReplicant.data[beatmap_id] = {'type': 'pick', 'color': 'blue'};
+    pickBansReplicant.data[beatmap_id] = {'type': 'pick', 'color': 'blue', 'time': Date.now()};
 }
 
 

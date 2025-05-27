@@ -14,5 +14,6 @@ export interface TournamentPicksAndBans {
 	[k: string]: {
 		color?: 'red' | 'blue';
 		type?: 'pick' | 'ban';
+		time?: number;
 	};
 }
