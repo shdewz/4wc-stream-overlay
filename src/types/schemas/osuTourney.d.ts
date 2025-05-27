@@ -19,6 +19,14 @@ export interface OsuTourneyData {
 		left: number;
 		right: number;
 	};
+	chat:
+		| {
+				team: 'left' | 'right' | 'bot';
+				time: string;
+				name: string;
+				messageBody: string;
+		  }[]
+		| null;
 	clients: {
 		mods: string;
 		score: number;

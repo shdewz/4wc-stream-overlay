@@ -15,6 +15,14 @@
       "left": 0,
       "right": 0
     },
+    "chat": [
+      {
+        "team": "bot",
+        "time": "15:00",
+        "name": "BanchoBot",
+        "messageBody": "Match history available here."
+      }
+    ],
     "clients": [],
     "time": {
       "firstObj": 0,
@@ -68,6 +76,44 @@
       },
       "additionalProperties": false
     },
+    "chat": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "default": [],
+      "examples": [
+        [
+          {
+            "team": "bot",
+            "time": "15:00",
+            "name": "BanchoBot",
+            "messageBody": "Match history available here."
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "type": "object",
+        "required": [ "team", "time", "name", "messageBody" ],
+        "properties": {
+          "team": {
+            "type": "string",
+            "enum": ["left", "right", "bot"]
+          },
+          "time": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "messageBody": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
     "clients": {
       "type": "array",
       "items": {
@@ -120,5 +166,5 @@
     }
   },
   "additionalProperties": false,
-  "required": ["state", "scoresVisible", "clients", "time", "starsVisible", "teamName", "bestOf", "stars"]
+  "required": ["state", "scoresVisible", "clients", "time", "starsVisible", "teamName", "bestOf", "stars", "chat"]
 }

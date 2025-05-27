@@ -263,9 +263,6 @@ const adjustedTeamScores = computed(() => updateScoresDisplay());
 // ==== chat handling ====
 
 //   if (cache.chatLen !== data.tourney.chat.length && teams) {
-//     const current_chat_len = data.tourney.chat.length;
-//     if (cache.chatLen === 0 || (cache.chatLen > 0 && cache.chatLen > current_chat_len)) { $('#chat').html(''); cache.chatLen = 0; }
-//
 //     for (let i = cache.chatLen || 0; i < current_chat_len; i++) {
 //       const chat = data.tourney.chat[i];
 //       const body = chat.message;
@@ -284,22 +281,11 @@ const adjustedTeamScores = computed(() => updateScoresDisplay());
 //       }
 //
 //       const player = chat.name;
-//       if (player === 'BanchoBot' && body.startsWith('Match history')) continue;
 //
 //       const team = team_lookup[chat.team] ?? 'unknown';
 //       const team_actual = teams.find(t => t.players.map(p => p.username).includes(player))?.team;
 //       const teamcode_actual = team_actual ? team_actual === cache.nameRed ? 'red' : team_actual === cache.nameBlue ? 'blue' : null : null;
-//
-//       const chatParent = $('<div></div>').addClass(`chat-message ${teamcode_actual || team}`);
-//
-//       chatParent.append($('<div></div>').addClass('chat-time').text(timestamp));
-//       chatParent.append($('<div></div>').addClass(`chat-name ${team}`).text(player));
-//       chatParent.append($('<div></div>').addClass('chat-body').text(body));
-//       $('#chat').prepend(chatParent);
 //     }
-//
-//     cache.chatLen = data.tourney.chat.length;
-//     cache.chat_loaded = true;
 //   }
 </script>
 
@@ -444,7 +430,19 @@ const adjustedTeamScores = computed(() => updateScoresDisplay());
           <div class="chat-container" id="chat_container" v-if="!tourneyDataReplicant.data?.scoresVisible">
             <div class="chat-inner-container">
               <div class="chat-title">CHAT</div>
-              <div class="chat" id="chat"></div>
+              <div class="chat" id="chat">
+<!--                TODO: lookup user in team replicant to set their chat team membership-->
+                <TransitionGroup name="scale" tag="div" class="list-container">
+                  <div class="chat-message"
+                       :class="{ red: message.team === 'left', blue: message.team === 'right', bot: message.team === 'bot' }"
+                       v-for="message in tourneyDataReplicant.data?.chat?.filter(msg => !msg.messageBody.startsWith('Match history available')) ?? []"
+                       :key="JSON.stringify(message)">
+                    <div class="chat-time">{{ message.time }}</div>
+                    <div class="chat-name">{{ message.name }}</div>
+                    <div class="chat-body">{{ message.messageBody }}</div>
+                  </div>
+                </TransitionGroup>
+              </div>
             </div>
             <div class="chat-timer-container" id="timer_container">
               <div class="chat-timer__progress-container">
@@ -1047,7 +1045,38 @@ const adjustedTeamScores = computed(() => updateScoresDisplay());
   flex-direction: column-reverse;
   gap: 2px;
   line-height: 1.32rem;
-  transition: height 300ms ease, padding 300ms ease;
+}
+
+.list-container {
+  position: relative;
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.3s ease;
+  transform-origin: bottom;
+}
+
+.scale-enter-from {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+.scale-leave-to {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+/* Smooth repositioning of existing items */
+.scale-move {
+  transition: transform 0.3s ease;
+}
+
+/* Ensure leaving items don't affect layout during animation */
+.scale-leave-active {
+  position: absolute;
+  right: 0;
+  left: 0;
 }
 
 .chat-message {
@@ -1055,6 +1084,7 @@ const adjustedTeamScores = computed(() => updateScoresDisplay());
   align-items: center;
   gap: 4px;
   font-size: 1.3rem;
+  overflow: hidden;
 }
 
 .chat-message:nth-of-type(n+9) {

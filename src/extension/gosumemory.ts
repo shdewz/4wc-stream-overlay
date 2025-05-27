@@ -116,6 +116,7 @@ function applyData(val: CurrentGosumemoryData) {
       teamName: val.tourney.manager.teamName,
       bestOf: val.tourney.manager.bestOF,
       stars: val.tourney.manager.stars,
+      chat: val.tourney.manager.chat,
       clients: val.tourney.ipcClients?.map((client) => ({
         mods: client.gameplay.mods.str,
         score: client.gameplay.score,

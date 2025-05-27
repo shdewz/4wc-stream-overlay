@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="update tournamentPickBans schema">
-      <change afterPath="$PROJECT_DIR$/_shared/deps/fa-kit.js" afterDir="false" />
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="fix lint errors in main graphic">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/schemas/osuTourney.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/osuTourney.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/extension/gosumemory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/gosumemory.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphics/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphics/main/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/main/main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/schemas/osuTourney.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/osuTourney.d.ts" afterDir="false" />
     </list>
@@ -85,6 +82,7 @@
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Vue",
       "JSON"
     ],
     "vue.recent.templates": [
@@ -176,6 +174,7 @@
       <workItem from="1748210804570" duration="3076000" />
       <workItem from="1748213930379" duration="4753000" />
       <workItem from="1748218748658" duration="17376000" />
+      <workItem from="1748346436913" duration="4495000" />
     </task>
     <task id="LOCAL-00001" summary="update config">
       <option name="closed" value="true" />
@@ -281,7 +280,31 @@
       <option name="project" value="LOCAL" />
       <updated>1748325599036</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="remove unused code">
+      <option name="closed" value="true" />
+      <created>1748345564413</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1748345564413</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix lint errors in main graphic">
+      <option name="closed" value="true" />
+      <created>1748346842437</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1748346842437</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fix lint errors in main graphic">
+      <option name="closed" value="true" />
+      <created>1748346895319</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1748346895319</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,6 +344,8 @@
     <MESSAGE value="add song metadata and stats display&#10;&#10;this modifies the osuSong schema to include raw stats (cs/ar/od/length/bpm) and computed stats that account for mods" />
     <MESSAGE value="add cancel button next to reset pickbans confirm button" />
     <MESSAGE value="update tournamentPickBans schema" />
-    <option name="LAST_COMMIT_MESSAGE" value="update tournamentPickBans schema" />
+    <MESSAGE value="remove unused code" />
+    <MESSAGE value="fix lint errors in main graphic" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix lint errors in main graphic" />
   </component>
 </project>
