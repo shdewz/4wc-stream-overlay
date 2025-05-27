@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add song metadata and stats display&#10;&#10;this modifies the osuSong schema to include raw stats (cs/ar/od/length/bpm) and computed stats that account for mods">
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add cancel button next to reset pickbans confirm button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/tournamentPickBans.json" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/tournamentPickBans.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dashboard/picksAndBans/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard/picksAndBans/main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/schemas/tournamentPickBans.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/schemas/tournamentPickBans.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748280310335</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add cancel button next to reset pickbans confirm button">
+      <option name="closed" value="true" />
+      <created>1748292429354</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1748292429354</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,6 +303,7 @@
     <MESSAGE value="fix osuTourney schema missing required properties" />
     <MESSAGE value="fill stars based on tourney score" />
     <MESSAGE value="add song metadata and stats display&#10;&#10;this modifies the osuSong schema to include raw stats (cs/ar/od/length/bpm) and computed stats that account for mods" />
-    <option name="LAST_COMMIT_MESSAGE" value="add song metadata and stats display&#10;&#10;this modifies the osuSong schema to include raw stats (cs/ar/od/length/bpm) and computed stats that account for mods" />
+    <MESSAGE value="add cancel button next to reset pickbans confirm button" />
+    <option name="LAST_COMMIT_MESSAGE" value="add cancel button next to reset pickbans confirm button" />
   </component>
 </project>

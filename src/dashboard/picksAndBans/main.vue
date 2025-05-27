@@ -22,7 +22,7 @@ const checkConfirm = () => {
 const confirmResetPickBans = () => {
   // Your actual delete logic here
   console.log(`clearing all picks and bans: ${JSON.stringify(pickBansReplicant.data)}`);
-  pickBansReplicant.data = [];
+  pickBansReplicant.data = {};
   pendingConfirm.value = false;
 }
 
@@ -45,12 +45,14 @@ const poolMapActionRed = (clickEvent: Event, beatmap_id: number) => {
   console.log(`red did an action for map ${beatmap_id}, shift: ${mouseEvent.shiftKey}, right: ${mouseEvent.button}`);
 
   if (mouseEvent.shiftKey) {
-    pickBansReplicant.data = pickBansReplicant.data?.filter(pb => pb.id !== beatmap_id) || [];
+    // pickBansReplicant.data = pickBansReplicant.data?.filter(pb => pb.id !== beatmap_id) || [];
+    const { [beatmap_id]: _, ...newObj } = pickBansReplicant.data ?? {};
+    pickBansReplicant.data = newObj;
     return;
   }
 
   // replace color if already picked/banned
-  const existing = pickBansReplicant.data?.find(pb => pb.id === beatmap_id);
+  const existing = pickBansReplicant.data?.[beatmap_id];
   if (existing)
   {
     if (existing?.color == 'red')
@@ -60,8 +62,9 @@ const poolMapActionRed = (clickEvent: Event, beatmap_id: number) => {
     return;
   }
 
-  pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'red'});
-
+  // pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'red'});
+  if (pickBansReplicant.data)
+    pickBansReplicant.data[beatmap_id] = {'type': 'pick', 'color': 'red'};
 }
 
 const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
@@ -71,8 +74,16 @@ const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
   const mouseEvent = clickEvent as MouseEvent;
   console.log(`blue did an action for map ${beatmap_id}, shift: ${mouseEvent.shiftKey}`);
 
+  if (mouseEvent.shiftKey) {
+    // pickBansReplicant.data = pickBansReplicant.data?.filter(pb => pb.id !== beatmap_id) || [];
+    const { [beatmap_id]: _, ...newObj } = pickBansReplicant.data ?? {};
+    pickBansReplicant.data = newObj;
+    return;
+  }
+
   // do nothing if already picked/banned
-  const existing = pickBansReplicant.data?.find(pb => pb.id === beatmap_id);
+  // const existing = pickBansReplicant.data?.find(pb => pb.id === beatmap_id);
+  const existing = pickBansReplicant.data?.[beatmap_id];
   if (existing)
   {
     if (existing?.color == 'blue')
@@ -82,13 +93,15 @@ const poolMapActionBlue = (clickEvent: Event, beatmap_id: number) => {
     return;
   }
 
-  pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'blue'});
-
+  // pickBansReplicant.data?.push({'id': beatmap_id, 'color': 'blue'});
+  if (pickBansReplicant.data)
+    pickBansReplicant.data[beatmap_id] = {'type': 'pick', 'color': 'blue'};
 }
 
 
 const getButtonColor = (beatmap_id: number) => {
-  const pickedMap = pickBansReplicant.data?.find(pb => pb.id == beatmap_id);
+  // const pickedMap = pickBansReplicant.data?.find(pb => pb.id == beatmap_id);
+  const pickedMap = pickBansReplicant.data?.[beatmap_id];
 
   if (!pickedMap) {
     return "grey-7"
@@ -109,7 +122,7 @@ const getButtonColor = (beatmap_id: number) => {
                 size="lg"
                 style="--q-btn-outline-width: 10px;"
                 :color="getButtonColor(beatmap.beatmap_id)"
-                :class="{'grayed-out': pickBansReplicant.data?.some(pb => pb.id === beatmap.beatmap_id) }"
+                :class="{'grayed-out': pickBansReplicant.data && beatmap.beatmap_id in pickBansReplicant.data }"
                 :label="beatmap.identifier"
                 @click="(event) => poolMapActionRed(event, beatmap.beatmap_id)"
                 @contextmenu.prevent="(event: Event) => poolMapActionBlue(event, beatmap.beatmap_id)"

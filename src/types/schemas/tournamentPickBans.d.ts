@@ -6,7 +6,13 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type TournamentPicksAndBans = {
-	id: number;
-	color: 'red' | 'blue';
-}[];
+export interface TournamentPicksAndBans {
+	/**
+	 * This interface was referenced by `TournamentPicksAndBans`'s JSON-Schema definition
+	 * via the `patternProperty` "^[0-9]+$".
+	 */
+	[k: string]: {
+		color?: 'red' | 'blue';
+		type?: 'pick' | 'ban';
+	};
+}
