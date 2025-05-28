@@ -33,15 +33,24 @@ const { isLoaded,
   modPools, isMapBanned,
   poolMapAction } = useSharedLogic();
 
-const poolMaps = computed(() => poolReplicant.data?.beatmaps ?? []);
+const getModPoolAccentColor = (modPoolName: string): string => ({
+  HD: 'yellow-11',
+  HR: 'red-11',
+  DT: 'deep-purple-11',
+  FM: 'green-11',
+  NM: 'blue-11',
+}[modPoolName.toUpperCase()] ?? 'white');
 </script>
 
 <template>
   <div>
-    <q-list dense>
-      <q-item tag="label" v-ripple="false" v-for="poolMap in poolMaps" :key="poolMap.identifier">
+<!--    <div v-for="[key, beatmaps] in Object.entries(modPools ?? {})" :key="key">-->
+<!--      <div class="row justify-center">-->
+<!--        <div class="col-4" v-for="beatmap in beatmaps" :key="beatmap.beatmap_id">-->
+    <q-list dense v-for="[key, beatmaps] in Object.entries(modPools ?? {})" :key="key">
+      <q-item tag="label" v-ripple="false" v-for="poolMap in beatmaps" :key="poolMap.identifier">
         <div class="col-2 flex items-center">
-          <q-item-label class="text-subtitle1 text-weight-bold">{{ poolMap.identifier }}</q-item-label>
+          <q-item-label :class="`text-subtitle1 text-weight-bold text-${getModPoolAccentColor(key)}`">{{ poolMap.identifier }}</q-item-label>
         </div>
         <div class="col-10">
           <q-btn-toggle
