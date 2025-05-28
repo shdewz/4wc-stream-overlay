@@ -3,6 +3,13 @@
   "title": "tournament picks and bans settings",
   "description": "has settings for autopick and associated states",
   "type": "object",
+  "default": {
+    "autopick": {
+      "enabled": false,
+      "requiredBans": 2,
+      "nextColor": "red"
+    }
+  },
   "properties": {
     "autopick": {
       "type": "object",
