@@ -98,7 +98,7 @@
         "name": "json data",
         "title": "json data",
         "file": "jsonData.html",
-        "width": 4
+        "width": 3
       },
       {
         "name": "gosumemory",
@@ -110,13 +110,13 @@
         "name": "picksAndBans",
         "title": "Picks and bans",
         "file": "picksAndBans.html",
-        "width": 8
+        "width": 6
       },
       {
         "name": "autopickSettings",
         "title": "Settings for autopick",
         "file": "autopick.html",
-        "width": 4
+        "width": 3
       }
     ],
     "graphics": [

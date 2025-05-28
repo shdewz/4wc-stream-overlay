@@ -120,22 +120,24 @@ const printCurrentMap = () => {
     </div>
 
     <div class="row q-mt-md">
-      <QBtn
-        class="q-ma-xs"
-        color="primary"
-        label="PRINT TOURNAMENT PLAYERS"
-        @click="printTournamentPlayers"
-        :disabled="gosumemoryReplicant.data.wsStatus !== 'OPEN'"
-      />
-    </div>
-    <div class="row q-mt-md">
-      <QBtn
-          class="q-ma-xs"
-          color="primary"
-          label="PRINT CURRENT MAP"
-          @click="printCurrentMap"
-          :disabled="gosumemoryReplicant.data.wsStatus !== 'OPEN'"
-      />
+      <div class="col">
+        <QBtn
+            class="q-ma-xs full-width"
+            color="primary"
+            label="PRINT TOURNAMENT PLAYERS"
+            @click="printTournamentPlayers"
+            :disabled="gosumemoryReplicant.data.wsStatus !== 'OPEN'"
+        />
+      </div>
+      <div>
+        <QBtn
+            class="q-ma-xs"
+            color="primary"
+            label="PRINT CURRENT MAP"
+            @click="printCurrentMap"
+            :disabled="gosumemoryReplicant.data.wsStatus !== 'OPEN'"
+        />
+      </div>
     </div>
   </div>
 </template>
