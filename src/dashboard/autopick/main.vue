@@ -13,7 +13,7 @@ const toggleNextPickColor = () => {
 <template>
   <div class="q-pa-md">
     <q-list>
-      <q-item tag="label" v-ripple="false" class="q-px-none">
+      <q-item tag="label" v-ripple="false">
         <q-item-section>
           <q-item-label>Enable autopick</q-item-label>
         </q-item-section>
@@ -21,7 +21,7 @@ const toggleNextPickColor = () => {
           <q-toggle size="md" color="green" v-model="autopickEnable" />
         </q-item-section>
       </q-item>
-      <q-item tag="label" v-ripple="false" class="q-px-none">
+      <q-item tag="label" v-ripple="false">
         <q-tooltip>Autopick won't activate until this number of bans has been set</q-tooltip>
         <q-item-section>
           <q-item-label>Number of bans</q-item-label>
@@ -41,12 +41,15 @@ const toggleNextPickColor = () => {
          />
        </q-item-section>
       </q-item>
-      <q-item tag="label" v-ripple="false" class="q-px-none" clickable @click="toggleNextPickColor">
+      <q-item tag="label" v-ripple="false" clickable @click="toggleNextPickColor">
+        <q-tooltip>Click to change next pick color</q-tooltip>
         <q-item-section>
           <q-item-label>Next pick color</q-item-label>
         </q-item-section>
-        <q-item-section avatar>
-          <q-icon name="circle" :color="nextPickColor"></q-icon>
+        <q-item-section thumbnail>
+          <q-item-label style="font-weight: bold; padding: 2px 8px" :style="{ backgroundColor: nextPickColor }">
+            {{ nextPickColor.toUpperCase() }}
+          </q-item-label>
         </q-item-section>
       </q-item>
     </q-list>
