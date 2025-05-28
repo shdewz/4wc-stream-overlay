@@ -417,18 +417,6 @@ const modPoolNames = computed(() => {
   gap: 12px;
 }
 
-@keyframes blinker {
-  5% {
-    opacity: 0.35;
-  }
-}
-
-@keyframes slowPulse {
-  50% {
-    opacity: 0.2;
-  }
-}
-
 .controls {
   position: absolute;
   left: 1920px;

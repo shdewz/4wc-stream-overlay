@@ -52,18 +52,37 @@ const pickByLabelText = computed(() => {
     </div>
   </div>
 
-  <div class="blink-overlay"></div>
+  <Transition name="blinker" type="animation">
+    <div class="blink-overlay" v-if="thisMapPickBan?.type === 'pick'"></div>
+  </Transition>
 </div>
 </template>
 
 <style scoped>
+/* bm.blink_overlay.css('animation', 'blinker 1s cubic-bezier(.36,.06,.01,.57) 300ms 8, slowPulse 5000ms ease-in-out 8000ms 18'); */
+@keyframes blinker {
+  5% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes slowPulse {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+/*noinspection CssUnusedSymbol*/
+.blinker-enter-active {
+  animation: blinker 0.8s cubic-bezier(.36,.06,.01,.57) 300ms 8, slowPulse 5000ms ease-in-out 8000ms 18;
+}
+
 .blink-overlay {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: var(--light);
   opacity: 0;
-  animation: none;
 }
 
 .map-difficulty {
