@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, Ref, ref, watch } from 'vue';
 import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
+import { PropertiesAutopickNextColor } from '@4wc-stream-overlay/types/schemas';
 
 const bansCount = ref(0);
 const autopickEnable = ref(false);
-const nextPickColor = ref('red');
+const nextPickColor: Ref<PropertiesAutopickNextColor> = ref('red');
 
 const toggleNextPickColor = () => {
   nextPickColor.value = nextPickColor.value === 'red' ? 'blue' : 'red';
@@ -16,15 +17,19 @@ watch(tournamentPickBansSettingsReplicant, () => {
   const { data } = tournamentPickBansSettingsReplicant;
   if (data?.autopick && !tournamentPickBansSettingsReplicant.changed) {
     autopickEnable.value = data.autopick.enabled;
+    bansCount.value = data.autopick.requiredBans;
+    nextPickColor.value = data.autopick.nextColor;
   }
 }, { immediate: true });
 
-watch(autopickEnable, () => {
+watch([autopickEnable, bansCount, nextPickColor], () => {
   const { data } = tournamentPickBansSettingsReplicant;
 
   if (!data?.autopick) return;
 
   data.autopick.enabled = autopickEnable.value;
+  data.autopick.requiredBans = bansCount.value;
+  data.autopick.nextColor = nextPickColor.value;
   tournamentPickBansSettingsReplicant.save();
 });
 

@@ -6,6 +6,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type PropertiesAutopickNextColor = 'red' | 'blue';
+
 /**
  * has settings for autopick and associated states
  */
@@ -13,7 +15,7 @@ export interface TournamentPicksAndBansSettings {
 	autopick: {
 		enabled: boolean;
 		requiredBans: number;
-		nextColor: 'red' | 'blue';
+		nextColor: PropertiesAutopickNextColor;
 		[k: string]: unknown;
 	};
 }
