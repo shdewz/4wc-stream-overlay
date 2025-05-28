@@ -67,5 +67,5 @@ export const replicantOptions = {
   tournamentTeams: { persistent: false },
   tournamentMappool: { persistent: false },
   tournamentPickBans: { persistent: true }, // helpful when needing to refresh page/restart nodecg
-  tournamentPickBansSettings: { persistent: false }, // mimicking the current behaviour of OBS browser sources
+  tournamentPickBansSettings: { persistent: true },
 } as const;
