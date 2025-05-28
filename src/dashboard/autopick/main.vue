@@ -54,7 +54,8 @@ const isLoaded = computed(() => tournamentPickBansSettingsReplicant.data);
         </q-item-section>
        <q-item-section>
          <q-slider
-             v-model="bansCount"
+             :model-value="bansCount"
+             @change="val => { bansCount = val }"
              :min="0"
              :max="4"
              :step="2"
