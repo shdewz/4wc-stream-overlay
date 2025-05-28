@@ -22,6 +22,7 @@ const toggleNextPickColor = () => {
         </q-item-section>
       </q-item>
       <q-item tag="label" v-ripple="false" class="q-px-none">
+        <q-tooltip>Autopick won't activate until this number of bans has been set</q-tooltip>
         <q-item-section>
           <q-item-label>Number of bans</q-item-label>
         </q-item-section>
