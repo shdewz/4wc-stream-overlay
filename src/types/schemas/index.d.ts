@@ -9,3 +9,4 @@ export * from './osuTourney';
 export * from './tournamentMappool';
 export * from './tournamentTeams';
 export * from './tournamentPickBans';
+export * from './tournamentPickBansSettings';

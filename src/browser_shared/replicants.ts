@@ -17,6 +17,7 @@ import type {
   // ShowCamerasReplicant,
   TournamentTeamsData,
   TournamentPicksAndBans,
+  TournamentPicksAndBansSettings,
 } from '../types/schemas';
 
 export const namespace = '4wc-stream-overlay';
@@ -42,6 +43,7 @@ export interface ReplicantTypes {
   tournamentTeams: TournamentTeamsData;
   tournamentMappool: TournamentMappoolData;
   tournamentPickBans: TournamentPicksAndBans;
+  tournamentPickBansSettings: TournamentPicksAndBansSettings;
 }
 
 export const replicantOptions = {
@@ -65,4 +67,5 @@ export const replicantOptions = {
   tournamentTeams: { persistent: false },
   tournamentMappool: { persistent: false },
   tournamentPickBans: { persistent: true }, // helpful when needing to refresh page/restart nodecg
+  tournamentPickBansSettings: { persistent: false }, // mimicking the current behaviour of OBS browser sources
 } as const;

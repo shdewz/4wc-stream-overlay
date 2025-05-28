@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tournament picks and bans settings",
+  "description": "has settings for autopick and associated states",
+  "type": "object",
+  "properties": {
+    "autopick": {
+      "type": "object",
+      "required": ["enabled", "nextColor", "requiredBans"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "requiredBans": {
+          "type": "integer"
+        },
+        "nextColor": {
+          "type": "string",
+          "enum": ["red", "blue"]
+        }
+      }
+    }
+  },
+  "required": ["autopick"],
+  "additionalProperties": false
+}
