@@ -17,3 +17,4 @@ export const osuSongOverridesReplicant = getReplicant('osuSongOverrides');
 export const osuTourneyReplicant = getReplicant('osuTourney');
 export const tournamentTeams = getReplicant('tournamentTeams');
 export const tournamentMappool = getReplicant('tournamentMappool');
+export const tournamentPickBans = getReplicant('tournamentPickBans');
