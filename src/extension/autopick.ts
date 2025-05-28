@@ -3,8 +3,19 @@ import { osuSongReplicant, tournamentMappool, tournamentPickBans, tournamentPick
 
 const logger = createLogger('autopick');
 
+tournamentPickBansSettings.on('change', (newSettings, oldSettings) => {
+  if (!newSettings) return;
+
+  if (newSettings.autopick.enabled !== oldSettings?.autopick.enabled) {
+    logger.info(`autopick enabled: ${newSettings.autopick.enabled}`);
+  }
+});
+
 osuSongReplicant.on('change', (newSong, oldSong) => {
   logger.info(`song changed: ${oldSong?.id} => ${newSong?.id}`);
+
+  // don't autopick if autopick isn't enabled
+  if (!tournamentPickBansSettings.value.autopick.enabled) return;
 
   // don't autopick if we don't have enough bans yet
   const bansCount = Object.values(tournamentPickBans.value).filter((pb) => pb.type === 'ban').length;

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
+import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
 
 const bansCount = ref(0);
 const autopickEnable = ref(false);
@@ -8,10 +9,30 @@ const nextPickColor = ref('red');
 const toggleNextPickColor = () => {
   nextPickColor.value = nextPickColor.value === 'red' ? 'blue' : 'red';
 };
+
+const tournamentPickBansSettingsReplicant = useReplicant('tournamentPickBansSettings');
+
+watch(tournamentPickBansSettingsReplicant, () => {
+  const { data } = tournamentPickBansSettingsReplicant;
+  if (data?.autopick && !tournamentPickBansSettingsReplicant.changed) {
+    autopickEnable.value = data.autopick.enabled;
+  }
+}, { immediate: true });
+
+watch(autopickEnable, () => {
+  const { data } = tournamentPickBansSettingsReplicant;
+
+  if (!data?.autopick) return;
+
+  data.autopick.enabled = autopickEnable.value;
+  tournamentPickBansSettingsReplicant.save();
+});
+
+const isLoaded = computed(() => tournamentPickBansSettingsReplicant.data);
 </script>
 
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md" v-if="isLoaded">
     <q-list>
       <q-item tag="label" v-ripple="false">
         <q-item-section>
