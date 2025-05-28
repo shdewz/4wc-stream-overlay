@@ -113,6 +113,12 @@
         "width": 6
       },
       {
+        "name": "picksAndBansAccessible",
+        "title": "Picks and bans (accessible)",
+        "file": "picksAndBansAccessible.html",
+        "width": 6
+      },
+      {
         "name": "autopickSettings",
         "title": "Settings for autopick",
         "file": "autopick.html",
