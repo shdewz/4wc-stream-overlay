@@ -23,5 +23,6 @@ export = (nodecg: NodeCG.ServerAPI<Configschema>): void => {
   // require('./spotify');
   // require('./osuApi');
   // require('./companion');
-  require('./jsonData')
+  require('./jsonData');
+  require('./autopick');
 };
