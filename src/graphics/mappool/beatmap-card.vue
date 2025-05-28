@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PoolBeatmap } from '@4wc-stream-overlay/types/schemas';
-import { useReplicant } from "@4wc-stream-overlay/browser_shared/vue-replicants";
-import {computed} from "vue";
+import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
+import { computed } from 'vue';
 
 interface Props {
   poolBeatmap: PoolBeatmap,
@@ -11,19 +11,16 @@ const props = defineProps<Props>();
 const tournamentPickBansReplicant = useReplicant('tournamentPickBans');
 const osuTourneyReplicant = useReplicant('osuTourney');
 
-const thisMapPickBan = computed(() => {
-  return tournamentPickBansReplicant.data?.[props.poolBeatmap.beatmap_id.toString()];
-})
+const thisMapPickBan = computed(() => tournamentPickBansReplicant.data?.[props.poolBeatmap.beatmap_id.toString()]);
 
 const pickByLabelText = computed(() => {
-  if (!thisMapPickBan.value)
-    return "";
+  if (!thisMapPickBan.value) return '';
 
   const teamColor = thisMapPickBan.value.color;
   const teamName = teamColor === 'red' ? osuTourneyReplicant.data?.teamName.left : osuTourneyReplicant.data?.teamName.right;
 
-  return  thisMapPickBan.value.type === 'ban' ? `Banned by ${teamName}` : `Picked by ${teamName}`
-})
+  return thisMapPickBan.value.type === 'ban' ? `Banned by ${teamName}` : `Picked by ${teamName}`;
+});
 
 </script>
 
