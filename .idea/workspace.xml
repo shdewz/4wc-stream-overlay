@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add mod icon grayscale on banned beatmap card">
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="persist pickbans settings&#10;&#10;turns out it's actually quite useful to persist minimum bans count after all">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/extension/autopick.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/autopick.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/extension/util/replicants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension/util/replicants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Vue Composition API Component" />
         <option value="TypeScript File" />
+        <option value="Vue Composition API Component" />
       </list>
     </option>
   </component>
@@ -62,7 +61,7 @@
     "git-widget-placeholder": "feature/4wc-nodecg",
     "javascript.nodejs.core.library.configured.version": "22.16.0",
     "javascript.nodejs.core.library.typings.version": "22.15.21",
-    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/src/browser_shared/styles",
+    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/schemas",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -76,7 +75,7 @@
     "npm.start.executor": "Run",
     "npm.watch.executor": "Run",
     "settings.editor.selected.configurable": "preferences.sourceCode.JavaScript",
-    "ts.external.directory.path": "/Users/daohe/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -91,11 +90,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/schemas" />
       <recent name="$PROJECT_DIR$/src/browser_shared/styles" />
       <recent name="$PROJECT_DIR$/src/graphics" />
       <recent name="$PROJECT_DIR$/src/assets" />
       <recent name="$PROJECT_DIR$/src/dashboard" />
-      <recent name="$PROJECT_DIR$/src/extension" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/assets" />
@@ -177,7 +176,7 @@
       <workItem from="1748213930379" duration="4753000" />
       <workItem from="1748218748658" duration="17376000" />
       <workItem from="1748346436913" duration="4584000" />
-      <workItem from="1748359800933" duration="19201000" />
+      <workItem from="1748359800933" duration="23546000" />
     </task>
     <task id="LOCAL-00001" summary="update config">
       <option name="closed" value="true" />
@@ -419,7 +418,31 @@
       <option name="project" value="LOCAL" />
       <updated>1748397367103</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="add primitive autopick impl">
+      <option name="closed" value="true" />
+      <created>1748399896580</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1748399896580</updated>
+    </task>
+    <task id="LOCAL-00032" summary="add min bans count and color swapping for autopick">
+      <option name="closed" value="true" />
+      <created>1748400712479</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1748400712479</updated>
+    </task>
+    <task id="LOCAL-00033" summary="persist pickbans settings&#10;&#10;turns out it's actually quite useful to persist minimum bans count after all">
+      <option name="closed" value="true" />
+      <created>1748400898356</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1748400898356</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,9 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add mappool replicant and parts of main screen" />
-    <MESSAGE value="add static json data and gosu dashboards" />
-    <MESSAGE value="fix missing/broken CSS in main screen" />
     <MESSAGE value="revert unminify jquery.min.js" />
     <MESSAGE value="fix osuTourney schema missing required properties" />
     <MESSAGE value="fill stars based on tourney score" />
@@ -473,6 +493,9 @@
     <MESSAGE value="fix lint errors in beatmap-card.vue" />
     <MESSAGE value="add pick blinker to beatmap card" />
     <MESSAGE value="add mod icon grayscale on banned beatmap card" />
-    <option name="LAST_COMMIT_MESSAGE" value="add mod icon grayscale on banned beatmap card" />
+    <MESSAGE value="add primitive autopick impl" />
+    <MESSAGE value="add min bans count and color swapping for autopick" />
+    <MESSAGE value="persist pickbans settings&#10;&#10;turns out it's actually quite useful to persist minimum bans count after all" />
+    <option name="LAST_COMMIT_MESSAGE" value="persist pickbans settings&#10;&#10;turns out it's actually quite useful to persist minimum bans count after all" />
   </component>
 </project>

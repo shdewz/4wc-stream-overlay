@@ -111,6 +111,12 @@
         "title": "Picks and bans",
         "file": "picksAndBans.html",
         "width": 8
+      },
+      {
+        "name": "autopickSettings",
+        "title": "Settings for autopick",
+        "file": "autopick.html",
+        "width": 4
       }
     ],
     "graphics": [
