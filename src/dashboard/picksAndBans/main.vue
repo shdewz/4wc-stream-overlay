@@ -2,7 +2,7 @@
 import { useHead } from '@vueuse/head';
 import { computed, onMounted, ref } from 'vue';
 import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
-import { PoolBeatmap } from '@4wc-stream-overlay/types/schemas';
+import { PoolBeatmap, PropertiesPickbanType } from '@4wc-stream-overlay/types/schemas';
 
 useHead({ title: 'countdown' });
 
@@ -41,14 +41,15 @@ const removePickBan = (beatmapId: string) => {
   pickBansReplicant.save();
 };
 
-const updatePickBan = (beatmapId: string, color: 'red' | 'blue') => {
+const updatePickBan = (beatmapId: string, color: 'red' | 'blue', action: PropertiesPickbanType) => {
   const existing = pickBansReplicant.data?.[beatmapId];
   if (existing) {
     existing.color = color;
+    existing.type = action;
   } else if (pickBansReplicant.data) {
     pickBansReplicant.data[beatmapId] = {
       beatmap_id: parseInt(beatmapId, 10),
-      type: 'pick',
+      type: action,
       color,
       time: Date.now(),
     };
@@ -57,10 +58,12 @@ const updatePickBan = (beatmapId: string, color: 'red' | 'blue') => {
 };
 
 // Consolidated map action function
-const poolMapAction = (clickEvent: Event, beatmap_id: number, color: 'red' | 'blue') => {
+const poolMapAction = (clickEvent: Event, beatmap_id: number) => {
   if (!(clickEvent instanceof MouseEvent)) return;
 
   const mouseEvent = clickEvent as MouseEvent;
+  const color = mouseEvent.button === 0 ? 'red' : 'blue';
+
   console.log(`${color} did an action for map ${beatmap_id}, shift: ${mouseEvent.shiftKey}`);
 
   const beatmapIdStr = beatmap_id.toString();
@@ -70,10 +73,12 @@ const poolMapAction = (clickEvent: Event, beatmap_id: number, color: 'red' | 'bl
     return;
   }
 
-  const existing = pickBansReplicant.data?.[beatmapIdStr];
-  if (existing?.color === color) return;
+  const actionType: PropertiesPickbanType = mouseEvent.ctrlKey ? 'ban' : 'pick';
 
-  updatePickBan(beatmapIdStr, color);
+  const existing = pickBansReplicant.data?.[beatmapIdStr];
+  if (existing?.color === color && existing?.type === actionType) return;
+
+  updatePickBan(beatmapIdStr, color, actionType);
 };
 
 const getButtonColor = (beatmap_id: number) => {
@@ -106,8 +111,8 @@ onMounted(() => {
               :color="getButtonColor(beatmap.beatmap_id)"
               :class="{'grayed-out': isMapSelected(beatmap.beatmap_id)}"
               :label="beatmap.identifier"
-              @click="(event) => poolMapAction(event, beatmap.beatmap_id, 'red')"
-              @contextmenu.prevent="(event: Event) => poolMapAction(event, beatmap.beatmap_id, 'blue')"
+              @click="(event) => poolMapAction(event, beatmap.beatmap_id)"
+              @contextmenu.prevent="(event: Event) => poolMapAction(event, beatmap.beatmap_id)"
           />
         </div>
       </div>

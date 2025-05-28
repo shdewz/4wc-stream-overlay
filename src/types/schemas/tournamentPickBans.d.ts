@@ -6,6 +6,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type PropertiesPickbanType = 'pick' | 'ban';
+
 export interface TournamentPicksAndBans {
 	[k: string]: PropertiesPickban;
 }
@@ -15,7 +17,7 @@ export interface TournamentPicksAndBans {
  */
 export interface PropertiesPickban {
 	color: 'red' | 'blue';
-	type: 'pick' | 'ban';
+	type: PropertiesPickbanType;
 	time: number;
 	beatmap_id: number;
 }

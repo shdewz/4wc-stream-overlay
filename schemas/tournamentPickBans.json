@@ -13,6 +13,7 @@
           "enum": ["red", "blue"]
         },
         "type": {
+          "$id": "#/properties/pickban/type",
           "type": "string",
           "enum": ["pick", "ban"]
         },
