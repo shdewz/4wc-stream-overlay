@@ -25,14 +25,19 @@ const confirmResetPickBans = () => {
   pendingConfirm.value = false;
 };
 
-const modPools = computed(() => poolReplicant.data?.beatmaps.reduce((groups: Record<string, PoolBeatmap[]>, item: PoolBeatmap) => {
-  const key = item.mods;
-  if (!groups[key]) {
-    groups[key] = [];
-  }
-  groups[key].push(item);
-  return groups;
-}, {}));
+const modPools = computed(() => {
+  const groupsMap = new Map<string, PoolBeatmap[]>();
+
+  poolReplicant.data?.beatmaps.forEach((item: PoolBeatmap) => {
+    const key = item.mods;
+    if (!groupsMap.has(key)) {
+      groupsMap.set(key, []);
+    }
+    groupsMap.get(key)?.push(item);
+  });
+
+  return Object.fromEntries(groupsMap);
+});
 
 // Helper functions for replicant data manipulation
 const removePickBan = (beatmapId: string) => {
