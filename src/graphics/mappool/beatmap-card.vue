@@ -37,7 +37,8 @@ const pickByLabelText = computed(() => {
 
   <div class="map-content">
     <div class="picked-by-label" :id="`picked-by-label-${poolBeatmap.identifier}`"
-         :class="{ picked: thisMapPickBan,
+         :class="{ picked: thisMapPickBan?.type === 'pick',
+                   banned: thisMapPickBan?.type === 'ban',
                    red: thisMapPickBan?.color === 'red',
                    blue: thisMapPickBan?.color === 'blue' }">{{ pickByLabelText }}</div>
     <div class="mod-icon" :class="{ [poolBeatmap.mods.toLowerCase()]: true }">{{ poolBeatmap.identifier }}</div>
