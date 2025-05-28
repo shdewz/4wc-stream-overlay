@@ -25,20 +25,16 @@ const pickByLabelText = computed(() => {
 </script>
 
 <template>
-  <div class="map" :id="`map-${poolBeatmap.identifier.toLowerCase()}`"
-       :class="{ banned: thisMapPickBan?.type === 'ban',
-                 picked: thisMapPickBan?.type === 'pick',
-                 red: thisMapPickBan?.color === 'red',
-                 blue: thisMapPickBan?.color === 'blue' }">
+<div class="map" :id="`map-${poolBeatmap.identifier.toLowerCase()}`" :class="{ banned: thisMapPickBan?.type === 'ban', picked: thisMapPickBan?.type === 'pick', red: thisMapPickBan?.color === 'red', blue: thisMapPickBan?.color === 'blue' }">
   <div class="map-image" :style="{ backgroundImage: `url('https://assets.ppy.sh/beatmaps/${poolBeatmap.beatmapset_id}/covers/cover.jpg')` }" />
 
   <div class="map-content">
-    <div class="picked-by-label" :id="`picked-by-label-${poolBeatmap.identifier}`"
-         :class="{ picked: thisMapPickBan?.type === 'pick',
-                   banned: thisMapPickBan?.type === 'ban',
-                   red: thisMapPickBan?.color === 'red',
-                   blue: thisMapPickBan?.color === 'blue' }">{{ pickByLabelText }}</div>
-    <div class="mod-icon" :class="{ [poolBeatmap.mods.toLowerCase()]: true }">{{ poolBeatmap.identifier }}</div>
+    <div class="picked-by-label" :id="`picked-by-label-${poolBeatmap.identifier}`" :class="{ picked: thisMapPickBan?.type === 'pick', banned: thisMapPickBan?.type === 'ban', red: thisMapPickBan?.color === 'red', blue: thisMapPickBan?.color === 'blue' }">
+      {{ pickByLabelText }}
+    </div>
+    <div class="mod-icon" :class="{ [poolBeatmap.mods.toLowerCase()]: true, banned: thisMapPickBan?.type === 'ban' }">
+      {{ poolBeatmap.identifier }}
+    </div>
     <div class="map-stats">
       <div class="map-stats-section map-top">
         <div class="map-title">{{ poolBeatmap.artist }} - {{ poolBeatmap.title }}</div>
