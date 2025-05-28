@@ -92,7 +92,7 @@ const getButtonColor = (beatmap_id: number) => {
 };
 
 // Helper computed property
-const isMapSelected = (beatmapId: number) => pickBansReplicant.data && beatmapId.toString() in pickBansReplicant.data;
+const isMapBanned = (beatmapId: number) => pickBansReplicant.data && pickBansReplicant.data?.[beatmapId.toString()]?.type === 'ban';
 
 onMounted(() => {
   console.log(`mounted, pick and bans: ${JSON.stringify(pickBansReplicant.data)}`);
@@ -101,6 +101,7 @@ onMounted(() => {
 
 <template>
   <div v-if="isLoaded">
+    <h5 class="q-my-sm q-mx-none text-center">Pick red: LMB | Pick blue: RMB | Ban red: Ctrl+LMB | Ban blue: Ctrl+RMB | Reset map: Shift+LMB</h5>
     <div v-for="[key, beatmaps] in Object.entries(modPools ?? {})" :key="key">
       <div class="row justify-center">
         <div class="col-4" v-for="beatmap in beatmaps" :key="beatmap.beatmap_id">
@@ -108,8 +109,9 @@ onMounted(() => {
               class="full-width q-mb-sm"
               size="lg"
               style="--q-btn-outline-width: 10px;"
+              :style="{ textDecoration: isMapBanned(beatmap.beatmap_id) ? `underline overline red 0.2em solid` : '' }"
               :color="getButtonColor(beatmap.beatmap_id)"
-              :class="{'grayed-out': isMapSelected(beatmap.beatmap_id)}"
+              :class="{'banned': isMapBanned(beatmap.beatmap_id)}"
               :label="beatmap.identifier"
               @click="(event) => poolMapAction(event, beatmap.beatmap_id)"
               @contextmenu.prevent="(event: Event) => poolMapAction(event, beatmap.beatmap_id)"
@@ -147,16 +149,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.json-display {
-  background-color: #3e3e3e;
-  padding: 16px;
-  border-radius: 4px;
-  overflow-x: auto;
-  font-family: 'Courier New', monospace;
-}
-
-.grayed-out {
-  opacity: 0.75;
-  filter: grayscale(10%);
+.banned {
+  opacity: 0.65;
+  filter: grayscale(30%);
 }
 </style>
