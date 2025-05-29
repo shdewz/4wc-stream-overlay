@@ -102,6 +102,8 @@ export default function useSharedLogic() {
     pendingConfirm,
     checkConfirm,
     confirmResetPickBans,
+    removePickBan,
+    updatePickBan,
 
     modPools,
     isMapBanned,

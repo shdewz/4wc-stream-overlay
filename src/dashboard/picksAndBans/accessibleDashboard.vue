@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { reactive, watch } from 'vue';
+import { PropertiesPickbanType } from '@4wc-stream-overlay/types/schemas';
 import useSharedLogic from './useSharedLogic';
 
 enum PickBanState {
@@ -9,8 +10,6 @@ enum PickBanState {
   RED_BAN,
   BLUE_BAN,
 }
-
-const model = ref(PickBanState.UNPICKED);
 
 const getButtonColor = (state: PickBanState) => {
   switch (state) {
@@ -27,11 +26,7 @@ const getButtonColor = (state: PickBanState) => {
   }
 };
 
-const { isLoaded,
-  poolReplicant,
-  pendingConfirm, checkConfirm, confirmResetPickBans,
-  modPools, isMapBanned,
-  poolMapAction } = useSharedLogic();
+const { pickBansReplicant, modPools, removePickBan, updatePickBan } = useSharedLogic();
 
 const getModPoolAccentColor = (modPoolName: string): string => ({
   HD: 'yellow-11',
@@ -40,13 +35,84 @@ const getModPoolAccentColor = (modPoolName: string): string => ({
   FM: 'green-11',
   NM: 'blue-11',
 }[modPoolName.toUpperCase()] ?? 'white');
+
+type ToggleStates = Record<string, PickBanState>;
+
+/**
+ * Returns a default value if target doesn't have the right key. Updates pickBans replicant on `set`
+ * @param target Target to proxy
+ * @param defaultValue Default value to return if key doesn't exist
+ */
+const createMapBanHandlerProxy = (target: ToggleStates, defaultValue = PickBanState.UNPICKED) => new Proxy(target, {
+  get(obj, prop) {
+    if (typeof prop === 'string' && !(prop in obj)) {
+      obj[prop] = defaultValue;
+    }
+    return obj[prop as string];
+  },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  set(setTarget: ToggleStates, property: string | symbol, value: unknown, _receiver): boolean {
+    if (typeof value !== typeof PickBanState.UNPICKED) {
+      // console.log(`value type is not PickBanState: ${typeof value} (${typeof PickBanState})`);
+      return false;
+    }
+    if (typeof property !== 'string') {
+      // console.log(`property type is not string: ${typeof property}`);
+      return false;
+    }
+
+    setTarget[property] = value as PickBanState;
+
+    if (value === PickBanState.UNPICKED) {
+      removePickBan(property);
+      return true;
+    }
+
+    const color = (value === PickBanState.RED_PICK || value === PickBanState.RED_BAN) ? 'red' : 'blue';
+    const action: PropertiesPickbanType = (value === PickBanState.RED_BAN || value === PickBanState.BLUE_BAN) ? 'ban' : 'pick';
+    updatePickBan(property, color, action);
+
+    return true;
+  },
+});
+
+// indexed by beatmap ID
+const baseStates: ToggleStates = reactive({});
+const toggleStates = reactive(createMapBanHandlerProxy(baseStates));
+
+watch(pickBansReplicant, (newPickBans) => {
+  if (!newPickBans.data) return;
+
+  const replicantKeys = Object.keys(newPickBans.data);
+
+  Object.keys(baseStates).forEach((key) => {
+    if (!replicantKeys.includes(key)) {
+      delete baseStates[key];
+    }
+  });
+
+  replicantKeys.forEach((key) => {
+    const mapPickBanData = newPickBans.data?.[key];
+
+    if (!mapPickBanData) {
+      baseStates[key] = PickBanState.UNPICKED;
+      return;
+    }
+
+    let state = PickBanState.UNPICKED;
+
+    if (mapPickBanData.color === 'red' && mapPickBanData.type === 'pick') state = PickBanState.RED_PICK;
+    if (mapPickBanData.color === 'red' && mapPickBanData.type === 'ban') state = PickBanState.RED_BAN;
+    if (mapPickBanData.color === 'blue' && mapPickBanData.type === 'pick') state = PickBanState.BLUE_PICK;
+    if (mapPickBanData.color === 'blue' && mapPickBanData.type === 'ban') state = PickBanState.BLUE_BAN;
+
+    baseStates[key] = state;
+  });
+});
 </script>
 
 <template>
   <div>
-<!--    <div v-for="[key, beatmaps] in Object.entries(modPools ?? {})" :key="key">-->
-<!--      <div class="row justify-center">-->
-<!--        <div class="col-4" v-for="beatmap in beatmaps" :key="beatmap.beatmap_id">-->
     <q-list dense v-for="[key, beatmaps] in Object.entries(modPools ?? {})" :key="key">
       <q-item tag="label" v-ripple="false" v-for="poolMap in beatmaps" :key="poolMap.identifier">
         <div class="col-2 flex items-center">
@@ -54,10 +120,10 @@ const getModPoolAccentColor = (modPoolName: string): string => ({
         </div>
         <div class="col-10">
           <q-btn-toggle
-              v-model="model"
+              v-model="toggleStates[poolMap.beatmap_id.toString()]"
               spread
               dense
-              :toggle-color="getButtonColor(model)"
+              :toggle-color="getButtonColor(toggleStates[poolMap.beatmap_id.toString()])"
               :options="[
                   {label: 'Not picked', value: PickBanState.UNPICKED},
                   {label: 'Red pick', value: PickBanState.RED_PICK},
