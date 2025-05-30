@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import {useHead} from '@vueuse/head';
-import {computed, ref, watch} from 'vue';
-import {useReplicant} from '@4wc-stream-overlay/browser_shared/vue-replicants';
-import {QExpansionItem, QInput} from 'quasar';
+import { useHead } from '@vueuse/head';
+import { computed, ref, watch } from 'vue';
+import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
+import { QExpansionItem, QInput } from 'quasar';
 
 useHead({ title: 'countdown' });
 
 // const matchesReplicant = useReplicant('matches');
 // const matches = computed(() => matchesReplicant.data ?? []);
-const scheduledMatchesReplicant = useReplicant('tournamentSchedule')
+const scheduledMatchesReplicant = useReplicant('tournamentSchedule');
 const matches = computed(() => scheduledMatchesReplicant.data ?? []);
 
 const countdownReplicant = useReplicant('countdown');
@@ -84,8 +84,8 @@ const setMatchId = (matchId: string) => {
   // matchId is composed of matchTime:redFlag:blueFlag (matchTime in js timestamp, flags are 2-letter codes)
   selectedMatchId.value = matchId;
 
-  const [time, redFlag, blueFlag] = matchId.split(':');
-  const match = matches.value.find((m) => m.time.toString() === time && m.red_flag === redFlag && m.blue_flag === blueFlag);
+  const [matchTimestamp, redFlag, blueFlag] = matchId.split(':');
+  const match = matches.value.find((m) => m.time.toString() === matchTimestamp && m.red_flag === redFlag && m.blue_flag === blueFlag);
 
   if (match) {
     // countdownReplicant.data!.shoutcasters = match.shoutcasters;
@@ -102,7 +102,7 @@ const setMatchId = (matchId: string) => {
       hour12: false,
       hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit'
+      second: '2-digit',
     });
   }
 
@@ -113,7 +113,7 @@ const matchesLoading = ref(false);
 const refreshMatches = () => {
   matchesLoading.value = true;
   nodecg.sendMessage('jsondata:fetch').finally(() => {
-      matchesLoading.value = false;
+    matchesLoading.value = false;
   });
 };
 
@@ -124,17 +124,17 @@ function formatTimestamp(timestamp: number): string {
   // Format the date to get day of week (3 letters) and time in UTC
   const dayOfWeek = date.toLocaleDateString('en-US', {
     weekday: 'short',
-    timeZone: 'UTC'
+    timeZone: 'UTC',
   });
 
-  const time = date.toLocaleTimeString('en-US', {
+  const timeOfDay = date.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
     hour12: false,
-    timeZone: 'UTC'
+    timeZone: 'UTC',
   });
 
-  return `${dayOfWeek} ${time} UTC`;
+  return `${dayOfWeek} ${timeOfDay} UTC`;
 }
 </script>
 
