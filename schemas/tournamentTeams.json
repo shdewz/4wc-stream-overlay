@@ -17,6 +17,7 @@
     }
   ],
   "items": {
+    "$id": "#/tournament/team",
     "type": "object",
     "additionalProperties": false,
     "required": [

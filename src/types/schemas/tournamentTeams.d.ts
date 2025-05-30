@@ -6,7 +6,9 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type TournamentTeamsData = {
+export type TournamentTeamsData = TournamentTeam[];
+
+export interface TournamentTeam {
 	team: string;
 	flag: string;
 	seed: number;
@@ -15,4 +17,4 @@ export type TournamentTeamsData = {
 		username: string;
 		captain: boolean;
 	}[];
-}[];
+}
