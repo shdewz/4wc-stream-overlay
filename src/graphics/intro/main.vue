@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {useReplicant} from "@4wc-stream-overlay/browser_shared/vue-replicants";
-import {computed} from "vue";
-import Countdown from "./Countdown.vue";
+import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
+import { computed } from 'vue';
+import Countdown from './Countdown.vue';
 
 const countdownReplicant = useReplicant('countdown');
 const tournamentTeamsReplicant = useReplicant('tournamentTeams');
@@ -15,7 +15,7 @@ const teams = computed(() => ({
 
 const teamFlags = computed(() => ({
   red: new URL(`../../assets/flags/${teams.value.red?.flag ?? 'XX'}.png`, import.meta.url).href,
-  blue: new URL(`../../assets/flags/${teams.value.blue?.flag ?? 'XX'}.png`, import.meta.url).href
+  blue: new URL(`../../assets/flags/${teams.value.blue?.flag ?? 'XX'}.png`, import.meta.url).href,
 }));
 </script>
 
