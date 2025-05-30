@@ -123,6 +123,12 @@
         "title": "Settings for autopick",
         "file": "autopick.html",
         "width": 3
+      },
+      {
+        "name": "countdown",
+        "title": "countdown",
+        "file": "countdown.html",
+        "width": 3
       }
     ],
     "graphics": [
