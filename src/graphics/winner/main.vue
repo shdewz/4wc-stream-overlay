@@ -1,9 +1,27 @@
 <script setup lang="ts">
+import {useReplicant} from "@4wc-stream-overlay/browser_shared/vue-replicants";
+import {computed} from "vue";
+import TeamDisplay from "@4wc-stream-overlay/graphics/intro/TeamDisplay.vue";
 
+const tournamentMappoolReplicant = useReplicant('tournamentMappool');
+const tournamentTeamsReplicant = useReplicant('tournamentTeams');
+const osuTourneyReplicant = useReplicant('osuTourney');
+const osuSongReplicant = useReplicant('osuSong');
+
+// noinspection JSIncompatibleTypesComparison
+const isLoaded = computed(() => tournamentMappoolReplicant.data != null);
+const teams = computed(() => ({
+  red: tournamentTeamsReplicant.data?.find((t) => t.team === osuTourneyReplicant.data?.teamName.left),
+  blue: tournamentTeamsReplicant.data?.find((t) => t.team === osuTourneyReplicant.data?.teamName.right),
+}));
+const scores = computed(() => ({
+  red: osuTourneyReplicant.data?.stars.left,
+  blue: osuTourneyReplicant.data?.stars.right,
+}));
 </script>
 
 <template>
-  <div class="main">
+  <div class="main" v-if="isLoaded">
     <div class="logo-container">
       <div class="logo"></div>
       <div class="logo-text">4 Digit World Cup 2025</div>
@@ -11,37 +29,28 @@
     <div class="match-container">
       <div class="title-container">
         <div class="title-background"></div>
-        <div class="title" id="title">Winner</div>
+        <div class="title" id="title">{{ tournamentMappoolReplicant.data?.stage ?? 'WINNER' }}</div>
       </div>
       <div class="teams">
-        <div class="team red">
-          <div class="team-header">
-            <div class="team-flag" id="flag_red"></div>
-            <div class="team-name" id="name_red"></div>
-          </div>
-          <div class="team-players red" id="players_red"></div>
-        </div>
+        <TeamDisplay :team="teams.red" color="red" />
         <div class="scores">
-          <div class="score red" id="score_red">0</div>
+          <div class="score red" id="score_red">{{ scores.red }}</div>
           <div class="separator">-</div>
-          <div class="score blue" id="score_blue">0</div>
+          <div class="score blue" id="score_blue">{{ scores.blue }}</div>
         </div>
-        <div class="team blue">
-          <div class="team-header">
-            <div class="team-name" id="name_blue"></div>
-            <div class="team-flag" id="flag_blue"></div>
-          </div>
-          <div class="team-players blue" id="players_blue"></div>
-        </div>
+        <TeamDisplay :team="teams.blue" color="blue" />
       </div>
     </div>
     <div class="song-container" id="song_container">
-      <div class="note"><i class="fa-solid fa-music"></i></div>
-      <div class="song-title-container" id="song_title_container">
-        <div class="song-artist" id="song_artist"></div>
-        <div class="song-separator">-</div>
-        <div class="song-title" id="song_title"></div>
-      </div>
+
+      <div class="note"><font-awesome-icon :icon="['fas', 'fa-music']"/></div>
+      <Transition name="fade" mode="out-in">
+        <div class="song-title-container" id="song_title_container" :key="osuSongReplicant.data?.title">
+          <div class="song-artist">{{ osuSongReplicant.data?.artist }}</div>
+          <div class="song-separator">-</div>
+          <div class="song-title">{{ osuSongReplicant.data?.title }}</div>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
@@ -127,12 +136,6 @@
   color: var(--dark);
 }
 
-.team {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .scores {
   padding: 0 24px;
   display: flex;
@@ -143,42 +146,6 @@
 
 .score {
   font-weight: 700;
-}
-
-.team-header {
-  font-weight: 700;
-  font-size: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-}
-
-.team.blue {
-  align-items: flex-end;
-  text-align: right;
-}
-
-.team-flag {
-  width: 70px;
-  height: 47px;
-  background-image: url('@4wc-stream-overlay/assets/flags/XX.png');
-  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.1));
-}
-
-.team-players {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-size: 1.6rem;
-}
-
-.team-players.red {
-  padding-left: calc(70px + 18px);
-}
-
-.team-players.blue {
-  padding-right: calc(70px + 18px);
 }
 
 .song-container {
@@ -196,8 +163,6 @@
 .song-title-container {
   display: flex;
   gap: 8px;
-  opacity: 1;
-  transition: opacity 300ms ease;
 }
 
 .note {
@@ -209,5 +174,17 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+/*noinspection CssUnusedSymbol*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+/*noinspection CssUnusedSymbol*/
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
