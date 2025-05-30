@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'Mont';
+    src: url('./fonts/Mont-SemiBold.otf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Mont';
+    src: url('./fonts/Mont-Bold.otf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Din';
+    src: url('./fonts/D-DIN.otf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Din';
+    src: url('./fonts/D-DIN-Italic.otf');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Din';
+    src: url('./fonts/D-DIN-Bold.otf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./fonts/NotoSans-SemiBold.ttf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./fonts/NotoSans-ExtraBold.ttf');
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./fonts/NotoSans-Black.ttf');
+    font-weight: 900;
+}
+
+:root {
+    --accent: #e96479;
+    --dark: #4d455d;
+    --light: #f4dfc9;
+    --light-text: #faf3ec;
+    --accent-mod-nm: #759de7;
+    --accent-mod-hd: #eec875;
+    --accent-mod-hr: #e97777;
+    --accent-mod-dt: #ad73db;
+    --accent-mod-fm: #85e285;
+    --accent-mod-tb: #61cfc1;
+    --red: #e96479;
+    --blue: #60a6f7;
+    --red-chat: #f89c9b;
+    --blue-chat: #96c4f8;
+    --unknown-chat: #bbb2ce;
+}

@@ -1,0 +1,4083 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Current gosumemory data",
+  "description": "Current gosumemory data.",
+  "default": {
+    "settings": {
+      "showInterface": true,
+      "folders": {
+        "game": "C:\\Users\\osufrlive\\AppData\\Local\\osu!",
+        "skin": "User",
+        "songs": "C:\\Users\\osufrlive\\AppData\\Local\\osu!\\Songs"
+      }
+    },
+    "menu": {
+      "mainMenu": {
+        "bassDensity": 3.3499999999999996
+      },
+      "state": 22,
+      "gameMode": 2,
+      "isChatEnabled": 0,
+      "bm": {
+        "time": {
+          "firstObj": 0,
+          "current": 21611,
+          "full": 0,
+          "mp3": 0
+        },
+        "id": 1269345,
+        "set": 600702,
+        "md5": "3db7d6636c868b2fd79dd31ced0c0429",
+        "rankedStatus": 0,
+        "metadata": {
+          "artist": "Hanasaka Yui(CV: M.A.O)",
+          "title": "Harumachi Clover",
+          "mapper": "Djulus",
+          "difficulty": "Masha's Insane"
+        },
+        "stats": {
+          "AR": 0,
+          "CS": 0,
+          "OD": 0,
+          "HP": 0,
+          "SR": 0,
+          "BPM": {
+            "min": 0,
+            "max": 0
+          },
+          "maxCombo": 0,
+          "fullSR": 0,
+          "memoryAR": 8.3,
+          "memoryCS": 4,
+          "memoryOD": 7,
+          "memoryHP": 6
+        },
+        "path": {
+          "full": "600702 Hanasaka Yui(CV MAO) - Harumachi Clover\\FVZMjbt.jpg",
+          "folder": "600702 Hanasaka Yui(CV MAO) - Harumachi Clover",
+          "file": "Hanasaka Yui(CV M.A.O) - Harumachi Clover (Djulus) [Masha's Insane].osu",
+          "bg": "FVZMjbt.jpg",
+          "audio": "audio.mp3"
+        }
+      },
+      "mods": {
+        "num": 0,
+        "str": "NM"
+      },
+      "pp": {
+        "100": 0,
+        "99": 0,
+        "98": 0,
+        "97": 0,
+        "96": 0,
+        "95": 0,
+        "strains": null
+      }
+    },
+    "gameplay": {
+      "gameMode": 0,
+      "name": "",
+      "score": 0,
+      "accuracy": 0,
+      "combo": {
+        "current": 0,
+        "max": 0
+      },
+      "hp": {
+        "normal": 0,
+        "smooth": 0
+      },
+      "hits": {
+        "300": 0,
+        "geki": 0,
+        "100": 0,
+        "katu": 0,
+        "50": 0,
+        "0": 0,
+        "sliderBreaks": 0,
+        "grade": {
+          "current": "",
+          "maxThisPlay": ""
+        },
+        "unstableRate": 0,
+        "hitErrorArray": null
+      },
+      "pp": {
+        "current": 0,
+        "fc": 0,
+        "maxThisPlay": 0
+      },
+      "keyOverlay": {
+        "k1": {
+          "isPressed": false,
+          "count": 0
+        },
+        "k2": {
+          "isPressed": false,
+          "count": 0
+        },
+        "m1": {
+          "isPressed": false,
+          "count": 0
+        },
+        "m2": {
+          "isPressed": false,
+          "count": 0
+        }
+      },
+      "leaderboard": {
+        "hasLeaderboard": false,
+        "isVisible": false,
+        "ourplayer": {
+          "name": "",
+          "score": 0,
+          "combo": 0,
+          "maxCombo": 0,
+          "mods": "",
+          "h300": 0,
+          "h100": 0,
+          "h50": 0,
+          "h0": 0,
+          "team": 0,
+          "position": 0,
+          "isPassing": 0
+        },
+        "slots": null
+      }
+    },
+    "resultsScreen": {
+      "name": "",
+      "score": 0,
+      "maxCombo": 0,
+      "mods": {
+        "num": 0,
+        "str": ""
+      },
+      "300": 0,
+      "geki": 0,
+      "100": 0,
+      "katu": 0,
+      "50": 0,
+      "0": 0
+    },
+    "tourney": {
+      "manager": {
+        "ipcState": 3000,
+        "bestOF": 1,
+        "teamName": {
+          "left": "",
+          "right": ""
+        },
+        "stars": {
+          "left": 0,
+          "right": 0
+        },
+        "bools": {
+          "scoreVisible": true,
+          "starsVisible": true
+        },
+        "chat": [
+          {
+            "team": "bot",
+            "time": "15:00",
+            "name": "BanchoBot",
+            "messageBody": "Match history available here."
+          }
+        ],
+        "gameplay": {
+          "score": {
+            "left": 0,
+            "right": 0
+          }
+        }
+      },
+      "ipcClients": [
+        {
+          "team": "left",
+          "spectating": {
+            "name": "erickao",
+            "country": "Taiwan",
+            "userID": 12627417,
+            "accuracy": 95.34,
+            "rankedScore": 154074281,
+            "playCount": 1364,
+            "globalRank": 184770,
+            "totalPP": 618
+          },
+          "gameplay": {
+            "gameMode": 0,
+            "score": 2,
+            "name": "",
+            "accuracy": 0,
+            "hits": {
+              "300": 0,
+              "geki": 0,
+              "100": 0,
+              "katu": 0,
+              "50": 0,
+              "0": 0,
+              "sliderBreaks": 0,
+              "unstableRate": 0
+            },
+            "combo": {
+              "current": 0,
+              "max": 0
+            },
+            "mods": {
+              "num": 0,
+              "str": ""
+            },
+            "hp": {
+              "normal": 0,
+              "smooth": 0
+            }
+          }
+        },
+        {
+          "team": "left",
+          "spectating": {
+            "name": "yosorohihi",
+            "country": "Taiwan",
+            "userID": 8983430,
+            "accuracy": 94.14,
+            "rankedScore": 100683320,
+            "playCount": 442,
+            "globalRank": 275991,
+            "totalPP": 348
+          },
+          "gameplay": {
+            "gameMode": 0,
+            "score": 2,
+            "name": "",
+            "accuracy": 0,
+            "hits": {
+              "300": 0,
+              "geki": 0,
+              "100": 0,
+              "katu": 0,
+              "50": 0,
+              "0": 0,
+              "sliderBreaks": 0,
+              "unstableRate": 0
+            },
+            "combo": {
+              "current": 0,
+              "max": 0
+            },
+            "mods": {
+              "num": 0,
+              "str": ""
+            },
+            "hp": {
+              "normal": 0,
+              "smooth": 0
+            }
+          }
+        },
+        {
+          "team": "",
+          "spectating": {
+            "name": "",
+            "country": "",
+            "userID": 0,
+            "accuracy": 0,
+            "rankedScore": 0,
+            "playCount": 0,
+            "globalRank": 0,
+            "totalPP": 0
+          },
+          "gameplay": {
+            "gameMode": 0,
+            "score": 0,
+            "name": "",
+            "accuracy": 0,
+            "hits": {
+              "300": 0,
+              "geki": 0,
+              "100": 0,
+              "katu": 0,
+              "50": 0,
+              "0": 0,
+              "sliderBreaks": 0,
+              "unstableRate": 0
+            },
+            "combo": {
+              "current": 0,
+              "max": 0
+            },
+            "mods": {
+              "num": 0,
+              "str": ""
+            },
+            "hp": {
+              "normal": 0,
+              "smooth": 0
+            }
+          }
+        },
+        {
+          "team": "",
+          "spectating": {
+            "name": "",
+            "country": "",
+            "userID": 0,
+            "accuracy": 0,
+            "rankedScore": 0,
+            "playCount": 0,
+            "globalRank": 0,
+            "totalPP": 0
+          },
+          "gameplay": {
+            "gameMode": 0,
+            "score": 0,
+            "name": "",
+            "accuracy": 0,
+            "hits": {
+              "300": 0,
+              "geki": 0,
+              "100": 0,
+              "katu": 0,
+              "50": 0,
+              "0": 0,
+              "sliderBreaks": 0,
+              "unstableRate": 0
+            },
+            "combo": {
+              "current": 0,
+              "max": 0
+            },
+            "mods": {
+              "num": 0,
+              "str": ""
+            },
+            "hp": {
+              "normal": 0,
+              "smooth": 0
+            }
+          }
+        },
+        {
+          "team": "right",
+          "spectating": {
+            "name": "",
+            "country": "",
+            "userID": 0,
+            "accuracy": 0,
+            "rankedScore": 0,
+            "playCount": 0,
+            "globalRank": 0,
+            "totalPP": 0
+          },
+          "gameplay": {
+            "gameMode": 0,
+            "score": 2686,
+            "name": "",
+            "accuracy": 0,
+            "hits": {
+              "300": 0,
+              "geki": 0,
+              "100": 0,
+              "katu": 0,
+              "50": 0,
+              "0": 0,
+              "sliderBreaks": 0,
+              "unstableRate": 0
+            },
+            "combo": {
+              "current": 0,
+              "max": 0
+            },
+            "mods": {
+              "num": 0,
+              "str": ""
+            },
+            "hp": {
+              "normal": 0,
+              "smooth": 0
+            }
+          }
+        },
+        {
+          "team": "right",
+          "spectating": {
+            "name": "",
+            "country": "",
+            "userID": 0,
+            "accuracy": 0,
+            "rankedScore": 0,
+            "playCount": 0,
+            "globalRank": 0,
+            "totalPP": 0
+          },
+          "gameplay": {
+            "gameMode": 0,
+            "score": 0,
+            "name": "",
+            "accuracy": 0,
+            "hits": {
+              "300": 0,
+              "geki": 0,
+              "100": 0,
+              "katu": 0,
+              "50": 0,
+              "0": 0,
+              "sliderBreaks": 0,
+              "unstableRate": 0
+            },
+            "combo": {
+              "current": 0,
+              "max": 0
+            },
+            "mods": {
+              "num": 0,
+              "str": ""
+            },
+            "hp": {
+              "normal": 0,
+              "smooth": 0
+            }
+          }
+        },
+        {
+          "team": "right",
+          "spectating": {
+            "name": "",
+            "country": "",
+            "userID": 0,
+            "accuracy": 0,
+            "rankedScore": 0,
+            "playCount": 0,
+            "globalRank": 0,
+            "totalPP": 0
+          },
+          "gameplay": {
+            "gameMode": 0,
+            "score": 0,
+            "name": "",
+            "accuracy": 0,
+            "hits": {
+              "300": 0,
+              "geki": 0,
+              "100": 0,
+              "katu": 0,
+              "50": 0,
+              "0": 0,
+              "sliderBreaks": 0,
+              "unstableRate": 0
+            },
+            "combo": {
+              "current": 0,
+              "max": 0
+            },
+            "mods": {
+              "num": 0,
+              "str": ""
+            },
+            "hp": {
+              "normal": 0,
+              "smooth": 0
+            }
+          }
+        },
+        {
+          "team": "right",
+          "spectating": {
+            "name": "",
+            "country": "",
+            "userID": 0,
+            "accuracy": 0,
+            "rankedScore": 0,
+            "playCount": 0,
+            "globalRank": 0,
+            "totalPP": 0
+          },
+          "gameplay": {
+            "gameMode": 0,
+            "score": 57558140,
+            "name": "",
+            "accuracy": 0,
+            "hits": {
+              "300": 0,
+              "geki": 0,
+              "100": 0,
+              "katu": 0,
+              "50": 0,
+              "0": 0,
+              "sliderBreaks": 0,
+              "unstableRate": 0
+            },
+            "combo": {
+              "current": 0,
+              "max": 0
+            },
+            "mods": {
+              "num": 0,
+              "str": ""
+            },
+            "hp": {
+              "normal": 0,
+              "smooth": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "settings",
+    "menu",
+    "gameplay",
+    "resultsScreen",
+    "tourney"
+  ],
+  "properties": {
+    "settings": {
+      "type": "object",
+      "title": "The settings schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "showInterface": true,
+          "folders": {
+            "game": "C:\\Users\\osufrlive\\AppData\\Local\\osu!",
+            "skin": "User",
+            "songs": "C:\\Users\\osufrlive\\AppData\\Local\\osu!\\Songs"
+          }
+        }
+      ],
+      "required": [
+        "showInterface",
+        "folders"
+      ],
+      "properties": {
+        "showInterface": {
+          "type": "boolean",
+          "title": "The showInterface schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
+        "folders": {
+          "type": "object",
+          "title": "The folders schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "game": "C:\\Users\\osufrlive\\AppData\\Local\\osu!",
+              "skin": "User",
+              "songs": "C:\\Users\\osufrlive\\AppData\\Local\\osu!\\Songs"
+            }
+          ],
+          "required": [
+            "game",
+            "skin",
+            "songs"
+          ],
+          "properties": {
+            "game": {
+              "type": "string",
+              "title": "The game schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "C:\\Users\\osufrlive\\AppData\\Local\\osu!"
+              ]
+            },
+            "skin": {
+              "type": "string",
+              "title": "The skin schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "User"
+              ]
+            },
+            "songs": {
+              "type": "string",
+              "title": "The songs schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "C:\\Users\\osufrlive\\AppData\\Local\\osu!\\Songs"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "menu": {
+      "type": "object",
+      "title": "The menu schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "mainMenu": {
+            "bassDensity": 3.3499999999999996
+          },
+          "state": 22,
+          "gameMode": 2,
+          "isChatEnabled": 0,
+          "bm": {
+            "time": {
+              "firstObj": 0,
+              "current": 21611,
+              "full": 0,
+              "mp3": 0
+            },
+            "id": 1269345,
+            "set": 600702,
+            "md5": "3db7d6636c868b2fd79dd31ced0c0429",
+            "rankedStatus": 0,
+            "metadata": {
+              "artist": "Hanasaka Yui(CV: M.A.O)",
+              "title": "Harumachi Clover",
+              "mapper": "Djulus",
+              "difficulty": "Masha's Insane"
+            },
+            "stats": {
+              "AR": 0,
+              "CS": 0,
+              "OD": 0,
+              "HP": 0,
+              "SR": 0,
+              "BPM": {
+                "min": 0,
+                "max": 0
+              },
+              "maxCombo": 0,
+              "fullSR": 0,
+              "memoryAR": 8.3,
+              "memoryCS": 4,
+              "memoryOD": 7,
+              "memoryHP": 6
+            },
+            "path": {
+              "full": "600702 Hanasaka Yui(CV MAO) - Harumachi Clover\\FVZMjbt.jpg",
+              "folder": "600702 Hanasaka Yui(CV MAO) - Harumachi Clover",
+              "file": "Hanasaka Yui(CV M.A.O) - Harumachi Clover (Djulus) [Masha's Insane].osu",
+              "bg": "FVZMjbt.jpg",
+              "audio": "audio.mp3"
+            }
+          },
+          "mods": {
+            "num": 0,
+            "str": "NM"
+          },
+          "pp": {
+            "100": 0,
+            "99": 0,
+            "98": 0,
+            "97": 0,
+            "96": 0,
+            "95": 0,
+            "strains": null
+          }
+        }
+      ],
+      "required": [
+        "mainMenu",
+        "state",
+        "gameMode",
+        "isChatEnabled",
+        "bm",
+        "mods",
+        "pp"
+      ],
+      "properties": {
+        "mainMenu": {
+          "type": "object",
+          "title": "The mainMenu schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "bassDensity": 3.3499999999999996
+            }
+          ],
+          "required": [
+            "bassDensity"
+          ],
+          "properties": {
+            "bassDensity": {
+              "type": "number",
+              "title": "The bassDensity schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0.0,
+              "examples": [
+                3.3499999999999996
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "state": {
+          "type": "integer",
+          "title": "The state schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            22
+          ]
+        },
+        "gameMode": {
+          "type": "integer",
+          "title": "The gameMode schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            2
+          ]
+        },
+        "isChatEnabled": {
+          "type": "integer",
+          "title": "The isChatEnabled schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "bm": {
+          "type": "object",
+          "title": "The bm schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "time": {
+                "firstObj": 0,
+                "current": 21611,
+                "full": 0,
+                "mp3": 0
+              },
+              "id": 1269345,
+              "set": 600702,
+              "md5": "3db7d6636c868b2fd79dd31ced0c0429",
+              "rankedStatus": 0,
+              "metadata": {
+                "artist": "Hanasaka Yui(CV: M.A.O)",
+                "title": "Harumachi Clover",
+                "mapper": "Djulus",
+                "difficulty": "Masha's Insane"
+              },
+              "stats": {
+                "AR": 0,
+                "CS": 0,
+                "OD": 0,
+                "HP": 0,
+                "SR": 0,
+                "BPM": {
+                  "min": 0,
+                  "max": 0
+                },
+                "maxCombo": 0,
+                "fullSR": 0,
+                "memoryAR": 8.3,
+                "memoryCS": 4,
+                "memoryOD": 7,
+                "memoryHP": 6
+              },
+              "path": {
+                "full": "600702 Hanasaka Yui(CV MAO) - Harumachi Clover\\FVZMjbt.jpg",
+                "folder": "600702 Hanasaka Yui(CV MAO) - Harumachi Clover",
+                "file": "Hanasaka Yui(CV M.A.O) - Harumachi Clover (Djulus) [Masha's Insane].osu",
+                "bg": "FVZMjbt.jpg",
+                "audio": "audio.mp3"
+              }
+            }
+          ],
+          "required": [
+            "time",
+            "id",
+            "set",
+            "md5",
+            "rankedStatus",
+            "metadata",
+            "stats",
+            "path"
+          ],
+          "properties": {
+            "time": {
+              "type": "object",
+              "title": "The time schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "firstObj": 0,
+                  "current": 21611,
+                  "full": 0,
+                  "mp3": 0
+                }
+              ],
+              "required": [
+                "firstObj",
+                "current",
+                "full",
+                "mp3"
+              ],
+              "properties": {
+                "firstObj": {
+                  "type": "integer",
+                  "title": "The firstObj schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "current": {
+                  "type": "integer",
+                  "title": "The current schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    21611
+                  ]
+                },
+                "full": {
+                  "type": "integer",
+                  "title": "The full schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "mp3": {
+                  "type": "integer",
+                  "title": "The mp3 schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "id": {
+              "type": "integer",
+              "title": "The id schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                1269345
+              ]
+            },
+            "set": {
+              "type": "integer",
+              "title": "The set schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                600702
+              ]
+            },
+            "md5": {
+              "type": "string",
+              "title": "The md5 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "3db7d6636c868b2fd79dd31ced0c0429"
+              ]
+            },
+            "rankedStatus": {
+              "type": "integer",
+              "title": "The rankedStatus schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "metadata": {
+              "type": "object",
+              "title": "The metadata schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "artist": "Hanasaka Yui(CV: M.A.O)",
+                  "title": "Harumachi Clover",
+                  "mapper": "Djulus",
+                  "difficulty": "Masha's Insane"
+                }
+              ],
+              "required": [
+                "artist",
+                "title",
+                "mapper",
+                "difficulty"
+              ],
+              "properties": {
+                "artist": {
+                  "type": "string",
+                  "title": "The artist schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "Hanasaka Yui(CV: M.A.O)"
+                  ]
+                },
+                "artistOriginal": {
+                  "type": "string",
+                  "title": "The artistOriginal schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "Hanasaka Yui(CV: M.A.O)"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "title": "The title schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "Harumachi Clover"
+                  ]
+                },
+                "titleOriginal": {
+                  "type": "string",
+                  "title": "The titleOriginal schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "Harumachi Clover"
+                  ]
+                },
+                "mapper": {
+                  "type": "string",
+                  "title": "The mapper schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "Djulus"
+                  ]
+                },
+                "difficulty": {
+                  "type": "string",
+                  "title": "The difficulty schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "Masha's Insane"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "stats": {
+              "type": "object",
+              "title": "The stats schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "AR": 0,
+                  "CS": 0,
+                  "OD": 0,
+                  "HP": 0,
+                  "SR": 0,
+                  "BPM": {
+                    "min": 0,
+                    "max": 0
+                  },
+                  "maxCombo": 0,
+                  "fullSR": 0,
+                  "memoryAR": 8.3,
+                  "memoryCS": 4,
+                  "memoryOD": 7,
+                  "memoryHP": 6
+                }
+              ],
+              "required": [
+                "AR",
+                "CS",
+                "OD",
+                "HP",
+                "SR",
+                "BPM",
+                "maxCombo",
+                "fullSR",
+                "memoryAR",
+                "memoryCS",
+                "memoryOD",
+                "memoryHP"
+              ],
+              "properties": {
+                "AR": {
+                  "type": "number",
+                  "title": "The AR schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "CS": {
+                  "type": "number",
+                  "title": "The CS schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "OD": {
+                  "type": "number",
+                  "title": "The OD schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "HP": {
+                  "type": "number",
+                  "title": "The HP schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "SR": {
+                  "type": "number",
+                  "title": "The SR schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "BPM": {
+                  "type": "object",
+                  "title": "The BPM schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                    {
+                      "min": 0,
+                      "max": 0
+                    }
+                  ],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "title": "The min schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": 0,
+                      "examples": [
+                        0
+                      ]
+                    },
+                    "max": {
+                      "type": "number",
+                      "title": "The max schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": 0,
+                      "examples": [
+                        0
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "maxCombo": {
+                  "type": "integer",
+                  "title": "The maxCombo schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "fullSR": {
+                  "type": "number",
+                  "title": "The fullSR schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "memoryAR": {
+                  "type": "number",
+                  "title": "The memoryAR schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0.0,
+                  "examples": [
+                    8.3
+                  ]
+                },
+                "memoryCS": {
+                  "type": "number",
+                  "title": "The memoryCS schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    4
+                  ]
+                },
+                "memoryOD": {
+                  "type": "number",
+                  "title": "The memoryOD schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    7
+                  ]
+                },
+                "memoryHP": {
+                  "type": "number",
+                  "title": "The memoryHP schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    6
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "path": {
+              "type": "object",
+              "title": "The path schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "full": "600702 Hanasaka Yui(CV MAO) - Harumachi Clover\\FVZMjbt.jpg",
+                  "folder": "600702 Hanasaka Yui(CV MAO) - Harumachi Clover",
+                  "file": "Hanasaka Yui(CV M.A.O) - Harumachi Clover (Djulus) [Masha's Insane].osu",
+                  "bg": "FVZMjbt.jpg",
+                  "audio": "audio.mp3"
+                }
+              ],
+              "required": [
+                "full",
+                "folder",
+                "file",
+                "bg",
+                "audio"
+              ],
+              "properties": {
+                "full": {
+                  "type": "string",
+                  "title": "The full schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "600702 Hanasaka Yui(CV MAO) - Harumachi Clover\\FVZMjbt.jpg"
+                  ]
+                },
+                "folder": {
+                  "type": "string",
+                  "title": "The folder schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "600702 Hanasaka Yui(CV MAO) - Harumachi Clover"
+                  ]
+                },
+                "file": {
+                  "type": "string",
+                  "title": "The file schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "Hanasaka Yui(CV M.A.O) - Harumachi Clover (Djulus) [Masha's Insane].osu"
+                  ]
+                },
+                "bg": {
+                  "type": "string",
+                  "title": "The bg schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "FVZMjbt.jpg"
+                  ]
+                },
+                "audio": {
+                  "type": "string",
+                  "title": "The audio schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "audio.mp3"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "mods": {
+          "type": "object",
+          "title": "The mods schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "num": 0,
+              "str": "NM"
+            }
+          ],
+          "required": [
+            "num",
+            "str"
+          ],
+          "properties": {
+            "num": {
+              "type": "integer",
+              "title": "The num schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "str": {
+              "type": "string",
+              "title": "The str schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "NM"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "pp": {
+          "type": "object",
+          "title": "The pp schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "100": 0,
+              "99": 0,
+              "98": 0,
+              "97": 0,
+              "96": 0,
+              "95": 0,
+              "strains": null
+            }
+          ],
+          "required": [
+            "100",
+            "99",
+            "98",
+            "97",
+            "96",
+            "95",
+            "strains"
+          ],
+          "properties": {
+            "100": {
+              "type": "number",
+              "title": "The 100 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "99": {
+              "type": "number",
+              "title": "The 99 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "98": {
+              "type": "number",
+              "title": "The 98 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "97": {
+              "type": "number",
+              "title": "The 97 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "96": {
+              "type": "number",
+              "title": "The 96 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "95": {
+              "type": "number",
+              "title": "The 95 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "strains": {
+              "$id": "#/properties/menu/properties/pp/properties/strains",
+              "anyOf": [
+                {
+                  "$id": "#/properties/menu/properties/pp/properties/strains/anyOf/0",
+                  "type": "null",
+                  "title": "The first anyOf schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": null,
+                  "examples": [
+                    null
+                  ]
+                },
+                {
+                  "$id": "#/properties/menu/properties/pp/properties/strains/anyOf/1",
+                  "type": "array",
+                  "title": "The strains schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": [],
+                  "examples": [
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "additionalItems": true,
+                  "items": {
+                    "$id": "#/properties/menu/properties/pp/properties/strains/items",
+                    "anyOf": [
+                      {
+                        "$id": "#/properties/menu/properties/pp/properties/strains/items/anyOf/0",
+                        "type": "integer",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      {
+                        "$id": "#/properties/menu/properties/pp/properties/strains/items/anyOf/1",
+                        "type": "number",
+                        "title": "The second anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0.0,
+                        "examples": [
+                          0.9156231582164764,
+                          3.766494413216909
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "gameplay": {
+      "type": "object",
+      "title": "The gameplay schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "gameMode": 0,
+          "name": "",
+          "score": 0,
+          "accuracy": 0,
+          "combo": {
+            "current": 0,
+            "max": 0
+          },
+          "hp": {
+            "normal": 0,
+            "smooth": 0
+          },
+          "hits": {
+            "300": 0,
+            "geki": 0,
+            "100": 0,
+            "katu": 0,
+            "50": 0,
+            "0": 0,
+            "sliderBreaks": 0,
+            "grade": {
+              "current": "",
+              "maxThisPlay": ""
+            },
+            "unstableRate": 0,
+            "hitErrorArray": null
+          },
+          "pp": {
+            "current": 0,
+            "fc": 0,
+            "maxThisPlay": 0
+          },
+          "keyOverlay": {
+            "k1": {
+              "isPressed": false,
+              "count": 0
+            },
+            "k2": {
+              "isPressed": false,
+              "count": 0
+            },
+            "m1": {
+              "isPressed": false,
+              "count": 0
+            },
+            "m2": {
+              "isPressed": false,
+              "count": 0
+            }
+          },
+          "leaderboard": {
+            "hasLeaderboard": false,
+            "isVisible": false,
+            "ourplayer": {
+              "name": "",
+              "score": 0,
+              "combo": 0,
+              "maxCombo": 0,
+              "mods": "",
+              "h300": 0,
+              "h100": 0,
+              "h50": 0,
+              "h0": 0,
+              "team": 0,
+              "position": 0,
+              "isPassing": 0
+            },
+            "slots": null
+          }
+        }
+      ],
+      "required": [
+        "gameMode",
+        "name",
+        "score",
+        "accuracy",
+        "combo",
+        "hp",
+        "hits",
+        "pp",
+        "keyOverlay",
+        "leaderboard"
+      ],
+      "properties": {
+        "gameMode": {
+          "type": "integer",
+          "title": "The gameMode schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "name": {
+          "type": "string",
+          "title": "The name schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            ""
+          ]
+        },
+        "score": {
+          "type": "integer",
+          "title": "The score schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "accuracy": {
+          "type": "number",
+          "title": "The accuracy schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "combo": {
+          "type": "object",
+          "title": "The combo schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "current": 0,
+              "max": 0
+            }
+          ],
+          "required": [
+            "current",
+            "max"
+          ],
+          "properties": {
+            "current": {
+              "type": "integer",
+              "title": "The current schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "max": {
+              "type": "integer",
+              "title": "The max schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "hp": {
+          "type": "object",
+          "title": "The hp schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "normal": 0,
+              "smooth": 0
+            }
+          ],
+          "required": [
+            "normal",
+            "smooth"
+          ],
+          "properties": {
+            "normal": {
+              "type": "number",
+              "title": "The normal schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "smooth": {
+              "type": "number",
+              "title": "The smooth schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "hits": {
+          "type": "object",
+          "title": "The hits schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "300": 0,
+              "geki": 0,
+              "100": 0,
+              "katu": 0,
+              "50": 0,
+              "0": 0,
+              "sliderBreaks": 0,
+              "grade": {
+                "current": "",
+                "maxThisPlay": ""
+              },
+              "unstableRate": 0,
+              "hitErrorArray": null
+            }
+          ],
+          "required": [
+            "300",
+            "geki",
+            "100",
+            "katu",
+            "50",
+            "0",
+            "sliderBreaks",
+            "grade",
+            "unstableRate",
+            "hitErrorArray"
+          ],
+          "properties": {
+            "300": {
+              "type": "integer",
+              "title": "The 300 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "geki": {
+              "type": "integer",
+              "title": "The geki schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "100": {
+              "type": "integer",
+              "title": "The 100 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "katu": {
+              "type": "integer",
+              "title": "The katu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "50": {
+              "type": "integer",
+              "title": "The 50 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "0": {
+              "type": "integer",
+              "title": "The 0 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "sliderBreaks": {
+              "type": "integer",
+              "title": "The sliderBreaks schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "grade": {
+              "type": "object",
+              "title": "The grade schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "current": "",
+                  "maxThisPlay": ""
+                }
+              ],
+              "required": [
+                "current",
+                "maxThisPlay"
+              ],
+              "properties": {
+                "current": {
+                  "type": "string",
+                  "title": "The current schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    ""
+                  ]
+                },
+                "maxThisPlay": {
+                  "type": "string",
+                  "title": "The maxThisPlay schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    ""
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "unstableRate": {
+              "type": "number",
+              "title": "The unstableRate schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "hitErrorArray": {
+              "title": "The hitErrorArray schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": null,
+              "anyOf": [
+                {
+                  "type": "array",
+                  "additionalItems": true,
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "title": "The second anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0.0,
+                        "examples": [
+                          0.9156231582164764,
+                          3.766494413216909
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "pp": {
+          "type": "object",
+          "title": "The pp schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "current": 0,
+              "fc": 0,
+              "maxThisPlay": 0
+            }
+          ],
+          "required": [
+            "current",
+            "fc",
+            "maxThisPlay"
+          ],
+          "properties": {
+            "current": {
+              "type": "integer",
+              "title": "The current schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "fc": {
+              "type": "integer",
+              "title": "The fc schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "maxThisPlay": {
+              "type": "integer",
+              "title": "The maxThisPlay schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "keyOverlay": {
+          "type": "object",
+          "title": "The keyOverlay schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "k1": {
+                "isPressed": false,
+                "count": 0
+              },
+              "k2": {
+                "isPressed": false,
+                "count": 0
+              },
+              "m1": {
+                "isPressed": false,
+                "count": 0
+              },
+              "m2": {
+                "isPressed": false,
+                "count": 0
+              }
+            }
+          ],
+          "required": [
+            "k1",
+            "k2",
+            "m1",
+            "m2"
+          ],
+          "properties": {
+            "k1": {
+              "type": "object",
+              "title": "The k1 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "isPressed": false,
+                  "count": 0
+                }
+              ],
+              "required": [
+                "isPressed",
+                "count"
+              ],
+              "properties": {
+                "isPressed": {
+                  "type": "boolean",
+                  "title": "The isPressed schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": false,
+                  "examples": [
+                    false
+                  ]
+                },
+                "count": {
+                  "type": "integer",
+                  "title": "The count schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "k2": {
+              "type": "object",
+              "title": "The k2 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "isPressed": false,
+                  "count": 0
+                }
+              ],
+              "required": [
+                "isPressed",
+                "count"
+              ],
+              "properties": {
+                "isPressed": {
+                  "type": "boolean",
+                  "title": "The isPressed schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": false,
+                  "examples": [
+                    false
+                  ]
+                },
+                "count": {
+                  "type": "integer",
+                  "title": "The count schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "m1": {
+              "type": "object",
+              "title": "The m1 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "isPressed": false,
+                  "count": 0
+                }
+              ],
+              "required": [
+                "isPressed",
+                "count"
+              ],
+              "properties": {
+                "isPressed": {
+                  "type": "boolean",
+                  "title": "The isPressed schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": false,
+                  "examples": [
+                    false
+                  ]
+                },
+                "count": {
+                  "type": "integer",
+                  "title": "The count schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "m2": {
+              "type": "object",
+              "title": "The m2 schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "isPressed": false,
+                  "count": 0
+                }
+              ],
+              "required": [
+                "isPressed",
+                "count"
+              ],
+              "properties": {
+                "isPressed": {
+                  "type": "boolean",
+                  "title": "The isPressed schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": false,
+                  "examples": [
+                    false
+                  ]
+                },
+                "count": {
+                  "type": "integer",
+                  "title": "The count schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "leaderboard": {
+          "type": "object",
+          "title": "The leaderboard schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "hasLeaderboard": false,
+              "isVisible": false,
+              "ourplayer": {
+                "name": "",
+                "score": 0,
+                "combo": 0,
+                "maxCombo": 0,
+                "mods": "",
+                "h300": 0,
+                "h100": 0,
+                "h50": 0,
+                "h0": 0,
+                "team": 0,
+                "position": 0,
+                "isPassing": 0
+              },
+              "slots": null
+            }
+          ],
+          "required": [
+            "hasLeaderboard",
+            "isVisible",
+            "ourplayer",
+            "slots"
+          ],
+          "properties": {
+            "hasLeaderboard": {
+              "type": "boolean",
+              "title": "The hasLeaderboard schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                false
+              ]
+            },
+            "isVisible": {
+              "type": "boolean",
+              "title": "The isVisible schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                false
+              ]
+            },
+            "ourplayer": {
+              "type": "object",
+              "title": "The ourplayer schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "name": "",
+                  "score": 0,
+                  "combo": 0,
+                  "maxCombo": 0,
+                  "mods": "",
+                  "h300": 0,
+                  "h100": 0,
+                  "h50": 0,
+                  "h0": 0,
+                  "team": 0,
+                  "position": 0,
+                  "isPassing": 0
+                }
+              ],
+              "required": [
+                "name",
+                "score",
+                "combo",
+                "maxCombo",
+                "mods",
+                "h300",
+                "h100",
+                "h50",
+                "h0",
+                "team",
+                "position",
+                "isPassing"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "The name schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    ""
+                  ]
+                },
+                "score": {
+                  "type": "integer",
+                  "title": "The score schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "combo": {
+                  "type": "integer",
+                  "title": "The combo schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "maxCombo": {
+                  "type": "integer",
+                  "title": "The maxCombo schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "mods": {
+                  "type": "string",
+                  "title": "The mods schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    ""
+                  ]
+                },
+                "h300": {
+                  "type": "integer",
+                  "title": "The h300 schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "h100": {
+                  "type": "integer",
+                  "title": "The h100 schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "h50": {
+                  "type": "integer",
+                  "title": "The h50 schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "h0": {
+                  "type": "integer",
+                  "title": "The h0 schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "team": {
+                  "type": "integer",
+                  "title": "The team schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "position": {
+                  "type": "integer",
+                  "title": "The position schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "isPassing": {
+                  "type": "integer",
+                  "title": "The isPassing schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "slots": {
+              "title": "The slots schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": null,
+              "examples": [
+                null
+              ],
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "title": "Slots",
+                  "type": "array",
+                  "items":{
+                    "$id": "#root/gameplay/leaderboard/slots/items",
+                    "title": "Items",
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "score",
+                      "combo",
+                      "maxCombo",
+                      "mods",
+                      "h300",
+                      "h100",
+                      "h50",
+                      "h0",
+                      "team",
+                      "position",
+                      "isPassing"
+                    ],
+                    "properties": {
+                      "name": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/name",
+                        "title": "Name",
+                        "type": "string",
+                        "default": "",
+                        "examples": [
+                          "Ney"
+                        ],
+                        "pattern": "^.*$"
+                      },
+                      "score": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/score",
+                        "title": "Score",
+                        "type": "integer",
+                        "examples": [
+                          832449
+                        ],
+                        "default": 0
+                      },
+                      "combo": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/combo",
+                        "title": "Combo",
+                        "type": "integer",
+                        "examples": [
+                          0
+                        ],
+                        "default": 0
+                      },
+                      "maxCombo": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/maxCombo",
+                        "title": "Maxcombo",
+                        "type": "integer",
+                        "examples": [
+                          651
+                        ],
+                        "default": 0
+                      },
+                      "mods": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/mods",
+                        "title": "Mods",
+                        "type": "string",
+                        "default": "",
+                        "examples": [
+                          "SDNC"
+                        ],
+                        "pattern": "^.*$"
+                      },
+                      "h300": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/h300",
+                        "title": "H300",
+                        "type": "integer",
+                        "examples": [
+                          648
+                        ],
+                        "default": 0
+                      },
+                      "h100": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/h100",
+                        "title": "H100",
+                        "type": "integer",
+                        "examples": [
+                          3
+                        ],
+                        "default": 0
+                      },
+                      "h50": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/h50",
+                        "title": "H50",
+                        "type": "integer",
+                        "examples": [
+                          0
+                        ],
+                        "default": 0
+                      },
+                      "h0": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/h0",
+                        "title": "H0",
+                        "type": "integer",
+                        "examples": [
+                          0
+                        ],
+                        "default": 0
+                      },
+                      "team": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/team",
+                        "title": "Team",
+                        "type": "integer",
+                        "examples": [
+                          0
+                        ],
+                        "default": 0
+                      },
+                      "position": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/position",
+                        "title": "Position",
+                        "type": "integer",
+                        "examples": [
+                          1
+                        ],
+                        "default": 0
+                      },
+                      "isPassing": {
+                        "$id": "#root/gameplay/leaderboard/slots/items/isPassing",
+                        "title": "Ispassing",
+                        "type": "integer",
+                        "examples": [
+                          1
+                        ],
+                        "default": 0
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "resultsScreen": {
+      "type": "object",
+      "title": "The resultsScreen schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "name": "",
+          "score": 0,
+          "maxCombo": 0,
+          "mods": {
+            "num": 0,
+            "str": ""
+          },
+          "300": 0,
+          "geki": 0,
+          "100": 0,
+          "katu": 0,
+          "50": 0,
+          "0": 0
+        }
+      ],
+      "required": [
+        "name",
+        "score",
+        "maxCombo",
+        "mods",
+        "300",
+        "geki",
+        "100",
+        "katu",
+        "50",
+        "0"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "The name schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            ""
+          ]
+        },
+        "score": {
+          "type": "integer",
+          "title": "The score schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "maxCombo": {
+          "type": "integer",
+          "title": "The maxCombo schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "mods": {
+          "type": "object",
+          "title": "The mods schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "num": 0,
+              "str": ""
+            }
+          ],
+          "required": [
+            "num",
+            "str"
+          ],
+          "properties": {
+            "num": {
+              "type": "integer",
+              "title": "The num schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                0
+              ]
+            },
+            "str": {
+              "type": "string",
+              "title": "The str schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                ""
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "300": {
+          "type": "integer",
+          "title": "The 300 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "geki": {
+          "type": "integer",
+          "title": "The geki schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "100": {
+          "type": "integer",
+          "title": "The 100 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "katu": {
+          "type": "integer",
+          "title": "The katu schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "50": {
+          "type": "integer",
+          "title": "The 50 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "0": {
+          "type": "integer",
+          "title": "The 0 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "tourney": {
+      "type": "object",
+      "title": "The tourney schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "manager": {
+            "ipcState": 3000,
+            "bestOF": 1,
+            "teamName": {
+              "left": "",
+              "right": ""
+            },
+            "stars": {
+              "left": 0,
+              "right": 0
+            },
+            "bools": {
+              "scoreVisible": true,
+              "starsVisible": true
+            },
+            "chat": [
+              {
+                "team": "bot",
+                "time": "15:00",
+                "name": "BanchoBot",
+                "messageBody": "Match history available here."
+              }
+            ],
+            "gameplay": {
+              "score": {
+                "left": 0,
+                "right": 0
+              }
+            }
+          },
+          "ipcClients": [
+            {
+              "team": "left",
+              "spectating": {
+                "name": "erickao",
+                "country": "Taiwan",
+                "userID": 12627417,
+                "accuracy": 95.34,
+                "rankedScore": 154074281,
+                "playCount": 1364,
+                "globalRank": 184770,
+                "totalPP": 618
+              },
+              "gameplay": {
+                "gameMode": 0,
+                "score": 2,
+                "name": "",
+                "accuracy": 0,
+                "hits": {
+                  "300": 0,
+                  "geki": 0,
+                  "100": 0,
+                  "katu": 0,
+                  "50": 0,
+                  "0": 0,
+                  "sliderBreaks": 0,
+                  "unstableRate": 0
+                },
+                "combo": {
+                  "current": 0,
+                  "max": 0
+                },
+                "mods": {
+                  "num": 0,
+                  "str": ""
+                },
+                "hp": {
+                  "normal": 0,
+                  "smooth": 0
+                }
+              }
+            },
+            {
+              "team": "left",
+              "spectating": {
+                "name": "yosorohihi",
+                "country": "Taiwan",
+                "userID": 8983430,
+                "accuracy": 94.14,
+                "rankedScore": 100683320,
+                "playCount": 442,
+                "globalRank": 275991,
+                "totalPP": 348
+              },
+              "gameplay": {
+                "gameMode": 0,
+                "score": 2,
+                "name": "",
+                "accuracy": 0,
+                "hits": {
+                  "300": 0,
+                  "geki": 0,
+                  "100": 0,
+                  "katu": 0,
+                  "50": 0,
+                  "0": 0,
+                  "sliderBreaks": 0,
+                  "unstableRate": 0
+                },
+                "combo": {
+                  "current": 0,
+                  "max": 0
+                },
+                "mods": {
+                  "num": 0,
+                  "str": ""
+                },
+                "hp": {
+                  "normal": 0,
+                  "smooth": 0
+                }
+              }
+            },
+            {
+              "team": "",
+              "spectating": {
+                "name": "",
+                "country": "",
+                "userID": 0,
+                "accuracy": 0,
+                "rankedScore": 0,
+                "playCount": 0,
+                "globalRank": 0,
+                "totalPP": 0
+              },
+              "gameplay": {
+                "gameMode": 0,
+                "score": 0,
+                "name": "",
+                "accuracy": 0,
+                "hits": {
+                  "300": 0,
+                  "geki": 0,
+                  "100": 0,
+                  "katu": 0,
+                  "50": 0,
+                  "0": 0,
+                  "sliderBreaks": 0,
+                  "unstableRate": 0
+                },
+                "combo": {
+                  "current": 0,
+                  "max": 0
+                },
+                "mods": {
+                  "num": 0,
+                  "str": ""
+                },
+                "hp": {
+                  "normal": 0,
+                  "smooth": 0
+                }
+              }
+            },
+            {
+              "team": "",
+              "spectating": {
+                "name": "",
+                "country": "",
+                "userID": 0,
+                "accuracy": 0,
+                "rankedScore": 0,
+                "playCount": 0,
+                "globalRank": 0,
+                "totalPP": 0
+              },
+              "gameplay": {
+                "gameMode": 0,
+                "score": 0,
+                "name": "",
+                "accuracy": 0,
+                "hits": {
+                  "300": 0,
+                  "geki": 0,
+                  "100": 0,
+                  "katu": 0,
+                  "50": 0,
+                  "0": 0,
+                  "sliderBreaks": 0,
+                  "unstableRate": 0
+                },
+                "combo": {
+                  "current": 0,
+                  "max": 0
+                },
+                "mods": {
+                  "num": 0,
+                  "str": ""
+                },
+                "hp": {
+                  "normal": 0,
+                  "smooth": 0
+                }
+              }
+            },
+            {
+              "team": "right",
+              "spectating": {
+                "name": "",
+                "country": "",
+                "userID": 0,
+                "accuracy": 0,
+                "rankedScore": 0,
+                "playCount": 0,
+                "globalRank": 0,
+                "totalPP": 0
+              },
+              "gameplay": {
+                "gameMode": 0,
+                "score": 2686,
+                "name": "",
+                "accuracy": 0,
+                "hits": {
+                  "300": 0,
+                  "geki": 0,
+                  "100": 0,
+                  "katu": 0,
+                  "50": 0,
+                  "0": 0,
+                  "sliderBreaks": 0,
+                  "unstableRate": 0
+                },
+                "combo": {
+                  "current": 0,
+                  "max": 0
+                },
+                "mods": {
+                  "num": 0,
+                  "str": ""
+                },
+                "hp": {
+                  "normal": 0,
+                  "smooth": 0
+                }
+              }
+            },
+            {
+              "team": "right",
+              "spectating": {
+                "name": "",
+                "country": "",
+                "userID": 0,
+                "accuracy": 0,
+                "rankedScore": 0,
+                "playCount": 0,
+                "globalRank": 0,
+                "totalPP": 0
+              },
+              "gameplay": {
+                "gameMode": 0,
+                "score": 0,
+                "name": "",
+                "accuracy": 0,
+                "hits": {
+                  "300": 0,
+                  "geki": 0,
+                  "100": 0,
+                  "katu": 0,
+                  "50": 0,
+                  "0": 0,
+                  "sliderBreaks": 0,
+                  "unstableRate": 0
+                },
+                "combo": {
+                  "current": 0,
+                  "max": 0
+                },
+                "mods": {
+                  "num": 0,
+                  "str": ""
+                },
+                "hp": {
+                  "normal": 0,
+                  "smooth": 0
+                }
+              }
+            },
+            {
+              "team": "right",
+              "spectating": {
+                "name": "",
+                "country": "",
+                "userID": 0,
+                "accuracy": 0,
+                "rankedScore": 0,
+                "playCount": 0,
+                "globalRank": 0,
+                "totalPP": 0
+              },
+              "gameplay": {
+                "gameMode": 0,
+                "score": 0,
+                "name": "",
+                "accuracy": 0,
+                "hits": {
+                  "300": 0,
+                  "geki": 0,
+                  "100": 0,
+                  "katu": 0,
+                  "50": 0,
+                  "0": 0,
+                  "sliderBreaks": 0,
+                  "unstableRate": 0
+                },
+                "combo": {
+                  "current": 0,
+                  "max": 0
+                },
+                "mods": {
+                  "num": 0,
+                  "str": ""
+                },
+                "hp": {
+                  "normal": 0,
+                  "smooth": 0
+                }
+              }
+            },
+            {
+              "team": "right",
+              "spectating": {
+                "name": "",
+                "country": "",
+                "userID": 0,
+                "accuracy": 0,
+                "rankedScore": 0,
+                "playCount": 0,
+                "globalRank": 0,
+                "totalPP": 0
+              },
+              "gameplay": {
+                "gameMode": 0,
+                "score": 57558140,
+                "name": "",
+                "accuracy": 0,
+                "hits": {
+                  "300": 0,
+                  "geki": 0,
+                  "100": 0,
+                  "katu": 0,
+                  "50": 0,
+                  "0": 0,
+                  "sliderBreaks": 0,
+                  "unstableRate": 0
+                },
+                "combo": {
+                  "current": 0,
+                  "max": 0
+                },
+                "mods": {
+                  "num": 0,
+                  "str": ""
+                },
+                "hp": {
+                  "normal": 0,
+                  "smooth": 0
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "required": [
+        "manager",
+        "ipcClients"
+      ],
+      "properties": {
+        "manager": {
+          "type": "object",
+          "title": "The manager schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "ipcState": 3000,
+              "bestOF": 1,
+              "teamName": {
+                "left": "",
+                "right": ""
+              },
+              "stars": {
+                "left": 0,
+                "right": 0
+              },
+              "bools": {
+                "scoreVisible": true,
+                "starsVisible": true
+              },
+              "chat": [
+                {
+                  "team": "bot",
+                  "time": "15:00",
+                  "name": "BanchoBot",
+                  "messageBody": "Match history available here."
+                }
+              ],
+              "gameplay": {
+                "score": {
+                  "left": 0,
+                  "right": 0
+                }
+              }
+            }
+          ],
+          "required": [
+            "ipcState",
+            "bestOF",
+            "teamName",
+            "stars",
+            "bools",
+            "chat",
+            "gameplay"
+          ],
+          "properties": {
+            "ipcState": {
+              "type": "integer",
+              "title": "The ipcState schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                3000
+              ]
+            },
+            "bestOF": {
+              "type": "integer",
+              "title": "The bestOF schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "teamName": {
+              "type": "object",
+              "title": "The teamName schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "left": "",
+                  "right": ""
+                }
+              ],
+              "required": [
+                "left",
+                "right"
+              ],
+              "properties": {
+                "left": {
+                  "type": "string",
+                  "title": "The left schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    ""
+                  ]
+                },
+                "right": {
+                  "type": "string",
+                  "title": "The right schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    ""
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "stars": {
+              "type": "object",
+              "title": "The stars schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "left": 0,
+                  "right": 0
+                }
+              ],
+              "required": [
+                "left",
+                "right"
+              ],
+              "properties": {
+                "left": {
+                  "type": "integer",
+                  "title": "The left schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                },
+                "right": {
+                  "type": "integer",
+                  "title": "The right schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    0
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "bools": {
+              "type": "object",
+              "title": "The bools schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "scoreVisible": true,
+                  "starsVisible": true
+                }
+              ],
+              "required": [
+                "scoreVisible",
+                "starsVisible"
+              ],
+              "properties": {
+                "scoreVisible": {
+                  "type": "boolean",
+                  "title": "The scoreVisible schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": false,
+                  "examples": [
+                    true
+                  ]
+                },
+                "starsVisible": {
+                  "type": "boolean",
+                  "title": "The starsVisible schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": false,
+                  "examples": [
+                    true
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "chat": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "title": "The chat schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": [],
+              "examples": [
+                [
+                  {
+                    "team": "bot",
+                    "time": "15:00",
+                    "name": "BanchoBot",
+                    "messageBody": "Match history available here."
+                  }
+                ]
+              ],
+              "additionalItems": true,
+              "items": {
+                "type": "object",
+                "title": "The items schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                  [
+                    {
+                      "team": "bot",
+                      "time": "15:00",
+                      "name": "BanchoBot",
+                      "messageBody": "Match history available here."
+                    }
+                  ]
+                ],
+                "required": [
+                  "team",
+                  "time",
+                  "name",
+                  "messageBody"
+                ],
+                "properties": {
+                  "team": {
+                    "type": "string",
+                    "title": "The team schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "enum": ["left", "right", "bot", ""],
+                    "examples": [
+                      "bot"
+                    ]
+                  },
+                  "time": {
+                    "type": "string",
+                    "title": "The time schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "15:00"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "title": "The name schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "BanchoBot"
+                    ]
+                  },
+                  "messageBody": {
+                    "type": "string",
+                    "title": "The messageBody schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "Match history available here."
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "gameplay": {
+              "type": "object",
+              "title": "The gameplay schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "score": {
+                    "left": 0,
+                    "right": 0
+                  }
+                }
+              ],
+              "required": [
+                "score"
+              ],
+              "properties": {
+                "score": {
+                  "type": "object",
+                  "title": "The score schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                    {
+                      "left": 0,
+                      "right": 0
+                    }
+                  ],
+                  "required": [
+                    "left",
+                    "right"
+                  ],
+                  "properties": {
+                    "left": {
+                      "type": "integer",
+                      "title": "The left schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": 0,
+                      "examples": [
+                        0
+                      ]
+                    },
+                    "right": {
+                      "type": "integer",
+                      "title": "The right schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": 0,
+                      "examples": [
+                        0
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "ipcClients": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "title": "The ipcClients schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": [],
+          "examples": [
+            [
+              {
+                "team": "left",
+                "spectating": {
+                  "name": "erickao",
+                  "country": "Taiwan",
+                  "userID": 12627417,
+                  "accuracy": 95.34,
+                  "rankedScore": 154074281,
+                  "playCount": 1364,
+                  "globalRank": 184770,
+                  "totalPP": 618
+                },
+                "gameplay": {
+                  "gameMode": 0,
+                  "score": 2,
+                  "name": "",
+                  "accuracy": 0,
+                  "hits": {
+                    "300": 0,
+                    "geki": 0,
+                    "100": 0,
+                    "katu": 0,
+                    "50": 0,
+                    "0": 0,
+                    "sliderBreaks": 0,
+                    "unstableRate": 0
+                  },
+                  "combo": {
+                    "current": 0,
+                    "max": 0
+                  },
+                  "mods": {
+                    "num": 0,
+                    "str": ""
+                  },
+                  "hp": {
+                    "normal": 0,
+                    "smooth": 0
+                  }
+                }
+              },
+              {
+                "team": "left",
+                "spectating": {
+                  "name": "yosorohihi",
+                  "country": "Taiwan",
+                  "userID": 8983430,
+                  "accuracy": 94.14,
+                  "rankedScore": 100683320,
+                  "playCount": 442,
+                  "globalRank": 275991,
+                  "totalPP": 348
+                },
+                "gameplay": {
+                  "gameMode": 0,
+                  "score": 2,
+                  "name": "",
+                  "accuracy": 0,
+                  "hits": {
+                    "300": 0,
+                    "geki": 0,
+                    "100": 0,
+                    "katu": 0,
+                    "50": 0,
+                    "0": 0,
+                    "sliderBreaks": 0,
+                    "unstableRate": 0
+                  },
+                  "combo": {
+                    "current": 0,
+                    "max": 0
+                  },
+                  "mods": {
+                    "num": 0,
+                    "str": ""
+                  },
+                  "hp": {
+                    "normal": 0,
+                    "smooth": 0
+                  }
+                }
+              }
+            ]
+          ],
+          "additionalItems": true,
+          "items": {
+            "type": "object",
+            "title": "The items schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+              [
+                {
+                  "team": "left",
+                  "spectating": {
+                    "name": "erickao",
+                    "country": "Taiwan",
+                    "userID": 12627417,
+                    "accuracy": 95.34,
+                    "rankedScore": 154074281,
+                    "playCount": 1364,
+                    "globalRank": 184770,
+                    "totalPP": 618
+                  },
+                  "gameplay": {
+                    "gameMode": 0,
+                    "score": 2,
+                    "name": "",
+                    "accuracy": 0,
+                    "hits": {
+                      "300": 0,
+                      "geki": 0,
+                      "100": 0,
+                      "katu": 0,
+                      "50": 0,
+                      "0": 0,
+                      "sliderBreaks": 0,
+                      "unstableRate": 0
+                    },
+                    "combo": {
+                      "current": 0,
+                      "max": 0
+                    },
+                    "mods": {
+                      "num": 0,
+                      "str": ""
+                    },
+                    "hp": {
+                      "normal": 0,
+                      "smooth": 0
+                    }
+                  }
+                },
+                {
+                  "team": "left",
+                  "spectating": {
+                    "name": "yosorohihi",
+                    "country": "Taiwan",
+                    "userID": 8983430,
+                    "accuracy": 94.14,
+                    "rankedScore": 100683320,
+                    "playCount": 442,
+                    "globalRank": 275991,
+                    "totalPP": 348
+                  },
+                  "gameplay": {
+                    "gameMode": 0,
+                    "score": 2,
+                    "name": "",
+                    "accuracy": 0,
+                    "hits": {
+                      "300": 0,
+                      "geki": 0,
+                      "100": 0,
+                      "katu": 0,
+                      "50": 0,
+                      "0": 0,
+                      "sliderBreaks": 0,
+                      "unstableRate": 0
+                    },
+                    "combo": {
+                      "current": 0,
+                      "max": 0
+                    },
+                    "mods": {
+                      "num": 0,
+                      "str": ""
+                    },
+                    "hp": {
+                      "normal": 0,
+                      "smooth": 0
+                    }
+                  }
+                },
+                {
+                  "team": "",
+                  "spectating": {
+                    "name": "",
+                    "country": "",
+                    "userID": 0,
+                    "accuracy": 0,
+                    "rankedScore": 0,
+                    "playCount": 0,
+                    "globalRank": 0,
+                    "totalPP": 0
+                  },
+                  "gameplay": {
+                    "gameMode": 0,
+                    "score": 0,
+                    "name": "",
+                    "accuracy": 0,
+                    "hits": {
+                      "300": 0,
+                      "geki": 0,
+                      "100": 0,
+                      "katu": 0,
+                      "50": 0,
+                      "0": 0,
+                      "sliderBreaks": 0,
+                      "unstableRate": 0
+                    },
+                    "combo": {
+                      "current": 0,
+                      "max": 0
+                    },
+                    "mods": {
+                      "num": 0,
+                      "str": ""
+                    },
+                    "hp": {
+                      "normal": 0,
+                      "smooth": 0
+                    }
+                  }
+                },
+                {
+                  "team": "",
+                  "spectating": {
+                    "name": "",
+                    "country": "",
+                    "userID": 0,
+                    "accuracy": 0,
+                    "rankedScore": 0,
+                    "playCount": 0,
+                    "globalRank": 0,
+                    "totalPP": 0
+                  },
+                  "gameplay": {
+                    "gameMode": 0,
+                    "score": 0,
+                    "name": "",
+                    "accuracy": 0,
+                    "hits": {
+                      "300": 0,
+                      "geki": 0,
+                      "100": 0,
+                      "katu": 0,
+                      "50": 0,
+                      "0": 0,
+                      "sliderBreaks": 0,
+                      "unstableRate": 0
+                    },
+                    "combo": {
+                      "current": 0,
+                      "max": 0
+                    },
+                    "mods": {
+                      "num": 0,
+                      "str": ""
+                    },
+                    "hp": {
+                      "normal": 0,
+                      "smooth": 0
+                    }
+                  }
+                },
+                {
+                  "team": "right",
+                  "spectating": {
+                    "name": "",
+                    "country": "",
+                    "userID": 0,
+                    "accuracy": 0,
+                    "rankedScore": 0,
+                    "playCount": 0,
+                    "globalRank": 0,
+                    "totalPP": 0
+                  },
+                  "gameplay": {
+                    "gameMode": 0,
+                    "score": 2686,
+                    "name": "",
+                    "accuracy": 0,
+                    "hits": {
+                      "300": 0,
+                      "geki": 0,
+                      "100": 0,
+                      "katu": 0,
+                      "50": 0,
+                      "0": 0,
+                      "sliderBreaks": 0,
+                      "unstableRate": 0
+                    },
+                    "combo": {
+                      "current": 0,
+                      "max": 0
+                    },
+                    "mods": {
+                      "num": 0,
+                      "str": ""
+                    },
+                    "hp": {
+                      "normal": 0,
+                      "smooth": 0
+                    }
+                  }
+                },
+                {
+                  "team": "right",
+                  "spectating": {
+                    "name": "",
+                    "country": "",
+                    "userID": 0,
+                    "accuracy": 0,
+                    "rankedScore": 0,
+                    "playCount": 0,
+                    "globalRank": 0,
+                    "totalPP": 0
+                  },
+                  "gameplay": {
+                    "gameMode": 0,
+                    "score": 0,
+                    "name": "",
+                    "accuracy": 0,
+                    "hits": {
+                      "300": 0,
+                      "geki": 0,
+                      "100": 0,
+                      "katu": 0,
+                      "50": 0,
+                      "0": 0,
+                      "sliderBreaks": 0,
+                      "unstableRate": 0
+                    },
+                    "combo": {
+                      "current": 0,
+                      "max": 0
+                    },
+                    "mods": {
+                      "num": 0,
+                      "str": ""
+                    },
+                    "hp": {
+                      "normal": 0,
+                      "smooth": 0
+                    }
+                  }
+                },
+                {
+                  "team": "right",
+                  "spectating": {
+                    "name": "",
+                    "country": "",
+                    "userID": 0,
+                    "accuracy": 0,
+                    "rankedScore": 0,
+                    "playCount": 0,
+                    "globalRank": 0,
+                    "totalPP": 0
+                  },
+                  "gameplay": {
+                    "gameMode": 0,
+                    "score": 0,
+                    "name": "",
+                    "accuracy": 0,
+                    "hits": {
+                      "300": 0,
+                      "geki": 0,
+                      "100": 0,
+                      "katu": 0,
+                      "50": 0,
+                      "0": 0,
+                      "sliderBreaks": 0,
+                      "unstableRate": 0
+                    },
+                    "combo": {
+                      "current": 0,
+                      "max": 0
+                    },
+                    "mods": {
+                      "num": 0,
+                      "str": ""
+                    },
+                    "hp": {
+                      "normal": 0,
+                      "smooth": 0
+                    }
+                  }
+                },
+                {
+                  "team": "right",
+                  "spectating": {
+                    "name": "",
+                    "country": "",
+                    "userID": 0,
+                    "accuracy": 0,
+                    "rankedScore": 0,
+                    "playCount": 0,
+                    "globalRank": 0,
+                    "totalPP": 0
+                  },
+                  "gameplay": {
+                    "gameMode": 0,
+                    "score": 57558140,
+                    "name": "",
+                    "accuracy": 0,
+                    "hits": {
+                      "300": 0,
+                      "geki": 0,
+                      "100": 0,
+                      "katu": 0,
+                      "50": 0,
+                      "0": 0,
+                      "sliderBreaks": 0,
+                      "unstableRate": 0
+                    },
+                    "combo": {
+                      "current": 0,
+                      "max": 0
+                    },
+                    "mods": {
+                      "num": 0,
+                      "str": ""
+                    },
+                    "hp": {
+                      "normal": 0,
+                      "smooth": 0
+                    }
+                  }
+                }
+              ]
+            ],
+            "required": [
+              "team",
+              "spectating",
+              "gameplay"
+            ],
+            "properties": {
+              "team": {
+                "type": "string",
+                "title": "The team schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "left"
+                ]
+              },
+              "spectating": {
+                "type": "object",
+                "title": "The spectating schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                  {
+                    "name": "erickao",
+                    "country": "Taiwan",
+                    "userID": 12627417,
+                    "accuracy": 95.34,
+                    "rankedScore": 154074281,
+                    "playCount": 1364,
+                    "globalRank": 184770,
+                    "totalPP": 618
+                  }
+                ],
+                "required": [
+                  "name",
+                  "country",
+                  "userID",
+                  "accuracy",
+                  "rankedScore",
+                  "playCount",
+                  "globalRank",
+                  "totalPP"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "The name schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "erickao"
+                    ]
+                  },
+                  "country": {
+                    "type": "string",
+                    "title": "The country schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "Taiwan"
+                    ]
+                  },
+                  "userID": {
+                    "type": "integer",
+                    "title": "The userID schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      12627417
+                    ]
+                  },
+                  "accuracy": {
+                    "type": "number",
+                    "title": "The accuracy schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0.0,
+                    "examples": [
+                      95.34
+                    ]
+                  },
+                  "rankedScore": {
+                    "type": "integer",
+                    "title": "The rankedScore schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      154074281
+                    ]
+                  },
+                  "playCount": {
+                    "type": "integer",
+                    "title": "The playCount schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      1364
+                    ]
+                  },
+                  "globalRank": {
+                    "type": "integer",
+                    "title": "The globalRank schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      184770
+                    ]
+                  },
+                  "totalPP": {
+                    "type": "integer",
+                    "title": "The totalPP schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      618
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "gameplay": {
+                "type": "object",
+                "title": "The gameplay schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                  {
+                    "gameMode": 0,
+                    "score": 2,
+                    "name": "",
+                    "accuracy": 0,
+                    "hits": {
+                      "300": 0,
+                      "geki": 0,
+                      "100": 0,
+                      "katu": 0,
+                      "50": 0,
+                      "0": 0,
+                      "sliderBreaks": 0,
+                      "unstableRate": 0
+                    },
+                    "combo": {
+                      "current": 0,
+                      "max": 0
+                    },
+                    "mods": {
+                      "num": 0,
+                      "str": ""
+                    },
+                    "hp": {
+                      "normal": 0,
+                      "smooth": 0
+                    }
+                  }
+                ],
+                "required": [
+                  "gameMode",
+                  "score",
+                  "name",
+                  "accuracy",
+                  "hits",
+                  "combo",
+                  "mods",
+                  "hp"
+                ],
+                "properties": {
+                  "gameMode": {
+                    "type": "integer",
+                    "title": "The gameMode schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      0
+                    ]
+                  },
+                  "score": {
+                    "type": "integer",
+                    "title": "The score schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      2
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "title": "The name schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      ""
+                    ]
+                  },
+                  "accuracy": {
+                    "type": "number",
+                    "title": "The accuracy schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      0
+                    ]
+                  },
+                  "hits": {
+                    "type": "object",
+                    "title": "The hits schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                      {
+                        "300": 0,
+                        "geki": 0,
+                        "100": 0,
+                        "katu": 0,
+                        "50": 0,
+                        "0": 0,
+                        "sliderBreaks": 0,
+                        "unstableRate": 0
+                      }
+                    ],
+                    "required": [
+                      "300",
+                      "geki",
+                      "100",
+                      "katu",
+                      "50",
+                      "0",
+                      "sliderBreaks",
+                      "unstableRate"
+                    ],
+                    "properties": {
+                      "300": {
+                        "type": "integer",
+                        "title": "The 300 schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      "geki": {
+                        "type": "integer",
+                        "title": "The geki schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      "100": {
+                        "type": "integer",
+                        "title": "The 100 schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      "katu": {
+                        "type": "integer",
+                        "title": "The katu schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      "50": {
+                        "type": "integer",
+                        "title": "The 50 schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      "0": {
+                        "type": "integer",
+                        "title": "The 0 schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      "sliderBreaks": {
+                        "type": "integer",
+                        "title": "The sliderBreaks schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      "unstableRate": {
+                        "type": "number",
+                        "title": "The unstableRate schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "combo": {
+                    "type": "object",
+                    "title": "The combo schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                      {
+                        "current": 0,
+                        "max": 0
+                      }
+                    ],
+                    "required": [
+                      "current",
+                      "max"
+                    ],
+                    "properties": {
+                      "current": {
+                        "type": "integer",
+                        "title": "The current schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      "max": {
+                        "type": "integer",
+                        "title": "The max schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "mods": {
+                    "type": "object",
+                    "title": "The mods schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                      {
+                        "num": 0,
+                        "str": ""
+                      }
+                    ],
+                    "required": [
+                      "num",
+                      "str"
+                    ],
+                    "properties": {
+                      "num": {
+                        "type": "integer",
+                        "title": "The num schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      "str": {
+                        "type": "string",
+                        "title": "The str schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                          ""
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "hp": {
+                    "type": "object",
+                    "title": "The hp schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                      {
+                        "normal": 0,
+                        "smooth": 0
+                      }
+                    ],
+                    "required": [
+                      "normal",
+                      "smooth"
+                    ],
+                    "properties": {
+                      "normal": {
+                        "type": "number",
+                        "title": "The normal schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      },
+                      "smooth": {
+                        "type": "number",
+                        "title": "The smooth schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                          0
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

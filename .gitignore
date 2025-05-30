@@ -142,5 +142,6 @@ dist
 
 # Built files
 /dashboard/
-/extension/
+/extension/*
+!/extension/index.js
 /graphics/

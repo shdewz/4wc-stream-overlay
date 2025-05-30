@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ExampleType } from '@nodecg-vue-ts-template/types';
-import { Configschema, ExampleReplicant } from '@nodecg-vue-ts-template/types/schemas';
+import { Configschema, ExampleReplicant } from '@4wc-stream-overlay/types/schemas';
 import { useHead } from '@vueuse/head';
 import { useReplicant } from 'nodecg-vue-composable';
 import { ref } from 'vue';
@@ -13,15 +12,12 @@ useHead({ title: 'example' });
 // Helper composable to make accessing/modifying replicants easier.
 // For more information see https://github.com/Dan-Shields/nodecg-vue-composable
 const exampleReplicant = useReplicant<ExampleReplicant>(
-  'exampleReplicant',
-  'nodecg-vue-ts-template',
+    'exampleReplicant',
+    '4wc-stream-overlay',
 );
 
 // Access the bundle configuration with types.
-const config = nodecg.bundleConfig as Configschema;
-
-// Accessing normal types.
-const exampleType: ExampleType = { exampleProperty: 'exampleString' };
+const config = nodecg.bundleConfig as unknown as Configschema;
 </script>
 
 <template>

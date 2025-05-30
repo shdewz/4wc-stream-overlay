@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "tournament teams data",
+  "type": "array",
+  "default": [
+    {
+      "team": "Argentina",
+      "flag": "AR",
+      "seed": 28,
+      "players": [
+        {
+          "id": 9336886,
+          "username": "zeta",
+          "captain": false
+        }
+      ]
+    }
+  ],
+  "items": {
+    "$id": "#/tournament/team",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "team",
+      "flag",
+      "seed",
+      "players"
+    ],
+    "properties": {
+      "team": {
+        "type": "string"
+      },
+      "flag": {
+        "type": "string"
+      },
+      "seed": {
+        "type": "integer"
+      },
+      "players": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "username",
+            "captain"
+          ],
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "username": {
+              "type": "string"
+            },
+            "captain": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+}

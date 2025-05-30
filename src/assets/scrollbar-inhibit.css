@@ -1,0 +1,16 @@
+
+::-webkit-scrollbar {
+    width: 10px;
+    visibility: hidden;
+}
+
+::-webkit-scrollbar-track {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    visibility: hidden;
+}
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+}
