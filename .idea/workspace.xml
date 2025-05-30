@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add accents graphic to package.json">
-      <change afterPath="$PROJECT_DIR$/src/graphics/winner.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/winner/main.vue" afterDir="false" />
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add dynamic data to winner graphic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/intro/TeamDisplay.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/intro/TeamDisplay.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/winner/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/winner/main.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +177,7 @@
       <workItem from="1748213930379" duration="4753000" />
       <workItem from="1748218748658" duration="17376000" />
       <workItem from="1748346436913" duration="4584000" />
-      <workItem from="1748359800933" duration="58363000" />
+      <workItem from="1748359800933" duration="61109000" />
     </task>
     <task id="LOCAL-00001" summary="update config">
       <option name="closed" value="true" />
@@ -540,7 +539,31 @@
       <option name="project" value="LOCAL" />
       <updated>1748579276955</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="import winner graphic from reference impl">
+      <option name="closed" value="true" />
+      <created>1748579712480</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1748579712481</updated>
+    </task>
+    <task id="LOCAL-00047" summary="extract team display into its own component">
+      <option name="closed" value="true" />
+      <created>1748581412467</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1748581412467</updated>
+    </task>
+    <task id="LOCAL-00048" summary="add dynamic data to winner graphic">
+      <option name="closed" value="true" />
+      <created>1748582375549</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1748582375549</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,9 +592,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="disable timer if oldMessages array is empty&#10;&#10;when oldMessages is empty, it is likely the page was just loaded and a flood of messages came rushing in" />
-    <MESSAGE value="remove reference implementation files for main graphic" />
-    <MESSAGE value="add mappool graphic" />
     <MESSAGE value="import code from reference mappool implementation&#10;&#10;scripts are kept in comment as they Don't Work:tm:" />
     <MESSAGE value="refactor scrollbar styles from main and mappool graphics" />
     <MESSAGE value="add beatmap-card component, refactor scrollbar-inhibit.css location" />
@@ -594,6 +614,9 @@
     <MESSAGE value="fix lint errors" />
     <MESSAGE value="add accents graphic" />
     <MESSAGE value="add accents graphic to package.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="add accents graphic to package.json" />
+    <MESSAGE value="import winner graphic from reference impl" />
+    <MESSAGE value="extract team display into its own component" />
+    <MESSAGE value="add dynamic data to winner graphic" />
+    <option name="LAST_COMMIT_MESSAGE" value="add dynamic data to winner graphic" />
   </component>
 </project>

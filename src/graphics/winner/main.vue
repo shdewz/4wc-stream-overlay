@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {useReplicant} from "@4wc-stream-overlay/browser_shared/vue-replicants";
-import {computed} from "vue";
-import TeamDisplay from "@4wc-stream-overlay/graphics/intro/TeamDisplay.vue";
+import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
+import { computed } from 'vue';
+import TeamDisplay from '@4wc-stream-overlay/graphics/intro/TeamDisplay.vue';
 
 const tournamentMappoolReplicant = useReplicant('tournamentMappool');
 const tournamentTeamsReplicant = useReplicant('tournamentTeams');
@@ -14,6 +14,7 @@ const teams = computed(() => ({
   red: tournamentTeamsReplicant.data?.find((t) => t.team === osuTourneyReplicant.data?.teamName.left),
   blue: tournamentTeamsReplicant.data?.find((t) => t.team === osuTourneyReplicant.data?.teamName.right),
 }));
+
 const scores = computed(() => ({
   red: osuTourneyReplicant.data?.stars.left,
   blue: osuTourneyReplicant.data?.stars.right,

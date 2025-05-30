@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {TournamentTeam } from "@4wc-stream-overlay/types/schemas";
-import {computed} from "vue";
+import { TournamentTeam } from '@4wc-stream-overlay/types/schemas';
+import { computed } from 'vue';
 
 interface Props {
   team: TournamentTeam | undefined,
@@ -10,8 +10,6 @@ interface Props {
 const props = defineProps<Props>();
 
 const teamFlag = computed(() => new URL(`../../assets/flags/${props.team?.flag ?? 'XX'}.png`, import.meta.url).href);
-
-console.log(`hioii: oclor is ${props.color}`);
 </script>
 
 <template>
