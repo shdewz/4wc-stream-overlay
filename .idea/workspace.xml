@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="fix relative paths after moving files">
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add graphics bundle db">
+      <change afterPath="$PROJECT_DIR$/nodecg/schemas/obsStatus.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nodecg/src/dashboard/obsWs.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nodecg/src/dashboard/obsWs/main.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nodecg/src/extension/obsWs.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nodecg/src/types/schemas/obsStatus.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/db/nodecg.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/db/nodecg.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/src/browser_shared/replicants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/browser_shared/replicants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/src/extension/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/extension/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/src/extension/util/replicants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/extension/util/replicants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/src/types/schemas/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/types/schemas/index.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,15 +28,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="Vue Composition API Component" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/nodecg-tv2" />
+        <entry key="$PROJECT_DIR$" value="dev-nodecg" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,10 +69,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "#6 on dev-nodecg",
+    "git-widget-placeholder": "feature/obs-control",
     "javascript.nodejs.core.library.configured.version": "22.16.0",
     "javascript.nodejs.core.library.typings.version": "22.15.21",
-    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/src/graphics",
+    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/nodecg/src/dashboard",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -73,7 +85,7 @@
     "npm.schema-types.executor": "Run",
     "npm.start.executor": "Run",
     "npm.watch.executor": "Run",
-    "settings.editor.selected.configurable": "preferences.sourceCode.JavaScript",
+    "settings.editor.selected.configurable": "configurable.tailwindcss",
     "ts.external.directory.path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/nodecg/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -89,23 +101,33 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/nodecg/src/dashboard" />
       <recent name="$PROJECT_DIR$/src/graphics" />
       <recent name="$PROJECT_DIR$/src/graphics/intro" />
       <recent name="$PROJECT_DIR$/schemas" />
       <recent name="$PROJECT_DIR$/src/dashboard" />
-      <recent name="$PROJECT_DIR$/src/browser_shared/styles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/nodecg" />
       <recent name="$PROJECT_DIR$/src/assets" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.schema-types">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/nodecg/package.json" />
       <command value="run" />
       <scripts>
         <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="schema-types" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/nodecg/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="schema-types" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -121,12 +143,23 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/nodecg/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.schema-types" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.watch" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
-        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
@@ -150,23 +183,7 @@
       <workItem from="1748218748658" duration="17376000" />
       <workItem from="1748346436913" duration="4584000" />
       <workItem from="1748359800933" duration="61109000" />
-      <workItem from="1748629944924" duration="692000" />
-    </task>
-    <task id="LOCAL-00005" summary="add static json data and gosu dashboards">
-      <option name="closed" value="true" />
-      <created>1748227609697</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1748227609697</updated>
-    </task>
-    <task id="LOCAL-00006" summary="add static json data and gosu dashboards">
-      <option name="closed" value="true" />
-      <created>1748228984555</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1748228984556</updated>
+      <workItem from="1748629944924" duration="8521000" />
     </task>
     <task id="LOCAL-00007" summary="fix missing/broken CSS in main screen">
       <option name="closed" value="true" />
@@ -544,7 +561,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748630606937</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="update IDE workspace">
+      <option name="closed" value="true" />
+      <created>1748630767011</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1748630767011</updated>
+    </task>
+    <task id="LOCAL-00055" summary="add graphics bundle db">
+      <option name="closed" value="true" />
+      <created>1748630777270</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1748630777270</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -573,8 +606,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add ctrl-pick to ban in pickbans dashboard" />
-    <MESSAGE value="add ban indication to pickbans dashboard" />
     <MESSAGE value="fix pickByLabel for bans in beatmap card" />
     <MESSAGE value="fix lint errors in beatmap-card.vue" />
     <MESSAGE value="add pick blinker to beatmap card" />
@@ -598,6 +629,8 @@
     <MESSAGE value="move nocecg source to its own subdirectory" />
     <MESSAGE value="extract modifications to existing files into nodecg-specific files" />
     <MESSAGE value="fix relative paths after moving files" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix relative paths after moving files" />
+    <MESSAGE value="update IDE workspace" />
+    <MESSAGE value="add graphics bundle db" />
+    <option name="LAST_COMMIT_MESSAGE" value="add graphics bundle db" />
   </component>
 </project>

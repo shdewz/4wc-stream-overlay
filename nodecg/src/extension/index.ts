@@ -25,4 +25,5 @@ export = (nodecg: NodeCG.ServerAPI<Configschema>): void => {
   // require('./companion');
   require('./jsonData');
   require('./autopick');
+  require('./obsWs');
 };

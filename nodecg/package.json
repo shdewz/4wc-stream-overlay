@@ -55,6 +55,7 @@
     "node-cache": "^5.1.2",
     "nodecg": "^2.5.3",
     "npm": "^11.4.1",
+    "obs-websocket-js": "^5.0.6",
     "osu-web.js": "^2.6.0",
     "patch-package": "^8.0.0",
     "socket.io-client": "^4.7.4",
@@ -108,6 +109,12 @@
         "name": "gosumemory",
         "title": "gosumemory",
         "file": "gosumemory.html",
+        "width": 4
+      },
+      {
+        "name": "obs ws",
+        "title": "obs websocket",
+        "file": "obsWs.html",
         "width": 4
       },
       {

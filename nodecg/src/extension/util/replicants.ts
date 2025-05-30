@@ -12,6 +12,7 @@ function getReplicant<N extends keyof ReplicantTypes, T extends ReplicantTypes[N
 }
 export const countdownReplicant = getReplicant('countdown');
 export const gosumemoryStatusReplicant = getReplicant('gosumemoryStatus');
+export const OBSStatusReplicant = getReplicant('obsStatus');
 export const osuSongReplicant = getReplicant('osuSong');
 export const osuSongOverridesReplicant = getReplicant('osuSongOverrides');
 export const osuTourneyReplicant = getReplicant('osuTourney');

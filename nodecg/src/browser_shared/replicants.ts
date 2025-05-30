@@ -1,6 +1,7 @@
 import type {
   CountdownReplicant,
   CurrentGosumemoryConnectionStatus,
+  CurrentOBSConnectionStatus,
   CurrentOsuSongOverrides,
   CurrentOsuSongReplicant,
   // CurrentRefereeHelperConnectionStatus,
@@ -26,6 +27,7 @@ export const namespace = '4wc-stream-overlay';
 export interface ReplicantTypes {
   countdown: CountdownReplicant;
   gosumemoryStatus: CurrentGosumemoryConnectionStatus;
+  obsStatus: CurrentOBSConnectionStatus;
   // matches: MatchesReplicant;
   osuSong: CurrentOsuSongReplicant;
   osuSongOverrides: CurrentOsuSongOverrides;
@@ -51,6 +53,7 @@ export interface ReplicantTypes {
 export const replicantOptions = {
   countdown: { persistent: true },
   gosumemoryStatus: { persistent: true },
+  obsStatus: { persistent: true },
   matches: { persistent: true },
   osuSong: { persistent: false },
   osuSongOverrides: { persistent: true },

@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Current OBS Connection Status",
+  "default": {
+    "wsUrl": "ws://127.0.0.1:4455",
+    "wsPassword": "",
+    "wsStatus": "CLOSED",
+    "automaticReconnect": true
+  },
+  "required": [
+    "wsUrl",
+    "wsPassword",
+    "wsStatus",
+    "automaticReconnect"
+  ],
+  "properties": {
+    "wsUrl": {
+      "$id": "#/properties/wsUrl",
+      "type": "string",
+      "title": "OBS Websocket Url schema",
+      "default": ""
+    },
+    "wsPassword": {
+      "$id": "#/properties/wsPassword",
+      "type": "string",
+      "title": "OBS Websocket connection password",
+      "default": ""
+    },
+    "wsStatus": {
+      "$id": "#/properties/wsStatus",
+      "type": "string",
+      "title": "OBS Websocket connection status schema",
+      "enum": ["CLOSED", "CONNECTING", "OPEN", "CLOSING"],
+      "default": "CLOSED"
+    },
+    "automaticReconnect": {
+      "$id": "#/properties/automaticReconnect",
+      "type": "boolean",
+      "title": "OBS Automatic Reconnect schema",
+      "default": true,
+      "examples": [
+        true,
+        false
+      ]
+    }
+  },
+  "additionalProperties": false
+}
