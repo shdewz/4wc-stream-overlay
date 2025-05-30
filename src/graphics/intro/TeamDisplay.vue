@@ -110,7 +110,6 @@ const teamFlag = computed(() => new URL(`../../assets/flags/${props.team?.flag ?
   grid-column-start: 2;
 }
 
-
 .team-flag {
   justify-self: center;
   align-self: center;
