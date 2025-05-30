@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import { get as nodecg } from './util/nodecg';
-import { tournamentMappool, tournamentTeams } from './util/replicants';
+import { tournamentMappool, tournamentTeams, tournamentSchedule } from './util/replicants';
 
 async function loadJson(filePath: string): Promise<any> {
   try {
@@ -15,6 +15,12 @@ async function loadJson(filePath: string): Promise<any> {
 const reloadData = async () => {
   tournamentMappool.value = await loadJson('_data/beatmaps.json');
   tournamentTeams.value = await loadJson('_data/teams.json');
+
+  try{
+    tournamentSchedule.value = await loadJson('_data/schedule.json');
+  } catch (error) {
+    nodecg().log.warn('[matches] Failed to load schedule data!')
+  }
   nodecg().log.info('[matches] Successfully loaded teams and mappool!');
 };
 

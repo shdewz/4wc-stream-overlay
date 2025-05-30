@@ -19,3 +19,4 @@ export const tournamentTeams = getReplicant('tournamentTeams');
 export const tournamentMappool = getReplicant('tournamentMappool');
 export const tournamentPickBans = getReplicant('tournamentPickBans');
 export const tournamentPickBansSettings = getReplicant('tournamentPickBansSettings');
+export const tournamentSchedule = getReplicant('tournamentSchedule');

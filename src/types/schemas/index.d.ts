@@ -10,3 +10,4 @@ export * from './tournamentMappool';
 export * from './tournamentTeams';
 export * from './tournamentPickBans';
 export * from './tournamentPickBansSettings';
+export * from './tournamentSchedule';

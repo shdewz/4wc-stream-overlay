@@ -8,19 +8,8 @@ useHead({ title: 'countdown' });
 
 // const matchesReplicant = useReplicant('matches');
 // const matches = computed(() => matchesReplicant.data ?? []);
-type MatchesReplicant = Match[];
-interface Match {
-  id: number | null;
-  schedule: string | null;
-  players: Player[];
-  shoutcasters: string[];
-  mpLink: string | null;
-}
-interface Player {
-  name: string | null;
-  score: number | 'FF' | null;
-}
-const matches = computed(() => [] as MatchesReplicant);
+const scheduledMatchesReplicant = useReplicant('tournamentSchedule')
+const matches = computed(() => scheduledMatchesReplicant.data ?? []);
 
 const countdownReplicant = useReplicant('countdown');
 const isLoaded = computed(() => countdownReplicant.data !== undefined);
@@ -92,26 +81,46 @@ watch(playersCount, () => {
 const upcomingMatchExpansionItem = ref<QExpansionItem>();
 const selectedMatchId = ref<number | null>(null);
 const setMatchId = (matchId: number) => {
-  selectedMatchId.value = matchId;
-  const match = matches.value.find((m) => m.id === matchId)!;
-  countdownReplicant.data!.shoutcasters = match.shoutcasters;
-  shoutcastersCount.value = match.shoutcasters.length;
-  countdownReplicant.data!.matches.players = match.players.map((p) => p.name ?? '');
-  playersCount.value = match.players.length;
-  const matchTime = match.schedule?.match(/\d\d:\d\d/)?.[0].replaceAll('h', ':');
-  if (matchTime) {
-    countdownReplicant.data!.time = `${matchTime}:00`;
-  }
-  upcomingMatchExpansionItem.value?.hide();
+  // selectedMatchId.value = matchId;
+  // const match = matches.value.find((m) => m.id === matchId)!;
+  // countdownReplicant.data!.shoutcasters = match.shoutcasters;
+  // shoutcastersCount.value = match.shoutcasters.length;
+  // countdownReplicant.data!.matches.players = match.players.map((p) => p.name ?? '');
+  // playersCount.value = match.players.length;
+  // const matchTime = match.schedule?.match(/\d\d:\d\d/)?.[0].replaceAll('h', ':');
+  // if (matchTime) {
+  //   countdownReplicant.data!.time = `${matchTime}:00`;
+  // }
+  // upcomingMatchExpansionItem.value?.hide();
 };
 
 const matchesLoading = ref(false);
 const refreshMatches = () => {
   matchesLoading.value = true;
-  nodecg.sendMessage('matches:fetch').finally(() => {
-    matchesLoading.value = false;
+  nodecg.sendMessage('jsondata:fetch').finally(() => {
+      matchesLoading.value = false;
   });
 };
+
+function formatTimestamp(timestamp: number): string {
+  // Create a Date object from the Unix timestamp (multiply by 1000 for milliseconds)
+  const date = new Date(timestamp);
+
+  // Format the date to get day of week (3 letters) and time in UTC
+  const dayOfWeek = date.toLocaleDateString('en-US', {
+    weekday: 'short',
+    timeZone: 'UTC'
+  });
+
+  const time = date.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'UTC'
+  });
+
+  return `${dayOfWeek} ${time} UTC`;
+}
 </script>
 
 <template>
@@ -174,6 +183,7 @@ const refreshMatches = () => {
     />
 
     <QSeparator class="q-my-md"/>
+    <h4 v-if="countdownReplicant.data?.type === 'showcase'">not implemented yet for 4wc</h4>
     <div v-if="countdownReplicant.data?.type === 'showcase'">
       <div class="text-h6">Next Round</div>
 
@@ -232,9 +242,9 @@ const refreshMatches = () => {
           :model-value="selectedMatchId"
           @update:model-value="setMatchId"
           :options="
-            matches.filter(m => m.id).map((match) => ({
-              label: `${match.schedule} (${match.id}): ${match.players.map((p) => p.name).join(' vs. ')}`,
-              value: match.id,
+            matches.filter(m => m.time).map((match) => ({
+               label: `${formatTimestamp(match.time)}: ${match.red_team} VS ${match.blue_team}`,
+               value: `${match.time}:${match.red_flag}:${match.blue_flag}`
             }))
           "
         />

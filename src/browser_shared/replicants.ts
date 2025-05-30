@@ -18,6 +18,7 @@ import type {
   TournamentTeamsData,
   TournamentPicksAndBans,
   TournamentPicksAndBansSettings,
+  TournamentScheduleData,
 } from '../types/schemas';
 
 export const namespace = '4wc-stream-overlay';
@@ -44,6 +45,7 @@ export interface ReplicantTypes {
   tournamentMappool: TournamentMappoolData;
   tournamentPickBans: TournamentPicksAndBans;
   tournamentPickBansSettings: TournamentPicksAndBansSettings;
+  tournamentSchedule: TournamentScheduleData;
 }
 
 export const replicantOptions = {
@@ -68,4 +70,5 @@ export const replicantOptions = {
   tournamentMappool: { persistent: false },
   tournamentPickBans: { persistent: true }, // helpful when needing to refresh page/restart nodecg
   tournamentPickBansSettings: { persistent: true },
+  tournamentSchedule: { persistent: false },
 } as const;
