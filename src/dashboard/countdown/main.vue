@@ -117,6 +117,8 @@ const refreshMatches = () => {
   });
 };
 
+const streamerUsername = ref('');
+
 function formatTimestamp(timestamp: number): string {
   // Create a Date object from the Unix timestamp (multiply by 1000 for milliseconds)
   const date = new Date(timestamp);
@@ -246,6 +248,15 @@ function formatTimestamp(timestamp: number): string {
         </transition-group>
       </div>
 
+      <div class="text-h6">Streamer username</div>
+      <QInput
+          class="q-pa-xs"
+          filled
+          v-model="streamerUsername"
+          :label="`Matches will be filtered using this username`"
+          dense
+          :autofocus="false"/>
+
       <QExpansionItem
         ref="upcomingMatchExpansionItem"
         label="Select Upcoming Match"
@@ -257,8 +268,8 @@ function formatTimestamp(timestamp: number): string {
           :model-value="selectedMatchId"
           @update:model-value="setMatchId"
           :options="
-            matches.filter(m => m.time).map((match) => ({
-               label: `${formatTimestamp(match.time)}: ${match.red_team} VS ${match.blue_team}`,
+            matches.filter(m => m.time && (m.streamer === streamerUsername || streamerUsername === '' )).map((match) => ({
+               label: `${formatTimestamp(match.time)}: ${match.red_team} VS ${match.blue_team} ${match.streamer ? '(' + match.streamer + ')' : ''}`,
                value: `${match.time}:${match.red_flag}:${match.blue_flag}`
             }))
           "
