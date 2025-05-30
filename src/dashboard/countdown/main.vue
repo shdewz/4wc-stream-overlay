@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useHead } from '@vueuse/head';
-import { computed, ref, watch } from 'vue';
-import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
-import { QExpansionItem, QInput } from 'quasar';
+import {useHead} from '@vueuse/head';
+import {computed, ref, watch} from 'vue';
+import {useReplicant} from '@4wc-stream-overlay/browser_shared/vue-replicants';
+import {QExpansionItem, QInput} from 'quasar';
 
 useHead({ title: 'countdown' });
 
@@ -79,19 +79,34 @@ watch(playersCount, () => {
 });
 
 const upcomingMatchExpansionItem = ref<QExpansionItem>();
-const selectedMatchId = ref<number | null>(null);
-const setMatchId = (matchId: number) => {
-  // selectedMatchId.value = matchId;
-  // const match = matches.value.find((m) => m.id === matchId)!;
-  // countdownReplicant.data!.shoutcasters = match.shoutcasters;
-  // shoutcastersCount.value = match.shoutcasters.length;
-  // countdownReplicant.data!.matches.players = match.players.map((p) => p.name ?? '');
-  // playersCount.value = match.players.length;
-  // const matchTime = match.schedule?.match(/\d\d:\d\d/)?.[0].replaceAll('h', ':');
-  // if (matchTime) {
-  //   countdownReplicant.data!.time = `${matchTime}:00`;
-  // }
-  // upcomingMatchExpansionItem.value?.hide();
+const selectedMatchId = ref<string | null>(null);
+const setMatchId = (matchId: string) => {
+  // matchId is composed of matchTime:redFlag:blueFlag (matchTime in js timestamp, flags are 2-letter codes)
+  selectedMatchId.value = matchId;
+
+  const [time, redFlag, blueFlag] = matchId.split(':');
+  const match = matches.value.find((m) => m.time.toString() === time && m.red_flag === redFlag && m.blue_flag === blueFlag);
+
+  if (match) {
+    // countdownReplicant.data!.shoutcasters = match.shoutcasters;
+    // shoutcastersCount.value = match.shoutcasters.length;
+
+    // hardcoding these for TeamVS tournaments
+    // countdownReplicant.data!.matches.players = match.players.map((p) => p.name ?? '');
+    countdownReplicant.data!.matches.players = [match.red_team, match.blue_team];
+    // playersCount.value = match.players.length;
+    playersCount.value = 2;
+
+    const matchTime = new Date(match.time);
+    countdownReplicant.data!.time = matchTime.toLocaleTimeString('en-GB', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  }
+
+  upcomingMatchExpansionItem.value?.hide();
 };
 
 const matchesLoading = ref(false);
@@ -258,43 +273,43 @@ function formatTimestamp(timestamp: number): string {
       />
     </div>
 
-    <QSeparator class="q-my-md"/>
-    <div class="text-h6">Upcoming Shoutcasters</div>
+<!--    <QSeparator class="q-my-md"/>-->
+<!--    <div class="text-h6">Upcoming Shoutcasters</div>-->
 
-    <div class="q-px-md">
-      <QSlider
-        v-model="shoutcastersCount"
-        :min="0"
-        :max="4"
-        :step="1"
-        snap
-        label
-        marker-labels
-        switch-marker-labels-side
-      />
-    </div>
-    <div class="row">
-      <transition-group
-        appear
-        enter-active-class="animated fadeIn"
-        leave-active-class="animated fadeOut"
-      >
-        <div
-          class="col-6"
-          v-for="(value, index) in new Array(4)"
-          :key="index"
-          v-show="index < shoutcastersCount"
-        >
-          <QInput
-            class="q-pa-xs"
-            filled
-            v-model="countdownReplicant.data!.shoutcasters[index]"
-            :label="`Shoutcaster ${index + 1}`"
-            dense
-          />
-        </div>
-      </transition-group>
-    </div>
+<!--    <div class="q-px-md">-->
+<!--      <QSlider-->
+<!--        v-model="shoutcastersCount"-->
+<!--        :min="0"-->
+<!--        :max="4"-->
+<!--        :step="1"-->
+<!--        snap-->
+<!--        label-->
+<!--        marker-labels-->
+<!--        switch-marker-labels-side-->
+<!--      />-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--      <transition-group-->
+<!--        appear-->
+<!--        enter-active-class="animated fadeIn"-->
+<!--        leave-active-class="animated fadeOut"-->
+<!--      >-->
+<!--        <div-->
+<!--          class="col-6"-->
+<!--          v-for="(value, index) in new Array(4)"-->
+<!--          :key="index"-->
+<!--          v-show="index < shoutcastersCount"-->
+<!--        >-->
+<!--          <QInput-->
+<!--            class="q-pa-xs"-->
+<!--            filled-->
+<!--            v-model="countdownReplicant.data!.shoutcasters[index]"-->
+<!--            :label="`Shoutcaster ${index + 1}`"-->
+<!--            dense-->
+<!--          />-->
+<!--        </div>-->
+<!--      </transition-group>-->
+<!--    </div>-->
 
     <div class="q-mt-md">
       <QBtn
