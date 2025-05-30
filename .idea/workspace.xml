@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="persist pickbans settings&#10;&#10;turns out it's actually quite useful to persist minimum bans count after all">
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add missing generated tournamentSchedule.d.ts">
+      <change afterPath="$PROJECT_DIR$/src/graphics/intro/Countdown.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphics/intro/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/intro/main.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +62,7 @@
     "git-widget-placeholder": "feature/4wc-nodecg",
     "javascript.nodejs.core.library.configured.version": "22.16.0",
     "javascript.nodejs.core.library.typings.version": "22.15.21",
-    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/schemas",
+    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/src/graphics/intro",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -90,11 +91,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/graphics/intro" />
       <recent name="$PROJECT_DIR$/schemas" />
-      <recent name="$PROJECT_DIR$/src/browser_shared/styles" />
-      <recent name="$PROJECT_DIR$/src/graphics" />
-      <recent name="$PROJECT_DIR$/src/assets" />
       <recent name="$PROJECT_DIR$/src/dashboard" />
+      <recent name="$PROJECT_DIR$/src/graphics" />
+      <recent name="$PROJECT_DIR$/src/browser_shared/styles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/assets" />
@@ -176,7 +177,7 @@
       <workItem from="1748213930379" duration="4753000" />
       <workItem from="1748218748658" duration="17376000" />
       <workItem from="1748346436913" duration="4584000" />
-      <workItem from="1748359800933" duration="23546000" />
+      <workItem from="1748359800933" duration="57650000" />
     </task>
     <task id="LOCAL-00001" summary="update config">
       <option name="closed" value="true" />
@@ -442,7 +443,71 @@
       <option name="project" value="LOCAL" />
       <updated>1748400898356</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="import intro graphic code from reference">
+      <option name="closed" value="true" />
+      <created>1748574285207</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1748574285207</updated>
+    </task>
+    <task id="LOCAL-00035" summary="add countdown dashboard with placeholder matches replicant">
+      <option name="closed" value="true" />
+      <created>1748574510325</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1748574510325</updated>
+    </task>
+    <task id="LOCAL-00036" summary="add countdown dashboard with placeholder matches replicant">
+      <option name="closed" value="true" />
+      <created>1748575003513</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1748575003513</updated>
+    </task>
+    <task id="LOCAL-00037" summary="add countdown dashboard with placeholder matches replicant">
+      <option name="closed" value="true" />
+      <created>1748575011246</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1748575011246</updated>
+    </task>
+    <task id="LOCAL-00038" summary="add tournament schedule to countdown dashboard">
+      <option name="closed" value="true" />
+      <created>1748576519846</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1748576519846</updated>
+    </task>
+    <task id="LOCAL-00039" summary="update countdown dashboard to support 4wc teamvs">
+      <option name="closed" value="true" />
+      <created>1748577300399</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1748577300399</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fix lint errors">
+      <option name="closed" value="true" />
+      <created>1748577377048</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1748577377048</updated>
+    </task>
+    <task id="LOCAL-00041" summary="add missing generated tournamentSchedule.d.ts">
+      <option name="closed" value="true" />
+      <created>1748577406443</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1748577406443</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,12 +536,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="revert unminify jquery.min.js" />
-    <MESSAGE value="fix osuTourney schema missing required properties" />
-    <MESSAGE value="fill stars based on tourney score" />
-    <MESSAGE value="add song metadata and stats display&#10;&#10;this modifies the osuSong schema to include raw stats (cs/ar/od/length/bpm) and computed stats that account for mods" />
-    <MESSAGE value="add cancel button next to reset pickbans confirm button" />
-    <MESSAGE value="update tournamentPickBans schema" />
     <MESSAGE value="remove unused code" />
     <MESSAGE value="fix lint errors in main graphic" />
     <MESSAGE value="add timer chat message handlers" />
@@ -496,6 +555,12 @@
     <MESSAGE value="add primitive autopick impl" />
     <MESSAGE value="add min bans count and color swapping for autopick" />
     <MESSAGE value="persist pickbans settings&#10;&#10;turns out it's actually quite useful to persist minimum bans count after all" />
-    <option name="LAST_COMMIT_MESSAGE" value="persist pickbans settings&#10;&#10;turns out it's actually quite useful to persist minimum bans count after all" />
+    <MESSAGE value="import intro graphic code from reference" />
+    <MESSAGE value="add countdown dashboard with placeholder matches replicant" />
+    <MESSAGE value="add tournament schedule to countdown dashboard" />
+    <MESSAGE value="update countdown dashboard to support 4wc teamvs" />
+    <MESSAGE value="fix lint errors" />
+    <MESSAGE value="add missing generated tournamentSchedule.d.ts" />
+    <option name="LAST_COMMIT_MESSAGE" value="add missing generated tournamentSchedule.d.ts" />
   </component>
 </project>

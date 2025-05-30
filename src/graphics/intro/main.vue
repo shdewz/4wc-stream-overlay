@@ -1,83 +1,26 @@
 <script setup lang="ts">
-// let comingup, teams, mappool;
-// (async () => {
-//   $.ajaxSetup({ cache: false });
-//   comingup = await $.getJSON('../_data/coming_up.json');
-//   teams = await $.getJSON('../_data/teams.json');
-//   mappool = await $.getJSON('../_data/beatmaps.json');
-//   streamer = (await $.getJSON('../_data/streamer.json')).username;
-//
-//   if (comingup.length) {
-//     const now = Date.now();
-//     const matches = comingup.sort((a, b) => a.time - b.time).filter(e => e.time > now - 3 * 60 * 1000);
-//     if (matches.length === 0) {
-//       console.log('a')
-//       return;
-//     }
-//     else {
-//       concurrent_matches = matches.filter(m => m.time == matches[0].time);
-//       if (concurrent_matches.length > 1) {
-//         concurrent_matches_2 = concurrent_matches.filter(m => m.streamer === streamer ?? '');
-//         if (concurrent_matches_2.length === 0) {
-//           update_match(concurrent_matches[0]);
-//         }
-//         else if (concurrent_matches_2.length > 1) {
-//           console.log('you done fucked up');
-//           $('#title').text('MULTIPLE CONCURRENT MATCHES, CHECK JSON FILE');
-//         }
-//         else update_match(concurrent_matches_2[0]);
-//       }
-//       else update_match(concurrent_matches[0]);
-//     }
-//   }
-//   else update_match(comingup);
-// })();
-//
-// const update_match = match => {
-//   $('#title').text('COMING UP');
-//
-//   if (match.showcase) {
-//     $('#teams').css('display', 'none');
-//     $('#showcase').text(`${mappool.stage} Mappool Showcase`).css('display', 'flex');
-//   }
-//   else {
-//     const red_team = teams.find(team => team.team === match.red_team);
-//     const blue_team = teams.find(team => team.team === match.blue_team);
-//     update_team('red', red_team);
-//     update_team('blue', blue_team);
-//   }
-//
-//   if (match.time > Date.now()) {
-//     let timer_int = setInterval(() => {
-//       if (match.time < Date.now()) {
-//         clearInterval(timer_int);
-//         $('#timer').text('00:00');
-//       }
-//       let remaining = Math.floor((match.time - Date.now()) / 1000);
-//       let hours = Math.floor(remaining / 60 / 60);
-//       let date = new Date(null);
-//       date.setSeconds(remaining);
-//       let text = hours > 0 ? date.toISOString().slice(11, 19) : date.toISOString().slice(14, 19);
-//       if (timer && remaining > 0) $('#timer').text(text);
-//     }, 1000);
-//   }
-// };
-//
-// const update_team = (color, team) => {
-//   $(`#name_${color}`).text(team.team);
-//   $(`#flag_${color}`).css('background-image', `url('../_shared/assets/flags/${team.flag}.png')`);
-//   $(`#players_${color}`).html('');
-//   const players = team.players.sort((a, b) => b.captain - a.captain);
-//   console.log(players);
-//   for (const player of players) {
-//     $(`#players_${color}`).append($('<div></div>').addClass('team-player').text(player.username));
-//   }
-// };
+import {useReplicant} from "@4wc-stream-overlay/browser_shared/vue-replicants";
+import {computed} from "vue";
+import Countdown from "./Countdown.vue";
 
+const countdownReplicant = useReplicant('countdown');
+const tournamentTeamsReplicant = useReplicant('tournamentTeams');
+
+const isLoaded = computed(() => countdownReplicant.data != null);
+
+const teams = computed(() => ({
+  red: tournamentTeamsReplicant.data?.find((t) => t.team === countdownReplicant.data?.matches.players[0]),
+  blue: tournamentTeamsReplicant.data?.find((t) => t.team === countdownReplicant.data?.matches.players[1]),
+}));
+
+const teamFlags = computed(() => ({
+  red: new URL(`../../assets/flags/${teams.value.red?.flag ?? 'XX'}.png`, import.meta.url).href,
+  blue: new URL(`../../assets/flags/${teams.value.blue?.flag ?? 'XX'}.png`, import.meta.url).href
+}));
 </script>
 
 <template>
-  <div class="main">
+  <div class="main" v-if="isLoaded">
     <div class="logo-container">
       <div class="logo"></div>
       <div class="logo-text">4 Digit World Cup 2025</div>
@@ -90,18 +33,24 @@
       <div class="showcase" id="showcase"></div>
       <div class="teams" id="teams">
         <div class="team red">
-          <div class="team-flag red" id="flag_red"></div>
-          <div class="team-name red" id="name_red"></div>
-          <div class="team-players red" id="players_red"></div>
+          <div class="team-flag red" id="flag_red" :style="{ backgroundImage: `url(${teamFlags.red})` }"></div>
+          <div class="team-name red" id="name_red">{{ teams.red?.team }}</div>
+          <div class="team-players red" id="players_red">
+            <div class="team-player" v-for="player in (teams.red?.players ?? []).sort((a, b) => (b.captain ? 1 : 0) - (a.captain ? 1 : 0))" :key="player.id">{{ player.username }}</div>
+          </div>
         </div>
         <div class="vs">vs</div>
         <div class="team blue">
-          <div class="team-name blue" id="name_blue"></div>
-          <div class="team-flag blue" id="flag_blue"></div>
-          <div class="team-players blue" id="players_blue"></div>
+          <div class="team-name blue" id="name_blue">{{ teams.blue?.team }}</div>
+          <div class="team-flag blue" id="flag_blue" :style="{ backgroundImage: `url(${teamFlags.blue})` }"></div>
+          <div class="team-players blue" id="players_blue">
+            <div class="team-player" v-for="player in (teams.blue?.players ?? []).sort((a, b) => (b.captain ? 1 : 0) - (a.captain ? 1 : 0))" :key="player.id">{{ player.username }}</div>
+          </div>
         </div>
       </div>
-      <div class="timer" id="timer">00:00</div>
+
+      <Countdown v-if="countdownReplicant.data" class="timer" :time="countdownReplicant.data.time"
+      />
     </div>
   </div>
 </template>
@@ -111,7 +60,7 @@
   padding: 0;
   margin: 0;
   overflow-y: hidden;
-  font-family: 'Din';
+  font-family: 'Din', sans-serif;
 }
 
 .main {
@@ -251,6 +200,6 @@
   text-align: center;
   font-size: 3rem;
   font-weight: 800;
-  font-family: 'Noto Sans';
+  font-family: 'Noto Sans', sans-serif;
 }
 </style>
