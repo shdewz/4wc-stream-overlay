@@ -6,8 +6,6 @@ import { QExpansionItem, QInput } from 'quasar';
 
 useHead({ title: 'countdown' });
 
-// const matchesReplicant = useReplicant('matches');
-// const matches = computed(() => matchesReplicant.data ?? []);
 const scheduledMatchesReplicant = useReplicant('tournamentSchedule');
 const matches = computed(() => scheduledMatchesReplicant.data ?? []);
 
@@ -88,13 +86,8 @@ const setMatchId = (matchId: string) => {
   const match = matches.value.find((m) => m.time.toString() === matchTimestamp && m.red_flag === redFlag && m.blue_flag === blueFlag);
 
   if (match) {
-    // countdownReplicant.data!.shoutcasters = match.shoutcasters;
-    // shoutcastersCount.value = match.shoutcasters.length;
-
     // hardcoding these for TeamVS tournaments
-    // countdownReplicant.data!.matches.players = match.players.map((p) => p.name ?? '');
     countdownReplicant.data!.matches.players = [match.red_team, match.blue_team];
-    // playersCount.value = match.players.length;
     playersCount.value = 2;
 
     const matchTime = new Date(match.time);
@@ -120,10 +113,8 @@ const refreshMatches = () => {
 const streamerUsername = ref('');
 
 function formatTimestamp(timestamp: number): string {
-  // Create a Date object from the Unix timestamp (multiply by 1000 for milliseconds)
   const date = new Date(timestamp);
 
-  // Format the date to get day of week (3 letters) and time in UTC
   const dayOfWeek = date.toLocaleDateString('en-US', {
     weekday: 'short',
     timeZone: 'UTC',
@@ -277,50 +268,12 @@ function formatTimestamp(timestamp: number): string {
       </QExpansionItem>
       <QBtn
         color="primary"
-        label="Refresh Matches"
+        label="Reload matches from schedule.json"
         class="full-width"
         :disable="matchesLoading"
         @click="refreshMatches()"
       />
     </div>
-
-<!--    <QSeparator class="q-my-md"/>-->
-<!--    <div class="text-h6">Upcoming Shoutcasters</div>-->
-
-<!--    <div class="q-px-md">-->
-<!--      <QSlider-->
-<!--        v-model="shoutcastersCount"-->
-<!--        :min="0"-->
-<!--        :max="4"-->
-<!--        :step="1"-->
-<!--        snap-->
-<!--        label-->
-<!--        marker-labels-->
-<!--        switch-marker-labels-side-->
-<!--      />-->
-<!--    </div>-->
-<!--    <div class="row">-->
-<!--      <transition-group-->
-<!--        appear-->
-<!--        enter-active-class="animated fadeIn"-->
-<!--        leave-active-class="animated fadeOut"-->
-<!--      >-->
-<!--        <div-->
-<!--          class="col-6"-->
-<!--          v-for="(value, index) in new Array(4)"-->
-<!--          :key="index"-->
-<!--          v-show="index < shoutcastersCount"-->
-<!--        >-->
-<!--          <QInput-->
-<!--            class="q-pa-xs"-->
-<!--            filled-->
-<!--            v-model="countdownReplicant.data!.shoutcasters[index]"-->
-<!--            :label="`Shoutcaster ${index + 1}`"-->
-<!--            dense-->
-<!--          />-->
-<!--        </div>-->
-<!--      </transition-group>-->
-<!--    </div>-->
 
     <div class="q-mt-md">
       <QBtn
