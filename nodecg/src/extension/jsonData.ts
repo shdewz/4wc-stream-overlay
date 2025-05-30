@@ -7,19 +7,19 @@ async function loadJson(filePath: string): Promise<any> {
     const data = await fs.readFile(filePath, 'utf8');
     return JSON.parse(data);
   } catch (error) {
-    console.error('Error loading JSON:', error);
+    nodecg().log.warn('Error loading JSON:', error);
     throw error;
   }
 }
 
 const reloadData = async () => {
-  tournamentMappool.value = await loadJson('_data/beatmaps.json');
-  tournamentTeams.value = await loadJson('_data/teams.json');
+  tournamentMappool.value = await loadJson('../_data/beatmaps.json');
+  tournamentTeams.value = await loadJson('../_data/teams.json');
 
-  try{
-    tournamentSchedule.value = await loadJson('_data/schedule.json');
+  try {
+    tournamentSchedule.value = await loadJson('../_data/schedule.json');
   } catch (error) {
-    nodecg().log.warn('[matches] Failed to load schedule data!')
+    nodecg().log.warn('[matches] Failed to load schedule data!');
   }
   nodecg().log.info('[matches] Successfully loaded teams and mappool!');
 };
