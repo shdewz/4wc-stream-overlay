@@ -156,6 +156,11 @@
         "file": "intro.html",
         "width": 1920,
         "height": 1080
+      },
+      {
+        "file": "winner.html",
+        "width": 1920,
+        "height": 1080
       }
     ]
   }

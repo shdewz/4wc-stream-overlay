@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add team names, flags, players, and timer to intro graphic" />
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add accents graphic to package.json">
+      <change afterPath="$PROJECT_DIR$/src/graphics/winner.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/graphics/winner/main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +63,7 @@
     "git-widget-placeholder": "feature/4wc-nodecg",
     "javascript.nodejs.core.library.configured.version": "22.16.0",
     "javascript.nodejs.core.library.typings.version": "22.15.21",
-    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/src/graphics/intro",
+    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/src/graphics",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -72,7 +77,7 @@
     "npm.start.executor": "Run",
     "npm.watch.executor": "Run",
     "settings.editor.selected.configurable": "preferences.sourceCode.JavaScript",
-    "ts.external.directory.path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/daohe/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -87,10 +92,10 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/graphics" />
       <recent name="$PROJECT_DIR$/src/graphics/intro" />
       <recent name="$PROJECT_DIR$/schemas" />
       <recent name="$PROJECT_DIR$/src/dashboard" />
-      <recent name="$PROJECT_DIR$/src/graphics" />
       <recent name="$PROJECT_DIR$/src/browser_shared/styles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -173,7 +178,7 @@
       <workItem from="1748213930379" duration="4753000" />
       <workItem from="1748218748658" duration="17376000" />
       <workItem from="1748346436913" duration="4584000" />
-      <workItem from="1748359800933" duration="57780000" />
+      <workItem from="1748359800933" duration="58363000" />
     </task>
     <task id="LOCAL-00001" summary="update config">
       <option name="closed" value="true" />
@@ -511,7 +516,31 @@
       <option name="project" value="LOCAL" />
       <updated>1748578977818</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="fix lint errors">
+      <option name="closed" value="true" />
+      <created>1748579098152</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1748579098152</updated>
+    </task>
+    <task id="LOCAL-00044" summary="add accents graphic">
+      <option name="closed" value="true" />
+      <created>1748579255060</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1748579255060</updated>
+    </task>
+    <task id="LOCAL-00045" summary="add accents graphic to package.json">
+      <option name="closed" value="true" />
+      <created>1748579276955</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1748579276955</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,8 +569,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix lint errors in main graphic" />
-    <MESSAGE value="add timer chat message handlers" />
     <MESSAGE value="disable timer if oldMessages array is empty&#10;&#10;when oldMessages is empty, it is likely the page was just loaded and a flood of messages came rushing in" />
     <MESSAGE value="remove reference implementation files for main graphic" />
     <MESSAGE value="add mappool graphic" />
@@ -562,9 +589,11 @@
     <MESSAGE value="add countdown dashboard with placeholder matches replicant" />
     <MESSAGE value="add tournament schedule to countdown dashboard" />
     <MESSAGE value="update countdown dashboard to support 4wc teamvs" />
-    <MESSAGE value="fix lint errors" />
     <MESSAGE value="add missing generated tournamentSchedule.d.ts" />
     <MESSAGE value="add team names, flags, players, and timer to intro graphic" />
-    <option name="LAST_COMMIT_MESSAGE" value="add team names, flags, players, and timer to intro graphic" />
+    <MESSAGE value="fix lint errors" />
+    <MESSAGE value="add accents graphic" />
+    <MESSAGE value="add accents graphic to package.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="add accents graphic to package.json" />
   </component>
 </project>
