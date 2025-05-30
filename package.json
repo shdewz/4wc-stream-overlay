@@ -1,17 +1,21 @@
 {
   "name": "4wc-stream-overlay",
-  "version": "2.0.0",
-  "description": "Template for NodeCG bundles that use Vue.js and TypeScript.",
-  "homepage": "https://github.com/zoton2/nodecg-vue-ts-template#readme",
+  "version": "1.0.0-rc1",
+  "description": "4WC NodeCG bundle that use Vue.js and TypeScript.",
+  "homepage": "https://github.com/shdewz/4wc-stream-overlay",
   "bugs": {
-    "url": "https://github.com/zoton2/nodecg-vue-ts-template/issues"
+    "url": "https://github.com/shdewz/4wc-stream-overlay/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zoton2/nodecg-vue-ts-template.git"
+    "url": "git+https://github.com/shdewz/4wc-stream-overlay.git"
   },
   "license": "MIT",
-  "author": "zoton2",
+  "author": "shdewz",
+  "contributors": [
+    "ILW8",
+    "zoton2"
+  ],
   "scripts": {
     "autofix": "run-s autofix:*",
     "autofix:browser": "eslint --fix --ext .ts,.vue src/dashboard && eslint --fix --ext .ts,.vue src/graphics",
