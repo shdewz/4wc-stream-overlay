@@ -97,7 +97,10 @@ const setProgramScene = (sceneName: string) => {
         :disabled="obsStatusReplicant.data.wsStatus === 'CLOSED'"
     />
     <QList dense bordered padding class="rounded-borders">
-      <QItem clickable @click="() => setProgramScene(scene.sceneName)" v-for="scene in obsDataReplicant.data?.scenes ?? []" :key="scene.sceneName">
+      <QItem clickable @click="() => setProgramScene(scene.sceneName)"
+             :active="obsDataReplicant.data?.currentScene?.sceneName === scene.sceneName"
+             active-class="bg-primary text-white"
+             v-for="scene in obsDataReplicant.data?.scenes ?? []" :key="scene.sceneName">
         <QItemSection>{{scene.sceneName}}</QItemSection>
       </QItem>
     </QList>

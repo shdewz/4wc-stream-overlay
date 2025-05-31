@@ -1,7 +1,7 @@
 import exitHook from 'exit-hook';
 import { OBSWebSocket, OBSWebSocketError } from 'obs-websocket-js';
 
-import { ObsSceneItem } from '@4wc-stream-overlay/types/schemas';
+import { ObsSceneItem, ObsIndexedSceneItem } from '@4wc-stream-overlay/types/schemas';
 import { createLogger, get as nodecg } from './util/nodecg';
 import { obsDataReplicant, OBSStatusReplicant } from './util/replicants';
 
@@ -16,10 +16,10 @@ const refreshScenes = async () => {
   const { scenes } = await ws.call('GetSceneList');
 
   if (!obsDataReplicant.value) {
-    obsDataReplicant.value = { scenes: [] };
+    obsDataReplicant.value = { scenes: [], currentScene: await ws.call('GetCurrentProgramScene') };
   }
 
-  obsDataReplicant.value.scenes = (scenes as unknown) as ObsSceneItem[];
+  obsDataReplicant.value.scenes = ((scenes as unknown) as ObsIndexedSceneItem[]).sort((a, b) => b.sceneIndex - a.sceneIndex);
 };
 
 async function open() {
@@ -59,6 +59,12 @@ async function open() {
     OBSStatusReplicant.value.wsStatus = 'OPEN';
 
     await refreshScenes();
+  });
+  ws.on('CurrentProgramSceneChanged', (eventData) => {
+    if (!obsDataReplicant.value) {
+      obsDataReplicant.value = { scenes: [] };
+    }
+    obsDataReplicant.value.currentScene = eventData as unknown as ObsSceneItem;
   });
 
   ws.on('ConnectionClosed', () => {

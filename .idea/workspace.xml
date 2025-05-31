@@ -4,20 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add graphics bundle db">
-      <change afterPath="$PROJECT_DIR$/nodecg/schemas/obsStatus.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nodecg/src/dashboard/obsWs.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nodecg/src/dashboard/obsWs/main.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nodecg/src/extension/obsWs.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nodecg/src/types/schemas/obsStatus.d.ts" afterDir="false" />
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="add ability to switch obs scenes using dashboard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nodecg/db/nodecg.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/db/nodecg.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodecg/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodecg/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodecg/src/browser_shared/replicants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/browser_shared/replicants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodecg/src/extension/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/extension/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodecg/src/extension/util/replicants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/extension/util/replicants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodecg/src/types/schemas/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/types/schemas/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/schemas/obs.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/schemas/obs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/src/dashboard/obsWs/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/dashboard/obsWs/main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/src/extension/obsWs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/extension/obsWs.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodecg/src/types/schemas/obs.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nodecg/src/types/schemas/obs.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +106,7 @@
       <recent name="$PROJECT_DIR$/src/assets" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.schema-types">
+  <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/nodecg/package.json" />
       <command value="run" />
@@ -155,8 +149,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.schema-types" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.schema-types" />
         <item itemvalue="npm.watch" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
@@ -183,15 +177,7 @@
       <workItem from="1748218748658" duration="17376000" />
       <workItem from="1748346436913" duration="4584000" />
       <workItem from="1748359800933" duration="61109000" />
-      <workItem from="1748629944924" duration="8521000" />
-    </task>
-    <task id="LOCAL-00007" summary="fix missing/broken CSS in main screen">
-      <option name="closed" value="true" />
-      <created>1748271937663</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1748271937663</updated>
+      <workItem from="1748629944924" duration="15377000" />
     </task>
     <task id="LOCAL-00008" summary="revert unminify jquery.min.js">
       <option name="closed" value="true" />
@@ -577,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748630777270</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="add ability to switch obs scenes using dashboard">
+      <option name="closed" value="true" />
+      <created>1748652626115</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1748652626119</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix pickByLabel for bans in beatmap card" />
     <MESSAGE value="fix lint errors in beatmap-card.vue" />
     <MESSAGE value="add pick blinker to beatmap card" />
     <MESSAGE value="add mod icon grayscale on banned beatmap card" />
@@ -631,6 +624,7 @@
     <MESSAGE value="fix relative paths after moving files" />
     <MESSAGE value="update IDE workspace" />
     <MESSAGE value="add graphics bundle db" />
-    <option name="LAST_COMMIT_MESSAGE" value="add graphics bundle db" />
+    <MESSAGE value="add ability to switch obs scenes using dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ability to switch obs scenes using dashboard" />
   </component>
 </project>

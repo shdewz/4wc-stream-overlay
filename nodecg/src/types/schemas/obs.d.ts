@@ -6,13 +6,16 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type Scenes = ObsSceneItem[];
+export type ObsIndexedSceneItem = ObsSceneItem & {
+	sceneIndex: number;
+};
+export type Scenes = ObsIndexedSceneItem[];
 
 export interface ConnectedOBSData {
 	scenes: Scenes;
+	currentScene?: ObsSceneItem;
 }
 export interface ObsSceneItem {
-	sceneIndex: number;
 	sceneName: string;
 	sceneUuid: string;
 }
