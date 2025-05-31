@@ -14,6 +14,10 @@ export type Scenes = ObsIndexedSceneItem[];
 export interface ConnectedOBSData {
 	scenes: Scenes;
 	currentScene?: ObsSceneItem;
+	/**
+	 * Is a scene transition currently happening?
+	 */
+	sceneTransitionActive?: boolean;
 }
 export interface ObsSceneItem {
 	sceneName: string;

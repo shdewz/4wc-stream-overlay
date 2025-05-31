@@ -100,6 +100,7 @@ const setProgramScene = (sceneName: string) => {
       <QItem clickable @click="() => setProgramScene(scene.sceneName)"
              :active="obsDataReplicant.data?.currentScene?.sceneName === scene.sceneName"
              active-class="bg-primary text-white"
+             :class="{ 'bg-dark': obsDataReplicant.data?.sceneTransitionActive === true }"
              v-for="scene in obsDataReplicant.data?.scenes ?? []" :key="scene.sceneName">
         <QItemSection>{{scene.sceneName}}</QItemSection>
       </QItem>

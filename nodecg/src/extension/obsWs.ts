@@ -67,6 +67,19 @@ async function open() {
     obsDataReplicant.value.currentScene = eventData as unknown as ObsSceneItem;
   });
 
+  ws.on('SceneTransitionStarted', () => {
+    if (!obsDataReplicant.value) {
+      obsDataReplicant.value = { scenes: [] };
+    }
+    obsDataReplicant.value.sceneTransitionActive = true;
+  });
+  ws.on('SceneTransitionEnded', () => {
+    if (!obsDataReplicant.value) {
+      obsDataReplicant.value = { scenes: [] };
+    }
+    obsDataReplicant.value.sceneTransitionActive = false;
+  });
+
   ws.on('ConnectionClosed', () => {
     OBSStatusReplicant.value.wsStatus = 'CLOSED';
     if (obsDataReplicant.value) obsDataReplicant.value.scenes.length = 0;

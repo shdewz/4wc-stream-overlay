@@ -52,6 +52,11 @@
     },
     "currentScene": {
       "$ref": "#/$defs/SceneItem"
+    },
+    "sceneTransitionActive": {
+      "type": "boolean",
+      "description": "Is a scene transition currently happening?",
+      "default": false
     }
   },
   "additionalProperties": false
