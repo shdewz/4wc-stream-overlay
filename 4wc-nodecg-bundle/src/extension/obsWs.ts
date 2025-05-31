@@ -196,7 +196,7 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
     }, delayMs);
   }
 
-  if ((oldVal.state === 'spectating' || oldVal.state === 'results') && newVal.state === 'idle') {
+  if (oldVal.state === 'results' && newVal.state === 'idle') {
     clearTimeout(sceneTransitionTimeout);
     obsAutoAdvanceReplicant.value.nextTransition = undefined;
     await setProgramScene(obsAutoAdvanceReplicant.value.scenes.mappool);
