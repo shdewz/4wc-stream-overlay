@@ -286,7 +286,7 @@ watch(chatMessages, (newMessages, oldMessages) => {
 const indexedMessages = computed(() => {
   const filteredMessages = tourneyDataReplicant.data?.chat?.filter((msg) => !msg.messageBody.startsWith('Match history available'));
   const indexed = filteredMessages?.map((msg, index) => ({ ...msg, index })) ?? [];
-  return indexed.slice(-9);
+  return indexed.slice(-8);
 });
 
 </script>
@@ -432,17 +432,17 @@ const indexedMessages = computed(() => {
           <div class="chat-container" id="chat_container" v-if="!tourneyDataReplicant.data?.scoresVisible">
             <div class="chat-inner-container">
               <div class="chat-title">CHAT</div>
-<!--                TODO: lookup user in team replicant to set their chat team membership-->
-                <TransitionGroup name="scale" tag="div" class="chat">
-                  <div class="chat-message"
-                       :class="{ red: message.team === 'left', blue: message.team === 'right', bot: message.team === 'bot' }"
-                       v-for="message in indexedMessages.reverse()"
-                       :key="message.index">
-                    <div class="chat-time">{{ message.time }}</div>
-                    <div class="chat-name">{{ message.name }}</div>
-                    <div class="chat-body">{{ message.messageBody }}</div>
-                  </div>
-                </TransitionGroup>
+              <!--                TODO: lookup user in team replicant to set their chat team membership-->
+              <TransitionGroup name="scale" tag="div" class="chat">
+                <div class="chat-message"
+                     :class="{ red: message.team === 'left', blue: message.team === 'right', bot: message.team === 'bot' }"
+                     v-for="message in indexedMessages.reverse()"
+                     :key="message.index">
+                  <div class="chat-time">{{ message.time }}</div>
+                  <div class="chat-name">{{ message.name }}</div>
+                  <div class="chat-body">{{ message.messageBody }}</div>
+                </div>
+              </TransitionGroup>
             </div>
             <div class="chat-timer-container" id="timer_container">
               <div class="chat-timer__progress-container">
@@ -1084,7 +1084,6 @@ const indexedMessages = computed(() => {
   align-items: center;
   gap: 4px;
   font-size: 1.3rem;
-  overflow: hidden;
 }
 
 .chat-message.bot {
