@@ -320,7 +320,7 @@ const indexedMessages = computed(() => {
         <div class="logo"></div>
         <div class="stage-container" id="stage_container">
           <div class="stage-background"></div>
-          <div id="stage" class="stage"></div>
+          <div id="stage" class="stage">{{ mappoolReplicant.data?.stage }}</div>
         </div>
       </div>
       <div class="header-team blue">
