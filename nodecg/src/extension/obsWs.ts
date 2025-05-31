@@ -88,12 +88,13 @@ async function open() {
     tryReconnect();
   });
 
-  ws.on('ConnectionError', () => {
-    OBSStatusReplicant.value.wsStatus = 'CLOSED';
-    if (obsDataReplicant.value) obsDataReplicant.value.scenes.length = 0;
-
-    tryReconnect();
-  });
+  // ConnectionClosed seems to be called regardless of a connection being closed or a connection erroring.
+  // ws.on('ConnectionError', () => {
+  //   OBSStatusReplicant.value.wsStatus = 'CLOSED';
+  //   if (obsDataReplicant.value) obsDataReplicant.value.scenes.length = 0;
+  //
+  //   tryReconnect();
+  // });
 
   try {
     logger.info('Connecting to OBS...');
@@ -226,4 +227,7 @@ async function init() {
   }
 }
 
-init().then(() => logger.info('Extension loaded'));
+logger.info('Extension loaded');
+
+// noinspection JSIgnoredPromiseFromCall
+init();
