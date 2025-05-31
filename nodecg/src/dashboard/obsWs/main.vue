@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
-import { computed, ref, watch } from 'vue';
+import { computed, watch } from 'vue';
 import { useReplicant } from '@4wc-stream-overlay/browser_shared/vue-replicants';
 import {
   QInput,
@@ -12,6 +12,7 @@ useHead({ title: 'OBS ws' });
 
 const obsStatusReplicant = useReplicant('obsStatus');
 const obsDataReplicant = useReplicant('obsData');
+const obsAutoAdvanceReplicant = useReplicant('obsAutoAdvanceSettings');
 
 watch(obsStatusReplicant, () => {
   if (obsStatusReplicant.changed) {
@@ -32,10 +33,39 @@ const refreshScenes = () => {
 const setProgramScene = (sceneName: string) => {
   nodecg.sendMessage('OBS-setProgram', sceneName);
 };
+
+const obsSceneNames = computed(() => {
+  return obsDataReplicant.data?.scenes.map(s => s.sceneName) ?? [];
+});
+
+const setMappoolTarget = (sceneName: string) => {
+  if (!obsAutoAdvanceReplicant.data) return;
+
+  obsAutoAdvanceReplicant.data.scenes.mappool = sceneName;
+  obsAutoAdvanceReplicant.save();
+};
+
+const setGameplayTarget = (sceneName: string) => {
+  if (!obsAutoAdvanceReplicant.data) return;
+
+  obsAutoAdvanceReplicant.data.scenes.gameplay = sceneName;
+  obsAutoAdvanceReplicant.save();
+};
+
+const scenesIconMap = computed(() => {
+  const scenes = obsAutoAdvanceReplicant.data?.scenes;
+
+  if (!scenes) return {};
+
+  return {
+    [scenes.mappool]: 'pool',
+    [scenes.gameplay]: 'computer'
+  };
+});
 </script>
 
 <template>
-  <div v-if="obsStatusReplicant.data">
+  <div v-if="obsStatusReplicant.data && obsAutoAdvanceReplicant.data">
     <div class="text-h6 q-mb-md">OBS ws status</div>
 
     <QInput
@@ -96,6 +126,37 @@ const setProgramScene = (sceneName: string) => {
     </QItem>
 
     <QSeparator class="q-my-md"/>
+    <QItem tag="label" v-ripple="false">
+      <QItemSection>
+        <QItemLabel>Auto-advance scenes</QItemLabel>
+      </QItemSection>
+      <QItemSection avatar>
+        <QToggle
+            class="q-ma-xs"
+            v-model="obsAutoAdvanceReplicant.data.autoadvance"
+            dense
+        />
+      </QItemSection>
+    </QItem>
+    <div class="row">
+      <div class="col-6">
+        <QSelect outlined
+                 :model-value="obsAutoAdvanceReplicant.data?.scenes.mappool"
+                 @update:model-value="setMappoolTarget"
+                 :options="obsSceneNames" label="Mappool scene name" />
+
+        <QSeparator class="q-my-md"/>
+      </div>
+      <div class="col-6">
+        <QSelect outlined
+                 :model-value="obsAutoAdvanceReplicant.data?.scenes.gameplay"
+                 @update:model-value="setGameplayTarget"
+                 :options="obsSceneNames" label="Gameplay scene name" />
+
+        <QSeparator class="q-my-md"/>
+      </div>
+    </div>
+
     <QBtn
         class="q-ma-xs full-width"
         color="primary"
@@ -110,6 +171,9 @@ const setProgramScene = (sceneName: string) => {
              :class="{ 'bg-dark': obsDataReplicant.data?.sceneTransitionActive === true }"
              v-for="scene in obsDataReplicant.data?.scenes ?? []" :key="scene.sceneName">
         <QItemSection>{{scene.sceneName}}</QItemSection>
+        <QItemSection side >
+          <QIcon :name="scenesIconMap[scene.sceneName] ?? ''" />
+        </QItemSection>
       </QItem>
     </QList>
   </div>

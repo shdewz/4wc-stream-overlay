@@ -7,7 +7,7 @@
  */
 
 export interface OsuTourneyData {
-	state: 'unknown' | 'spectating' | 'results';
+	state: 'unknown' | 'initialising' | 'idle' | 'waitingForClients' | 'spectating' | 'results';
 	scoresVisible: boolean;
 	starsVisible: boolean;
 	bestOf: number;

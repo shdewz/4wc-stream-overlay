@@ -34,7 +34,7 @@
   "properties": {
     "state": {
       "type": "string",
-      "enum": ["unknown", "spectating", "results"]
+      "enum": ["unknown", "initialising", "idle", "waitingForClients", "spectating", "results"]
     },
     "scoresVisible": {
       "type": "boolean"

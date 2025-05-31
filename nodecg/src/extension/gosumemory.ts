@@ -15,6 +15,9 @@ let currentDataRaw: string;
 let reconnectTimeout: NodeJS.Timeout;
 
 const ipcStateMapping: Record<number, OsuTourneyData['state'] | undefined> = {
+  0: 'initialising',
+  1: 'idle',
+  2: 'waitingForClients',
   3: 'spectating',
   4: 'results',
 };

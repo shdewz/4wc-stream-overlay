@@ -14,6 +14,7 @@ export const countdownReplicant = getReplicant('countdown');
 export const gosumemoryStatusReplicant = getReplicant('gosumemoryStatus');
 export const OBSStatusReplicant = getReplicant('obsStatus');
 export const obsDataReplicant = getReplicant('obsData');
+export const obsAutoAdvanceReplicant = getReplicant('obsAutoAdvanceSettings');
 export const osuSongReplicant = getReplicant('osuSong');
 export const osuSongOverridesReplicant = getReplicant('osuSongOverrides');
 export const osuTourneyReplicant = getReplicant('osuTourney');

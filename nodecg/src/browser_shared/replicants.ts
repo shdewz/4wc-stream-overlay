@@ -21,6 +21,7 @@ import {
   TournamentPicksAndBansSettings,
   TournamentScheduleData,
   ConnectedOBSData,
+  OBSSceneAutoAdvanceSettings,
 } from '../types/schemas';
 
 export const namespace = '4wc-stream-overlay';
@@ -30,6 +31,7 @@ export interface ReplicantTypes {
   gosumemoryStatus: CurrentGosumemoryConnectionStatus;
   obsStatus: CurrentOBSConnectionStatus;
   obsData: ConnectedOBSData,
+  obsAutoAdvanceSettings: OBSSceneAutoAdvanceSettings,
   // matches: MatchesReplicant;
   osuSong: CurrentOsuSongReplicant;
   osuSongOverrides: CurrentOsuSongOverrides;
@@ -57,6 +59,7 @@ export const replicantOptions = {
   gosumemoryStatus: { persistent: true },
   obsStatus: { persistent: true },
   obsData: { persistent: false },
+  obsAutoAdvanceSettings: { persistent: true },
   matches: { persistent: true },
   osuSong: { persistent: false },
   osuSongOverrides: { persistent: true },
