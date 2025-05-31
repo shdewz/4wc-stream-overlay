@@ -956,7 +956,7 @@ const indexedMessages = computed(() => {
   color: var(--accent);
 }
 
-.beatmap-attribute__value i {
+.beatmap-attribute__value svg {
   font-size: 0.7em;
   margin-left: 3px;
   transform: translateY(-3px);
