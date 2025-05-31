@@ -11,6 +11,7 @@ import {
 useHead({ title: 'OBS ws' });
 
 const obsStatusReplicant = useReplicant('obsStatus');
+const obsDataReplicant = useReplicant('obsData');
 
 watch(obsStatusReplicant, () => {
   if (obsStatusReplicant.changed) {
@@ -24,7 +25,9 @@ const open = () => {
 const close = () => {
   nodecg.sendMessage('OBS-close');
 };
-
+const refreshScenes = () => {
+  nodecg.sendMessage('OBS-refreshScenes');
+};
 </script>
 
 <template>
@@ -81,6 +84,20 @@ const close = () => {
         />
       </div>
     </div>
-
+    <QSeparator class="q-my-md"/>
+    <QBtn
+        class="q-ma-xs full-width"
+        color="primary"
+        label="Force refresh scenes list"
+        @click="refreshScenes"
+        :disabled="obsStatusReplicant.data.wsStatus === 'CLOSED'"
+    />
+    <QList dense bordered padding class="rounded-borders">
+      <QItem v-for="scene in obsDataReplicant.data?.scenes ?? []" :key="scene.sceneName">
+        <QItemSection>
+          {{ scene.sceneName }}
+        </QItemSection>
+      </QItem>
+    </QList>
   </div>
 </template>

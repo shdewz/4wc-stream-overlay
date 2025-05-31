@@ -1,13 +1,26 @@
 import exitHook from 'exit-hook';
 import { OBSWebSocket, OBSWebSocketError } from 'obs-websocket-js';
 
+import { ObsSceneItem } from '@4wc-stream-overlay/types/schemas';
 import { createLogger, get as nodecg } from './util/nodecg';
-import { OBSStatusReplicant } from './util/replicants';
+import { obsDataReplicant, OBSStatusReplicant } from './util/replicants';
 
 const logger = createLogger('obs');
 
 let ws: undefined | OBSWebSocket;
 let reconnectTimeout: NodeJS.Timeout;
+
+const refreshScenes = async () => {
+  if (!ws) return;
+
+  const { scenes } = await ws.call('GetSceneList');
+
+  if (!obsDataReplicant.value) {
+    obsDataReplicant.value = { scenes: [] };
+  }
+
+  obsDataReplicant.value.scenes = (scenes as unknown) as ObsSceneItem[];
+};
 
 async function open() {
   if (reconnectTimeout) {
@@ -18,8 +31,22 @@ async function open() {
     ws = undefined;
     await oldWs.disconnect();
   }
+  const currentWs = new OBSWebSocket();
+  ws = currentWs;
 
-  ws = new OBSWebSocket();
+  const tryReconnect = () => {
+    if (OBSStatusReplicant.value.automaticReconnect && currentWs === ws) {
+      logger.warn('Connection to OBS has been closed. Will attempt auto reconnect in 5s');
+      if (reconnectTimeout) {
+        clearTimeout(reconnectTimeout);
+      }
+      reconnectTimeout = setTimeout(() => {
+        open();
+      }, 5000);
+    } else {
+      logger.info('Connection to OBS has been closed.');
+    }
+  };
 
   ws.on('ConnectionOpened', () => {
     logger.info('Connection opened.');
@@ -27,19 +54,25 @@ async function open() {
   ws.on('Hello', () => {
     logger.info('Received Hello message.');
   });
-  ws.on('Identified', () => {
+  ws.on('Identified', async () => {
     logger.info('Connected and Identified.');
     OBSStatusReplicant.value.wsStatus = 'OPEN';
+
+    await refreshScenes();
   });
 
   ws.on('ConnectionClosed', () => {
-    logger.info('Connection closed.');
     OBSStatusReplicant.value.wsStatus = 'CLOSED';
+    if (obsDataReplicant.value) obsDataReplicant.value.scenes.length = 0;
+
+    tryReconnect();
   });
 
   ws.on('ConnectionError', () => {
-    logger.warn('Connection errored.');
     OBSStatusReplicant.value.wsStatus = 'CLOSED';
+    if (obsDataReplicant.value) obsDataReplicant.value.scenes.length = 0;
+
+    tryReconnect();
   });
 
   try {
@@ -57,58 +90,6 @@ async function open() {
       logger.warn('Unknown error:', error);
     }
   }
-
-  // ws.onopen = () => {
-  //   OBSStatusReplicant.value.wsStatus = 'OPEN';
-  //   logger.info('Connected to OBS!');
-  // };
-  // ws.onmessage = ({ type, data }) => {
-  //   logger.info(`got ws message fo type ${type}, data: ${data}`);
-  //   // if (type === 'message') {
-  //   //   const msg = data.toString();
-  //   //   if (currentDataRaw === msg) {
-  //   //     return;
-  //   //   }
-  //   //   let json: undefined | CurrentGosumemoryData;
-  //   //   try {
-  //   //     json = JSON.parse(msg);
-  //   //   } catch (err) {
-  //   //     logger.warn('Couldn\'t parse JSON', msg);
-  //   //   }
-  //   //   if (json) {
-  //   //     currentDataRaw = msg;
-  //   //     applyData(json);
-  //   //   }
-  //   // }
-  // };
-  // ws.onclose = () => {
-  //   OBSStatusReplicant.value.wsStatus = 'CLOSED';
-  //   if (OBSStatusReplicant.value.automaticReconnect && currentWs === ws) {
-  //     logger.error('Connection to OBS has been closed. Will attempt auto reconnect in 5s');
-  //     if (reconnectTimeout) {
-  //       clearTimeout(reconnectTimeout);
-  //     }
-  //     reconnectTimeout = setTimeout(() => {
-  //       open();
-  //     }, 5000);
-  //   } else {
-  //     logger.info('Connection to OBS has been closed.');
-  //   }
-  // };
-  // ws.onerror = (error) => {
-  //   OBSStatusReplicant.value.wsStatus = 'CLOSED';
-  //   if (OBSStatusReplicant.value.automaticReconnect) {
-  //     logger.error('Cannot connect to OBS. Will attempt auto reconnect in 5s', { error });
-  //     if (reconnectTimeout) {
-  //       clearTimeout(reconnectTimeout);
-  //     }
-  //     reconnectTimeout = setTimeout(() => {
-  //       open();
-  //     }, 5000);
-  //   } else {
-  //     logger.error('Cannot connect to OBS. Will not auto reconnect', { error });
-  //   }
-  // };
 }
 
 OBSStatusReplicant.value.wsStatus = 'CLOSED';
@@ -123,6 +104,10 @@ nodecg().listenFor('OBS-close', async () => {
   if (ws) {
     await ws.disconnect();
   }
+});
+
+nodecg().listenFor('OBS-refreshScenes', async () => {
+  await refreshScenes();
 });
 
 OBSStatusReplicant.on('change', (newVal, oldVal) => {

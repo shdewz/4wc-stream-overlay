@@ -1,4 +1,4 @@
-import type {
+import {
   CountdownReplicant,
   CurrentGosumemoryConnectionStatus,
   CurrentOBSConnectionStatus,
@@ -20,6 +20,7 @@ import type {
   TournamentPicksAndBans,
   TournamentPicksAndBansSettings,
   TournamentScheduleData,
+  ConnectedOBSData,
 } from '../types/schemas';
 
 export const namespace = '4wc-stream-overlay';
@@ -28,6 +29,7 @@ export interface ReplicantTypes {
   countdown: CountdownReplicant;
   gosumemoryStatus: CurrentGosumemoryConnectionStatus;
   obsStatus: CurrentOBSConnectionStatus;
+  obsData: ConnectedOBSData,
   // matches: MatchesReplicant;
   osuSong: CurrentOsuSongReplicant;
   osuSongOverrides: CurrentOsuSongOverrides;
@@ -54,6 +56,7 @@ export const replicantOptions = {
   countdown: { persistent: true },
   gosumemoryStatus: { persistent: true },
   obsStatus: { persistent: true },
+  obsData: { persistent: false },
   matches: { persistent: true },
   osuSong: { persistent: false },
   osuSongOverrides: { persistent: true },

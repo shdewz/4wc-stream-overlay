@@ -7,3 +7,4 @@ thumbnail*
 *.webm
 _misc/
 obs*.json
+!/nodecg/schemas/obs.json
