@@ -179,6 +179,8 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
   if (!oldVal) return;
   if (!newVal) return;
 
+  if (oldVal.state === newVal.state) return;
+
   logger.warn(`tourney replicant state changed: ${oldVal.state} -> ${newVal.state}`);
 
   if (oldVal.state === 'spectating' && newVal.state === 'results') {
