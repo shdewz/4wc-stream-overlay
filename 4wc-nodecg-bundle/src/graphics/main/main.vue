@@ -431,7 +431,7 @@ watch(chatMessages, (newMessages, oldMessages) => {
                 <TransitionGroup name="scale" tag="div" class="list-container">
                   <div class="chat-message"
                        :class="{ red: message.team === 'left', blue: message.team === 'right', bot: message.team === 'bot' }"
-                       v-for="message in tourneyDataReplicant.data?.chat?.filter(msg => !msg.messageBody.startsWith('Match history available')) ?? []"
+                       v-for="message in tourneyDataReplicant.data?.chat?.filter(msg => !msg.messageBody.startsWith('Match history available')).slice(-8) ?? []"
                        :key="JSON.stringify(message)">
                     <div class="chat-time">{{ message.time }}</div>
                     <div class="chat-name">{{ message.name }}</div>
@@ -1081,10 +1081,6 @@ watch(chatMessages, (newMessages, oldMessages) => {
   gap: 4px;
   font-size: 1.3rem;
   overflow: hidden;
-}
-
-.chat-message:nth-of-type(n+9) {
-  display: none;
 }
 
 .chat-message.bot {
