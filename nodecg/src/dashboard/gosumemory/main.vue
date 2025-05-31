@@ -97,12 +97,6 @@ const printCurrentMap = () => {
         />
       </div>
       <div>
-        <QToggle
-          class="q-ma-xs"
-          v-model="gosumemoryReplicant.data.automaticReconnect"
-          label="Auto-reconnect"
-          dense
-        />
         <QBtn
           class="q-ma-xs"
           color="green-10"
@@ -118,26 +112,32 @@ const printCurrentMap = () => {
         />
       </div>
     </div>
-
-    <div class="row q-mt-md">
-      <div class="col">
-        <QBtn
-            class="q-ma-xs full-width"
-            color="primary"
-            label="PRINT TOURNAMENT PLAYERS"
-            @click="printTournamentPlayers"
-            :disabled="gosumemoryReplicant.data.wsStatus !== 'OPEN'"
-        />
-      </div>
-      <div>
-        <QBtn
+    <QItem tag="label" v-ripple="false">
+      <QItemSection>
+        <QItemLabel>Auto-reconnect</QItemLabel>
+      </QItemSection>
+      <QItemSection avatar>
+        <QToggle
             class="q-ma-xs"
-            color="primary"
-            label="PRINT CURRENT MAP"
-            @click="printCurrentMap"
-            :disabled="gosumemoryReplicant.data.wsStatus !== 'OPEN'"
+            v-model="gosumemoryReplicant.data.automaticReconnect"
+            dense
         />
-      </div>
-    </div>
+      </QItemSection>
+    </QItem>
+
+    <QBtn
+        class="q-ma-xs full-width"
+        color="primary"
+        label="PRINT PLAYERS TO CONSOLE"
+        @click="printTournamentPlayers"
+        :disabled="gosumemoryReplicant.data.wsStatus !== 'OPEN'"
+    />
+    <QBtn
+        class="q-ma-xs full-width"
+        color="primary"
+        label="PRINT CURRENT MAP TO CONSOLE"
+        @click="printCurrentMap"
+        :disabled="gosumemoryReplicant.data.wsStatus !== 'OPEN'"
+    />
   </div>
 </template>

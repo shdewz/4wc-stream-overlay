@@ -67,12 +67,6 @@ const setProgramScene = (sceneName: string) => {
         />
       </div>
       <div>
-        <QToggle
-            class="q-ma-xs"
-            v-model="obsStatusReplicant.data.automaticReconnect"
-            label="Auto-reconnect"
-            dense
-        />
         <QBtn
             class="q-ma-xs"
             color="green-10"
@@ -88,6 +82,19 @@ const setProgramScene = (sceneName: string) => {
         />
       </div>
     </div>
+    <QItem tag="label" v-ripple="false">
+      <QItemSection>
+        <QItemLabel>Auto-reconnect</QItemLabel>
+      </QItemSection>
+      <QItemSection avatar>
+        <QToggle
+            class="q-ma-xs"
+            v-model="obsStatusReplicant.data.automaticReconnect"
+            dense
+        />
+      </QItemSection>
+    </QItem>
+
     <QSeparator class="q-my-md"/>
     <QBtn
         class="q-ma-xs full-width"
@@ -96,7 +103,7 @@ const setProgramScene = (sceneName: string) => {
         @click="refreshScenes"
         :disabled="obsStatusReplicant.data.wsStatus === 'CLOSED'"
     />
-    <QList dense bordered padding class="rounded-borders">
+    <QList bordered padding class="rounded-borders">
       <QItem clickable @click="() => setProgramScene(scene.sceneName)"
              :active="obsDataReplicant.data?.currentScene?.sceneName === scene.sceneName"
              active-class="bg-primary text-white"

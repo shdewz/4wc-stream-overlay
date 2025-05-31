@@ -109,13 +109,13 @@
         "name": "gosumemory",
         "title": "gosumemory",
         "file": "gosumemory.html",
-        "width": 4
+        "width": 3
       },
       {
         "name": "obs ws",
         "title": "obs websocket",
         "file": "obsWs.html",
-        "width": 4
+        "width": 3
       },
       {
         "name": "picksAndBans",
