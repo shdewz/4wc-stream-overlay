@@ -135,3 +135,6 @@ dist
 /extension/*
 !/extension/index.js
 /graphics/
+
+# don't share db in VCS
+db/nodecg.sqlite3
