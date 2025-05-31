@@ -110,6 +110,16 @@ nodecg().listenFor('OBS-refreshScenes', async () => {
   await refreshScenes();
 });
 
+nodecg().listenFor('OBS-setProgram', async (sceneName: string) => {
+  if (!ws) {
+    logger.warn('Cannot set Program scene: not connected');
+    return;
+  }
+
+  logger.info(`Setting Program to scene '${sceneName}'`);
+  await ws.call('SetCurrentProgramScene', { sceneName });
+});
+
 OBSStatusReplicant.on('change', (newVal, oldVal) => {
   if (oldVal && !newVal.automaticReconnect && oldVal.automaticReconnect && reconnectTimeout) {
     clearTimeout(reconnectTimeout);

@@ -28,6 +28,10 @@ const close = () => {
 const refreshScenes = () => {
   nodecg.sendMessage('OBS-refreshScenes');
 };
+
+const setProgramScene = (sceneName: string) => {
+  nodecg.sendMessage('OBS-setProgram', sceneName);
+};
 </script>
 
 <template>
@@ -93,10 +97,8 @@ const refreshScenes = () => {
         :disabled="obsStatusReplicant.data.wsStatus === 'CLOSED'"
     />
     <QList dense bordered padding class="rounded-borders">
-      <QItem v-for="scene in obsDataReplicant.data?.scenes ?? []" :key="scene.sceneName">
-        <QItemSection>
-          {{ scene.sceneName }}
-        </QItemSection>
+      <QItem clickable @click="() => setProgramScene(scene.sceneName)" v-for="scene in obsDataReplicant.data?.scenes ?? []" :key="scene.sceneName">
+        <QItemSection>{{scene.sceneName}}</QItemSection>
       </QItem>
     </QList>
   </div>
