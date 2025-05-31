@@ -24,7 +24,7 @@ import {
   OBSSceneAutoAdvanceSettings,
 } from '../types/schemas';
 
-export const namespace = '4wc-stream-overlay';
+export const namespace = '4wc-nodecg-bundle';
 
 export interface ReplicantTypes {
   countdown: CountdownReplicant;
