@@ -283,6 +283,12 @@ watch(chatMessages, (newMessages, oldMessages) => {
   }
 });
 
+const indexedMessages = computed(() => {
+  const filteredMessages = tourneyDataReplicant.data?.chat?.filter(msg => !msg.messageBody.startsWith('Match history available'));
+  const indexed = filteredMessages?.map((msg, index) => ({ ...msg, index })) ?? [];
+  return indexed.slice(-8);
+})
+
 </script>
 
 <template>
@@ -431,7 +437,7 @@ watch(chatMessages, (newMessages, oldMessages) => {
                 <TransitionGroup name="scale" tag="div" class="list-container">
                   <div class="chat-message"
                        :class="{ red: message.team === 'left', blue: message.team === 'right', bot: message.team === 'bot' }"
-                       v-for="message in tourneyDataReplicant.data?.chat?.filter(msg => !msg.messageBody.startsWith('Match history available')).slice(-8) ?? []"
+                       v-for="message in indexedMessages"
                        :key="JSON.stringify(message)">
                     <div class="chat-time">{{ message.time }}</div>
                     <div class="chat-name">{{ message.name }}</div>
