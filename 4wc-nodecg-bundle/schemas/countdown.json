@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Countdown Replicant",
+  "description": "Countdown component data",
+  "default": {
+    "time": "16:00:00",
+    "shoutcasters": [],
+    "type": "showcase",
+    "showcase": {
+      "nextRound": "<strong>Qualifications :</strong><br>\n3 et 4 février"
+    },
+    "matches": {
+      "players": [
+        "ThePooN",
+        "Ekoro"
+      ]
+    }
+  },
+  "required": [
+    "time",
+    "shoutcasters",
+    "type",
+    "showcase",
+    "matches"
+  ],
+  "properties": {
+    "time": {
+      "$id": "#/properties/time",
+      "type": "string",
+      "title": "The time schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "2021-01-09T16:10:45.439Z"
+      ]
+    },
+    "shoutcasters": {
+      "$id": "#/properties/shoutcasters",
+      "type": "array",
+      "title": "The shoutcasters schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        [
+          "shoutcasterOne",
+          "shoutcasterTwo",
+          "shoutcasterThree"
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/shoutcasters/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/shoutcasters/items/anyOf/0",
+            "type": "string",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+              "shoutcasterOne",
+              "shoutcasterTwo",
+              "shoutcasterThree"
+            ]
+          }
+        ]
+      }
+    },
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "title": "Schedule Type",
+      "description": "An explanation about the purpose of this instance.",
+      "enum": ["showcase", "matches"]
+    },
+    "showcase": {
+      "$id": "#/properties/showcase",
+      "type": "object",
+      "title": "The showcase schema",
+      "description": "An explanation about the purpose of this instance.",
+      "required": [
+        "nextRound"
+      ],
+      "properties": {
+        "nextRound": {
+          "$id": "#/properties/showcase/properties/nextRound",
+          "type": "string",
+          "title": "The nextRound schema",
+          "description": "An explanation about the purpose of this instance."
+        }
+      },
+      "additionalProperties": false
+    },
+    "matches": {
+      "$id": "#/properties/matches",
+      "type": "object",
+      "title": "The matches schema",
+      "description": "An explanation about the purpose of this instance.",
+      "required": [
+        "players"
+      ],
+      "properties": {
+        "players": {
+          "type": "array",
+          "title": "The players schema",
+          "description": "An explanation about the purpose of this instance.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
