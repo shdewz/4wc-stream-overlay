@@ -101,4 +101,6 @@ export interface CurrentOsuSongReplicant {
 export interface BPMBeforeApplyingMods {
 	min: number;
 	max: number;
+	common?: number;
+	realtime?: number;
 }

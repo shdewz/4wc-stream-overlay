@@ -203,6 +203,14 @@
         "max": {
           "type": "number",
           "default": 0
+        },
+        "common": {
+          "type": "number",
+          "default": 0
+        },
+        "realtime": {
+          "type": "number",
+          "default": 0
         }
       }
     },

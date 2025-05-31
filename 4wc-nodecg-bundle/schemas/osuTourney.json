@@ -99,7 +99,7 @@
         "properties": {
           "team": {
             "type": "string",
-            "enum": ["left", "right", "bot", ""]
+            "enum": ["left", "right", "bot", "unknown", ""]
           },
           "time": {
             "type": "string"
