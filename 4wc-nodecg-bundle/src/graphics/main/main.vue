@@ -451,7 +451,7 @@ const indexedMessages = computed(() => {
                 <div class="chat-timer__progress" id="timer_progress"></div>
               </div>
               <div class="hourglass-container" id="hourglass_container">
-                <i class="fa-solid fa-hourglass-start" id="hourglass"></i>
+                <font-awesome-icon :icon="['fas', 'fa-hourglass-start']" id="hourglass"/>
               </div>
             </div>
           </div>
@@ -1180,31 +1180,27 @@ const indexedMessages = computed(() => {
   background-color: var(--accent);
 }
 
-.hourglass-container i {
-  animation: spin, spinback;
-  animation-delay: 1s, 1s;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
+.hourglass-container svg {
+  animation: hourglass-cycle 2s infinite;
+}
+
+@keyframes hourglass-cycle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  50.1% {
+    transform: rotate(180.1deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
 
 <style>
-@keyframes spin {
-  100% {
-    transform: rotate(180deg)
-  }
-}
-
-@keyframes spinback {
-  0% {
-    transform: rotate(181deg)
-  }
-
-  100% {
-    transform: rotate(360deg)
-  }
-}
-
 @keyframes progress {
   0% {
     transform: translateY(0);

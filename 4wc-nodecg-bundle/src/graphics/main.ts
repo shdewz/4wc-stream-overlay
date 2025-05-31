@@ -8,7 +8,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 /* import specific icons */
-import { faCaretRight, faCaretLeft, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faCaretRight, faCaretLeft, faStar, faHourglassStart } from '@fortawesome/free-solid-svg-icons';
 
 import App from './main/main.vue';
 
@@ -22,6 +22,7 @@ import '@4wc-stream-overlay/assets/common.css';
 library.add(faCaretRight);
 library.add(faCaretLeft);
 library.add(faStar);
+library.add(faHourglassStart);
 
 const app = createApp(App);
 const head = createHead();
