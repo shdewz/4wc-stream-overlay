@@ -8,26 +8,22 @@ let comingup, teams, mappool;
 
 	if (comingup.length) {
 		const now = Date.now();
-		const matches = comingup.sort((a, b) => a.time - b.time).filter(e => e.time > now - 3 * 60 * 1000);
-		if (matches.length === 0) {
-			console.log('a')
-			return;
-		}
-		else {
-			concurrent_matches = matches.filter(m => m.time == matches[0].time);
-			if (concurrent_matches.length > 1) {
-				concurrent_matches_2 = concurrent_matches.filter(m => m.streamer === streamer ?? '');
-				if (concurrent_matches_2.length === 0) {
-					update_match(concurrent_matches[0]);
-				}
-				else if (concurrent_matches_2.length > 1) {
-					console.log('you done fucked up');
-					$('#title').text('MULTIPLE CONCURRENT MATCHES, CHECK JSON FILE');
-				}
-				else update_match(concurrent_matches_2[0]);
+		const matches = comingup.sort((a, b) => a.time - b.time).filter(e => e.time > now - 15 * 60 * 1000);
+		if (matches.length === 0) return;
+
+		concurrent_matches = matches.filter(m => m.time == matches[0].time);
+		if (concurrent_matches.length > 1) {
+			concurrent_matches_2 = concurrent_matches.filter(m => m.streamer === streamer ?? '');
+			if (concurrent_matches_2.length === 0) {
+				update_match(concurrent_matches[0]);
 			}
-			else update_match(concurrent_matches[0]);
+			else if (concurrent_matches_2.length > 1) {
+				console.log('you done fucked up');
+				$('#title').text('MULTIPLE CONCURRENT MATCHES, CHECK JSON FILE');
+			}
+			else update_match(concurrent_matches_2[0]);
 		}
+		else update_match(concurrent_matches[0]);
 	}
 	else update_match(comingup);
 })();
