@@ -81,8 +81,8 @@ function applyData(val: CurrentGosumemoryData) {
     const newSongDataObj = {
       id: val.menu.bm.id,
       setId,
-      artist: overrides.artist || val.menu.bm.metadata.artist,
-      title: overrides.title || val.menu.bm.metadata.title,
+      artist: overrides.artist || val.menu.bm.metadata.artist || 'Unknown Artist',
+      title: overrides.title || val.menu.bm.metadata.title || 'Unknown Title',
       difficulty: overrides.difficulty || val.menu.bm.metadata.difficulty,
       creator: overrides.creator || val.menu.bm.metadata.mapper,
       SR: overrides.SR || formatSR(val.menu.bm.stats.fullSR),
