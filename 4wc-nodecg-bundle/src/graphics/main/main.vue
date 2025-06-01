@@ -8,9 +8,7 @@ import { computed, ref, watch } from 'vue';
 import '../../assets/common.css';
 
 const TEAMSIZE = 4;
-// const DEBUG = false;
-//
-// const cache = {};
+
 const timer: { in_progress: boolean, object: ReturnType<typeof setTimeout> | undefined, object_blink: ReturnType<typeof setTimeout> | undefined } = {
   in_progress: false,
   object: undefined,
@@ -29,66 +27,6 @@ const animation = {
   blue_score: new CountUp('score_blue', 0, 0, 0, 0.3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
   score_diff: new CountUp('score_diff', 0, 0, 0, 0.3, { useEasing: true, useGrouping: true, separator: ',', decimal: '.', suffix: '' }),
 };
-
-// const socket = new ReconnectingWebSocket(DEBUG ? 'ws://127.0.0.1:24051/' : `ws://${location.host}/websocket/v2`);
-// socket.onopen = () => { console.log('Successfully Connected'); };
-// socket.onclose = event => { console.log('Socket Closed Connection: ', event); socket.send('Client Closed!'); };
-// socket.onerror = error => { console.log('Socket Error: ', error); };
-//
-// socket.onmessage = async event => {
-//   const data = JSON.parse(event.data);
-//   const now = Date.now();
-//
-//   if (cache.scoreVisible !== data.tourney.scoreVisible) {
-//     cache.scoreVisible = data.tourney.scoreVisible;
-//
-//   if (mappool && cache.md5 !== data.beatmap.checksum) {
-//     cache.md5 = data.beatmap.checksum;
-//     setTimeout(() => { cache.update_stats = true }, 250);
-//   }
-//
-
-//
-//   if (cache.chatLen !== data.tourney.chat.length && teams) {
-//     const current_chat_len = data.tourney.chat.length;
-//     if (cache.chatLen === 0 || (cache.chatLen > 0 && cache.chatLen > current_chat_len)) { $('#chat').html(''); cache.chatLen = 0; }
-//
-//     for (let i = cache.chatLen || 0; i < current_chat_len; i++) {
-//       const chat = data.tourney.chat[i];
-//       const body = chat.message;
-//       const timestamp = chat.timestamp;
-//       if (body.toLowerCase().startsWith('!mp')) {
-//         if (!cache.chat_loaded) continue;
-//         const command = body.toLowerCase();
-//         const command_value = Number(command.match(/\d+/)) ?? 0;
-//
-//         if (command.startsWith('!mp timer')) {
-//           if (isNaN(command_value)) { stop_timer(); continue; }
-//           else start_timer(command_value);
-//         }
-//         else if ((command.startsWith('!mp aborttimer') && command.startsWith('!mp start')) && timer_in_progress) stop_timer();
-//         else continue;
-//       }
-//
-//       const player = chat.name;
-//       if (player === 'BanchoBot' && body.startsWith('Match history')) continue;
-//
-//       const team = team_lookup[chat.team] ?? 'unknown';
-//       const team_actual = teams.find(t => t.players.map(p => p.username).includes(player))?.team;
-//       const teamcode_actual = team_actual ? team_actual === cache.nameRed ? 'red' : team_actual === cache.nameBlue ? 'blue' : null : null;
-//
-//       const chatParent = $('<div></div>').addClass(`chat-message ${teamcode_actual || team}`);
-//
-//       chatParent.append($('<div></div>').addClass('chat-time').text(timestamp));
-//       chatParent.append($('<div></div>').addClass(`chat-name ${team}`).text(player));
-//       chatParent.append($('<div></div>').addClass('chat-body').text(body));
-//       $('#chat').prepend(chatParent);
-//     }
-//
-//     cache.chatLen = data.tourney.chat.length;
-//     cache.chat_loaded = true;
-//   }
-// }
 
 let timerInProgress = false;
 
@@ -429,7 +367,7 @@ const indexedMessages = computed(() => {
           </div>
         </div>
         <Transition name="chat">
-          <div class="chat-container" id="chat_container" v-if="!tourneyDataReplicant.data?.scoresVisible">
+          <div class="chat-container" id="chat_container" :style="{ animation: tourneyDataReplicant.data?.scoresVisible ? 'chatIn 300ms ease forwards reverse' : 'chatIn 300ms ease forwards'}">
             <div class="chat-inner-container">
               <div class="chat-title">CHAT</div>
               <!--                TODO: lookup user in team replicant to set their chat team membership-->
