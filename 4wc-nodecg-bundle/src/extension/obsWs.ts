@@ -202,7 +202,7 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
   if (oldVal.state === 'spectating' && newVal.state === 'results') {
     // default to 20s after entering ranking state
     const delayMs = 20_000;
-    const targetScene = obsAutoAdvanceReplicant.value.scenes.gameplay;
+    const targetScene = obsAutoAdvanceReplicant.value.scenes.mappool;
 
     clearTimeout(sceneTransitionTimeout);
     obsAutoAdvanceReplicant.value.nextTransition = { sceneName: targetScene, time: Date.now() + delayMs };
