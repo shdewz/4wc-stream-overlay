@@ -20,6 +20,12 @@ watch(obsStatusReplicant, () => {
   }
 });
 
+watch(obsAutoAdvanceReplicant, () => {
+  if (obsAutoAdvanceReplicant.changed) {
+    obsAutoAdvanceReplicant.save();
+  }
+});
+
 const open = () => {
   nodecg.sendMessage('OBS-open', { wsUrl: obsStatusReplicant.data?.wsUrl, wsPassword: obsStatusReplicant.data?.wsPassword });
 };
