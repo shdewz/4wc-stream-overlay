@@ -224,7 +224,9 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
   }
 
   if (oldVal.state === 'idle' && (newVal.state === 'waitingForClients' || newVal.state === 'spectating')) {
-    // todo: transition to gameplay if not already in gameplay and not in active transition
+    if (obsDataReplicant.value.currentScene?.sceneName !== obsAutoAdvanceReplicant.value.scenes.gameplay) {
+      await setProgramScene(obsAutoAdvanceReplicant.value.scenes.gameplay);
+    }
   }
 });
 
