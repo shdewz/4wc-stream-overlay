@@ -385,7 +385,7 @@ const getChatTeamColor = (message: ChatMessage) => {
           </div>
         </div>
         <Transition name="chat">
-          <div class="chat-container" id="chat_container" :style="{ animation: tourneyDataReplicant.data?.scoresVisible ? 'chatIn 300ms ease forwards reverse' : 'chatIn 300ms ease forwards'}">
+          <div class="chat-container" id="chat_container" v-show="!tourneyDataReplicant.data?.scoresVisible">
             <div class="chat-inner-container">
               <div class="chat-title">CHAT</div>
               <!--                TODO: lookup user in team replicant to set their chat team membership-->
@@ -1187,6 +1187,12 @@ const getChatTeamColor = (message: ChatMessage) => {
   to {
     transform: translateX(60px);
   }
+}
+
+/* Override v-show's display: none to allow timer animation to run while hidden */
+.chat-container[style*="display: none"] {
+  display: block !important;
+  opacity: 0;
 }
 
 .chat-enter-active {
