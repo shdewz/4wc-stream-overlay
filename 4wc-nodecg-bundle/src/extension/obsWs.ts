@@ -194,7 +194,10 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
 
   if (oldVal.state === newVal.state) return;
 
-  logger.warn(`tourney replicant state changed: ${oldVal.state} -> ${newVal.state}`);
+  logger.info(`tourney replicant state changed: ${oldVal.state} -> ${newVal.state}`);
+  if (!obsAutoAdvanceReplicant.value.autoadvance) {
+    logger.debug('Not processing scene change, auto-advance is disabled.');
+  }
 
   if (oldVal.state === 'spectating' && newVal.state === 'results') {
     // default to 20s after entering ranking state
