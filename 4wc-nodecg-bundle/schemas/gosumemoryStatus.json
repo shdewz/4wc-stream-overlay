@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Current gosumemory Connection Status",
+  "default": {
+    "wsUrl": "ws://127.0.0.1:24050/ws",
+    "wsStatus": "CLOSED",
+    "automaticReconnect": true
+  },
+  "required": [
+    "wsUrl",
+    "wsStatus",
+    "automaticReconnect"
+  ],
+  "properties": {
+    "wsUrl": {
+      "$id": "#/properties/wsUrl",
+      "type": "string",
+      "title": "The wsUrl schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "wsStatus": {
+      "$id": "#/properties/wsStatus",
+      "type": "string",
+      "title": "The wsStatus schema",
+      "description": "An explanation about the purpose of this instance.",
+      "enum": ["CLOSED", "CONNECTING", "OPEN", "CLOSING"],
+      "default": "CLOSED"
+    },
+    "automaticReconnect": {
+      "$id": "#/properties/automaticReconnect",
+      "type": "boolean",
+      "title": "The automaticReconnect schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": true,
+      "examples": [
+        true,
+        false
+      ]
+    }
+  },
+  "additionalProperties": false
+}

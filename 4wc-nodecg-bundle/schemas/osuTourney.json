@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "osu!tourney data",
+  "type": "object",
+  "default": {
+    "state": "unknown",
+    "scoresVisible": true,
+    "starsVisible": false,
+    "bestOf": 9,
+    "teamName": {
+      "left": "Red Team",
+      "right": "Blue Team"
+    },
+    "stars": {
+      "left": 0,
+      "right": 0
+    },
+    "chat": [
+      {
+        "team": "bot",
+        "time": "15:00",
+        "name": "BanchoBot",
+        "messageBody": "Match history available here."
+      }
+    ],
+    "clients": [],
+    "time": {
+      "firstObj": 0,
+      "current": 0,
+      "full": 1,
+      "mp3": 1
+    }
+  },
+  "properties": {
+    "state": {
+      "type": "string",
+      "enum": ["unknown", "spectating", "results"]
+    },
+    "scoresVisible": {
+      "type": "boolean"
+    },
+    "starsVisible": {
+      "type": "boolean"
+    },
+    "bestOf": {
+      "type": "integer"
+    },
+    "teamName": {
+      "type": "object",
+      "default": {
+        "left": "Red Team",
+        "right": "Blue Team"
+      },
+      "required": [
+        "left",
+        "right"
+      ],
+      "properties": {
+        "left": {
+          "type": "string",
+          "default": ""
+        },
+        "right": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "additionalProperties": false
+    },
+    "stars": {
+      "type": "object",
+      "required": ["left", "right"],
+      "properties": {
+        "left": { "type": "integer" },
+        "right": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "chat": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "default": [],
+      "examples": [
+        [
+          {
+            "team": "bot",
+            "time": "15:00",
+            "name": "BanchoBot",
+            "messageBody": "Match history available here."
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "title": "Chat Message",
+        "type": "object",
+        "required": [ "team", "time", "name", "messageBody" ],
+        "properties": {
+          "team": {
+            "$id": "#/properties/chat/items/properties/team",
+            "type": "string",
+            "enum": ["left", "right", "bot", "unknown", ""]
+          },
+          "time": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "messageBody": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "clients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mods": {
+            "type": "string"
+          },
+          "score": {
+            "type": "integer"
+          },
+          "unstableRate": {
+            "type": "number"
+          },
+          "hits300": {
+            "type": "integer"
+          },
+          "hits100": {
+            "type": "integer"
+          },
+          "hits50": {
+            "type": "integer"
+          },
+          "hits0": {
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["score", "unstableRate", "hits300", "hits100", "hits50", "hits0", "mods"]
+      }
+    },
+    "time": {
+      "required": ["firstObj", "current", "full", "mp3"],
+      "type": "object",
+        "properties": {
+          "firstObj": {
+            "type": "number"
+          },
+          "current": {
+            "type": "number"
+          },
+          "full": {
+            "type": "number"
+          },
+          "mp3": {
+            "type": "number"
+          }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "required": ["state", "scoresVisible", "clients", "time", "starsVisible", "teamName", "bestOf", "stars", "chat"]
+}

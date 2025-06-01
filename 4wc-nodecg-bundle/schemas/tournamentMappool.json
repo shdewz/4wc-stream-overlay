@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "tournament mappool data",
+  "type": "object",
+  "default": {
+    "stage": "Round of 32",
+    "beatmaps": [
+      {
+        "beatmap_id": 5121308,
+        "identifier": "NM1",
+        "mods": "NM",
+        "sr": 6.78,
+        "bpm": 195,
+        "title": "MIIRO",
+        "artist": "AKINO from bless4",
+        "mapper": "Dailycare",
+        "difficulty": ":astonished:",
+        "beatmapset_id": 2372483,
+        "custom": true,
+        "original": false,
+        "ez_multiplier": 1
+      }
+    ]
+  },
+  "required": ["stage", "beatmaps"],
+  "additionalProperties": false,
+  "properties": {
+    "stage": {
+      "type": "string"
+    },
+    "beatmaps": {
+      "$id": "#/properties/beatmaps",
+      "type": "array",
+      "items": {
+        "$id": "#/properties/beatmaps/items",
+        "title": "Pool Beatmap",
+        "type": "object",
+        "required": [
+          "beatmap_id",
+          "identifier",
+          "mods",
+          "sr",
+          "bpm",
+          "title",
+          "artist",
+          "mapper",
+          "difficulty",
+          "beatmapset_id",
+          "custom",
+          "original",
+          "ez_multiplier"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "beatmap_id": {
+            "type": "integer"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "mods": {
+            "type": "string"
+          },
+          "sr": {
+            "type": "number"
+          },
+          "bpm": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "artist": {
+            "type": "string"
+          },
+          "mapper": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "string"
+          },
+          "beatmapset_id": {
+            "type": "integer"
+          },
+          "custom": {
+            "type": "boolean"
+          },
+          "original": {
+            "type": "boolean"
+          },
+          "ez_multiplier": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
