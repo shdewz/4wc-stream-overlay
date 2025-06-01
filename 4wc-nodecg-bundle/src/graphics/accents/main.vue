@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <div class="main">
     <div class="header">
@@ -17,6 +13,11 @@
 </template>
 
 <style scoped>
+:global(:root) {
+  --border-width: 2px;
+  --border-color: var(--accent);
+}
+
 :global(body), :global(html) {
   padding: 0;
   margin: 0;
