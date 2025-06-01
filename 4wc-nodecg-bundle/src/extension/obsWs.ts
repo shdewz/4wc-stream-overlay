@@ -2,6 +2,7 @@ import exitHook from 'exit-hook';
 import { OBSWebSocket, OBSWebSocketError } from 'obs-websocket-js';
 
 import { ObsSceneItem, ObsIndexedSceneItem } from '@4wc-stream-overlay/types/schemas';
+import { delay } from '@4wc-stream-overlay/browser_shared/utils';
 import { createLogger, get as nodecg } from './util/nodecg';
 import { obsAutoAdvanceReplicant, obsDataReplicant, OBSStatusReplicant, osuTourneyReplicant } from './util/replicants';
 
@@ -14,13 +15,25 @@ let sceneTransitionTimeout: NodeJS.Timeout;
 const refreshScenes = async () => {
   if (!ws) return;
 
+  await delay(200); // Wait a bit to ensure the connection is stable before refreshing scenes
+
+  logger.info('Refreshing OBS scenes...');
+
   const { scenes } = await ws.call('GetSceneList');
 
-  if (!obsDataReplicant.value) {
-    obsDataReplicant.value = { scenes: [], currentScene: await ws.call('GetCurrentProgramScene') };
-  }
+  try {
+    if (!obsDataReplicant.value) {
+      obsDataReplicant.value = { scenes: [], currentScene: await ws.call('GetCurrentProgramScene') };
+    }
 
-  obsDataReplicant.value.scenes = ((scenes as unknown) as ObsIndexedSceneItem[]).sort((a, b) => b.sceneIndex - a.sceneIndex);
+    obsDataReplicant.value.scenes = ((scenes as unknown) as ObsIndexedSceneItem[]).sort((a, b) => b.sceneIndex - a.sceneIndex);
+  } catch (error) {
+    if (error instanceof OBSWebSocketError) {
+      logger.warn('Failed to list scenes', error.code, error.message);
+    } else {
+      logger.warn('Unexpected error while listing scenes: ', error);
+    }
+  }
 };
 
 async function open() {
