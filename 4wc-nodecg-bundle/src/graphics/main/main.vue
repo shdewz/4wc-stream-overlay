@@ -973,6 +973,7 @@ const indexedMessages = computed(() => {
   font-size: 1.2rem;
   font-weight: bold;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 .chat {
