@@ -388,7 +388,6 @@ const getChatTeamColor = (message: ChatMessage) => {
           <div class="chat-container" id="chat_container" v-show="!tourneyDataReplicant.data?.scoresVisible">
             <div class="chat-inner-container">
               <div class="chat-title">CHAT</div>
-              <!--                TODO: lookup user in team replicant to set their chat team membership-->
               <TransitionGroup name="scale" tag="div" class="chat">
                 <div class="chat-message"
                      :class="getChatTeamColor(message)"
@@ -1008,28 +1007,34 @@ const getChatTeamColor = (message: ChatMessage) => {
   position: relative;
 }
 
+/* USED BY: chat messages TransitionGroup component */
+/*noinspection CssUnusedSymbol*/
 .scale-enter-active,
 .scale-leave-active {
   transition: all 0.3s ease;
   transform-origin: bottom;
 }
 
+/*noinspection CssUnusedSymbol*/
 .scale-enter-from {
   opacity: 0;
   transform: scaleY(0);
 }
 
+/*noinspection CssUnusedSymbol*/
 .scale-leave-to {
   opacity: 0;
   transform: scaleY(0);
 }
 
 /* Smooth repositioning of existing items */
+/*noinspection CssUnusedSymbol*/
 .scale-move {
   transition: transform 0.3s ease;
 }
 
 /* Ensure leaving items don't affect layout during animation */
+/*noinspection CssUnusedSymbol*/
 .scale-leave-active {
   position: absolute;
   right: 0;
@@ -1195,10 +1200,13 @@ const getChatTeamColor = (message: ChatMessage) => {
   opacity: 0;
 }
 
+/* USED BY: chat container Transition component */
+/*noinspection CssUnusedSymbol*/
 .chat-enter-active {
   animation: chatIn 300ms ease forwards;
 }
 
+/*noinspection CssUnusedSymbol*/
 .chat-leave-active {
   animation: chatIn 300ms ease forwards reverse;
 }
