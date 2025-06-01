@@ -197,6 +197,7 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
   logger.info(`tourney replicant state changed: ${oldVal.state} -> ${newVal.state}`);
   if (!obsAutoAdvanceReplicant.value.autoadvance) {
     logger.debug('Not processing scene change, auto-advance is disabled.');
+    return;
   }
 
   if (oldVal.state === 'spectating' && newVal.state === 'results') {
