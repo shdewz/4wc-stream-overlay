@@ -356,15 +356,15 @@ const getChatTeamColor = (message: ChatMessage) => {
             <div class="beatmap-attributes-container">
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">CS</div>
-                <div class="beatmap-attribute__value" id="cs">{{ (Math.round(mapStatsAfterMods.cs * 10) / 10).toFixed(1) }}</div>
+                <div class="beatmap-attribute__value" id="cs">{{ (Math.round(mapStatsAfterMods.cs * 10) / 10) }}</div>
               </div>
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">AR</div>
-                <div class="beatmap-attribute__value" id="ar">{{ (Math.round(mapStatsAfterMods.ar * 10) / 10).toFixed(1) }}</div>
+                <div class="beatmap-attribute__value" id="ar">{{ (Math.round(mapStatsAfterMods.ar * 10) / 10) }}</div>
               </div>
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">OD</div>
-                <div class="beatmap-attribute__value" id="od">{{ (Math.round(mapStatsAfterMods.od * 10) / 10).toFixed(1) }}</div>
+                <div class="beatmap-attribute__value" id="od">{{ (Math.round(mapStatsAfterMods.od * 10) / 10) }}</div>
               </div>
               <div class="beatmap-attribute">
                 <div class="beatmap-attribute__title">BPM</div>
