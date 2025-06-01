@@ -6,6 +6,7 @@ import { isEqual } from 'lodash';
 import { delay, formatLength, getModdedStats } from '@4wc-stream-overlay/browser_shared/utils';
 import { computed, ref, watch } from 'vue';
 import '../../assets/common.css';
+import { ChatMessage } from '@4wc-stream-overlay/types/schemas';
 
 const TEAMSIZE = 4;
 
@@ -227,6 +228,23 @@ const indexedMessages = computed(() => {
   return indexed.slice(-8);
 });
 
+const getChatTeamColor = (message: ChatMessage) => {
+  if (message.team === 'bot') return 'bot';
+
+  const username = message.name;
+  const foundTeam = teamsReplicant.data?.find((team) => team.players.some((p) => p.username === username))?.team;
+
+  if (!foundTeam) return message.team;
+
+  const lobbyTeamNames = tourneyDataReplicant.data?.teamName;
+
+  if (!lobbyTeamNames) return message.team;
+  if (lobbyTeamNames.left === foundTeam) return 'red';
+  if (lobbyTeamNames.right === foundTeam) return 'blue';
+
+  return '';
+};
+
 </script>
 
 <template>
@@ -373,7 +391,7 @@ const indexedMessages = computed(() => {
               <!--                TODO: lookup user in team replicant to set their chat team membership-->
               <TransitionGroup name="scale" tag="div" class="chat">
                 <div class="chat-message"
-                     :class="{ red: message.team === 'left', blue: message.team === 'right', bot: message.team === 'bot' }"
+                     :class="getChatTeamColor(message)"
                      v-for="message in indexedMessages.reverse()"
                      :key="message.index">
                   <div class="chat-time">{{ message.time }}</div>

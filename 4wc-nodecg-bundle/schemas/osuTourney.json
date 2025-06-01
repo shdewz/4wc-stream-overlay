@@ -94,10 +94,12 @@
       ],
       "additionalItems": true,
       "items": {
+        "title": "Chat Message",
         "type": "object",
         "required": [ "team", "time", "name", "messageBody" ],
         "properties": {
           "team": {
+            "$id": "#/properties/chat/items/properties/team",
             "type": "string",
             "enum": ["left", "right", "bot", "unknown", ""]
           },

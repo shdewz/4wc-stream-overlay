@@ -6,6 +6,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type PropertiesChatItemsPropertiesTeam = 'left' | 'right' | 'bot' | 'unknown' | '';
+
 export interface OsuTourneyData {
 	state: 'unknown' | 'spectating' | 'results';
 	scoresVisible: boolean;
@@ -19,14 +21,7 @@ export interface OsuTourneyData {
 		left: number;
 		right: number;
 	};
-	chat:
-		| {
-				team: 'left' | 'right' | 'bot' | 'unknown' | '';
-				time: string;
-				name: string;
-				messageBody: string;
-		  }[]
-		| null;
+	chat: ChatMessage[] | null;
 	clients: {
 		mods: string;
 		score: number;
@@ -42,4 +37,10 @@ export interface OsuTourneyData {
 		full: number;
 		mp3: number;
 	};
+}
+export interface ChatMessage {
+	team: PropertiesChatItemsPropertiesTeam;
+	time: string;
+	name: string;
+	messageBody: string;
 }
