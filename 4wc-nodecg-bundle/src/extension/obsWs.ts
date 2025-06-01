@@ -209,14 +209,18 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
     obsAutoAdvanceReplicant.value.nextTransition = { sceneName: targetScene, time: Date.now() + delayMs };
 
     sceneTransitionTimeout = setTimeout(async () => {
-      await setProgramScene(targetScene);
+      obsAutoAdvanceReplicant.value.nextTransition = undefined;
+      if (obsDataReplicant.value.currentScene?.sceneName !== targetScene) await setProgramScene(targetScene);
     }, delayMs);
   }
 
   if (oldVal.state === 'results' && newVal.state === 'idle') {
     clearTimeout(sceneTransitionTimeout);
     obsAutoAdvanceReplicant.value.nextTransition = undefined;
-    await setProgramScene(obsAutoAdvanceReplicant.value.scenes.mappool);
+
+    if (obsDataReplicant.value.currentScene?.sceneName !== obsAutoAdvanceReplicant.value.scenes.mappool) {
+      await setProgramScene(obsAutoAdvanceReplicant.value.scenes.mappool);
+    }
   }
 
   if (oldVal.state === 'idle' && (newVal.state === 'waitingForClients' || newVal.state === 'spectating')) {
