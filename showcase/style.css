@@ -166,15 +166,22 @@ html {
 	border-radius: 20px;
 }
 
-.textbox {
+.textboxes {
 	position: absolute;
+	top: 24px;
+	left: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.textbox {
 	background-color: var(--accent);
 	padding: 6px 12px;
 	font-size: 1.2rem;
 	font-weight: bold;
 	letter-spacing: 2px;
 	text-transform: uppercase;
-	opacity: 0;
 	transition: opacity 200ms ease;
 }
 
@@ -182,6 +189,7 @@ html {
 	bottom: var(--footer-height);
 	right: 0;
 	padding-left: 8px;
+	position: absolute;
 }
 
 .stage-name::before {
@@ -202,9 +210,11 @@ html {
 }
 
 .custom {
-	top: 24px;
-	left: 24px;
-	display: flex;
 	font-size: 1.4rem;
-	gap: 8px;
+	max-width: 426px;
+	display: none;
+}
+
+.custom.visible {
+	display: block;
 }

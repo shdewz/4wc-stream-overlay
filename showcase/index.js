@@ -66,8 +66,14 @@ socket.onmessage = async event => {
 			$('#map_background').css('background-image', `url('${path}')`);
 		}
 
-		if (map?.custom) { $('#custom_mapper').text(map?.mapper ?? data.beatmap.mapper); $('#custom').css('opacity', 1); }
-		else { $('#custom_mapper').text(''); $('#custom').css('opacity', 0); }
+		if (map?.custom) { $('#custom_mapper').text(map?.mapper ?? data.beatmap.mapper); $('#custom').addClass('visible'); }
+		else { $('#custom_mapper').text(''); $('#custom').removeClass('visible'); }
+
+		if (map?.mods === 'FM' && map?.ez_multiplier) {
+			$('#ezmult_text').text(`${map?.ez_multiplier.toFixed(2)}x`);
+			$('#ezmult').addClass('visible');
+		}
+		else { $('#ezmult_text').text(''); $('#ezmult').removeClass('visible'); }
 
 		$('#mapper').text(map?.mapper ?? data.beatmap.mapper);
 	}
