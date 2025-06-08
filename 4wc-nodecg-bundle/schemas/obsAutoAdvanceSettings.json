@@ -28,6 +28,7 @@
     "nextTransition": {
       "type": "object",
       "additionalProperties": false,
+      "required": ["time", "sceneName"],
       "properties": {
         "time": {"type": "integer"},
         "sceneName": {"type": "string"}

@@ -1,5 +1,11 @@
-import { createLogger } from './util/nodecg';
-import { osuSongReplicant, tournamentMappool, tournamentPickBans, tournamentPickBansSettings } from './util/replicants';
+import { createLogger, get as nodecg } from './util/nodecg';
+import {
+  obsAutoAdvanceReplicant,
+  osuSongReplicant,
+  tournamentMappool,
+  tournamentPickBans,
+  tournamentPickBansSettings,
+} from './util/replicants';
 
 const logger = createLogger('autopick');
 
@@ -41,6 +47,11 @@ osuSongReplicant.on('change', (newSong, oldSong) => {
     time: Date.now(),
   };
   tournamentPickBans.value = newObj;
+
+  // if (obsAutoAdvanceReplicant.value.autoadvance) {
+  //   nodecg().sendMessage('OBS-setProgram', obsAutoAdvanceReplicant.value.scenes.gameplay);
+  // }
+  obsAutoAdvanceReplicant.value.nextTransition = { sceneName: obsAutoAdvanceReplicant.value.scenes.mappool, time: Date.now() + 10_000 };
 
   logger.info(`Added a pick for ${poolMap.identifier} by ${currentColor} team`);
 

@@ -16,7 +16,7 @@ export interface OBSSceneAutoAdvanceSettings {
 		mappool: string;
 	};
 	nextTransition?: {
-		time?: number;
-		sceneName?: string;
+		time: number;
+		sceneName: string;
 	};
 }

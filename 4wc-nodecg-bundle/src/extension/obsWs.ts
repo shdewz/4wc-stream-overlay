@@ -11,6 +11,7 @@ const logger = createLogger('obs');
 let ws: undefined | OBSWebSocket;
 let reconnectTimeout: NodeJS.Timeout;
 let sceneTransitionTimeout: NodeJS.Timeout;
+let lastActionedTransitionTime = 0;
 
 const refreshScenes = async () => {
   if (!ws) return;
@@ -194,40 +195,69 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
 
   if (oldVal.state === newVal.state) return;
 
-  logger.info(`tourney replicant state changed: ${oldVal.state} -> ${newVal.state}`);
+  logger.info(`tourney replicant state changed: ${oldVal.state} -> ${newVal.state} (autoadvance: ${obsAutoAdvanceReplicant.value.autoadvance})`);
   if (!obsAutoAdvanceReplicant.value.autoadvance) {
-    logger.debug('Not processing scene change, auto-advance is disabled.');
+    logger.info('Not processing scene change, auto-advance is disabled.');
     return;
   }
 
   if (oldVal.state === 'spectating' && newVal.state === 'results') {
     // default to 20s after entering ranking state
     const delayMs = 24_000;
-    const targetScene = obsAutoAdvanceReplicant.value.scenes.mappool;
-
-    clearTimeout(sceneTransitionTimeout);
-    obsAutoAdvanceReplicant.value.nextTransition = { sceneName: targetScene, time: Date.now() + delayMs };
-
-    sceneTransitionTimeout = setTimeout(async () => {
-      obsAutoAdvanceReplicant.value.nextTransition = undefined;
-      if (obsDataReplicant.value.currentScene?.sceneName !== targetScene) await setProgramScene(targetScene);
-    }, delayMs);
+    obsAutoAdvanceReplicant.value.nextTransition = { sceneName: obsAutoAdvanceReplicant.value.scenes.mappool, time: Date.now() + delayMs };
   }
 
   if (oldVal.state === 'results' && newVal.state === 'idle') {
-    clearTimeout(sceneTransitionTimeout);
-    obsAutoAdvanceReplicant.value.nextTransition = undefined;
-
-    if (obsDataReplicant.value.currentScene?.sceneName !== obsAutoAdvanceReplicant.value.scenes.mappool) {
-      await setProgramScene(obsAutoAdvanceReplicant.value.scenes.mappool);
-    }
+    obsAutoAdvanceReplicant.value.nextTransition = { sceneName: obsAutoAdvanceReplicant.value.scenes.mappool, time: Date.now() };
   }
 
   if (oldVal.state === 'idle' && (newVal.state === 'waitingForClients' || newVal.state === 'spectating')) {
-    if (obsDataReplicant.value.currentScene?.sceneName !== obsAutoAdvanceReplicant.value.scenes.gameplay) {
-      await setProgramScene(obsAutoAdvanceReplicant.value.scenes.gameplay);
-    }
+    obsAutoAdvanceReplicant.value.nextTransition = { sceneName: obsAutoAdvanceReplicant.value.scenes.gameplay, time: Date.now() };
   }
+});
+
+obsAutoAdvanceReplicant.on('change', async (oldVal) => {
+  if (obsAutoAdvanceReplicant.value?.autoadvance !== true) return;
+
+  logger.info(`obsAutoAdvanceReplicant changed: current nextTransition: ${JSON.stringify(obsAutoAdvanceReplicant.value?.nextTransition)} (old: ${JSON.stringify(oldVal?.nextTransition)})`);
+  if (!obsAutoAdvanceReplicant.value?.nextTransition) return;
+
+  logger.info('newVal exists and is good');
+
+  if (obsAutoAdvanceReplicant.value?.nextTransition.time <= lastActionedTransitionTime) return;
+
+  logger.info('new time is indeed not an old transition');
+
+  const targetSceneName = obsAutoAdvanceReplicant.value?.nextTransition.sceneName;
+  if (!obsAutoAdvanceReplicant.value?.nextTransition || !targetSceneName) return;
+
+  logger.info(`got new scene name: ${targetSceneName}`);
+
+  const timeNow = Date.now();
+  const delayUntilTransition = obsAutoAdvanceReplicant.value.nextTransition.time - timeNow;
+
+  logger.info(`delay until transition: ${delayUntilTransition} (current time: ${timeNow})`);
+
+  clearTimeout(sceneTransitionTimeout);
+
+  if (delayUntilTransition > 0) {
+    const transitionTime = obsAutoAdvanceReplicant.value.nextTransition.time;
+    sceneTransitionTimeout = setTimeout(async () => {
+      if (obsAutoAdvanceReplicant.value?.autoadvance !== true) {
+        logger.warn('Executing delayed transition, but autoadvance is not enabled! Skipping transition');
+        return;
+      }
+
+      if (obsDataReplicant.value.currentScene?.sceneName !== targetSceneName) await setProgramScene(targetSceneName);
+      lastActionedTransitionTime = transitionTime;
+    }, delayUntilTransition);
+    return;
+  }
+
+  logger.info('executing transition immediately');
+
+  if (obsDataReplicant.value.currentScene?.sceneName !== targetSceneName) await setProgramScene(targetSceneName);
+  lastActionedTransitionTime = obsAutoAdvanceReplicant.value.nextTransition.time;
 });
 
 exitHook(async () => {
