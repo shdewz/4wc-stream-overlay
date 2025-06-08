@@ -259,8 +259,7 @@ obsAutoAdvanceReplicant.on('change', async () => {
         return;
       }
 
-      if (obsDataReplicant.value.currentScene?.sceneName !== targetSceneName)
-      {
+      if (obsDataReplicant.value.currentScene?.sceneName !== targetSceneName) {
         await setProgramScene(targetSceneName);
       } else {
         logger.info(`OBS is already on scene ${targetSceneName}, not performing transition to ${targetSceneName}`);
