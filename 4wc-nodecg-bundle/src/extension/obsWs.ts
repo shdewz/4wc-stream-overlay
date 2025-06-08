@@ -223,9 +223,9 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
 });
 
 tournamentPickBans.on('change', (newVal, oldVal) => {
-  const newKeys = Object.entries(newVal).filter(([_, value]) => value.type === 'pick').map(([k]) => k);
+  const newKeys = Object.entries(newVal).filter(([, value]) => value.type === 'pick').map(([k]) => k);
   const oldKeys = oldVal
-    ? Object.entries(oldVal).filter(([_, value]) => value.type === 'pick').map(([k]) => k)
+    ? Object.entries(oldVal).filter(([, value]) => value.type === 'pick').map(([k]) => k)
     : [];
 
   if (newKeys.some((key) => !oldKeys.includes(key))) {
