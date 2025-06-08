@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "tournament schedule data",
+  "type": "array",
+  "default": [
+    {
+      "time": 1748541600000,
+      "red_team": "Finland",
+      "red_seed": 15,
+      "red_flag": "FI",
+      "blue_team": "Türkiye",
+      "blue_seed": 21,
+      "blue_flag": "TR",
+      "streamer": "ROB_",
+      "stream": "a",
+      "type": "L"
+    }
+  ],
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "time",
+      "red_team",
+      "red_seed",
+      "red_flag",
+      "blue_team",
+      "blue_seed",
+      "blue_flag",
+      "streamer",
+      "stream",
+      "type"
+    ],
+    "properties": {
+      "time": {
+        "type": "integer"
+      },
+      "red_seed": {
+        "type": "integer"
+      },
+      "blue_seed": {
+        "type": "integer"
+      },
+      "red_team": {
+        "type": "string"
+      },
+      "red_flag": {
+        "type": "string"
+      },
+      "blue_team": {
+        "type": "string"
+      },
+      "blue_flag": {
+        "type": "string"
+      },
+      "streamer": {
+        "type": "string"
+      },
+      "stream": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string"
+      }
+    }
+  }
+}

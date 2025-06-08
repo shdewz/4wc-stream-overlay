@@ -1,0 +1,285 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Current osu! Song Replicant",
+  "description": "osu! Now Playing Component data",
+  "default": {
+    "id": 1432888,
+    "setId": 677548,
+    "artist": "WHITE WALL",
+    "title": "Pluto The First",
+    "difficulty": "The First",
+    "creator": "Knif3rism",
+    "SR": "3.90",
+    "length": "01:37",
+    "lengthRaw": 97,
+    "AR": "6.00",
+    "ARRaw": 6.00,
+    "OD": "6.00",
+    "ODRaw": 6.00,
+    "CS": "6.00",
+    "CSRaw": 6.00,
+    "BPM": "440BPM",
+    "BPMRaw": {
+      "min": 360,
+      "max": 440
+    },
+    "mods": "",
+    "stage": "SEMAINE 1",
+    "index": 1,
+    "category": "SV",
+    "coverUrl": "https://assets.ppy.sh/beatmaps/677548/covers/cover.jpg",
+    "localBackgroundPath": "677548 WHITE WALL - Pluto The First\\Pluto The First-bg.png"
+  },
+  "examples": [
+    {
+      "id": 1432888,
+      "setId": 677548,
+      "artist": "WHITE WALL",
+      "title": "Pluto The First",
+      "difficulty": "The First",
+      "creator": "Knif3rism",
+      "SR": "3.90",
+      "length": "01:37",
+      "AR": "6.00",
+      "OD": "6.00",
+      "CS": "6.00",
+      "BPM": "440BPM",
+      "stage": "SEMAINE 1",
+      "index": 1,
+      "category": "SV",
+      "coverUrl": "https://assets.ppy.sh/beatmaps/677548/covers/cover.jpg",
+      "localBackgroundPath": "677548 WHITE WALL - Pluto The First\\Pluto The First-bg.png"
+    },
+    {
+      "artist": "WHITE WALL",
+      "title": "Pluto The First"
+    }
+  ],
+  "required": [
+    "artist",
+    "title"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "The id schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 1432888,
+      "examples": [
+        1432888
+      ]
+    },
+    "setId": {
+      "$id": "#/properties/setId",
+      "type": "integer",
+      "title": "The setId schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 677548,
+      "examples": [
+        677548
+      ]
+    },
+    "artist": {
+      "$id": "#/properties/artist",
+      "type": "string",
+      "title": "The artist schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "title": {
+      "$id": "#/properties/title",
+      "type": "string",
+      "title": "The title schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "difficulty": {
+      "$id": "#/properties/difficulty",
+      "type": "string",
+      "title": "The difficulty schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "creator": {
+      "$id": "#/properties/creator",
+      "type": "string",
+      "title": "The creator schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "SR": {
+      "$id": "#/properties/SR",
+      "type": "string",
+      "title": "The SR schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "length": {
+      "$id": "#/properties/length",
+      "type": "string",
+      "title": "Length after applying mods",
+      "default": ""
+
+    },
+    "lengthRaw": {
+      "$id": "#/properties/lengthRaw",
+      "type": "number",
+      "title": "Length before applying mods",
+      "default": 0
+    },
+    "AR": {
+      "$id": "#/properties/AR",
+      "type": "string",
+      "title": "The AR schema",
+      "default": ""
+    },
+    "ARRaw": {
+      "$id": "#/properties/ARRaw",
+      "type": "number",
+      "title": "AR before applying mods",
+      "default": 0
+    },
+    "OD": {
+      "$id": "#/properties/OD",
+      "type": "string",
+      "title": "OD after applying mods",
+      "default": ""
+    },
+    "ODRaw": {
+      "$id": "#/properties/ODRaw",
+      "type": "number",
+      "title": "OD before applying mods",
+      "default": 0
+    },
+    "CS": {
+      "$id": "#/properties/CS",
+      "type": "string",
+      "title": "CS after applying mods",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "CSRaw": {
+      "$id": "#/properties/CSRaw",
+      "type": "number",
+      "title": "CS before applying mods",
+      "default": 0
+    },
+    "BPM": {
+      "$id": "#/properties/BPM",
+      "type": "string",
+      "title": "BPM after applying mods",
+      "default": ""
+    },
+    "BPMRaw": {
+      "$id": "#/properties/BPMRaw",
+      "type": "object",
+      "title": "BPM before applying mods",
+      "additionalProperties": false,
+      "required": ["min", "max"],
+      "properties": {
+        "min": {
+          "type": "number",
+          "default": 0
+        },
+        "max": {
+          "type": "number",
+          "default": 0
+        },
+        "common": {
+          "type": "number",
+          "default": 0
+        },
+        "realtime": {
+          "type": "number",
+          "default": 0
+        }
+      }
+    },
+    "mods": {
+      "$id": "#/properties/mods",
+      "type": "string",
+      "title": "2-letters acronyms of active mods",
+      "default": ""
+    },
+    "stage": {
+      "$id": "#/properties/stage",
+      "type": "string",
+      "title": "The stage schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "index": {
+      "$id": "#/properties/index",
+      "type": "integer",
+      "title": "The index schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "category": {
+      "$id": "#/properties/category",
+      "type": "string",
+      "title": "The category schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "coverUrl": {
+      "$id": "#/properties/coverUrl",
+      "type": "string",
+      "title": "The coverUrl schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "localBackgroundPath": {
+      "$id": "#/properties/localBackgroundPath",
+      "type": "string",
+      "title": "The localBackgroundPath schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "677548 WHITE WALL - Pluto The First\\Pluto The First-bg.png"
+      ]
+    },
+    "songsFolderPath": {
+      "$id": "#/properties/songsFolderPath",
+      "type": "string",
+      "title": "The songsFolderPath schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "C:\\osu!\\Songs"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
