@@ -4,7 +4,13 @@ import { OBSWebSocket, OBSWebSocketError } from 'obs-websocket-js';
 import { ObsSceneItem, ObsIndexedSceneItem } from '@4wc-stream-overlay/types/schemas';
 import { delay } from '@4wc-stream-overlay/browser_shared/utils';
 import { createLogger, get as nodecg } from './util/nodecg';
-import { obsAutoAdvanceReplicant, obsDataReplicant, OBSStatusReplicant, osuTourneyReplicant } from './util/replicants';
+import {
+  obsAutoAdvanceReplicant,
+  obsDataReplicant,
+  OBSStatusReplicant,
+  osuTourneyReplicant,
+  tournamentPickBans
+} from './util/replicants';
 
 const logger = createLogger('obs');
 
@@ -216,10 +222,19 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
   }
 });
 
-obsAutoAdvanceReplicant.on('change', async (oldVal) => {
+tournamentPickBans.on('change', (newVal, oldVal) => {
+  const oldKeys = oldVal ? Object.keys(oldVal) : [];
+  const newKeys = Object.keys(newVal);
+
+  if (newKeys.some(key => !oldKeys.includes(key))) {
+    obsAutoAdvanceReplicant.value.nextTransition = { sceneName: obsAutoAdvanceReplicant.value.scenes.mappool, time: Date.now() + 10_000 };
+  }
+});
+
+obsAutoAdvanceReplicant.on('change', async (newVal) => {
   if (obsAutoAdvanceReplicant.value?.autoadvance !== true) return;
 
-  logger.info(`obsAutoAdvanceReplicant changed: current nextTransition: ${JSON.stringify(obsAutoAdvanceReplicant.value?.nextTransition)} (old: ${JSON.stringify(oldVal?.nextTransition)})`);
+  logger.info(`obsAutoAdvanceReplicant changed: current nextTransition: ${JSON.stringify(obsAutoAdvanceReplicant.value?.nextTransition)} (new: ${JSON.stringify(newVal.nextTransition)})`);
   if (!obsAutoAdvanceReplicant.value?.nextTransition) return;
 
   logger.info('newVal exists and is good');
