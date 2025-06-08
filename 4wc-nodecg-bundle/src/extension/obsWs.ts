@@ -223,39 +223,35 @@ osuTourneyReplicant.on('change', async (newVal, oldVal) => {
 });
 
 tournamentPickBans.on('change', (newVal, oldVal) => {
-  const oldKeys = oldVal ? Object.keys(oldVal) : [];
-  const newKeys = Object.keys(newVal);
+  const newKeys = Object.entries(newVal).filter(([_, value]) => value.type === 'pick').map(([k]) => k);
+  const oldKeys = oldVal
+    ? Object.entries(oldVal).filter(([_, value]) => value.type === 'pick').map(([k]) => k)
+    : [];
 
-  if (newKeys.some(key => !oldKeys.includes(key))) {
-    obsAutoAdvanceReplicant.value.nextTransition = { sceneName: obsAutoAdvanceReplicant.value.scenes.mappool, time: Date.now() + 10_000 };
+  if (newKeys.some((key) => !oldKeys.includes(key))) {
+    obsAutoAdvanceReplicant.value.nextTransition = { sceneName: obsAutoAdvanceReplicant.value.scenes.gameplay, time: Date.now() + 10_000 };
   }
 });
 
-obsAutoAdvanceReplicant.on('change', async (newVal) => {
+obsAutoAdvanceReplicant.on('change', async () => {
   if (obsAutoAdvanceReplicant.value?.autoadvance !== true) return;
 
-  logger.info(`obsAutoAdvanceReplicant changed: current nextTransition: ${JSON.stringify(obsAutoAdvanceReplicant.value?.nextTransition)} (new: ${JSON.stringify(newVal.nextTransition)})`);
+  // logger.info(`obsAutoAdvanceReplicant changed: current nextTransition: ${JSON.stringify(obsAutoAdvanceReplicant.value?.nextTransition)} (new: ${JSON.stringify(newVal.nextTransition)})`);
   if (!obsAutoAdvanceReplicant.value?.nextTransition) return;
 
-  logger.info('newVal exists and is good');
-
   if (obsAutoAdvanceReplicant.value?.nextTransition.time <= lastActionedTransitionTime) return;
-
-  logger.info('new time is indeed not an old transition');
 
   const targetSceneName = obsAutoAdvanceReplicant.value?.nextTransition.sceneName;
   if (!obsAutoAdvanceReplicant.value?.nextTransition || !targetSceneName) return;
 
-  logger.info(`got new scene name: ${targetSceneName}`);
-
   const timeNow = Date.now();
   const delayUntilTransition = obsAutoAdvanceReplicant.value.nextTransition.time - timeNow;
-
-  logger.info(`delay until transition: ${delayUntilTransition} (current time: ${timeNow})`);
 
   clearTimeout(sceneTransitionTimeout);
 
   if (delayUntilTransition > 0) {
+    logger.info(`Scheduled transition to ${targetSceneName} in ${delayUntilTransition.toLocaleString('en-US')}ms`);
+
     const transitionTime = obsAutoAdvanceReplicant.value.nextTransition.time;
     sceneTransitionTimeout = setTimeout(async () => {
       if (obsAutoAdvanceReplicant.value?.autoadvance !== true) {
@@ -263,15 +259,22 @@ obsAutoAdvanceReplicant.on('change', async (newVal) => {
         return;
       }
 
-      if (obsDataReplicant.value.currentScene?.sceneName !== targetSceneName) await setProgramScene(targetSceneName);
+      if (obsDataReplicant.value.currentScene?.sceneName !== targetSceneName)
+      {
+        await setProgramScene(targetSceneName);
+      } else {
+        logger.info(`OBS is already on scene ${targetSceneName}, not performing transition to ${targetSceneName}`);
+      }
       lastActionedTransitionTime = transitionTime;
     }, delayUntilTransition);
     return;
   }
 
-  logger.info('executing transition immediately');
-
-  if (obsDataReplicant.value.currentScene?.sceneName !== targetSceneName) await setProgramScene(targetSceneName);
+  if (obsDataReplicant.value.currentScene?.sceneName !== targetSceneName) {
+    await setProgramScene(targetSceneName);
+  } else {
+    logger.info(`OBS is already on scene ${targetSceneName}, not performing transition to ${targetSceneName}`);
+  }
   lastActionedTransitionTime = obsAutoAdvanceReplicant.value.nextTransition.time;
 });
 
