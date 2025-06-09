@@ -53,7 +53,6 @@ async function open() {
     await oldWs.disconnect();
   }
   const currentWs = new OBSWebSocket();
-  ws = currentWs;
 
   const tryReconnect = () => {
     if (OBSStatusReplicant.value.automaticReconnect && currentWs === ws) {
@@ -69,39 +68,39 @@ async function open() {
     }
   };
 
-  ws.on('ConnectionOpened', () => {
+  currentWs.on('ConnectionOpened', () => {
     logger.info('Connection opened.');
   });
-  ws.on('Hello', () => {
+  currentWs.on('Hello', () => {
     logger.info('Received Hello message.');
   });
-  ws.on('Identified', async () => {
+  currentWs.on('Identified', async () => {
     logger.info('Connected and Identified.');
     OBSStatusReplicant.value.wsStatus = 'OPEN';
 
     await refreshScenes();
   });
-  ws.on('CurrentProgramSceneChanged', (eventData) => {
+  currentWs.on('CurrentProgramSceneChanged', (eventData) => {
     if (!obsDataReplicant.value) {
       obsDataReplicant.value = { scenes: [] };
     }
     obsDataReplicant.value.currentScene = eventData as unknown as ObsSceneItem;
   });
 
-  ws.on('SceneTransitionStarted', () => {
+  currentWs.on('SceneTransitionStarted', () => {
     if (!obsDataReplicant.value) {
       obsDataReplicant.value = { scenes: [] };
     }
     obsDataReplicant.value.sceneTransitionActive = true;
   });
-  ws.on('SceneTransitionEnded', () => {
+  currentWs.on('SceneTransitionEnded', () => {
     if (!obsDataReplicant.value) {
       obsDataReplicant.value = { scenes: [] };
     }
     obsDataReplicant.value.sceneTransitionActive = false;
   });
 
-  ws.on('ConnectionClosed', () => {
+  currentWs.on('ConnectionClosed', () => {
     OBSStatusReplicant.value.wsStatus = 'CLOSED';
     if (obsDataReplicant.value) obsDataReplicant.value.scenes.length = 0;
 
@@ -119,9 +118,11 @@ async function open() {
   try {
     logger.info('Connecting to OBS...');
     OBSStatusReplicant.value.wsStatus = 'CONNECTING';
-    const { obsWebSocketVersion, negotiatedRpcVersion } = await ws.connect(OBSStatusReplicant.value.wsUrl, OBSStatusReplicant.value.wsPassword);
+    const { obsWebSocketVersion, negotiatedRpcVersion } = await currentWs.connect(OBSStatusReplicant.value.wsUrl, OBSStatusReplicant.value.wsPassword);
 
     logger.info(`Connected to server ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`);
+
+    ws = currentWs;
   } catch (error) {
     if (error instanceof OBSWebSocketError) {
       logger.warn('Failed to connect', error.code, error.message);
@@ -259,7 +260,7 @@ obsAutoAdvanceReplicant.on('change', async () => {
         return;
       }
 
-      if (obsDataReplicant.value.currentScene?.sceneName !== targetSceneName) {
+      if (obsDataReplicant.value?.currentScene?.sceneName !== targetSceneName) {
         await setProgramScene(targetSceneName);
       } else {
         logger.info(`OBS is already on scene ${targetSceneName}, not performing transition to ${targetSceneName}`);
@@ -269,7 +270,7 @@ obsAutoAdvanceReplicant.on('change', async () => {
     return;
   }
 
-  if (obsDataReplicant.value.currentScene?.sceneName !== targetSceneName) {
+  if (obsDataReplicant.value?.currentScene?.sceneName !== targetSceneName) {
     await setProgramScene(targetSceneName);
   } else {
     logger.info(`OBS is already on scene ${targetSceneName}, not performing transition to ${targetSceneName}`);
