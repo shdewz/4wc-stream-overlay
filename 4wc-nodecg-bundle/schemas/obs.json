@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Connected OBS data",
+  "default": {
+    "scenes": []
+  },
+  "$defs": {
+    "SceneItem": {
+      "$id": "#/obs/SceneItem",
+      "type": "object",
+      "required": [
+        "sceneIndex",
+        "sceneName",
+        "sceneUuid"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "sceneName": {
+          "type": "string"
+        },
+        "sceneUuid": {
+          "type": "string"
+        }
+      }
+    },
+    "IndexedSceneItem": {
+      "$id": "#/obs/IndexedSceneItem",
+      "allOf": [
+        { "$ref": "#/$defs/SceneItem" },
+        {
+          "type": "object",
+          "properties": {
+            "sceneIndex": { "type": "integer" }
+          },
+          "required": ["sceneIndex"],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "scenes"
+  ],
+  "properties": {
+    "scenes": {
+      "$id": "#/properties/scenes",
+      "type": "array",
+      "title": "Scenes",
+      "items": { "$ref": "#/$defs/IndexedSceneItem" }
+    },
+    "currentScene": {
+      "$ref": "#/$defs/SceneItem"
+    },
+    "sceneTransitionActive": {
+      "type": "boolean",
+      "description": "Is a scene transition currently happening?",
+      "default": false
+    }
+  },
+  "additionalProperties": false
+}
