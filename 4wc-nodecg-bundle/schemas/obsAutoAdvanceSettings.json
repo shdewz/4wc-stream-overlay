@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "OBS scene auto-advance settings",
+  "description": "has settings for autoadvance and associated states",
+  "default": {
+    "autoadvance": false,
+    "scenes": {
+      "gameplay": "gameplay",
+      "mappool": "mappool"
+    }
+  },
+  "required": ["autoadvance", "scenes"],
+  "properties": {
+    "autoadvance": {
+      "type": "boolean",
+      "default": false
+    },
+    "scenes": {
+      "type": "object",
+      "required": ["gameplay", "mappool"],
+      "additionalProperties": false,
+      "properties": {
+        "gameplay": {"type": "string", "default": "gameplay"},
+        "mappool": {"type": "string", "default": "mappool"}
+      }
+    },
+    "nextTransition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["time", "sceneName"],
+      "properties": {
+        "time": {"type": "integer"},
+        "sceneName": {"type": "string"}
+      }
+    }
+  },
+  "additionalProperties": false
+}
