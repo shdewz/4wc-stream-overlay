@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="fix relative paths after moving files">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="TypeScript File" />
+        <option value="Vue Composition API Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/nodecg-tv2" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ILW8&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/shdewz/4wc-stream-overlay.git&quot;,
+    &quot;accountId&quot;: &quot;85ce4ce1-02c1-40bb-a204-99bf8fd6c93f&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2xbdeWoGD1tDhmhuQr4jIakJFXh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "#6 on dev-nodecg",
+    "javascript.nodejs.core.library.configured.version": "22.16.0",
+    "javascript.nodejs.core.library.typings.version": "22.15.21",
+    "last_opened_file_path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/src/graphics",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/daohe/.local/share/fnm/node-versions/v22.16.0/installation/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.schema-types.executor": "Run",
+    "npm.start.executor": "Run",
+    "npm.watch.executor": "Run",
+    "settings.editor.selected.configurable": "preferences.sourceCode.JavaScript",
+    "ts.external.directory.path": "/Users/daohe/WebstormProjects/4wc-stream-overlay/nodecg/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Vue",
+      "JSON"
+    ],
+    "vue.recent.templates": [
+      "Vue Composition API Component"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/graphics" />
+      <recent name="$PROJECT_DIR$/src/graphics/intro" />
+      <recent name="$PROJECT_DIR$/schemas" />
+      <recent name="$PROJECT_DIR$/src/dashboard" />
+      <recent name="$PROJECT_DIR$/src/browser_shared/styles" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/nodecg" />
+      <recent name="$PROJECT_DIR$/src/assets" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/nodecg/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/nodecg/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="611ce844-8de9-415e-ab39-9213d0d42308" name="Changes" comment="" />
+      <created>1748210803368</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1748210803368</updated>
+      <workItem from="1748210804570" duration="3076000" />
+      <workItem from="1748213930379" duration="4753000" />
+      <workItem from="1748218748658" duration="17376000" />
+      <workItem from="1748346436913" duration="4584000" />
+      <workItem from="1748359800933" duration="61109000" />
+      <workItem from="1748629944924" duration="692000" />
+    </task>
+    <task id="LOCAL-00005" summary="add static json data and gosu dashboards">
+      <option name="closed" value="true" />
+      <created>1748227609697</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1748227609697</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add static json data and gosu dashboards">
+      <option name="closed" value="true" />
+      <created>1748228984555</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1748228984556</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix missing/broken CSS in main screen">
+      <option name="closed" value="true" />
+      <created>1748271937663</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1748271937663</updated>
+    </task>
+    <task id="LOCAL-00008" summary="revert unminify jquery.min.js">
+      <option name="closed" value="true" />
+      <created>1748272608589</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1748272608589</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix osuTourney schema missing required properties">
+      <option name="closed" value="true" />
+      <created>1748274149371</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1748274149371</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fill stars based on tourney score">
+      <option name="closed" value="true" />
+      <created>1748275466794</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1748275466794</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add song metadata and stats display&#10;&#10;this modifies the osuSong schema to include raw stats (cs/ar/od/length/bpm) and computed stats that account for mods">
+      <option name="closed" value="true" />
+      <created>1748280310335</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1748280310335</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add cancel button next to reset pickbans confirm button">
+      <option name="closed" value="true" />
+      <created>1748292429354</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1748292429354</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update tournamentPickBans schema">
+      <option name="closed" value="true" />
+      <created>1748325599035</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1748325599036</updated>
+    </task>
+    <task id="LOCAL-00014" summary="remove unused code">
+      <option name="closed" value="true" />
+      <created>1748345564413</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1748345564413</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix lint errors in main graphic">
+      <option name="closed" value="true" />
+      <created>1748346842437</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1748346842437</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fix lint errors in main graphic">
+      <option name="closed" value="true" />
+      <created>1748346895319</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1748346895319</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add timer chat message handlers">
+      <option name="closed" value="true" />
+      <created>1748371607047</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1748371607047</updated>
+    </task>
+    <task id="LOCAL-00018" summary="disable timer if oldMessages array is empty&#10;&#10;when oldMessages is empty, it is likely the page was just loaded and a flood of messages came rushing in">
+      <option name="closed" value="true" />
+      <created>1748371973282</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1748371973282</updated>
+    </task>
+    <task id="LOCAL-00019" summary="remove reference implementation files for main graphic">
+      <option name="closed" value="true" />
+      <created>1748372242600</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1748372242600</updated>
+    </task>
+    <task id="LOCAL-00020" summary="add mappool graphic">
+      <option name="closed" value="true" />
+      <created>1748372506456</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1748372506456</updated>
+    </task>
+    <task id="LOCAL-00021" summary="import code from reference mappool implementation&#10;&#10;scripts are kept in comment as they Don't Work:tm:">
+      <option name="closed" value="true" />
+      <created>1748372710231</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1748372710231</updated>
+    </task>
+    <task id="LOCAL-00022" summary="refactor scrollbar styles from main and mappool graphics">
+      <option name="closed" value="true" />
+      <created>1748379867130</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1748379867130</updated>
+    </task>
+    <task id="LOCAL-00023" summary="add beatmap-card component, refactor scrollbar-inhibit.css location">
+      <option name="closed" value="true" />
+      <created>1748382877366</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1748382877366</updated>
+    </task>
+    <task id="LOCAL-00024" summary="add pick-by indicator in mappool graphic">
+      <option name="closed" value="true" />
+      <created>1748385712476</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1748385712476</updated>
+    </task>
+    <task id="LOCAL-00025" summary="add ctrl-pick to ban in pickbans dashboard">
+      <option name="closed" value="true" />
+      <created>1748394500464</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1748394500464</updated>
+    </task>
+    <task id="LOCAL-00026" summary="add ban indication to pickbans dashboard">
+      <option name="closed" value="true" />
+      <created>1748395722585</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1748395722586</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fix pickByLabel for bans in beatmap card">
+      <option name="closed" value="true" />
+      <created>1748395816603</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1748395816603</updated>
+    </task>
+    <task id="LOCAL-00028" summary="fix lint errors in beatmap-card.vue">
+      <option name="closed" value="true" />
+      <created>1748395878719</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1748395878719</updated>
+    </task>
+    <task id="LOCAL-00029" summary="add pick blinker to beatmap card">
+      <option name="closed" value="true" />
+      <created>1748397162082</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1748397162082</updated>
+    </task>
+    <task id="LOCAL-00030" summary="add mod icon grayscale on banned beatmap card">
+      <option name="closed" value="true" />
+      <created>1748397367103</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1748397367103</updated>
+    </task>
+    <task id="LOCAL-00031" summary="add primitive autopick impl">
+      <option name="closed" value="true" />
+      <created>1748399896580</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1748399896580</updated>
+    </task>
+    <task id="LOCAL-00032" summary="add min bans count and color swapping for autopick">
+      <option name="closed" value="true" />
+      <created>1748400712479</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1748400712479</updated>
+    </task>
+    <task id="LOCAL-00033" summary="persist pickbans settings&#10;&#10;turns out it's actually quite useful to persist minimum bans count after all">
+      <option name="closed" value="true" />
+      <created>1748400898356</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1748400898356</updated>
+    </task>
+    <task id="LOCAL-00034" summary="import intro graphic code from reference">
+      <option name="closed" value="true" />
+      <created>1748574285207</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1748574285207</updated>
+    </task>
+    <task id="LOCAL-00035" summary="add countdown dashboard with placeholder matches replicant">
+      <option name="closed" value="true" />
+      <created>1748574510325</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1748574510325</updated>
+    </task>
+    <task id="LOCAL-00036" summary="add countdown dashboard with placeholder matches replicant">
+      <option name="closed" value="true" />
+      <created>1748575003513</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1748575003513</updated>
+    </task>
+    <task id="LOCAL-00037" summary="add countdown dashboard with placeholder matches replicant">
+      <option name="closed" value="true" />
+      <created>1748575011246</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1748575011246</updated>
+    </task>
+    <task id="LOCAL-00038" summary="add tournament schedule to countdown dashboard">
+      <option name="closed" value="true" />
+      <created>1748576519846</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1748576519846</updated>
+    </task>
+    <task id="LOCAL-00039" summary="update countdown dashboard to support 4wc teamvs">
+      <option name="closed" value="true" />
+      <created>1748577300399</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1748577300399</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fix lint errors">
+      <option name="closed" value="true" />
+      <created>1748577377048</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1748577377048</updated>
+    </task>
+    <task id="LOCAL-00041" summary="add missing generated tournamentSchedule.d.ts">
+      <option name="closed" value="true" />
+      <created>1748577406443</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1748577406443</updated>
+    </task>
+    <task id="LOCAL-00042" summary="add team names, flags, players, and timer to intro graphic">
+      <option name="closed" value="true" />
+      <created>1748578977818</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1748578977818</updated>
+    </task>
+    <task id="LOCAL-00043" summary="fix lint errors">
+      <option name="closed" value="true" />
+      <created>1748579098152</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1748579098152</updated>
+    </task>
+    <task id="LOCAL-00044" summary="add accents graphic">
+      <option name="closed" value="true" />
+      <created>1748579255060</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1748579255060</updated>
+    </task>
+    <task id="LOCAL-00045" summary="add accents graphic to package.json">
+      <option name="closed" value="true" />
+      <created>1748579276955</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1748579276955</updated>
+    </task>
+    <task id="LOCAL-00046" summary="import winner graphic from reference impl">
+      <option name="closed" value="true" />
+      <created>1748579712480</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1748579712481</updated>
+    </task>
+    <task id="LOCAL-00047" summary="extract team display into its own component">
+      <option name="closed" value="true" />
+      <created>1748581412467</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1748581412467</updated>
+    </task>
+    <task id="LOCAL-00048" summary="add dynamic data to winner graphic">
+      <option name="closed" value="true" />
+      <created>1748582375549</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1748582375549</updated>
+    </task>
+    <task id="LOCAL-00049" summary="update package.json with correct project meta">
+      <option name="closed" value="true" />
+      <created>1748586359482</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1748586359482</updated>
+    </task>
+    <task id="LOCAL-00050" summary="move nocecg source to its own subdirectory">
+      <option name="closed" value="true" />
+      <created>1748630184014</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1748630184014</updated>
+    </task>
+    <task id="LOCAL-00051" summary="extract modifications to existing files into nodecg-specific files">
+      <option name="closed" value="true" />
+      <created>1748630280535</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1748630280535</updated>
+    </task>
+    <task id="LOCAL-00052" summary="extract modifications to existing files into nodecg-specific files">
+      <option name="closed" value="true" />
+      <created>1748630292111</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1748630292111</updated>
+    </task>
+    <task id="LOCAL-00053" summary="fix relative paths after moving files">
+      <option name="closed" value="true" />
+      <created>1748630606937</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1748630606937</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="GitHub.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add ctrl-pick to ban in pickbans dashboard" />
+    <MESSAGE value="add ban indication to pickbans dashboard" />
+    <MESSAGE value="fix pickByLabel for bans in beatmap card" />
+    <MESSAGE value="fix lint errors in beatmap-card.vue" />
+    <MESSAGE value="add pick blinker to beatmap card" />
+    <MESSAGE value="add mod icon grayscale on banned beatmap card" />
+    <MESSAGE value="add primitive autopick impl" />
+    <MESSAGE value="add min bans count and color swapping for autopick" />
+    <MESSAGE value="persist pickbans settings&#10;&#10;turns out it's actually quite useful to persist minimum bans count after all" />
+    <MESSAGE value="import intro graphic code from reference" />
+    <MESSAGE value="add countdown dashboard with placeholder matches replicant" />
+    <MESSAGE value="add tournament schedule to countdown dashboard" />
+    <MESSAGE value="update countdown dashboard to support 4wc teamvs" />
+    <MESSAGE value="add missing generated tournamentSchedule.d.ts" />
+    <MESSAGE value="add team names, flags, players, and timer to intro graphic" />
+    <MESSAGE value="fix lint errors" />
+    <MESSAGE value="add accents graphic" />
+    <MESSAGE value="add accents graphic to package.json" />
+    <MESSAGE value="import winner graphic from reference impl" />
+    <MESSAGE value="extract team display into its own component" />
+    <MESSAGE value="add dynamic data to winner graphic" />
+    <MESSAGE value="update package.json with correct project meta" />
+    <MESSAGE value="move nocecg source to its own subdirectory" />
+    <MESSAGE value="extract modifications to existing files into nodecg-specific files" />
+    <MESSAGE value="fix relative paths after moving files" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix relative paths after moving files" />
+  </component>
+</project>

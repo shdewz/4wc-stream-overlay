@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Current osu! Song Overrides",
+  "default": {},
+  "examples": [
+    {
+      "75": {
+        "artist": "Kenji Ninuma",
+        "title": "DISCO*PRINCE",
+        "difficulty": "Normal",
+        "creator": "peppy",
+        "SR": "2.41",
+        "length": "02:23",
+        "OD": "6.00",
+        "AR": "6.00",
+        "CS": "6.00",
+        "BPM": "120BPM",
+        "stage": "SEMAINE 1",
+        "index": 1,
+        "category": "SV",
+        "setId": 1,
+        "coverUrl": "https://assets.ppy.sh/beatmaps/1/covers/cover.jpg"
+      }
+    }
+  ],
+  "additionalProperties": {
+    "$id": "#/properties/75",
+    "type": "object",
+    "title": "The 75 schema",
+    "description": "An explanation about the purpose of this instance.",
+    "default": {},
+    "examples": [
+      {
+        "artist": "Kenji Ninuma",
+        "title": "DISCO*PRINCE",
+        "difficulty": "Normal",
+        "creator": "peppy",
+        "SR": "2.41",
+        "length": "02:23",
+        "OD": "6.00",
+        "AR": "6.00",
+        "CS": "6.00",
+        "BPM": "120BPM",
+        "stage": "SEMAINE 1",
+        "index": 1,
+        "category": "SV",
+        "setId": 1,
+        "coverUrl": "https://assets.ppy.sh/beatmaps/1/covers/cover.jpg"
+      }
+    ],
+    "properties": {
+      "artist": {
+        "$id": "#/properties/75/properties/artist",
+        "type": "string",
+        "title": "The artist schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "Kenji Ninuma"
+        ]
+      },
+      "title": {
+        "$id": "#/properties/75/properties/title",
+        "type": "string",
+        "title": "The title schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "DISCO*PRINCE"
+        ]
+      },
+      "difficulty": {
+        "$id": "#/properties/75/properties/difficulty",
+        "type": "string",
+        "title": "The difficulty schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "Normal"
+        ]
+      },
+      "creator": {
+        "$id": "#/properties/75/properties/creator",
+        "type": "string",
+        "title": "The creator schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "peppy"
+        ]
+      },
+      "SR": {
+        "$id": "#/properties/75/properties/SR",
+        "type": "string",
+        "title": "The SR schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "2.41"
+        ]
+      },
+      "length": {
+        "$id": "#/properties/75/properties/length",
+        "type": "string",
+        "title": "The length schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "02:23"
+        ]
+      },
+      "OD": {
+        "$id": "#/properties/75/properties/OD",
+        "type": "string",
+        "title": "The OD schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "6.00"
+        ]
+      },
+      "AR": {
+        "$id": "#/properties/75/properties/AR",
+        "type": "string",
+        "title": "The AR schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "6.00"
+        ]
+      },
+      "CS": {
+        "$id": "#/properties/75/properties/CS",
+        "type": "string",
+        "title": "The CS schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "6.00"
+        ]
+      },
+      "BPM": {
+        "$id": "#/properties/75/properties/BPM",
+        "type": "string",
+        "title": "The BPM schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "120BPM"
+        ]
+      },
+      "stage": {
+        "$id": "#/properties/75/properties/stage",
+        "type": "string",
+        "title": "The stage schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "SEMAINE 1"
+        ]
+      },
+      "index": {
+        "$id": "#/properties/75/properties/index",
+        "type": "integer",
+        "title": "The index schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": 0,
+        "examples": [
+          1
+        ]
+      },
+      "category": {
+        "$id": "#/properties/75/properties/category",
+        "type": "string",
+        "title": "The category schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "SV"
+        ]
+      },
+      "setId": {
+        "$id": "#/properties/75/properties/setId",
+        "type": "integer",
+        "title": "The setId schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": -1,
+        "examples": [
+          1
+        ]
+      },
+      "coverUrl": {
+        "$id": "#/properties/75/properties/coverUrl",
+        "type": "string",
+        "title": "The coverUrl schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": [
+          "https://assets.ppy.sh/beatmaps/1/covers/cover.jpg"
+        ]
+      },
+      "localBackgroundPath": {
+        "$id": "#/properties/75/properties/localBackgroundPath",
+        "type": "string",
+        "title": "The localBackgroundPath schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": "",
+        "examples": []
+      }
+    },
+    "additionalProperties": false
+  }
+}
